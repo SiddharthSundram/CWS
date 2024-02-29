@@ -387,8 +387,9 @@
 
 
 
-
-        @yield('js')
+    </div>
+    
+    @yield('js')
 </body>
 
 </html>
