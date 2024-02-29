@@ -22,7 +22,7 @@
         <div class="container mx-auto py-8">
             <section class="grid grid-cols-1 md:grid-cols-2 gap-8 p-5">
                 <div class="md:col-span-1 bg-white rounded-lg p-6 shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">About Us</h2>
+                    <h2 class="text-2xl font-bold mb-4 text">About Us</h2>
                     <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis magna nec
                         turpis tincidunt suscipit.
                         Phasellus a magna dapibus, feugiat urna vitae, consectetur mi.</p>
