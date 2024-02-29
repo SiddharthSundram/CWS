@@ -24,3 +24,10 @@ Route::get('/dashboard', function () {
 Route::get('/', function () {
     return view('home.index');
 });
+
+Route::get('/register', function () {
+    return view('home.register');
+});
+Route::get('/login', function () {
+    return view('home.login');
+});

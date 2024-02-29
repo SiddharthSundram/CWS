@@ -76,19 +76,6 @@
         </div>
     </div>
 
-    {{-- <header class="bg-white border-b border-gray-200">
-        <div class="container mx-auto flex justify-between items-center py-4">
-            <h1 class="text-xl font-bold"><a href="#">Code With Sadiq</a></h1>
-            <nav>
-                <ul class="flex space-x-6">
-                    <li><a href="#" class="hover:text-blue-700">Home</a></li>
-                    <li><a href="#" class="hover:text-blue-700">About</a></li>
-                    <li><a href="#" class="hover:text-blue-700">Portfolio</a></li>
-                    <li><a href="#" class="hover:text-blue-700">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header> --}}
 
 
 
@@ -102,7 +89,7 @@
 
     </main>
 
-    <footer class="bg-gray-900 text-white py-4 mt-8">
+    <footer class="bg-gray-900 text-white py-4 border-2 border-blue-700 hover:border-blue-900 ">
         <div class="container mx-auto text-center">
             <p>&copy; 2024 Code With Sadiq Website. All rights reserved.</p>
         </div>
