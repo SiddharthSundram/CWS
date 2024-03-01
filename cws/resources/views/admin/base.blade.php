@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-
+    {{-- ajax --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+    {{--bootstrap  --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     {{-- style css in public folder --}}
@@ -22,13 +22,31 @@
     <section id="sidebar">
         <a href="#" class="brand">
             <i class='bx bxs-smile'></i>
-            <span class="text">AdminHub</span>
+            <span class="text">CWS</span>
         </a>
         <ul class="side-menu top">
             <li class="active">
                 <a href="#">
                     <i class='bx bxs-dashboard'></i>
                     <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                     <i class='bx bx-male' ></i>
+                    <span class="text">My Students</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                     <i class='bx bx-male' ></i>
+                    <span class="text">My Students</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                     <i class='bx bx-male' ></i>
+                    <span class="text">My Students</span>
                 </a>
             </li>
             <li>
