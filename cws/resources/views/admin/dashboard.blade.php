@@ -75,7 +75,7 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3>Recent Orders</h3>
+                        <h3>Recent</h3>
                         <i class='bx bx-search'></i>
                         <i class='bx bx-filter'></i>
                     </div>
@@ -90,7 +90,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="img/people.png">
+                                    <img src="https://tse2.mm.bing.net/th?id=OIP.qY7cXtJw6V_0n1zgeOKX2gHaEK&pid=Api&P=0&h=220">
                                     <p>John Doe</p>
                                 </td>
                                 <td>01-10-2021</td>
@@ -98,7 +98,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="img/people.png">
+                                    <img src="https://tse2.mm.bing.net/th?id=OIP.qY7cXtJw6V_0n1zgeOKX2gHaEK&pid=Api&P=0&h=220">
                                     <p>John Doe</p>
                                 </td>
                                 <td>01-10-2021</td>
@@ -106,7 +106,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="img/people.png">
+                                    <img src="https://tse2.mm.bing.net/th?id=OIP.qY7cXtJw6V_0n1zgeOKX2gHaEK&pid=Api&P=0&h=220">
                                     <p>John Doe</p>
                                 </td>
                                 <td>01-10-2021</td>
