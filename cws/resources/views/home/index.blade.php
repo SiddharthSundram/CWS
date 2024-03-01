@@ -30,18 +30,15 @@
                 <div class="md:col-span-1 bg-white rounded-lg p-6 shadow-md">
                     <h2 class="text-2xl font-bold mb-4">Recent Projects</h2>
                     <div class="grid grid-cols-1 gap-4">
+                        @foreach ($recent_projects as $item)
                         <div class="bg-gray-200 p-4 rounded-md shadow-md hover:bg-gray-300 transition duration-300">
-                            <h3 class="text-xl font-semibold mb-2">Project 1</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <h3 class="text-xl font-semibold mb-2">{{$item->name}}</h3>
+                            <p>{{$item->description}}</p>
+                            <a href="" class="text-blue-500 font-semibold hover:text-blue-700">View</a>
+
                         </div>
-                        <div class="bg-gray-200 p-4 rounded-md shadow-md hover:bg-gray-300 transition duration-300">
-                            <h3 class="text-xl font-semibold mb-2">Project 2</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                        <div class="bg-gray-200 p-4 rounded-md shadow-md hover:bg-gray-300 transition duration-300">
-                            <h3 class="text-xl font-semibold mb-2">Project 3</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
+                        @endforeach
+                        
                     </div>
                 </div>
             </section>

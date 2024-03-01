@@ -55,7 +55,14 @@
                     <span class="text">Team</span>
                 </a>
             </li>
+            <li>
+                <a href="{{route("recent_project")}}">
+                    <i class='bx bxs-group'></i>
+                    <span class="text">Recent Project</span>
+                </a>
+            </li>
         </ul>
+        
         <ul class="side-menu">
             <li>
                 <a href="#">
