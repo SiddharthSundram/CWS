@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-        {{-- // md:w-1/2 md:flex md:justify-center md:order-1 -> img
+{{-- // md:w-1/2 md:flex md:justify-center md:order-1 -> img
         // container mx-auto flex flex-col md:flex-row items-center justify-between --}}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +11,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
     @yield('css')
 </head>
 
@@ -28,10 +29,11 @@
 
             <!-- Navigation links -->
             <nav class="hidden md:flex items-center gap-4">
-                <a href="#" class="hover:text-gray-300">Home</a>
-                <a href="#" class="hover:text-gray-300">Services</a>
-                <a href="#" class="hover:text-gray-300">About</a>
-                <a href="#" class="hover:text-gray-300">Contact</a>
+                <a href="" class="hover:text-gray-300">Home</a>
+                <a href="" class="hover:text-gray-300">About</a>
+                <a href="{{ route('logout') }}" id="logout-li" class="hover:text-gray-300">Logout</a>
+                <a href="{{ route('login') }}" id="login-li" class="hover:text-gray-300">Login</a>
+                <a href="{{ route('register') }}" id="register-li" class="hover:text-gray-300">Sign up</a>
             </nav>
 
             <!-- Mobile menu button -->
@@ -47,7 +49,10 @@
 
     <!-- Drawer component (conditionally rendered) -->
     <div id="drawerNavigation"
-        class="fixed top-0 left-0 z-50 h-screen w-60 bg-gray-800 text-white transform transition-transform duration-300 -translate-x-full md:hidden">
+        class="fixed top-0 left-0 z-50 h-screen w-60 bg-gray-800 text-white transform transition-transform duration-300 -translate-x-full md:hidden"
+        >
+        <h5 class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400" id="calling_username">Hi, Guest
+        </h5>
         <div class="p-4">
             <div class="flex justify-between items-center mb-4">
                 <!-- Logo and site title -->
@@ -71,7 +76,7 @@
                 <a href="#" class="hover:text-gray-300">Home</a>
                 <a href="#" class="hover:text-gray-300">Services</a>
                 <a href="#" class="hover:text-gray-300">About</a>
-                <a href="#" class="hover:text-gray-300">Contact</a>
+                <a href="" class="hover:text-gray-300">Logout</a>
             </nav>
         </div>
     </div>
@@ -113,6 +118,79 @@
             drawerNavigation.classList.add('-translate-x-full');
         });
     </script>
+
+
+    <script>
+        $(document).ready(function() {
+
+            var token = localStorage.getItem('token');
+            
+            if (token) {
+                $.ajax({
+                    url: '/api/auth/login',
+                    type: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    },
+                    success: function(response) {
+                        if (response.hasOwnProperty('name')) {
+                            $("#calling_username").text('Hi, ' + response.name);
+                            $('#login-li').hide();
+                            $('#register-li').hide();
+                            $('#logout-li').show();
+                        } else {
+                            $("#calling_username").text('Hi, Guest');
+                            $('#login-li').show();
+                            $('#register-li').show();
+                            $('#logout-li').hide();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        if (xhr.status === 401) {
+                            // Token expired, remove from local storage
+                            localStorage.removeItem('token');
+                        }
+                        $("#calling_username").text('Hi, Guest');
+                        $('#login-li').show();
+                        $('#register-li').show();
+                        $('#logout-li').hide();
+                        console.log(xhr.responseText);
+                    }
+                });
+            } else {
+                // Token does not exist, handle the case accordingly
+                $("#calling_username").text('Hi, Guest');
+                $('#login-li').show();
+                $('#register-li').show();
+                $('#logout-li').hide();
+            }
+
+            $('#logout').click(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: '/api/auth/logout',
+                    type: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    },
+                    success: function(response) {
+                        // Remove the token from localStorage
+                        alert(response.message)
+                        localStorage.removeItem('token');
+                        // Redirect to the login page
+                        window.location.href = '{{ route('login') }}';
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>
