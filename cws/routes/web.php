@@ -25,13 +25,13 @@ Route::get('/base', function () {
     return view('admin.base');
 });
 
+Route::get('/', function () {
+    return view('home.index');
+});
 
-Route::get("/",[HomeController::class,'index'])->name('index');
-Route::get("/login",[HomeController::class,'signin'])->name('login');
-Route::get("/logout",[HomeController::class,'signout'])->name('logout');
-Route::get("/register",[HomeController::class,'signup'])->name('register');
-
-
-
-
-Route::get("/dashboard",[HomeController::class,'dashboard'])->name('admin.dashboard');
+Route::get('/register', function () {
+    return view('home.register');
+});
+Route::get('/login', function () {
+    return view('home.login');
+});
