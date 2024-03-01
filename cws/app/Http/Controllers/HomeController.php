@@ -30,8 +30,4 @@ class HomeController extends Controller
     public function insertCourse(){
         return view("admin.insertCourse");
     }
-    public function recent_project(){
-        return view("admin.recent_project");
-    }
-
 }
