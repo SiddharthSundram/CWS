@@ -34,6 +34,8 @@ Route::get("/register",[HomeController::class,'signup'])->name('register');
 
 Route::get("/insertCategory",[HomeController::class,'insertCategory'])->name('insertCategory');
 Route::get("/insertCourse",[HomeController::class,'insertCourse'])->name('insertCourse');
+Route::get("/manageCourse",[HomeController::class,'manageCourse'])->name('manageCourse');
+Route::get("/manageCategory",[HomeController::class,'manageCategory'])->name('manageCategory');
 
 
 

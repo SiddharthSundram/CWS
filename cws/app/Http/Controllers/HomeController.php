@@ -29,4 +29,10 @@ class HomeController extends Controller
     public function insertCourse(){
         return view("admin.insertCourse");
     }
+    public function manageCourse(){
+        return view("admin.manageCourse");
+    }
+    public function manageCategory(){
+        return view("admin.manageCategory");
+    }
 }

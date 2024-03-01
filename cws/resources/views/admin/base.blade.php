@@ -20,7 +20,7 @@
 <body>
     <!-- SIDEBAR -->
     <section id="sidebar">
-        <a href="#" class="brand">
+        <a href="dashboard" class="brand">
             <i class='bx bxs-smile'></i>
             <span class="text">CWS</span>
         </a>
@@ -33,44 +33,38 @@
             </li>
             <li>
                 <a href="#">
-                     <i class='bx bx-male' ></i>
+                    <i class='bx bx-user-plus'></i>
                     <span class="text">My Students</span>
                 </a>
             </li>
             <li>
-                <a href="#">
-                     <i class='bx bx-male' ></i>
-                    <span class="text">My Students</span>
+                <a href="{{route("manageCategory")}}">
+                    <i class='bx bxs-book-alt' ></i>
+                    <span class="text">Manage Category</span>
                 </a>
             </li>
             <li>
-                <a href="#">
-                     <i class='bx bx-male' ></i>
-                    <span class="text">My Students</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                     <i class='bx bx-male' ></i>
-                    <span class="text">My Students</span>
+                <a href="{{route("manageCourse")}}">
+                    <i class='bx bxs-book-alt' ></i>
+                    <span class="text">Manage Course</span>
                 </a>
             </li>
             <li>
                 <a href="{{route("insertCategory")}}">
-                    <i class='bx bxs-book-alt'></i>
-                     <span class="text">Courses</span>
+                    <i class='bx bxs-layer-plus' ></i>
+                     <span class="text">Insert Category</span>
                 </a>
             </li>
             <li>
                 <a href="{{route("insertCourse")}}">
-                    <i class='bx bxs-message-dots'></i>
-                    <span class="text">Panding</span>
+                    <i class='bx bxs-layer-plus' ></i>
+                    <span class="text">Insert Course</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class='bx bxs-group'></i>
-                    <span class="text">Team</span>
+                    <i class='bx bxs-message-dots'></i>
+                    <span class="text">Chat</span>
                 </a>
             </li>
         </ul>

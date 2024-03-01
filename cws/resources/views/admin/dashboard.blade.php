@@ -118,7 +118,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="img/people.png">
+                                    <img src="https://tse2.mm.bing.net/th?id=OIP.qY7cXtJw6V_0n1zgeOKX2gHaEK&pid=Api&P=0&h=220">
                                     <p>John Doe</p>
                                 </td>
                                 <td>01-10-2021</td>
@@ -126,7 +126,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="img/people.png">
+                                    <img src="https://tse2.mm.bing.net/th?id=OIP.qY7cXtJw6V_0n1zgeOKX2gHaEK&pid=Api&P=0&h=220">
                                     <p>John Doe</p>
                                 </td>
                                 <td>01-10-2021</td>
