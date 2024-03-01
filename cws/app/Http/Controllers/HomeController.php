@@ -23,4 +23,10 @@ class HomeController extends Controller
     public function dashboard(){
         return view("admin.dashboard");
     }
+    public function insertCategory(){
+        return view("admin.insertCategory");
+    }
+    public function insertCourse(){
+        return view("admin.insertCourse");
+    }
 }

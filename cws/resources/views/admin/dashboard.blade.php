@@ -46,6 +46,7 @@
                     <span class="text">Download PDF</span>
                 </a>
             </div>
+            
 
             <ul class="box-info">
                 <li>

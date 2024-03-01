@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CourseController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +31,8 @@ Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
     Route::get('/user-profile', [AuthController::class, 'userProfile']);    
 });
 
+//api for insert category
+Route::apiResource('category',CategoriesController::class);
+
+//api for insert Courses
+Route::apiResource("course",CourseController::class);

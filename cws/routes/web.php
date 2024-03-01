@@ -32,6 +32,10 @@ Route::get("/logout",[HomeController::class,'signout'])->name('logout');
 Route::get("/register",[HomeController::class,'signup'])->name('register');
 
 
+Route::get("/insertCategory",[HomeController::class,'insertCategory'])->name('insertCategory');
+Route::get("/insertCourse",[HomeController::class,'insertCourse'])->name('insertCourse');
+
+
 
 
 Route::get("/dashboard",[HomeController::class,'dashboard'])->name('admin.dashboard');
