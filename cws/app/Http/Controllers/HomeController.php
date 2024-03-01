@@ -19,4 +19,8 @@ class HomeController extends Controller
     public function signup(){
         return view("home.register");
     }
+
+    public function dashboard(){
+        return view("admin.dashboard");
+    }
 }

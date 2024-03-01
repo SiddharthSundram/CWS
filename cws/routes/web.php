@@ -21,9 +21,9 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/dashboard', function () {
 //     return view('admin.dashboard');
 // });
-Route::get('/base', function () {
-    return view('admin.base');
-});
+// Route::get('/dashboard', function () {
+//     return view('admin.dashboard');
+// });
 
 
 Route::get("/",[HomeController::class,'index'])->name('index');
