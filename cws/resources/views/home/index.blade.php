@@ -6,12 +6,12 @@
         <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
             <div class="md:w-1/2 md:pr-8 mb-4 md:mb-0 ">
                 <h1 class="text-4xl font-bold mb-4">Code with Sadiq</h1>
-                <p class="text-lg mb-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis magna nec
-                    turpis tincidunt suscipit.
-                    Phasellus a magna dapibus, feugiat urna vitae, consectetur mi.</p>
+                <p class="text-lg mb-8">Where coding brilliance meets expert guidance. From novice to expert, our platform
+                    offers personalized coaching and comprehensive courses to elevate your coding skills. Join a vibrant
+                    community and unlock your coding potential today.</p>
                 <a href="#"
-                    class="bg-white text-blue-900 hover:bg-blue-800 hover:text-white px-6 py-3 rounded-full font-semibold transition duration-300">Learn
-                    More</a>
+                    class="bg-white text-gray-900 hover:bg-gray-800 hover:text-white px-6 py-3 rounded-full font-semibold transition duration-300">Join
+                    now</a>
             </div>
             <div class="md:w-1/2 md:flex md:justify-center  md:order-1 ">
                 <img src="/images/banner.png" alt="Sadiq" class="w-96 md:mx-0 rounded-lg ">
@@ -23,9 +23,14 @@
             <section class="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-700 p-5">
                 <div class="md:col-span-1 bg-white rounded-lg p-6 shadow-md">
                     <h2 class="text-2xl font-bold mb-4 text">About Us</h2>
-                    <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis magna nec
-                        turpis tincidunt suscipit.
-                        Phasellus a magna dapibus, feugiat urna vitae, consectetur mi.</p>
+                    <p class="text-lg">Discover the pinnacle of coding education at Code with Sadiq. Our platform blends
+                        expert guidance with cutting-edge curriculum to propel your programming journey. From novice to
+                        virtuoso, our meticulously crafted courses cater to every skill level. Engage with a dynamic
+                        community of learners and seasoned instructors, fostering an environment of collaboration and
+                        growth. Whether unraveling the complexities of algorithms or mastering data structures, unlock your
+                        full potential with personalized coaching and comprehensive resources. Join us and embark on a
+                        transformative coding odyssey, where innovation meets mentorship, and aspirations become
+                        achievements. Elevate your coding prowess with Code with Sadiq today.</p>
                 </div>
                 <div class="md:col-span-1 bg-white rounded-lg p-6 shadow-md">
                     <h2 class="text-2xl font-bold mb-4">Recent Projects</h2>
@@ -46,8 +51,107 @@
                 </div>
             </section>
 
+            <div class="max-w-7xl mx-auto px-4 py-8">
+                <h2 class="text-4xl  font-semibold mb-4">Student in Industries</h2>
+                <div class="carousel relative overflow-hidden">
+
+                    <div class="carousel-inner flex">
+
+                        <div class="carousel-item flex-none w-full md:w-1/2 lg:w-1/5 px-4">
+                            <div
+                                class="bg-white rounded-lg shadow-md p-6 transition duration-300 transform hover:scale-105">
+                                <img src="https://via.placeholder.com/150" alt="John Doe"
+                                    class="w-full h-32 object-cover mb-4">
+                                <h2 class="text-xl text-gray-700 font-semibold mb-2">Siddharth</h2>
+                                <p class="text-gray-600">Industry: Tech</p>
+                                <p class="text-gray-600">Position: Software Engineer</p>
+                            </div>
+                        </div>
+
+
+                        <div class="carousel-item flex-none w-full md:w-1/2 lg:w-1/5 px-4">
+                            <div
+                                class="bg-white rounded-lg shadow-md p-6 transition duration-300 transform hover:scale-105">
+                                <img src="https://via.placeholder.com/150" alt="Jane Smith"
+                                    class="w-full h-32 object-cover mb-4">
+                                <h2 class="text-xl text-gray-700 font-semibold mb-2">Jane Smith</h2>
+                                <p class="text-gray-600">Industry: Siddharth</p>
+                                <p class="text-gray-600">Position: Financial Analyst</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item flex-none w-full md:w-1/2 lg:w-1/5 px-4">
+                            <div
+                                class="bg-white rounded-lg shadow-md p-6 transition duration-300 transform hover:scale-105">
+                                <img src="https://via.placeholder.com/150" alt="John Doe"
+                                    class="w-full h-32 object-cover mb-4">
+                                <h2 class="text-xl text-gray-700 font-semibold mb-2">Siddharth</h2>
+                                <p class="text-gray-600">Industry: Tech</p>
+                                <p class="text-gray-600">Position: Software Engineer</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item flex-none w-full md:w-1/2 lg:w-1/5 px-4">
+                            <div
+                                class="bg-white rounded-lg shadow-md p-6 transition duration-300 transform hover:scale-105">
+                                <img src="https://via.placeholder.com/150" alt="Jane Smith"
+                                    class="w-full h-32 object-cover mb-4">
+                                <h2 class="text-xl text-gray-700 font-semibold mb-2">RIshav</h2>
+                                <p class="text-gray-600">Industry: Siddharth</p>
+                                <p class="text-gray-600">Position: Financial Analyst</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item flex-none w-full md:w-1/2 lg:w-1/5 px-4">
+                            <div
+                                class="bg-white rounded-lg shadow-md p-6 transition duration-300 transform hover:scale-105">
+                                <img src="https://via.placeholder.com/150" alt="Jane Smith"
+                                    class="w-full h-32 object-cover mb-4">
+                                <h2 class="text-xl text-gray-700 font-semibold mb-2">Saurav</h2>
+                                <p class="text-gray-600">Industry: RIshav</p>
+                                <p class="text-gray-600">Position: Financial Analyst</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item flex-none w-full md:w-1/2 lg:w-1/5 px-4">
+                            <div
+                                class="bg-white rounded-lg shadow-md p-6 transition duration-300 transform hover:scale-105">
+                                <img src="https://via.placeholder.com/150" alt="Jane Smith"
+                                    class="w-full h-32 object-cover mb-4">
+                                <h2 class="text-xl text-gray-700 font-semibold mb-2">ROni</h2>
+                                <p class="text-gray-600">Industry: saurav</p>
+                                <p class="text-gray-600">Position: Financial Analyst</p>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item flex-none w-full md:w-1/2 lg:w-1/5 px-4">
+                            <div
+                                class="bg-white rounded-lg shadow-md p-6 transition duration-300 transform hover:scale-105">
+                                <img src="https://via.placeholder.com/150" alt="Jane Smith"
+                                    class="w-full h-32 object-cover mb-4">
+                                <h2 class="text-xl text-gray-700 font-semibold mb-2">Siddharthth</h2>
+                                <p class="text-gray-600">Industry: Finance</p>
+                                <p class="text-gray-600">Position: Financial Analyst</p>
+                            </div>
+                        </div>
+
+
+                        <!-- Add more students here -->
+                    </div>
+                    <button
+                        class="absolute top-1/2 transform -translate-y-1/2 left-0 bg-gray-500 text-white px-4 py-2 rounded-l-md"
+                        onclick="moveToPrev()"><i class="fas fa-chevron-left"></i></button>
+                    <button
+                        class="absolute top-1/2 transform -translate-y-1/2 right-0 bg-gray-500 text-white px-4 py-2 rounded-r-md"
+                        onclick="moveToNext()"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+
+
+
             <div class="container mx-auto my-8 p-5">
-                <h2 class="text-3xl font-bold mb-6">Our Courses</h2>
+                <h2 class="text-4xl font-bold mb-6">Our Courses</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
 
@@ -99,4 +203,31 @@
             </div>
         </div>
     </div>
+
+
+
+    <script>
+        const carouselInner = document.querySelector('.carousel-inner');
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const totalItems = carouselItems.length;
+        let currentIndex = 0;
+
+        function moveToNext() {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateCarousel();
+        }
+
+        function moveToPrev() {
+            currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const offset = -currentIndex * carouselItems[0].offsetWidth;
+            carouselInner.style.transform = `translateX(${offset}px)`;
+        }
+
+        setInterval(moveToNext, 3000);
+    </script>
+
 @endsection
