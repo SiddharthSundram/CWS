@@ -21,4 +21,7 @@ class AdminController extends Controller
     public function manageCategory(){
         return view("admin.manageCategory");
     }
+    public function recent_project(){
+        return view("admin.recent_project");
+    }
 }
