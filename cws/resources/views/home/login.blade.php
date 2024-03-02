@@ -65,6 +65,7 @@
                 success: function(response) {
                     localStorage.setItem('token', response.token);
                     if (response.isAdmin) {
+                        alert("Admin Login Successfully")
                         window.location.href =
                         '{{ route('admin.dashboard') }}'; // Redirect to admin panel
                     } else {
