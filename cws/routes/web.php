@@ -32,6 +32,7 @@ Route::prefix('admin')->group(function(){
             Route::get("/insertCategory",'insertCategory')->name('insertCategory');
             Route::get("/insertCourse",'insertCourse')->name('insertCourse');
             Route::get("/manageCourse",'manageCourse')->name('manageCourse');
+            Route::get("/manageHallframe",'manageHallframe')->name('manageHallframe');
             Route::get("/recent_project",'recent_project')->name('recent_project');
             Route::get("/manageCategory",'manageCategory')->name('manageCategory');
             Route::get("/hallFrame",'hallFrame')->name('hallFrame');
