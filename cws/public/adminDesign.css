@@ -1,0 +1,57 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #cacaca;
+}
+
+@media(max-width:992px) {
+    .colOnMobile {
+        display: flex;
+        flex-direction: column;
+    }
+    .inMobileMode {
+        display: none;
+    }
+    .onDeskMode {
+        display: block;
+    }
+}
+
+.onDeskMode {
+    display: none;
+}
+
+.sidebar {
+    background-color: #343a40;
+    color: #ffffff;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    transition: all 0.3s;
+}
+
+.sidebar a {
+    color: #ffffff;
+    padding: 15px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    margin-left: 0px;
+    transition: 0.3s;
+}
+
+.sidebar h3 {
+    top: 100px;
+}
+
+.sidebar a:hover {
+    background-color: #cacaca;
+    color: black;
+    transition: ease-in 0.3s;
+}
