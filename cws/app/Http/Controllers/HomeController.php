@@ -18,5 +18,9 @@ class HomeController extends Controller
         return view("home.register");
     }
 
+    public function profile(){
+        return view("home.profile");
+    }
+
     
 }

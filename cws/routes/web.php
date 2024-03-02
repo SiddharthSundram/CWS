@@ -10,6 +10,8 @@ Route::get("/",[HomeController::class,'index'])->name('index');
 Route::get("/login",[HomeController::class,'signin'])->name('login');
 Route::get("/register",[HomeController::class,'signup'])->name('register');
 
+Route::get("/my-profile",[HomeController::class,'profile'])->name('profile');
+
 
 // Route::prefix('admin')->group(function(){ 
     // Route::get("/dashboard",[AdminController::class,'dashboard'])->name('admin.dashboard');
