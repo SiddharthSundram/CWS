@@ -12,9 +12,6 @@ class HomeController extends Controller
     public function signin(){
         return view("home.login");
     }
-    public function signout(){
-        return view("home.logout");
-    }
 
     public function signup(){
         return view("home.register");
