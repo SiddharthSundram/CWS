@@ -6,9 +6,9 @@
             <div
                 class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                        SignIn Admin account
-                    </h1>
+                    <h1 class="text-xl underline font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        Admin Login
+                    </h1> 
                     <form class="space-y-4 md:space-y-6" action="" method="POST"  id="login">
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
@@ -45,41 +45,12 @@
                             class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign
                             in</button>
                         <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                            Don’t have an account yet? <a href="/register"
-                                class="font-medium text-blue-600 hover:underline dark:text-blue-500">Sign up</a>
+                            Don’t have an admin account? <a href="/login"
+                                class="font-medium text-blue-600 hover:underline dark:text-blue-500">Go to user login</a>
                         </p>
                     </form>
                 </div>
             </div>
         </div>
     </section>
-
-    {{-- <script>
-        // Login
-        $('#login').submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: 'api/login',
-                type: 'POST',
-                data: $(this).serialize(),
-                success: function(response) {
-                    localStorage.setItem('token', response.token);
-                    if (response.isAdmin) {
-                        alert("Admin Login Successfully")
-                        window.location.href =
-                        '{{ route('admin.dashboard') }}'; // Redirect to admin panel
-                    } else {
-                        alert("User Login Successfully")
-                        window.location.href =
-                        '{{ route('index') }}'; // Redirect to user profile or dashboard
-                    }
-                },
-                error: function(xhr, status, error) {
-                    $('#errorMsg').show();
-                }
-            });
-        });
-    </script> --}}
-
-    
 @endsection

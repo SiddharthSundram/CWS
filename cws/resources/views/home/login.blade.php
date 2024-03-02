@@ -6,10 +6,10 @@
             <div
                 class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    <h1 class="text-xl underline font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Sign in to your account
                     </h1>
-                    <form class="space-y-4 md:space-y-6" action="" method="POST"  id="login">
+                    <form class="space-y-4 md:space-y-6" action="" method="POST" id="login">
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
                                 email</label>
@@ -30,8 +30,7 @@
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">
                                     <input id="remember" aria-describedby="remember" type="checkbox"
-                                        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-                                        >
+                                        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800">
                                 </div>
                                 <div class="ml-3 text-sm">
                                     <label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
@@ -65,21 +64,26 @@
                 success: function(response) {
                     localStorage.setItem('token', response.token);
                     if (response.isAdmin) {
-                        swal("Login Admin Succesfully");
-                        window.location.href =
-                        '{{ route('admin.dashboard') }}'; // Redirect to admin panel
+                        // Redirect to admin dashboard
+                        swal("Redirecting to Admin Login", "", "success");
+                        setTimeout(() => {
+                            window.location.href = '{{ route('admin.dashboard') }}';
+                        }, 1500);
                     } else {
-                        swal("Login User Succesfully");
-                        window.location.href =
-                        '{{ route('index') }}'; // Redirect to user profile or dashboard
+                        // Notify user login success
+                        swal("Login Successfully!", "", "success");
+                        // Redirect to user profile or dashboard
+                        setTimeout(() => {
+                            window.location.href = '{{ route('index') }}';
+                        }, 1500);
                     }
                 },
                 error: function(xhr, status, error) {
+                    // Show error message
                     $('#errorMsg').show();
+                    console.log(xhr.responseText);
                 }
             });
         });
     </script>
-
-    
 @endsection

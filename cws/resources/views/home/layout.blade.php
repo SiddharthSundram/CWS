@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @yield('css')
 </head>
 
@@ -32,7 +32,9 @@
                 <a href="" class="hover:text-gray-300">About</a>
                 <a id="login-link" class="hover:text-gray-300" href="{{ route('login') }}">Login</a>
                 <a id="register-link"class="hover:text-gray-300" href="{{ route('register') }}">Register</a>
-                <a id="logout-link"class="hover:text-gray-300" href="#"><div id="logout">Logout</div></a>
+                <a id="logout-link"class="hover:text-gray-300" href="#">
+                    <div id="logout">Logout</div>
+                </a>
 
             </nav>
 
@@ -49,8 +51,7 @@
 
     <!-- Drawer component (conditionally rendered) -->
     <div id="drawerNavigation"
-        class="fixed top-0 left-0 z-50 h-screen w-60 bg-gray-800 text-white transform transition-transform duration-300 -translate-x-full md:hidden"
-        >
+        class="fixed top-0 left-0 z-50 h-screen w-60 bg-gray-800 text-white transform transition-transform duration-300 -translate-x-full md:hidden">
         <h5 class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400" id="calling_username">Hi, Guest
         </h5>
         <div class="p-4">
@@ -117,11 +118,11 @@
         drawerCloseButton.addEventListener('click', function() {
             drawerNavigation.classList.add('-translate-x-full');
         });
-    
-    $(document).ready(function() {
-    
+
+        $(document).ready(function() {
+
             var token = localStorage.getItem('token');
-    
+
             if (token) {
                 $.ajax({
                     url: '/api/user-profile',
@@ -161,32 +162,52 @@
                 $('#register-link').show();
                 $('#logout-link').hide();
             }
-    
-    
+
+
             $('#logout').click(function(e) {
                 e.preventDefault();
-    
-                $.ajax({
-                    url: '/api/logout',
-                    type: 'POST',
-                    headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('token')
-                    },
-                    success: function(response) {
-                        // Remove the token from localStorage
-                        localStorage.removeItem('token');
-                        // Redirect to the login page
-                        window.location.href = '{{ route('login') }}';
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle error
-                        console.log(xhr.responseText);
+
+                // Display a confirmation dialog
+                swal({
+                    title: "Are you sure you want to logout?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willLogout) => {
+                    if (willLogout) {
+                        // Proceed with logout
+                        $.ajax({
+                            url: '/api/logout',
+                            type: 'POST',
+                            headers: {
+                                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                            },
+                            success: function(response) {
+                                // Remove the token from localStorage
+                                localStorage.removeItem('token');
+                                // Redirect to the login page after successful logout
+                                swal("Logout Successfully!", {
+                                    icon: "success",
+                                }).then(() => {
+                                    window.location.href =
+                                        '{{ route('login') }}';
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                // Handle error
+                                console.log(xhr.responseText);
+                            }
+                        });
+                    } else {
+                        // Cancelled logout
+                        swal("Logout Cancelled", "Your session is still active.", "info");
                     }
                 });
             });
+
         });
     </script>
-    
+
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>

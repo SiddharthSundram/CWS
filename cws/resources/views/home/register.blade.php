@@ -6,7 +6,7 @@
             <div
                 class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    <h1 class="text-xl underline font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Create an account
                     </h1>
                     <form class="space-y-4 md:space-y-6" id="register">
@@ -74,9 +74,14 @@
                     type: 'POST',
                     data: $(this).serialize(),
                     success: function(response) {
-                        alert('Registration Successful');
+                        // Display success message with SweetAlert
+                        swal("Registration Successful!", "", "success");
+                        // Reset the form
                         $('#register')[0].reset();
-                        window.location.href = '/login';
+                        // Redirect to login page
+                        setTimeout(() => {
+                            window.location.href = '/login';
+                        }, 1500);
                     },
                     error: function(xhr, status, error) {
                         alert(JSON.parse(xhr.responseText).message);
