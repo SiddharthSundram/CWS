@@ -10,21 +10,6 @@ use Validator;
 
 class AuthController extends Controller
 {
-    /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
-    }
-
-    /**
-     * Get a JWT via given credentials.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
 
     public function login(Request $request)
     {
@@ -32,13 +17,21 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|string|min:6',
         ]);
+        
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            return response()->json(['error' => $validator->errors()], 422);
         }
-        if (!$token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        
+        $credentials = $request->only('email', 'password');
+        
+        if ($token = auth('api')->attempt($credentials)) {
+            $user = auth('api')->user();
+            $isAdmin = $user->is_admin;
+        
+            return response()->json(compact('token', 'isAdmin'));
         }
-        return $this->createNewToken($token);
+        
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
 
     /**
@@ -65,12 +58,6 @@ class AuthController extends Controller
             'user' => $user
         ], 201);
     }
-
-    /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
    
      public function logout(Request $request)
      {
@@ -85,7 +72,11 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->createNewToken(auth()->refresh());
+        $token = JWTAuth::getToken();
+        $newToken = JWTAuth::refresh($token);
+
+        return response()->json(['token'=>$newToken]);
+
     }
     /**
      * Get the authenticated User.
