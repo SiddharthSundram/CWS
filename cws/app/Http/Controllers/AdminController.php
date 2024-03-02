@@ -24,4 +24,7 @@ class AdminController extends Controller
     public function recent_project(){
         return view("admin.recent_project");
     }
+    public function hallFrame(){
+        return view("admin.hallFrame");
+    }
 }

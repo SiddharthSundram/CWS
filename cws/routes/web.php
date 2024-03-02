@@ -38,4 +38,5 @@ Route::prefix('admin')->group(function(){
     Route::get("/manageCourse",[AdminController::class,'manageCourse'])->name('manageCourse');
     Route::get("/recent_project",[AdminController::class,'recent_project'])->name('recent_project');
     Route::get("/manageCategory",[AdminController::class,'manageCategory'])->name('manageCategory');
+    Route::get("/hallFrame",[AdminController::class,'hallFrame'])->name('hallFrame');
 });

@@ -31,12 +31,7 @@
                     <span class="text">Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-user-plus'></i>
-                    <span class="text">My Students</span>
-                </a>
-            </li>
+ 
             <li>
                 <a href="{{route("manageCategory")}}">
                     <i class='bx bxs-book-alt' ></i>
@@ -59,6 +54,12 @@
                 <a href="{{route("insertCourse")}}">
                     <i class='bx bxs-layer-plus' ></i>
                     <span class="text">Insert Course</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route("hallFrame")}}">
+                    <i class='bx bx-user-plus'></i>
+                    <span class="text">HallFrame</span>
                 </a>
             </li>
             <li>

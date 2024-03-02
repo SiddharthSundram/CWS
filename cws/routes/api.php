@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\RecentProjectController;
+use App\Http\Controllers\hallFrameController;
 
 
 /*
@@ -37,3 +38,4 @@ Route::apiResource('category',CategoriesController::class);
 //api for insert Courses
 Route::apiResource("course",CourseController::class);
 Route::apiResource("recent_project",RecentProjectController::class);
+Route::apiResource("hallFrame",hallFrameController::class);
