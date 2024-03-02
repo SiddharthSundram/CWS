@@ -65,11 +65,11 @@
                 success: function(response) {
                     localStorage.setItem('token', response.token);
                     if (response.isAdmin) {
-                        alert("Admin Login Successfully")
+                        swal("Login Admin Succesfully");
                         window.location.href =
                         '{{ route('admin.dashboard') }}'; // Redirect to admin panel
                     } else {
-                        alert("User Login Successfully")
+                        swal("Login User Succesfully");
                         window.location.href =
                         '{{ route('index') }}'; // Redirect to user profile or dashboard
                     }

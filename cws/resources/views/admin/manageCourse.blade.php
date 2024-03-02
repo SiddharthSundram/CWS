@@ -121,7 +121,7 @@
                                     type: "DELETE",
                                     url: `/api/course/${course.id}`,
                                     success: function(response) {
-                                        alert(response.msg);
+                                        swal("Success", response.msg, "success");
                                         callingcourse();
                                     },
                                     error: function(error) {
@@ -170,7 +170,7 @@
                     url: '/api/course/' + $('#editCourseId').val(),
                     data: formData,
                     success: function(response) {
-                        alert(response.msg);
+                        swal("Success", response.msg, "success");
                         $('#editCourseModal').modal('hide');
                         callingcourse(); // Refresh the course list
                     },

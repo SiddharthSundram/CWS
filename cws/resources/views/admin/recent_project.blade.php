@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recent Project</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+@extends('admin.base')
 
+@section('content')
 <div class="container mt-5">
     <div class="row">
         <div class="col-8 mx-auto">
@@ -119,7 +112,7 @@
                 data: $(this).serialize(),
                 dataType: "json",
                 success: function(response) {
-                    alert(response.msg);
+                    swal("Success", response.msg, "success");
                     $("#insertProject").trigger("reset");
                     fetchProjects(); // Fetch projects again after successful insertion
                 },
@@ -139,7 +132,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(response) {
-                    alert(response.msg);
+                    swal("Success", response.msg, "success");
                     fetchProjects(); // Fetch projects again after successful deletion
                 },
                 error: function(xhr, status, error) {
@@ -176,7 +169,7 @@
                 url: '/api/recent_project/' + $('#editProjectId').val(),
                 data: formData,
                 success: function(response) {
-                    alert(response.msg);
+                    swal("Success", response.msg, "success");
                     $('#editProjectModal').modal('hide');
                     fetchProjects(); // Refresh the project list
                 },
@@ -190,5 +183,4 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection

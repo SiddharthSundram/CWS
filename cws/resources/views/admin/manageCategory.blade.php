@@ -61,7 +61,7 @@
                                     type: "delete",
                                     url: `/api/category/${item.id}`,
                                     success: function(response) {
-                                        alert(response.msg);
+                                        swal("Success", response.msg, "success");
                                         //refresh
                                         callingCategory();
                                     }

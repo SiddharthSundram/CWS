@@ -111,7 +111,7 @@
                     cache: false,
                     processData: false,
                     success: function(response) {
-                        alert(response.msg);
+                        swal("Success", response.msg, "success");
                         $("#insertcourse").trigger("reset")
                         window.open("dashboard", "_self")
                     }

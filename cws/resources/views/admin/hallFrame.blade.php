@@ -80,7 +80,7 @@
                     cache: false,
                     processData: false,
                     success: function(response) {
-                        alert(response.msg);
+                        swal("Success", response.msg, "success");
                         $("#hallFrame").trigger("reset")
                         // window.open("dashboard", "_self")
                     }

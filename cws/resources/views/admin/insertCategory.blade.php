@@ -40,7 +40,7 @@
                     cache: false,
                     processData: false,
                     success: function(response) {
-                        alert(response.msg);
+                        swal("Success", response.msg, "success");
                         $("#insertProduct").trigger("reset");
 
                         window.open("dashboard", "_self");

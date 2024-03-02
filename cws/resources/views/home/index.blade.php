@@ -39,13 +39,14 @@
                         <div class="bg-gray-200 p-4 rounded-md shadow-md hover:bg-gray-300 transition duration-300">
                             <h3 class="text-xl font-semibold mb-2">{{$item->name}}</h3>
                             <p>{{$item->description}}</p>
-                            <a href="" class="text-blue-500 font-semibold hover:text-blue-700">View</a>
-
+                            <div class="flex justify-end mt-4">
+                                <a href="#" class="inline-block px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300">View</a>
+                            </div>
                         </div>
                         @endforeach
-                        
                     </div>
                 </div>
+                
             </section>
 
             <div class="max-w-7xl mx-auto px-4 py-8">
