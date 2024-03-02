@@ -26,27 +26,27 @@ class AdminController extends Controller
         return view("admin.recent_project");
     }
 
-    // public function adminLogin(Request $request){
+    public function adminLogin(Request $request){
 
-    //     if($request->isMethod('post')){
-    //         $user = User::where("is_admin" == 1);
-    //         if($user){
-    //             $data = $request->validate([
-    //                 "email" =>"required",
-    //                 "password"=>"required",
-    //             ]);
-    //             if(Auth::guard('admin')->attempt($data)){
-    //                 return redirect()->route('admin.dashboard');
-    //             }
+        if($request->isMethod('post')){
+            $user = User::where("is_admin" == 1);
+            if($user){
+                $data = $request->validate([
+                    "email" =>"required",
+                    "password"=>"required",
+                ]);
+                if(Auth::guard('admin')->attempt($data)){
+                    return redirect()->route('admin.dashboard');
+                }
     
-    //             else{
-    //                 return back();
-    //             }
-    //         }
+                else{
+                    return back();
+                }
+            }
             
-    //     }
-    //     return view("home.login");
-    // }
+        }
+        return view("admin.adminLogin");
+    }
 
     public function adminLogout(Request $req){
         Auth::guard("admin")->logout();

@@ -77,7 +77,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{route('adminLogout')}}">
                         Logout
                     </a>
                 </li>
@@ -131,7 +131,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="">Logout</a>
+                                <a class="nav-link text-dark" href="{{route('adminLogout')}}">Logout</a>
                             </li>
 
                         </ul>
