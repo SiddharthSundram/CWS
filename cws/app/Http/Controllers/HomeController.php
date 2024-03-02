@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\RecentProject;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index(){
-        return view("home.index");
+        $recent_projects = RecentProject::all();
+        return view('home.index', compact('recent_projects'));
     }
     public function signin(){
         return view("home.login");
@@ -17,7 +18,5 @@ class HomeController extends Controller
         return view("home.register");
     }
 
-    public function dashboard(){
-        return view("admin.dashboard");
-    }
+    
 }

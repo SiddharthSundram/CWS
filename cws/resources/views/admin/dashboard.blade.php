@@ -47,6 +47,7 @@
                 </a>
             </div>
 
+
             <ul class="box-info">
                 <li>
                     <i class='bx bxs-calendar-check'></i>
@@ -66,7 +67,7 @@
                     <i class='bx bxs-dollar-circle'></i>
                     <span class="text">
                         <h3>$2543</h3>
-                        <p>Total Sales</p>
+                        <p>Total Rupees</p>
                     </span>
                 </li>
             </ul>
@@ -90,7 +91,8 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="https://tse2.mm.bing.net/th?id=OIP.qY7cXtJw6V_0n1zgeOKX2gHaEK&pid=Api&P=0&h=220">
+                                    <img
+                                        src="https://tse2.mm.bing.net/th?id=OIP.qY7cXtJw6V_0n1zgeOKX2gHaEK&pid=Api&P=0&h=220">
                                     <p>John Doe</p>
                                 </td>
                                 <td>01-10-2021</td>
@@ -98,7 +100,8 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="https://tse2.mm.bing.net/th?id=OIP.qY7cXtJw6V_0n1zgeOKX2gHaEK&pid=Api&P=0&h=220">
+                                    <img
+                                        src="https://tse2.mm.bing.net/th?id=OIP.qY7cXtJw6V_0n1zgeOKX2gHaEK&pid=Api&P=0&h=220">
                                     <p>John Doe</p>
                                 </td>
                                 <td>01-10-2021</td>
@@ -106,7 +109,8 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="https://tse2.mm.bing.net/th?id=OIP.qY7cXtJw6V_0n1zgeOKX2gHaEK&pid=Api&P=0&h=220">
+                                    <img
+                                        src="https://tse2.mm.bing.net/th?id=OIP.qY7cXtJw6V_0n1zgeOKX2gHaEK&pid=Api&P=0&h=220">
                                     <p>John Doe</p>
                                 </td>
                                 <td>01-10-2021</td>
@@ -114,7 +118,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="img/people.png">
+                                    <img src="https://tse2.mm.bing.net/th?id=OIP.qY7cXtJw6V_0n1zgeOKX2gHaEK&pid=Api&P=0&h=220">
                                     <p>John Doe</p>
                                 </td>
                                 <td>01-10-2021</td>
@@ -122,7 +126,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="img/people.png">
+                                    <img src="https://tse2.mm.bing.net/th?id=OIP.qY7cXtJw6V_0n1zgeOKX2gHaEK&pid=Api&P=0&h=220">
                                     <p>John Doe</p>
                                 </td>
                                 <td>01-10-2021</td>

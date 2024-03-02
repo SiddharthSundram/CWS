@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\RecentProjectController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +33,9 @@ Route::post('/refresh', [AuthController::class, 'refresh']);
 Route::get('/user-profile', function () {
     return auth()->user();
 })->middleware('jwt.auth');
+//api for insert category
+Route::apiResource('category',CategoriesController::class);
+
+//api for insert Courses
+Route::apiResource("course",CourseController::class);
+Route::apiResource("recent_project",RecentProjectController::class);

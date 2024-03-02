@@ -29,10 +29,9 @@
             <nav class="hidden md:flex items-center gap-4">
                 <a href="" class="hover:text-gray-300">Home</a>
                 <a href="" class="hover:text-gray-300">About</a>
-                <a id="login-link" class="hover:text-gray-300" href="{{ route('login') }}">Login</a>
-                <a id="register-link"class="hover:text-gray-300" href="{{ route('register') }}">Register</a>
-                <a id="logout-link"class="hover:text-gray-300" href="#"><div id="logout">Logout</div></a>
-
+                <a href="{{ route('logout') }}" id="logout-li" class="hover:text-gray-300">Logout</a>
+                <a href="{{ route('login') }}" id="login-li" class="hover:text-gray-300">Login</a>
+                <a href="{{ route('register') }}" id="register-li" class="hover:text-gray-300">Sign up</a>
             </nav>
 
             <!-- Mobile menu button -->
@@ -116,14 +115,17 @@
         drawerCloseButton.addEventListener('click', function() {
             drawerNavigation.classList.add('-translate-x-full');
         });
-    
-    $(document).ready(function() {
-    
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+
             var token = localStorage.getItem('token');
-    
+            
             if (token) {
                 $.ajax({
-                    url: '/api/user-profile',
+                    url: '/api/auth/login',
                     type: 'GET',
                     headers: {
                         'Authorization': 'Bearer ' + token
@@ -131,14 +133,14 @@
                     success: function(response) {
                         if (response.hasOwnProperty('name')) {
                             $("#calling_username").text('Hi, ' + response.name);
-                            $('#login-link').hide();
-                            $('#register-link').hide();
-                            $('#logout-link').show();
+                            $('#login-li').hide();
+                            $('#register-li').hide();
+                            $('#logout-li').show();
                         } else {
                             $("#calling_username").text('Hi, Guest');
-                            $('#login-link').show();
-                            $('#register-link').show();
-                            $('#logout-link').hide();
+                            $('#login-li').show();
+                            $('#register-li').show();
+                            $('#logout-li').hide();
                         }
                     },
                     error: function(xhr, status, error) {
@@ -147,21 +149,20 @@
                             localStorage.removeItem('token');
                         }
                         $("#calling_username").text('Hi, Guest');
-                        $('#login-link').show();
-                        $('#register-link').show();
-                        $('#logout-link').hide();
+                        $('#login-li').show();
+                        $('#register-li').show();
+                        $('#logout-li').hide();
                         console.log(xhr.responseText);
                     }
                 });
             } else {
                 // Token does not exist, handle the case accordingly
                 $("#calling_username").text('Hi, Guest');
-                $('#login-link').show();
-                $('#register-link').show();
-                $('#logout-link').hide();
+                $('#login-li').show();
+                $('#register-li').show();
+                $('#logout-li').hide();
             }
-    
-    
+
             $('#logout').click(function(e) {
                 e.preventDefault();
     
