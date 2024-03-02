@@ -29,9 +29,9 @@
             <nav class="hidden md:flex items-center gap-4">
                 <a href="" class="hover:text-gray-300">Home</a>
                 <a href="" class="hover:text-gray-300">About</a>
-                <a href="" class="hover:text-gray-300">Logout</a>
-                <a href="{{ route('login') }}"  class="hover:text-gray-300">Login</a>
-                <a href="{{ route('register') }}"  class="hover:text-gray-300">Sign up</a>
+                <a href="{{ route('logout') }}" id="logout-li" class="hover:text-gray-300">Logout</a>
+                <a href="{{ route('login') }}" id="login-li" class="hover:text-gray-300">Login</a>
+                <a href="{{ route('register') }}" id="register-li" class="hover:text-gray-300">Sign up</a>
             </nav>
 
             <!-- Mobile menu button -->
@@ -121,18 +121,59 @@
     <script>
         $(document).ready(function() {
 
+            var token = localStorage.getItem('token');
+            
+            if (token) {
+                $.ajax({
+                    url: '/api/auth/login',
+                    type: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    },
+                    success: function(response) {
+                        if (response.hasOwnProperty('name')) {
+                            $("#calling_username").text('Hi, ' + response.name);
+                            $('#login-li').hide();
+                            $('#register-li').hide();
+                            $('#logout-li').show();
+                        } else {
+                            $("#calling_username").text('Hi, Guest');
+                            $('#login-li').show();
+                            $('#register-li').show();
+                            $('#logout-li').hide();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        if (xhr.status === 401) {
+                            // Token expired, remove from local storage
+                            localStorage.removeItem('token');
+                        }
+                        $("#calling_username").text('Hi, Guest');
+                        $('#login-li').show();
+                        $('#register-li').show();
+                        $('#logout-li').hide();
+                        console.log(xhr.responseText);
+                    }
+                });
+            } else {
+                // Token does not exist, handle the case accordingly
+                $("#calling_username").text('Hi, Guest');
+                $('#login-li').show();
+                $('#register-li').show();
+                $('#logout-li').hide();
+            }
+
             $('#logout').click(function(e) {
                 e.preventDefault();
-
+    
                 $.ajax({
-                    url: '/api/auth/logout',
+                    url: '/api/logout',
                     type: 'POST',
                     headers: {
                         'Authorization': 'Bearer ' + localStorage.getItem('token')
                     },
                     success: function(response) {
                         // Remove the token from localStorage
-                        alert(response.message)
                         localStorage.removeItem('token');
                         // Redirect to the login page
                         window.location.href = '{{ route('login') }}';
@@ -145,7 +186,7 @@
             });
         });
     </script>
-
+    
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>

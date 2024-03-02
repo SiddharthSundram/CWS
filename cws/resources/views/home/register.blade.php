@@ -70,7 +70,7 @@
             $('#register').submit(function(e) {
                 e.preventDefault();
                 $.ajax({
-                    url: 'api/auth/register',
+                    url: 'api/register',
                     type: 'POST',
                     data: $(this).serialize(),
                     success: function(response) {
