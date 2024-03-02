@@ -111,9 +111,11 @@
                     cache: false,
                     processData: false,
                     success: function(response) {
-                        swal("Success", response.msg, "success");
+                        swal("Course Inserted Successfully!", response.msg, "success");
                         $("#insertcourse").trigger("reset")
-                        window.open("dashboard", "_self")
+                        setTimeout(() => {
+                            window.open("{{route('manageCourse')}}", "_self")
+                        }, 1000);
                     }
                 })
             })
