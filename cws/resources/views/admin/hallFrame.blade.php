@@ -82,7 +82,7 @@
                     success: function(response) {
                         alert(response.msg);
                         $("#hallFrame").trigger("reset")
-                        window.open("dashboard", "_self")
+                        // window.open("dashboard", "_self")
                     }
                 })
             })

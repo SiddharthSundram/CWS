@@ -27,7 +27,7 @@
             <hr>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{route('admin.dashboard')}}">
+                    <a class="nav-link active" href="{{ route('admin.dashboard') }}">
                         <i class="fas fa-home"></i> Dashboard
                     </a>
                 </li>
@@ -46,29 +46,29 @@
                             <i class="fas fa-book"></i>  Manage Teacher
                         </a>
                     </li> --}}
-                    <li>
-                        <a href="{{route("hallFrame")}}">
-                            <i class='bx bx-user-plus'></i>
-                            <span class="text">HallFrame</span>
-                        </a>
-                    </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route("manageCourse")}}">
+                    <a class="nav-link" href="{{ route('hallFrame') }}">
+                        <i class="fas fa-user-graduate"></i>
+                         Hall Of Frame
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('manageCourse') }}">
                         <i class="fas fa-book"></i> Manage Courses
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route("insertCourse")}}">
+                    <a class="nav-link" href="{{ route('insertCourse') }}">
                         <i class="fas fa-book"></i> Insert Courses
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route("manageCategory")}}">
+                    <a class="nav-link" href="{{ route('manageCategory') }}">
                         <i class="fas fa-book"></i> Manage Category
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route("insertCategory")}}">
+                    <a class="nav-link" href="{{ route('insertCategory') }}">
                         <i class="fas fa-book"></i> Insert Category
                     </a>
                 </li>
@@ -83,7 +83,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('adminLogout')}}">
+                    <a class="nav-link" href="{{ route('adminLogout') }}">
                         Logout
                     </a>
                 </li>
@@ -137,7 +137,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="{{route('adminLogout')}}">Logout</a>
+                                <a class="nav-link text-dark" href="{{ route('adminLogout') }}">Logout</a>
                             </li>
 
                         </ul>
@@ -150,7 +150,7 @@
 
         <!-- Content goes here -->
         @section('content')
-            
+
         @show
 
     </main>
