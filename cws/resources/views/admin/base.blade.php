@@ -33,15 +33,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{{ route('manageStudent') }}">
                         <i class="fas fa-user-graduate"></i> My Students
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">
+                {{-- <li class="nav-item">
+                    <a class="nav-link" href="{{ route('insertStudent') }}">
                         <i class="fas fa-user-graduate"></i> Insert Students
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="nav-item">
                         <a class="nav-link" href="">
                             <i class="fas fa-book"></i>  Manage Teacher
