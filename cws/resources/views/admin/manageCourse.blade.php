@@ -139,26 +139,7 @@
                         </tr>`);
                     });
 
-                    $('#editCourseForm').submit(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: 'PUT',
-                    url: '/api/course/' + $('#editCourseId').val(),
-                    data: new FormData(this),
-                    dataType: "JSON",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(response) {
-                        swal("Success", response.msg, "success");
-                        $('#editCourseModal').modal('hide');
-                        fetchCourses(); // Refresh the course list
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error updating course:', error);
-                    }
-                });
-            });
+                    
                 },
                 error: function(xhr, status, error) {
                     console.error("Error fetching courses:", error);
@@ -211,6 +192,27 @@
                         console.error('Error fetching course details for editing:', error);
                     }
                 });
+
+                $('#editCourseForm').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'PUT',
+                    url: '/api/course/' + $('#editCourseId').val(),
+                    data: new FormData(this),
+                    dataType: "JSON",
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(response) {
+                        swal("Success", response.msg, "success");
+                        $('#editCourseModal').modal('hide');
+                        fetchCourses(); // Refresh the course list
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error updating course:', error);
+                    }
+                });
+            });
             });
 
             // Handle form submission for updating course details
