@@ -36,6 +36,9 @@ Route::get('/user-profile', function () {
     return auth()->user();
 })->middleware('jwt.auth');
 
+
+
+// api for category operations
 Route::apiResource('category',CategoryApiController::class);
 
 //api for  Courses operations
@@ -49,5 +52,7 @@ Route::apiResource("hallFrame",HallFrameApiApiController::class);
 
 // api for student operations
 Route::apiResource('/admin/manage-student',StudentApiController::class);
+
+// api for student insert operations
 
 Route::post('/admin/insert-student', [StudentApiController::class, 'addStudent']);

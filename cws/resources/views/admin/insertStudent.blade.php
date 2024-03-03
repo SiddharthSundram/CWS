@@ -76,7 +76,7 @@
                         $('#addStudent')[0].reset();
                         // Redirect to login page
                         setTimeout(() => {
-                            window.location.href = '/admin/manage-student';
+                            window.location.href = '{{route('manageStudent')}}';
                         }, 1500);
                     },
                     error: function(xhr, status, error) {
