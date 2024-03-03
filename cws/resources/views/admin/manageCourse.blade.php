@@ -43,7 +43,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="editCourseForm">
+                    <form id="editCourseForm" method="POST" enctype="multipart/form-data">
                         <input type="hidden" id="editCourseId" name="id">
                         <div class="mb-3">
                             <label class="form-label">Course Name</label>
@@ -138,6 +138,27 @@
                             </td>
                         </tr>`);
                     });
+
+                    $('#editCourseForm').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'PUT',
+                    url: '/api/course/' + $('#editCourseId').val(),
+                    data: new FormData(this),
+                    dataType: "JSON",
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(response) {
+                        swal("Success", response.msg, "success");
+                        $('#editCourseModal').modal('hide');
+                        fetchCourses(); // Refresh the course list
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error updating course:', error);
+                    }
+                });
+            });
                 },
                 error: function(xhr, status, error) {
                     console.error("Error fetching courses:", error);
@@ -193,25 +214,7 @@
             });
 
             // Handle form submission for updating course details
-            $('#editCourseForm').submit(function(e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-                $.ajax({
-                    type: 'PUT',
-                    url: '/api/course/' + $('#editCourseId').val(),
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        swal("Success", response.msg, "success");
-                        $('#editCourseModal').modal('hide');
-                        fetchCourses(); // Refresh the course list
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error updating course:', error);
-                    }
-                });
-            });
+           
         });
     </script>
 @endsection

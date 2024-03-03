@@ -61,18 +61,7 @@ class CourseController extends Controller
     public function update(Request $request, $id)
     {
         // Validate the incoming request data
-        $request->validate([
-            'name' => 'required|string',
-            'duration' => 'required|string',
-            'instructor' => 'required|string',
-            'fees' => 'required|numeric',
-            'discount_fees' => 'required|numeric',
-            'lang' => 'required|string',
-            'category_id' => 'required|exists:categories,id', // Assuming you have a "categories" table
-            'description' => 'required|string',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Example validation for image upload
-        ]);
-
+       
         // Find the course by ID
         $course = Course::findOrFail($id);
 
