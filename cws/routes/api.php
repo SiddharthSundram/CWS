@@ -5,8 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 
-use App\Http\Controllers\CategoriesApiController;
-use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CategoryApiController;
 use App\Http\Controllers\CourseApiController;
 use App\Http\Controllers\RecentProjectController;
 use App\Http\Controllers\HallFrameApiApiController;
@@ -37,7 +36,7 @@ Route::get('/user-profile', function () {
     return auth()->user();
 })->middleware('jwt.auth');
 
-Route::apiResource('category',CategoriesApiController::class);
+Route::apiResource('category',CategoryApiController::class);
 
 //api for  Courses operations
 Route::apiResource("course",CourseApiController::class);
