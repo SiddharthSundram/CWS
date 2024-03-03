@@ -3,9 +3,10 @@
 @section('content')
     <div class="container mt-5">
         <div class="d-flex justify-content-between mb-3 mt-3 items-center">
-            <h2>Manage Category (<span id="counting">0</span>) </h2>
-            <a href="{{ route('insertCategory') }}" class="btn btn-primary"> <i class="fas fa-plus"></i> Add New
-                Category</a>
+            <h2>Manage Category (<span id="counting">0</span>)</h2>
+            <a href="{{ route('insertCategory') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add New Category
+            </a>
         </div>
         <div class="table-responsive">
             <table class="table table-hover table-striped">
@@ -18,13 +19,11 @@
                     </tr>
                 </thead>
                 <tbody id="categoryCalling">
-                    <!-- Sample Data - Replace with dynamic data from your system -->
-
+                    <!-- Dynamic data will be inserted here via AJAX -->
                 </tbody>
             </table>
         </div>
     </div>
-
     <script>
         $(document).ready(function() {
             //calling category recoard
@@ -61,7 +60,7 @@
                                     type: "delete",
                                     url: `/api/category/${item.id}`,
                                     success: function(response) {
-                                        swal("Success", response.msg, "success");
+                                        alert(response.msg);
                                         //refresh
                                         callingCategory();
                                     }

@@ -28,10 +28,12 @@
 
             <!-- Navigation links -->
             <nav class="hidden md:flex items-center gap-4">
-                <a href="" class="hover:text-gray-300">Home</a>
+                <a href="{{route('index')}}" class="hover:text-gray-300">Home</a>
                 <a href="" class="hover:text-gray-300">About</a>
                 <a id="login-link" class="hover:text-gray-300" href="{{ route('login') }}">Login</a>
                 <a id="register-link"class="hover:text-gray-300" href="{{ route('register') }}">Register</a>
+                <a id="profile-link"class="hover:text-gray-300" href="{{ route('profile') }}">Profile</a>
+                <a id="course-link"class="hover:text-gray-300" href="">My Courses</a>
                 <a id="logout-link"class="hover:text-gray-300" href="#">
                     <div id="logout">Logout</div>
                 </a>
@@ -135,11 +137,15 @@
                             $("#calling_username").text('Hi, ' + response.name);
                             $('#login-link').hide();
                             $('#register-link').hide();
+                            $('#profile-link').show();
+                            $('#course-link').show();
                             $('#logout-link').show();
                         } else {
                             $("#calling_username").text('Hi, Guest');
                             $('#login-link').show();
                             $('#register-link').show();
+                            $('#profile-link').hide();
+                            $('#course-link').hide();
                             $('#logout-link').hide();
                         }
                     },
@@ -151,6 +157,8 @@
                         $("#calling_username").text('Hi, Guest');
                         $('#login-link').show();
                         $('#register-link').show();
+                        $('#profile-link').hide();
+                        $('#course-link').hide();
                         $('#logout-link').hide();
                         console.log(xhr.responseText);
                     }
@@ -160,6 +168,8 @@
                 $("#calling_username").text('Hi, Guest');
                 $('#login-link').show();
                 $('#register-link').show();
+                $('#profile-link').hide();
+                $('#course-link').hide();
                 $('#logout-link').hide();
             }
 
@@ -200,7 +210,7 @@
                         });
                     } else {
                         // Cancelled logout
-                        swal("Logout Cancelled", "Your session is still active.", "info");
+                        swal("Logout Cancelled", "You are still login.", "info");
                     }
                 });
             });

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\RecentProjectController;
@@ -40,3 +41,6 @@ Route::apiResource('category',CategoriesController::class);
 Route::apiResource("course",CourseController::class);
 Route::apiResource("recent_project",RecentProjectController::class);
 Route::apiResource("hallFrame",hallFrameController::class);
+Route::apiResource('/admin/manage-student',AdminController::class);
+
+Route::post('/admin/insert-student', [AdminController::class, 'addStudent']);

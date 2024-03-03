@@ -33,22 +33,22 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{{ route('manageStudent') }}">
                         <i class="fas fa-user-graduate"></i> My Students
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">
+                {{-- <li class="nav-item">
+                    <a class="nav-link" href="{{ route('insertStudent') }}">
                         <i class="fas fa-user-graduate"></i> Insert Students
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="nav-item">
                         <a class="nav-link" href="">
                             <i class="fas fa-book"></i>  Manage Teacher
                         </a>
                     </li> --}}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('hallFrame') }}">
+                    <a class="nav-link" href="{{route("manageHallframe")}}">
                         <i class="fas fa-user-graduate"></i>
                          Hall Of Frame
                     </a>
@@ -58,19 +58,10 @@
                         <i class="fas fa-book"></i> Manage Courses
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('insertCourse') }}">
-                        <i class="fas fa-book"></i> Insert Courses
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('manageCategory') }}">
                         <i class="fas fa-book"></i> Manage Category
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('insertCategory') }}">
-                        <i class="fas fa-book"></i> Insert Category
                     </a>
                 </li>
                 <li class="nav-item">

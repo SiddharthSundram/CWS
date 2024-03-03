@@ -43,7 +43,7 @@
                         swal("Success", response.msg, "success");
                         $("#insertProduct").trigger("reset");
 
-                        window.open("dashboard", "_self");
+                        window.open("/admin", "_self");
                     }
                 })
             })
