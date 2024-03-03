@@ -1,10 +1,18 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\hallFrameController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RecentProjectController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 
+
+
+// Home related routes 
 Route::get("/",[HomeController::class,'index'])->name('index');
 Route::get("/login",[HomeController::class,'signin'])->name('login');
 Route::get("/register",[HomeController::class,'signup'])->name('register');
@@ -14,6 +22,8 @@ Route::get("/my-profile",[HomeController::class,'profile'])->name('profile');
 
 
 
+
+// Admin related routes 
 Route::prefix('admin')->group(function(){
     Route::match(["get","post"],'/login', [AdminController::class,"adminLogin"])->name('adminLogin');
     Route::get('/logout',[AdminController::class,"adminLogout"])->name("adminLogout");
@@ -22,15 +32,46 @@ Route::prefix('admin')->group(function(){
     Route::middleware('auth:admin')->group(function(){
         Route::controller(AdminController::class)->group(function(){
             Route::get("/",'dashboard')->name('admin.dashboard');
-            Route::get("/insertCategory",'insertCategory')->name('insertCategory');
-            Route::get("/insertCourse",'insertCourse')->name('insertCourse');
-            Route::get("/manageCourse",'manageCourse')->name('manageCourse');
-            Route::get("/manageHallframe",'manageHallframe')->name('manageHallframe');
-            Route::get("/recent_project",'recent_project')->name('recent_project');
-            Route::get("/manageCategory",'manageCategory')->name('manageCategory');
-            Route::get("/hallFrame",'hallFrame')->name('hallFrame');
-            Route::get("/insert-student",'insertStudent')->name('insertStudent');
-            Route::get("/manage-student",'manageStudent')->name('manageStudent');
+            
+        });
+
+        // Routes for recent project operations
+        Route::controller(RecentProjectController::class)->group(function(){
+            Route::prefix('recent-project')->group(function(){
+                Route::get("/show",'recent_project')->name('recent_project');
+            });
+        });
+
+        // Routes for courses operations
+        Route::controller(CourseController::class)->group(function(){
+            Route::prefix('course')->group(function(){
+                Route::get("/insert",'insertCourse')->name('insertCourse');
+                Route::get("/manage",'manageCourse')->name('manageCourse');
+            });
+        });
+
+        // Route for hall of frame operations
+        Route::controller(hallFrameController::class)->group(function(){
+            Route::prefix('hall-of-frame')->group(function(){
+                Route::get("/manage",'manageHallframe')->name('manageHallframe');
+                Route::get("/show",'hallFrame')->name('hallFrame');
+            });
+        });
+
+        // Route for student operations
+        Route::controller(StudentController::class)->group(function(){
+            Route::prefix('student')->group(function(){
+                Route::get("/insert",'insertStudent')->name('insertStudent');
+                Route::get("/manage",'manageStudent')->name('manageStudent');
+            });
+        });
+
+        // Route for category operations
+        Route::controller(CategoriesController::class)->group(function(){
+            Route::prefix('category')->group(function(){
+                Route::get("/insert",'insertCategory')->name('insertCategory');
+                Route::get("/manage",'manageCategory')->name('manageCategory');
+            });
         });
     });
 });
