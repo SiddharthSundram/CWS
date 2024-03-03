@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\course;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,10 @@ class AdminController extends Controller
     public function manageCourse(){
         return view("admin.manageCourse");
     }
-    public function manageCategory(){
-        return view("admin.manageCategory");
+    public function manageCategory(Request $request)
+    {
+        $courses = course::paginate(10); // Adjust the number of categories per page as needed
+        return view("admin.manageCategory", compact('courses'));
     }
     public function recent_project(){
         return view("admin.recent_project");
