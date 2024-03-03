@@ -24,58 +24,57 @@
             </table>
         </div>
     </div>
-
     <script>
         $(document).ready(function() {
-           //calling work
-           let callingData = () => {
+            //calling category recoard
+            let callingCategory = () => {
                 $.ajax({
-                    type: 'GET',
+                    type: "GET",
                     url: "{{ route('category.index') }}",
                     success: function(response) {
-                        // callingData();
-                        let table = $('#categorytable')
+                        let table = $("#categoryCalling");
                         table.empty();
 
-                        let tableList = response.data;
+                        let data = response.data;
 
-                        tableList.forEach((item) => {
+                        // to count total number of teachers
+                        let len = data.length;
+                        $("#counting").html(len);
+
+                        data.forEach((item) => {
                             table.append(`
-                                <tr> 
+                            <tr>
+                                <td>${item.id}</td>
+                                <td>${item.cat_title}</td>
+                                <td>${item.cat_description}</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</button>
+                                    <button class="btn btn-danger btn-sm" id="${"btn"+item.id}"><i class="fas fa-trash"></i> Delete</button>
+                                </td>
+                            </tr>
+                            `)
 
-                                    <td>${item.id}</td>
-                                    <td>${item.cat_name}</td>
-                                    <td>${item.cat_description}</td>
-                                    <td>
-                                        <button class="btn btn-danger"  id=${`deleteBtn`+item.id} type="submit">X</button>
-                                        <button class="btn btn-info" type="submit">Edit</button>
-                                    </td>
-                                
-                                </tr>`
-                            )
-
-                            // delete category
-                            $(`#deleteBtn` + item.id).click(function(){
+                            //delete category recoard
+                            $("#btn" + item.id).click(function() {
                                 $.ajax({
-                                    type:'delete',
-                                    url:`api/category/${item.id}`,   
-                                    success:function(response){
+                                    type: "delete",
+                                    url: `/api/category/${item.id}`,
+                                    success: function(response) {
                                         alert(response.msg);
-                                        // for refresh
-                                        callingData();
+                                        //refresh
+                                        callingCategory();
                                     }
                                 });
                             });
+
+
                         });
 
 
-                        
                     }
-                })
+                });
             }
-            //calling category
-            callingData();
-
-        });
+            callingCategory();
+        })
     </script>
 @endsection
