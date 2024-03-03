@@ -3,9 +3,10 @@
 @section('content')
     <div class="container mt-5">
         <div class="d-flex justify-content-between mb-3 mt-3 items-center">
-            <h2>Manage Category (<span id="counting">0</span>) </h2>
-            <a href="{{ route('insertCategory') }}" class="btn btn-primary"> <i class="fas fa-plus"></i> Add New
-                Category</a>
+            <h2>Manage Category (<span id="counting">0</span>)</h2>
+            <a href="{{ route('insertCategory') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add New Category
+            </a>
         </div>
         <div class="table-responsive">
             <table class="table table-hover table-striped">
@@ -18,8 +19,7 @@
                     </tr>
                 </thead>
                 <tbody id="categoryCalling">
-                    <!-- Sample Data - Replace with dynamic data from your system -->
-
+                    <!-- Dynamic data will be inserted here via AJAX -->
                 </tbody>
             </table>
         </div>
@@ -27,55 +27,55 @@
 
     <script>
         $(document).ready(function() {
-            //calling category recoard
-            let callingCategory = () => {
+           //calling work
+           let callingData = () => {
                 $.ajax({
-                    type: "GET",
+                    type: 'GET',
                     url: "{{ route('category.index') }}",
                     success: function(response) {
-                        let table = $("#categoryCalling");
+                        // callingData();
+                        let table = $('#categorytable')
                         table.empty();
 
-                        let data = response.data;
+                        let tableList = response.data;
 
-                        // to count total number of teachers
-                        let len = data.length;
-                        $("#counting").html(len);
-
-                        data.forEach((item) => {
+                        tableList.forEach((item) => {
                             table.append(`
-                            <tr>
-                                <td>${item.id}</td>
-                                <td>${item.cat_title}</td>
-                                <td>${item.cat_description}</td>
-                                <td>
-                                    <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</button>
-                                    <button class="btn btn-danger btn-sm" id="${"btn"+item.id}"><i class="fas fa-trash"></i> Delete</button>
-                                </td>
-                            </tr>
-                            `)
+                                <tr> 
 
-                            //delete category recoard
-                            $("#btn" + item.id).click(function() {
+                                    <td>${item.id}</td>
+                                    <td>${item.cat_name}</td>
+                                    <td>${item.cat_description}</td>
+                                    <td>
+                                        <button class="btn btn-danger"  id=${`deleteBtn`+item.id} type="submit">X</button>
+                                        <button class="btn btn-info" type="submit">Edit</button>
+                                    </td>
+                                
+                                </tr>`
+                            )
+
+                            // delete category
+                            $(`#deleteBtn` + item.id).click(function(){
                                 $.ajax({
-                                    type: "delete",
-                                    url: `/api/category/${item.id}`,
-                                    success: function(response) {
-                                        swal("Success", response.msg, "success");
-                                        //refresh
-                                        callingCategory();
+                                    type:'delete',
+                                    url:`api/category/${item.id}`,   
+                                    success:function(response){
+                                        alert(response.msg);
+                                        // for refresh
+                                        callingData();
                                     }
                                 });
                             });
-
-
                         });
 
 
+                        
                     }
-                });
+                })
             }
-            callingCategory();
-        })
+            //calling category
+            callingData();
+
+        });
     </script>
 @endsection
