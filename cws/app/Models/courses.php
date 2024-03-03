@@ -12,6 +12,6 @@ class courses extends Model
     protected $guarded = [];
     public function ccategories(): HasOne
     {
-        return $this->HasOne(categories::class, 'id', 'category_id');
+        return $this->HasOne(Category::class, 'id', 'category_id');
     }
 }

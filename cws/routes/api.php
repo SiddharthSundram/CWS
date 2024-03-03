@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\RecentProjectController;
 use App\Http\Controllers\hallFrameController;
@@ -35,7 +35,7 @@ Route::get('/user-profile', function () {
 })->middleware('jwt.auth');
 
 //api for insert category
-Route::apiResource('category',CategoriesController::class);
+Route::apiResource('category',CategoryController::class);
 
 //api for insert Courses
 Route::apiResource("course",CourseController::class);

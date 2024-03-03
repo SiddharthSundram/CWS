@@ -14,6 +14,6 @@ class course extends Model
     
     public function category(): HasOne
     {
-        return $this->HasOne(categories::class, 'id', 'category_id');
+        return $this->HasOne(Category::class, 'id', 'category_id');
     }
 }
