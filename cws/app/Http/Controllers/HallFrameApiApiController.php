@@ -16,9 +16,6 @@ class HallFrameApiApiController extends Controller
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $filename = time().".".$request->featured_image->extension();        //upload on public/course_image/filename
@@ -29,7 +26,6 @@ class HallFrameApiApiController extends Controller
         $hallFrame->position = $request->position;
         $hallFrame->industry = $request->industry;
         $hallFrame->description = $request->description;
-
         $hallFrame->featured_image =$filename;
         $hallFrame->save();
 

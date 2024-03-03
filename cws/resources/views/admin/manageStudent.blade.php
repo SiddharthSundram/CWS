@@ -15,6 +15,7 @@
                         <th>Email</th>
                         <th>Contact No.</th>
                         <th>Admission Date</th>
+                        <th></th>
                         <th>Actions</th>
                     </tr>
                 </thead>
