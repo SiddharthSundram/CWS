@@ -45,7 +45,7 @@ class AdminController extends Controller
     
             // Retrieve the user with the given email and who is an admin
             $user = User::where("email", $data['email'])->where("is_admin", 1)->first();
-    
+    // dd($user);
             if ($user && Auth::guard('admin')->attempt(['email' => $data['email'], 'password' => $data['password']])) {
                 // Authentication successful, redirect to admin dashboard
                 return redirect()->route('admin.dashboard');

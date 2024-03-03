@@ -30,6 +30,7 @@ class StudentApiController extends Controller
 
     public function index()
     {
-        return response()->json(["data" => User::all()]);
-    }
+        return response()->json(["data" => User::where("is_admin","!=",1)->get()]);
+    } 
 }
+    
