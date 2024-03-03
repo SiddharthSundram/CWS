@@ -4,9 +4,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+<<<<<<<<< Temporary merge branch 1
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CourseController;
+=========
 use App\Http\Controllers\CategoriesApiController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CourseApiController;
+>>>>>>>>> Temporary merge branch 2
 use App\Http\Controllers\RecentProjectController;
 use App\Http\Controllers\HallFrameApiApiController;
 use App\Http\Controllers\RecentProjectApiController;
@@ -36,8 +41,13 @@ Route::get('/user-profile', function () {
     return auth()->user();
 })->middleware('jwt.auth');
 
+<<<<<<<<< Temporary merge branch 1
+//api for insert category
+Route::apiResource('category',CategoryController::class);
+=========
 //api for  category operations
 Route::apiResource('category',CategoriesApiController::class);
+>>>>>>>>> Temporary merge branch 2
 
 //api for  Courses operations
 Route::apiResource("course",CourseApiController::class);
