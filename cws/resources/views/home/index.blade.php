@@ -151,18 +151,16 @@
 
             <div class="container mx-auto my-8 p-5">
                 <h2 class="text-4xl font-bold mb-6">Our Courses</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="callingcourse">
-
-
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="callingcourse">
                     <!-- Course Card Start -->
                     <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
                         <div class="relative">
-                            <img src="https://via.placeholder.com/400" alt="Course" class="w-full h-56 object-cover">
+                            <img src="https://via.placeholder.com/400" alt="Course" class="w-full h-40 object-cover">
                             <span
                                 class="absolute top-0 right-0 bg-green-500 text-white px-2 py-1 m-2 rounded-full text-xs font-semibold">New</span>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2">Course Name</h3>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold mb-2">Course Name</h3>
                             <div class="flex items-center text-gray-600 mb-2">
                                 <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="/images/logo.png">
@@ -181,25 +179,25 @@
                             </div>
                             <div class="flex justify-between items-center">
                                 <div>
-                                    <p class="text-xl font-semibold text-gray-900">$200 <span
+                                    <p class="text-lg font-semibold text-gray-900">$200 <span
                                             class="text-sm text-gray-600 line-through ml-2">$300</span></p>
                                     <p class="text-green-500 font-semibold">20% off</p>
                                 </div>
                                 <div>
                                     <a href="#"
-                                        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded">Explore</a>
+                                        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-3 py-1 rounded">Explore</a>
                                     <a href="#"
-                                        class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded ml-2">Enroll</a>
+                                        class="bg-green-500 hover:bg-green-600 text-white font-semibold px-3 py-1 rounded ml-2">Enroll</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Course Card End -->
 
-
                     <!-- Add more course cards as needed -->
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -245,7 +243,7 @@
 
                         data.forEach((course) => {
                             table.append(`
-                            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                            <div class="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 transform hover:scale-105 hover:bg-gray-50 hover:shadow-lg">
                                 <div class="relative">
                                     <img src="/image/${course.featured_image}" alt="Course" class="w-full h-56 object-cover">
                                     <span class="absolute top-0 right-0 bg-green-500 text-white px-2 py-1 m-2 rounded-full text-xs font-semibold">New</span>
@@ -256,7 +254,7 @@
                                             <h3 class="text-xl text-gray-700 font-semibold mb-2">Course Name : <span class="text-orange-600"> ${course.name}</span></h3>
                                         </div>
                                         <div>
-                                            <span class="inline-flex rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">${course.category ? course.category.cat_title : 'N/A'}</span>
+                                            <span class="inline-flex  rounded-md bg-green-200 px-2 py-1 text-xs font-medium text-green-950 ring-1 ring-inset ring-green-600/20">${course.category ? course.category.cat_title : 'N/A'}</span>
                                         </div>
                                     </div>
 
@@ -272,8 +270,8 @@
                                             <p class="text-green-500 font-semibold">20% off</p>
                                         </div>
                                         <div>
-                                            <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded">Explore</a>
-                                            <a href="#" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded ml-2">Enroll</a>
+                                            <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded transition duration-300">Explore</a>
+                                            <a href="#" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded ml-2 transition duration-300">Enroll</a>
                                         </div>
                                     </div>
                                 </div>

@@ -21,6 +21,9 @@ class AdminController extends Controller
     public function manageCourse(){
         return view("admin.manageCourse");
     }
+    public function manageHallframe(){
+        return view("admin.manageHallframe");
+    }
     public function manageCategory(){
         return view("admin.manageCategory");
     }
