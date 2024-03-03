@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\course;
-use Auth;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Validator;

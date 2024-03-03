@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 <<<<<<<<< Temporary merge branch 1
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CourseApiController;
 use App\Http\Controllers\CourseController;
 =========
 use App\Http\Controllers\CategoriesApiController;
