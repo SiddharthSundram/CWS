@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Validator;
 
 class AdminController extends Controller
 {
@@ -54,6 +56,39 @@ class AdminController extends Controller
     }
     public function hallFrame(){
         return view("admin.hallFrame");
+    }
+
+    public function insertStudent(Request $request)
+    {
+        return view('admin.insertStudent');
+
+    }
+
+    public function manageStudent(){
+        return view('admin.manageStudent');
+    }
+
+    public function addStudent(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|between:2,100',
+            'mobile_no' => 'required|string|max:12|',
+            'email' => 'required|string|email|max:100|unique:users',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        $user = User::create(array_merge(
+            $validator->validated()
+        ));
+        return response()->json([
+            'message' => 'User successfully registered',
+            'user' => $user
+        ], 201);
+    }
+
+    public function index()
+    {
+          return response()->json(["data" => User::all()]);
     }
 
 }
