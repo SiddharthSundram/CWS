@@ -4,11 +4,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CategoriesApiController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CourseApiController;
 use App\Http\Controllers\RecentProjectController;
-use App\Http\Controllers\hallFrameController;
-
+use App\Http\Controllers\HallFrameApiApiController;
+use App\Http\Controllers\RecentProjectApiController;
+use App\Http\Controllers\StudentApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,13 +36,19 @@ Route::get('/user-profile', function () {
     return auth()->user();
 })->middleware('jwt.auth');
 
-//api for insert category
-Route::apiResource('category',CategoryController::class);
+//api for  category operations
+Route::apiResource('category',CategoriesApiController::class);
 
-//api for insert Courses
-Route::apiResource("course",CourseController::class);
-Route::apiResource("recent_project",RecentProjectController::class);
-Route::apiResource("hallFrame",hallFrameController::class);
-Route::apiResource('/admin/manage-student',AdminController::class);
+//api for  Courses operations
+Route::apiResource("course",CourseApiController::class);
 
-Route::post('/admin/insert-student', [AdminController::class, 'addStudent']);
+//api for recent project operations
+Route::apiResource("recent_project",RecentProjectApiController::class);
+
+//api for hallframe operations
+Route::apiResource("hallFrame",HallFrameApiApiController::class);
+
+// api for student operations
+Route::apiResource('/admin/manage-student',StudentApiController::class);
+
+Route::post('/admin/insert-student', [StudentApiController::class, 'addStudent']);

@@ -37,6 +37,13 @@
                         <i class="fas fa-user-graduate"></i> My Students
                     </a>
                 </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('recent_project') }}">
+                        <i class="fas fa-user-graduate"></i> Recent Project
+                    </a>
+                </li>
+                
                 {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('insertStudent') }}">
                         <i class="fas fa-user-graduate"></i> Insert Students
