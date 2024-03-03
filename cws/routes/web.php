@@ -12,14 +12,7 @@ Route::get("/register",[HomeController::class,'signup'])->name('register');
 Route::get("/my-profile",[HomeController::class,'profile'])->name('profile');
 
 
-// Route::prefix('admin')->group(function(){ 
-    // Route::get("/dashboard",[AdminController::class,'dashboard'])->name('admin.dashboard');
-    // Route::get("/insertCategory",[AdminController::class,'insertCategory'])->name('insertCategory');
-    // Route::get("/insertCourse",[AdminController::class,'insertCourse'])->name('insertCourse');
-    // Route::get("/manageCourse",[AdminController::class,'manageCourse'])->name('manageCourse');
-    // Route::get("/recent_project",[AdminController::class,'recent_project'])->name('recent_project');
-    // Route::get("/manageCategory",[AdminController::class,'manageCategory'])->name('manageCategory');
-// });
+
 
 Route::prefix('admin')->group(function(){
     Route::match(["get","post"],'/login', [AdminController::class,"adminLogin"])->name('adminLogin');
