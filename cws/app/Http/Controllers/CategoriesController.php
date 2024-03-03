@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\categories;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -12,7 +12,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return response()->json(["data" => categories::all()]);
+        return response()->json(["data" => Categories::all()]);
     }
 
     /**
@@ -20,7 +20,7 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $cat = new categories();
+        $cat = new Categories();
         $cat->cat_title = $request->cat_title;
         $cat->cat_description = $request->cat_description;
         $cat->save();
@@ -30,7 +30,7 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(categories $categories)
+    public function show(Categories $categories)
     {
         return response()->json(["data" => $categories]);
     }
@@ -38,7 +38,7 @@ class CategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(categories $categories)
+    public function edit(Categories $categories)
     {
         //
     }
@@ -46,7 +46,7 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, categories $categories)
+    public function update(Request $request, Categories $categories)
     {
         $categories->cat_title = $request->cat_title;
         $categories->cat_description = $request->cat_description;
@@ -57,8 +57,9 @@ class CategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(categories $categories)
+    public function destroy(Categories $categories)
     {
+        return response()->json($categories);
         $categories->delete();
         return response()->json(['data' => $categories, "success" => true, "msg" => "categories delete Succcessfully"]);
     }
