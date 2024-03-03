@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use illuminate\Database\Eloquent\Relations\HasOne;
 
 
-class course extends Model
+class Course extends Model
 {
     use HasFactory;
     protected $guarded = [];
