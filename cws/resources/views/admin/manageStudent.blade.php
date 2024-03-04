@@ -29,7 +29,7 @@
         let callingStudent = () => {
             $.ajax({
                 type: "get",
-                url: "{{route('manage-student.index')}}",
+                url: "{{route('manage-student')}}",
                 success: function(response) {
                     let table = $("#callingStudent");
                     table.empty();
@@ -50,6 +50,7 @@
                                 <td class="border-b border-gray-200 px-4 py-2">
                                     <button type='button' class='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded delete-btn' data-id='${student.id}'>X</button>
             <button type='button' class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded edit-btn' data-id='${student.id}'>Edit</button>
+            <a href='/admin/student/view/${student.id}' class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded edit-btn'>View</button>
                                 </td>
                             </tr>
                         `);

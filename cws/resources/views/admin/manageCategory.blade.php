@@ -24,21 +24,7 @@
             </table>
         </div>
     </div>
-    <div class="overflow-x-auto ">
-        <table class="table-auto w-full">
-            <thead>
-                <tr>
-                    <th class="px-4 py-2 border">ID</th>
-                    <th class="px-4 py-2 border">Category Title</th>
-                    <th class="px-4 py-2 border">Category Description</th>
-                    <th class="px-4 py-2 border">Actions</th>
-                </tr>
-            </thead>
-            <tbody id="categoryCalling">
-                <!-- Dynamic data will be inserted here via AJAX -->
-            </tbody>
-        </table>
-    </div>
+    
 </div>
 
     <script>

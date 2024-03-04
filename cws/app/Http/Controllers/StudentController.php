@@ -16,4 +16,7 @@ class StudentController extends Controller
     {
         return view('admin.manageStudent');
     }
+    public function viewStudent(Request $request, $id){
+        return view('admin.viewStudents');
+    }
 }
