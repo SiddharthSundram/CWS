@@ -29,7 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
+// Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('jwt.auth');
 Route::post('/refresh', [AuthController::class, 'refresh']);
 Route::get('/user-profile', function () {
@@ -52,5 +52,5 @@ Route::apiResource("hallFrame",HallFrameApiApiController::class);
 
 // api for student operations
 Route::get('/admin/manage-student',[StudentApiController::class,"index"])->name("manage-student");
-Route::post('/admin/insert-student', [StudentApiController::class, 'addStudent']);
+Route::post('/admin/insert-student', [StudentApiController::class, 'addStudent'])->name("addStudent");
 Route::get('/admin/student/view/{id}', [StudentApiController::class, 'show']);
