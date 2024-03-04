@@ -64,20 +64,19 @@
     
     <script>
         //for calling category 
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch("/api/category")
-                .then(response => response.json())
-                .then(data => {
-                    let select = document.getElementById("callingCatForSelect");
-                    select.innerHTML = '';
-                    data.forEach(cat => {
-                        let option = document.createElement('option');
-                        option.value = cat.id;
-                        option.text = cat.cat_title;
-                        select.appendChild(option);
+        $(document).ready(function() {
+            $.ajax({
+                type: "GET",
+                url: "/api/category",
+                success: function(response) {
+                    let select = $("#callingCatForSelect"); // Corrected the selector
+                    select.empty();
+                    response.data.forEach((cat) => {
+                        select.append(`<option value="${cat.id}">${cat.cat_title}</option>`);
                     });
-                })
-                .catch(error => console.error('Error fetching categories:', error));
+                }
+            });
+
 
             // Insert course
             function readURL(input) {
@@ -85,33 +84,33 @@
                     var reader = new FileReader();
 
                     reader.onload = function(e) {
-                        document.getElementById('image-preview').setAttribute('src', e.target.result);
+                        $('#image-preview').attr('src', e.target.result);
                     }
 
                     reader.readAsDataURL(input.files[0]);
                 }
             }
-
-            document.getElementById('image_upload').addEventListener('change', function() {
+            $("#image_upload").change(function() {
                 readURL(this);
             });
 
-            document.getElementById('insertCourse').addEventListener('submit', function(e) {
+            $("#insertCourse").submit(function(e) {
                 e.preventDefault();
-                fetch("/api/course", {
-                        method: 'POST',
-                        body: new FormData(this),
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        swal("Course Inserted Successfully!", data.msg, "success");
-                        document.getElementById("insertCourse").reset();
-                        setTimeout(() => {
-                            window.open("{{route('manageCourse')}}", "_self");
-                        }, 1000);
-                    })
-                    .catch(error => console.error('Error inserting course:', error));
-            });
+                $.ajax({
+                    type: "POST",
+                    url: "/api/course",
+                    data: new FormData(this),
+                    dataType: "JSON",
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(response) {
+                        alert(response.msg);
+                        $("#insertcourse").trigger("reset")
+                        window.open("/admin/course", "_self")
+                    }
+                })
+            })
         });
     </script>
 @endsection
