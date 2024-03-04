@@ -1,104 +1,37 @@
 @extends('admin.base')
 
 @section('content')
-    <div class="container mt-5">
-        <div class="d-flex justify-content-between align-items-center mt-3 courses-center">
-            <h2>Manage Courses (<span id="counting">0</span>)</h2>
-            <a href="{{ route('insertCourse') }}" class="btn btn-primary"> <i class="fas fa-plus"></i> Add New
-                Course</a>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Duration</th>
-                        <th>Instructor</th>
-                        <th>Fees</th>
-                        <th>Discount Fees</th>
-                        <th>Language</th>
-                        <th>Category</th>
-                        <th>Description</th>
-                        <th>Image</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="callingcourse">
-                    <!-- Add your table row content here -->
-                </tbody>
-            </table>
-        </div>
+<div class="container mt-20">
+    <div class="flex justify-between items-center mt-3">
+        <h2 class="text-xl">Manage Courses (<span id="counting">0</span>)</h2>
+        <a href="{{ route('insertCourse') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center">
+            <i class="fas fa-plus mr-1"></i> Add New Course
+        </a>
+        
     </div>
-
-    <!-- Edit Course Modal -->
-    <div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="editCourseModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editCourseModalLabel">Edit Course</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="editCourseForm" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" id="editCourseId" name="id">
-                        <div class="mb-3">
-                            <label class="form-label">Course Name</label>
-                            <input type="text" class="form-control" id="editCourseName" name="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Duration</label>
-                            <input type="text" class="form-control" id="editCourseDuration" name="duration" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Instructor</label>
-                            <input type="text" class="form-control" id="editCourseInstructor" name="instructor" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editCourseFees" class="form-label">Fees</label>
-                            <input type="text" class="form-control" id="editCourseFees" name="fees" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Discounted Fees</label>
-                            <input type="text" class="form-control" id="editCourseDiscountFees" name="discount_fees"
-                                required>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-8">
-                                <label class="form-label">Featured Image</label>
-                                <input type="file" class="form-control" id="editCourseImageUpload" name="featured_image">
-                            </div>
-                            <div class="col-md-4 col-sm-12 mt-3 mt-md-0">
-                                <img src="" id="editCourseImagePreview" alt=""
-                                    class="w-100 card-image-top-10px">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editCourseDescription" class="form-label">Description</label>
-                            <textarea class="form-control" id="editCourseDescription" name="description" rows="3" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editCourseLang" class="form-label">Language</label>
-                            <select class="form-select" id="editCourseLang" name="lang" required>
-                                <option value="en">English</option>
-                                <option value="hi">Hindi</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="categoryId" class="form-label">Category</label>
-                            <select type="text" id="callingCatForSelect" name="category_id" class="form-control">
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Save changes</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div class="overflow-x-auto mt-4">
+        <table class="table-auto w-full border-collapse">
+            <thead>
+                <tr>
+                    <th class="px-4 border py-2">Id</th>
+                    <th class="px-4 border py-2">Name</th>
+                    <th class="px-4 border py-2">Duration</th>
+                    <th class="px-4 border py-2">Instructor</th>
+                    <th class="px-4 border py-2">Fees</th>
+                    <th class="px-4 border py-2">Discount Fees</th>
+                    <th class="px-4 border py-2">Language</th>
+                    <th class="px-4 border py-2">Category</th>
+                    <th class="px-4 border py-2">Description</th>
+                    <th class="px-4 border py-2">Image</th>
+                    <th class="px-4 border py-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="callingcourse">
+                <!-- Add your table row content here -->
+            </tbody>
+        </table>
     </div>
-
+</div>
 
     <script>
         $.ajax({
@@ -121,22 +54,25 @@
                 success: function(response) {
                     $("#callingcourse").empty();
                     $.each(response.data, function(index, course) {
-                        $("#callingcourse").append(`<tr>
-                            <td>${course.id}</td>
-                            <td>${course.name}</td>
-                            <td>${course.duration}</td>
-                            <td>${course.instructor}</td>
-                            <td>${course.fees}</td>
-                            <td>${course.discount_fees}</td>
-                            <td>${course.lang}</td>
-                            <td>${course.category.cat_title}</td>
-                            <td>${course.description}</td>
-                            <td><img src="/image/${course.featured_image}" width="80px" height="50px" alt=""></td>
-                            <td>
-                                <button type='button' class='btn btn-danger delete-btn' data-id='${course.id}'>X</button>
-                                <button type='button' class='btn btn-info edit-btn' data-id='${course.id}'>Edit</button>
-                            </td>
-                        </tr>
+                                 $("#callingcourse").append(`<tr>
+                                    <td class="border px-4 py-2">${course.id}</td>
+                                    <td class="border px-4 py-2">${course.name}</td>
+                                    <td class="border px-4 py-2">${course.duration}</td>
+                                    <td class="border px-4 py-2">${course.instructor}</td>
+                                    <td class="border px-4 py-2">${course.fees}</td>
+                                    <td class="border px-4 py-2">${course.discount_fees}</td>
+                                    <td class="border px-4 py-2">${course.lang}</td>
+                                    <td class="border px-4 py-2">${course.category.cat_title}</td>
+                                    <td class="border px-4 py-2">${course.description}</td>
+                                    <td class="border px-4 py-2">
+                                        <img src="/image/${course.featured_image}" class="w-20 h-auto" alt="">
+                                    </td>
+                                    <td>
+                                        <button type="button" class="bg-red-500 text-white px-3 py-2 rounded" id="btn${course.id}">X</button>
+                                        <button type="button" class="bg-sky-600 text-white px-3 py-2 rounded edit-btn" data-id="${course.id}">edit</button>
+                                    </td>
+                                </tr>
+
                         `);
                     });
 
@@ -170,51 +106,34 @@
 
             // Handle edit button click
             $(document).on('click', '.edit-btn', function() {
-                var courseId = $(this).data('id');
-                $.ajax({
-                    type: 'GET',
-                    url: `/api/course/${courseId}`,
-                    dataType: 'json',
-                    success: function(response) {
-                        $('#editCourseId').val(response.data.id);
-                        $('#editCourseName').val(response.data.name);
-                        $('#editCourseDuration').val(response.data.duration);
-                        $('#editCourseInstructor').val(response.data.instructor);
-                        $('#editCourseFees').val(response.data.fees);
-                        $('#editCourseDiscountFees').val(response.data.discount_fees);
-                        $('#editCourseImagePreview').attr('src', '/image/' + response.data
-                            .featured_image);
-                        $('#editCourseDescription').val(response.data.description);
-                        $('#editCourseLang').val(response.data.lang);
-                        $('#editCourseCategoryId').val(response.data.category_id);
-                        $('#editCourseModal').modal('show');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching course details for editing:', error);
-                    }
-                });
+        var courseId = $(this).data('id');
+        // AJAX request to fetch course details
+        $.ajax({
+            type: 'GET',
+            url: `/api/course/${courseId}`, // Assuming this is the endpoint to fetch course details
+            dataType: 'json',
+            success: function(response) {
+                // Populate the form fields with the fetched data
+                $('#editCourseId').val(response.data.id);
+                $('#editCourseName').val(response.data.name);
+                $('#editCourseDuration').val(response.data.duration);
+                $('#editCourseInstructor').val(response.data.instructor);
+                $('#editCourseFees').val(response.data.fees);
+                $('#editCourseDiscountFees').val(response.data.discount_fees);
+                $('#editCourseImagePreview').attr('src', '/image/' + response.data.featured_image);
+                $('#editCourseDescription').val(response.data.description);
+                $('#editCourseLang').val(response.data.lang);
+                $('#editCourseCategoryId').val(response.data.category_id); // Assuming you have a category select field
+                // Show the edit modal
+                $('#editCourseModal').modal('show');
+            },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching course details for editing:', error);
+                    // Handle error if needed
+        }
+    });
+});
 
-                $('#editCourseForm').submit(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: 'PUT',
-                    url: '/api/course/' + $('#editCourseId').val(),
-                    data: new FormData(this),
-                    dataType: "JSON",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(response) {
-                        swal("Success", response.msg, "success");
-                        $('#editCourseModal').modal('hide');
-                        fetchCourses(); // Refresh the course list
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error updating course:', error);
-                    }
-                });
-            });
-            });
 
             // Handle form submission for updating course details
            
