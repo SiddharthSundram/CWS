@@ -28,9 +28,13 @@ class StudentApiController extends Controller
         ], 201);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(["data" => User::where("is_admin","!=",1)->get()]);
+        // return response()->json(["data" => User::where("is_admin","!=",1)->get()]);
+
+        $perPage = $request->input('per_page', 4); // Default to 10 items per page if not specified
+        $users = User::where('is_admin', '!=', 1)->paginate($perPage);    
+        return response()->json($users);
     } 
 }
     
