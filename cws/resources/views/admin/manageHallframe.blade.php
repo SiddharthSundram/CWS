@@ -1,15 +1,15 @@
 @extends('admin.base')
 
 @section('content')
-    <div class="container mt-5">
-        <div class="d-flex justify-content-between align-items-center mt-3 courses-center">
-            <h2>Manage hallFrame (<span id="counting">0</span>)</h2>
-            <a href="{{ route('hallFrame') }}" class="btn btn-primary"> <i class="fas fa-plus"></i> Add New
+    <div class="flex flex-col mt-16">
+        <div class="flex justify-between  mt-3">
+            <h2 class="text-xl font-semibold">Manage hallFrame (<span id="counting">0</span>)</h2>
+            <a href="{{ route('hallFrame') }}" class="bg-teal-600 text-white px-3 py-2 rounded"> <i class="fas fa-plus"></i> Add New
                 Students</a>
         </div>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
+        <div class="table-responsive mt-5">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
@@ -54,8 +54,8 @@
                                     <td>${hallFrame.description}</td> 
                                     <td> <img src="/image/${hallFrame.featured_image}" width="80px" height="50px" alt=""></td> 
                                     <td>
-                                        <button type="button" class="btn btn-danger" id="btn${hallFrame.id}">X</button>
-                                        <button type="button" class="btn btn-info edit-btn" data-id="${hallFrame.id}">edit</button>
+                                        <button type="button" class="bg-red-500 text-white px-3 py-2 rounded" id="btn${hallFrame.id}">X</button>
+                                        <button type="button" class="bg-sky-600 text-white px-3 py-2 rounded edit-btn" data-id="${hallFrame.id}">edit</button>
                                     </td>
                                 </tr>
                             `);

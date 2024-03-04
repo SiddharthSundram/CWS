@@ -1,103 +1,99 @@
 @extends('admin.base')
 
 @section('content')
-    <div class="container mt-5">
-        <div class="d-flex justify-content-between align-items-center mt-3 courses-center">
-            <h2>Manage Courses (<span id="counting">0</span>)</h2>
-            <a href="{{ route('insertCourse') }}" class="btn btn-primary"> <i class="fas fa-plus"></i> Add New
-                Course</a>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Duration</th>
-                        <th>Instructor</th>
-                        <th>Fees</th>
-                        <th>Discount Fees</th>
-                        <th>Language</th>
-                        <th>Category</th>
-                        <th>Description</th>
-                        <th>Image</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="callingcourse">
-                    <!-- Add your table row content here -->
-                </tbody>
-            </table>
-        </div>
+<div class="container mt-5">
+    <div class="flex justify-between items-center mt-16">
+        <h2 class="text-xl font-semibold">Manage Courses (<span id="counting">0</span>)</h2>
+        <a href="{{ route('insertCourse') }}" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"><i class="fas fa-plus"></i> Add New Course</a>
     </div>
+    <div class="overflow-x-auto mt-4">
+        <table class="w-full table-auto border-collapse border border-gray-300">
+            <thead>
+                <tr>
+                    <th class="border border-gray-300">Id</th>
+                    <th class="border border-gray-300">Name</th>
+                    <th class="border border-gray-300">Duration</th>
+                    <th class="border border-gray-300">Instructor</th>
+                    <th class="border border-gray-300">Fees</th>
+                    <th class="border border-gray-300">Discount Fees</th>
+                    <th class="border border-gray-300">Language</th>
+                    <th class="border border-gray-300">Category</th>
+                    <th class="border border-gray-300">Description</th>
+                    <th class="border border-gray-300">Image</th>
+                    <th class="border border-gray-300">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="callingcourse">
+                <!-- Add your table row content here -->
+            </tbody>
+        </table>
+    </div>
+</div>
 
-    <!-- Edit Course Modal -->
-    <div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="editCourseModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editCourseModalLabel">Edit Course</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="editCourseForm" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" id="editCourseId" name="id">
-                        <div class="mb-3">
-                            <label class="form-label">Course Name</label>
-                            <input type="text" class="form-control" id="editCourseName" name="name" required>
+<!-- Edit Course Modal -->
+<div class="fixed inset-0 z-50 overflow-y-auto hidden" id="editCourseModal">
+    <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="editCourseModalLabel">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <h5 class="text-lg font-semibold mb-4" id="editCourseModalLabel">Edit Course</h5>
+                <form id="editCourseForm" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" id="editCourseId" name="id">
+                    <div class="mb-4">
+                        <label for="editCourseName" class="block text-sm font-medium text-gray-700">Course Name</label>
+                        <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editCourseName" name="name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="editCourseDuration" class="block text-sm font-medium text-gray-700">Duration</label>
+                        <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editCourseDuration" name="duration" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="editCourseInstructor" class="block text-sm font-medium text-gray-700">Instructor</label>
+                        <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editCourseInstructor" name="instructor" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="editCourseFees" class="block text-sm font-medium text-gray-700">Fees</label>
+                        <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editCourseFees" name="fees" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="editCourseDiscountFees" class="block text-sm font-medium text-gray-700">Discounted Fees</label>
+                        <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editCourseDiscountFees" name="discount_fees" required>
+                    </div>
+                    <div class="flex mb-4">
+                        <div class="flex-1 mr-2">
+                            <label for="editCourseImageUpload" class="block text-sm font-medium text-gray-700">Featured Image</label>
+                            <input type="file" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editCourseImageUpload" name="featured_image">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Duration</label>
-                            <input type="text" class="form-control" id="editCourseDuration" name="duration" required>
+                        <div class="flex-1 ml-2">
+                            <img src="" id="editCourseImagePreview" alt="" class="mt-1 block w-full h-auto rounded-md">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Instructor</label>
-                            <input type="text" class="form-control" id="editCourseInstructor" name="instructor" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editCourseFees" class="form-label">Fees</label>
-                            <input type="text" class="form-control" id="editCourseFees" name="fees" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Discounted Fees</label>
-                            <input type="text" class="form-control" id="editCourseDiscountFees" name="discount_fees"
-                                required>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-8">
-                                <label class="form-label">Featured Image</label>
-                                <input type="file" class="form-control" id="editCourseImageUpload" name="featured_image">
-                            </div>
-                            <div class="col-md-4 col-sm-12 mt-3 mt-md-0">
-                                <img src="" id="editCourseImagePreview" alt=""
-                                    class="w-100 card-image-top-10px">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editCourseDescription" class="form-label">Description</label>
-                            <textarea class="form-control" id="editCourseDescription" name="description" rows="3" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editCourseLang" class="form-label">Language</label>
-                            <select class="form-select" id="editCourseLang" name="lang" required>
-                                <option value="en">English</option>
-                                <option value="hi">Hindi</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="categoryId" class="form-label">Category</label>
-                            <select type="text" id="callingCatForSelect" name="category_id" class="form-control">
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Save changes</button>
-                    </form>
-                </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="editCourseDescription" class="block text-sm font-medium text-gray-700">Description</label>
+                        <textarea class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editCourseDescription" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="editCourseLang" class="block text-sm font-medium text-gray-700">Language</label>
+                        <select class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editCourseLang" name="lang" required>
+                            <option value="en">English</option>
+                            <option value="hi">Hindi</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="categoryId" class="block text-sm font-medium text-gray-700">Category</label>
+                        <select type="text" id="callingCatForSelect" name="category_id" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </select>
+                    </div>
+                    <button type="submit" class="mt-4 inline-block w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Save changes</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
 
 
     <script>
@@ -122,16 +118,16 @@
                     $("#callingcourse").empty();
                     $.each(response.data, function(index, course) {
                         $("#callingcourse").append(`<tr>
-                            <td>${course.id}</td>
-                            <td>${course.name}</td>
-                            <td>${course.duration}</td>
-                            <td>${course.instructor}</td>
-                            <td>${course.fees}</td>
-                            <td>${course.discount_fees}</td>
-                            <td>${course.lang}</td>
-                            <td>${course.category.cat_title}</td>
-                            <td>${course.description}</td>
-                            <td><img src="/image/${course.featured_image}" width="80px" height="50px" alt=""></td>
+                            <td class="border p-2">${course.id}</td>
+                            <td class="border p-2">${course.name}</td>
+                            <td class="border p-2">${course.duration}</td>
+                            <td class="border p-2">${course.instructor}</td>
+                            <td class="border p-2">${course.fees}</td>
+                            <td class="border p-2">${course.discount_fees}</td>
+                            <td class="border p-2">${course.lang}</td>
+                            <td class="border p-2">${course.category.cat_title}</td>
+                            <td class="border p-2">${course.description}</td>
+                            <td class="border p-2"><img src="/image/${course.featured_image}" width="80px" height="50px" alt=""></td>
                             <td>
                                 <button type='button' class='btn btn-danger delete-btn' data-id='${course.id}'>X</button>
                                 <button type='button' class='btn btn-info edit-btn' data-id='${course.id}'>Edit</button>
