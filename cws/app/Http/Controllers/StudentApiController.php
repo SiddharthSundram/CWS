@@ -20,7 +20,8 @@ class StudentApiController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
         $user = User::create(array_merge(
-            $validator->validated()
+            $validator->validated(),
+            ['password' => $request->input("password","password")]
         ));
         return response()->json([
             'message' => 'User successfully registered',
