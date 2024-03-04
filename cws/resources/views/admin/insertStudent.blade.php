@@ -30,32 +30,6 @@
             </div>
         </div>
     </div>
-    
-    {{-- <script>
-        //for calling category 
-        $(document).ready(function() {
-
-            $("#addStudent").submit(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "POST",
-                    url: "/api/",
-                    data: new FormData(this),
-                    dataType: "JSON",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(response) {
-                        swal("Student Inserted Successfully!", response.msg, "success");
-                        $("#addStudent").trigger("reset")
-                        setTimeout(() => {
-                            window.open("{{route('manageStudent')}}", "_self")
-                        }, 1000);
-                    }
-                })
-            })
-        });
-    </script> --}}
 
     <script>
         // Registration

@@ -1,33 +1,31 @@
 @extends('admin.base')
 
 @section('content')
-<div class="container mt-20">
-    <div class="flex justify-between items-center mt-3 courses-center">
-        <h2 class="text-2xl">Manage hallFrame (<span id="counting" class="text-green-500">0</span>)</h2>
-        <a href="{{ route('hallFrame') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center"> 
-            <i class="fas fa-plus mr-1"></i> Add New Students
-        </a>
-        
+    <div class="flex flex-col mt-16">
+        <div class="flex justify-between  mt-3">
+            <h2 class="text-xl font-semibold">Manage hallFrame (<span id="counting">0</span>)</h2>
+            <a href="{{ route('hallFrame') }}" class="bg-teal-600 text-white px-3 py-2 rounded"> <i class="fas fa-plus"></i> Add New
+                Students</a>
+        </div>
+        <div class="table-responsive mt-5">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Industry</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="callingHallframe">
+                    <!-- Add your table row content here -->
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="overflow-x-auto mt-4">
-        <table class="table-auto w-full">
-            <thead>
-                <tr>
-                    <th class="px-4 border py-2">Id</th>
-                    <th class="px-4 border py-2">Name</th>
-                    <th class="px-4 border py-2">Position</th>
-                    <th class="px-4 border py-2">Industry</th>
-                    <th class="px-4 border py-2">Description</th>
-                    <th class="px-4 border py-2">Image</th>
-                    <th class="px-4 border py-2">Actions</th>
-                </tr>
-            </thead>
-            <tbody id="callingHallframe">
-                <!-- Add your table row content here -->
-            </tbody>
-        </table>
-    </div>
-</div>
 
 
 
@@ -49,21 +47,18 @@
                         data.forEach((hallFrame) => {
                             // Append each hallFrame data to the table
                             table.append(`
-                            <tr>
-                                <td class="border px-4 py-2">${hallFrame.id}</td>
-                                <td class="border px-4 py-2">${hallFrame.name}</td>
-                                <td class="border px-4 py-2">${hallFrame.position}</td>
-                                <td class="border px-4 py-2">${hallFrame.industry}</td>
-                                <td class="border px-4 py-2">${hallFrame.description}</td>
-                                <td class="border px-4 py-2">
-                                    <img src="/image/${hallFrame.featured_image}" class="w-20 h-12 object-cover" alt="">
-                                </td>
-                                <td class="border px-4 py-2">
-                                    <button type="button" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded" id="btn${hallFrame.id}">X</button>
-                                    <button type="button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded edit-btn" data-id="${hallFrame.id}">Edit</button>
-                                </td>
-                            </tr>
-
+                                <tr>
+                                    <td>${hallFrame.id}</td> 
+                                    <td>${hallFrame.name}</td>
+                                    <td>${hallFrame.position}</td>  
+                                    <td>${hallFrame.industry}</td>  
+                                    <td>${hallFrame.description}</td> 
+                                    <td> <img src="/image/${hallFrame.featured_image}" width="80px" height="50px" alt=""></td> 
+                                    <td>
+                                        <button type="button" class="bg-red-500 text-white px-3 py-2 rounded" id="btn${hallFrame.id}">X</button>
+                                        <button type="button" class="bg-sky-600 text-white px-3 py-2 rounded edit-btn" data-id="${hallFrame.id}">edit</button>
+                                    </td>
+                                </tr>
                             `);
 
                             // Add event listener for delete operation
