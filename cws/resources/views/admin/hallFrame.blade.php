@@ -2,49 +2,42 @@
 
 @section('content')
     <!-- Page content goes here -->
-    <div class="container">
-        <div class="col-lg-9 col-md-8 col-sm-11 mx-auto">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Insert HallFrame</h3>
-                </div>
-                <div class="card-body">
-
-                    <form id="hallFrame">
-                        <div class="mb-3">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="name" required>
+    <div class="container mx-auto mt-16">
+        <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="bg-blue-500 text-white text-center py-4">
+                <h3 class="text-xl font-semibold">Insert HallFrame</h3>
+            </div>
+            <div class="p-6">
+                <form id="hallFrame">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" class="form-input mt-1 block w-full" name="name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700">Position</label>
+                        <input type="text" class="form-input mt-1 block w-full" id="position" name="position" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700">Industry</label>
+                        <input type="text" class="form-input mt-1 block w-full" id="industry" name="industry" required>
+                    </div>
+                    <div class="flex mb-4">
+                        <div class="w-8/12 mr-4">
+                            <label class="block text-sm font-medium text-gray-700">Featured Image</label>
+                            <input type="file" class="form-input mt-1 block w-full" id="image_upload" name="featured_image" required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Position</label>
-                            <input type="text" class="form-control" id="position" name="position" required>
+                        <div class="w-4/12">
+                            <img src="" id="image-preview" alt="" class="w-full h-auto">
                         </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Industry</label>
-                            <input type="text" class="form-control" id="industry" name="industry" required>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-8">
-                                <label class="form-label">Featured Image</label>
-                                <input type="file" class="form-control" id="image_upload" name="featured_image" required>
-                            </div>
-                            <div class="col-md-4 col-sm-12 mt-3 mt-md-0">
-                                <img src="" id="image-preview" alt="" class="w-100 card-image-top-10px">
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-success w-100">Insert hallFrame</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                        <textarea class="form-textarea mt-1 block w-full" id="description" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 w-full rounded-md">Insert HallFrame</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

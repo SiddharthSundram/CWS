@@ -9,7 +9,7 @@
     <div class="overflow-x-auto mt-4">
         <table class="w-full table-auto border-collapse border border-gray-300">
             <thead>
-                <tr>
+                <tr class=" hover:bg-gray-100 text-gray-700">
                     <th class="border border-gray-300">Id</th>
                     <th class="border border-gray-300">Name</th>
                     <th class="border border-gray-300">Duration</th>
@@ -28,6 +28,7 @@
             </tbody>
         </table>
     </div>
+    
 </div>
 
 <!-- Edit Course Modal -->
@@ -87,132 +88,140 @@
                         <select type="text" id="callingCatForSelect" name="category_id" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         </select>
                     </div>
-                    <button type="submit" class="mt-4 inline-block w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Save changes</button>
+                    <div class="flex justify-between">
+                        <button type="submit" class="inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Save changes</button>
+                        <button type="button" id="cancelEditCourse" class="inline-block px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancel</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-
-
-    <script>
-        $.ajax({
-            type: "GET",
-            url: "/api/category",
-            success: function(response) {
-                let select = $("#callingCatForSelect"); // Corrected the selector
-                select.empty();
-                response.data.forEach((cat) => {
-                    select.append(`<option value="${cat.id}">${cat.cat_title}</option>`);
-                });
-            }
-        });
-        // Function to fetch courses
-        function fetchCourses() {
-            $.ajax({
-                type: "GET",
-                url: "{{ route('course.index') }}",
-                dataType: "json",
-                success: function(response) {
-                    $("#callingcourse").empty();
-                    $.each(response.data, function(index, course) {
-                        $("#callingcourse").append(`<tr>
-                            <td class="border p-2">${course.id}</td>
-                            <td class="border p-2">${course.name}</td>
-                            <td class="border p-2">${course.duration}</td>
-                            <td class="border p-2">${course.instructor}</td>
-                            <td class="border p-2">${course.fees}</td>
-                            <td class="border p-2">${course.discount_fees}</td>
-                            <td class="border p-2">${course.lang}</td>
-                            <td class="border p-2">${course.category.cat_title}</td>
-                            <td class="border p-2">${course.description}</td>
-                            <td class="border p-2"><img src="/image/${course.featured_image}" width="80px" height="50px" alt=""></td>
-                            <td>
-                                <button type='button' class='btn btn-danger delete-btn' data-id='${course.id}'>X</button>
-                                <button type='button' class='btn btn-info edit-btn' data-id='${course.id}'>Edit</button>
-                            </td>
-                        </tr>`);
-                    });
-
-                    
-                },
-                error: function(xhr, status, error) {
-                    console.error("Error fetching courses:", error);
-                }
+<script>
+    $.ajax({
+        type: "GET",
+        url: "/api/category",
+        success: function(response) {
+            let select = $("#callingCatForSelect");
+            select.empty();
+            response.data.forEach((cat) => {
+                select.append(`<option value="${cat.id}">${cat.cat_title}</option>`);
             });
         }
+    });
 
-        // Call fetchCourses initially
-        $(document).ready(function() {
-            fetchCourses();
+    function fetchCourses() {
+        $.ajax({
+            type: "GET",
+            url: "{{ route('course.index') }}",
+            dataType: "json",
+            success: function(response) {
+                $("#callingcourse").empty();
+                
+                        // to count total number of course
+                        let len = response.data.length;
+                        $("#counting").html(len);
 
-            // Handle delete button click
-            $(document).on('click', '.delete-btn', function() {
-                var courseId = $(this).data('id');
-                $.ajax({
-                    type: 'DELETE',
-                    url: `/api/course/${courseId}`,
-                    success: function(response) {
-                        swal("Success", response.msg, "success");
-                        fetchCourses(); // Fetch courses again after successful deletion
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error deleting course:", error);
-                    }
+                $.each(response.data, function(index, course) {
+                    $("#callingcourse").append(`<tr class=" hover:bg-gray-100">
+                        <td class="border p-2">${course.id}</td>
+                        <td class="border p-2">${course.name}</td>
+                        <td class="border p-2">${course.duration}</td>
+                        <td class="border p-2">${course.instructor}</td>
+                        <td class="border p-2">${course.fees}</td>
+                        <td class="border p-2">${course.discount_fees}</td>
+                        <td class="border p-2">${course.lang}</td>
+                        <td class="border p-2">${course.category.cat_title}</td>
+                        <td class="border p-2">${course.description}</td>
+                        <td class="border p-2"><img src="/image/${course.featured_image}" width="80px" height="50px" alt=""></td>
+                        <td class="py-2 px-4 border">
+                            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded-sm delete-btn"  data-id='${course.id}'>
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-sm edit-btn" data-id="${course.id}">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </td>
+
+
+                    </tr>`);
                 });
-            });
-
-            // Handle edit button click
-            $(document).on('click', '.edit-btn', function() {
-                var courseId = $(this).data('id');
-                $.ajax({
-                    type: 'GET',
-                    url: `/api/course/${courseId}`,
-                    dataType: 'json',
-                    success: function(response) {
-                        $('#editCourseId').val(response.data.id);
-                        $('#editCourseName').val(response.data.name);
-                        $('#editCourseDuration').val(response.data.duration);
-                        $('#editCourseInstructor').val(response.data.instructor);
-                        $('#editCourseFees').val(response.data.fees);
-                        $('#editCourseDiscountFees').val(response.data.discount_fees);
-                        $('#editCourseImagePreview').attr('src', '/image/' + response.data
-                            .featured_image);
-                        $('#editCourseDescription').val(response.data.description);
-                        $('#editCourseLang').val(response.data.lang);
-                        $('#editCourseCategoryId').val(response.data.category_id);
-                        $('#editCourseModal').modal('show');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching course details for editing:', error);
-                    }
-                });
-
-                $('#editCourseForm').submit(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: 'PUT',
-                    url: '/api/course/' + $('#editCourseId').val(),
-                    data: new FormData(this),
-                    dataType: "JSON",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(response) {
-                        swal("Success", response.msg, "success");
-                        $('#editCourseModal').modal('hide');
-                        fetchCourses(); // Refresh the course list
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error updating course:', error);
-                    }
-                });
-            });
-            });
-
-            // Handle form submission for updating course details
-           
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching courses:", error);
+            }
         });
-    </script>
+    }
+
+    $(document).ready(function() {
+        fetchCourses();
+
+        $(document).on('click', '.delete-btn', function() {
+            var courseId = $(this).data('id');
+            $.ajax({
+                type: 'DELETE',
+                url: `/api/course/${courseId}`,
+                success: function(response) {
+                    swal("Success", response.msg, "success");
+                    fetchCourses();
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error deleting course:", error);
+                }
+            });
+        });
+
+        $(document).on('click', '.edit-btn', function() {
+            var courseId = $(this).data('id');
+            $.ajax({
+                type: 'GET',
+                url: `/api/course/${courseId}`,
+                dataType: 'json',
+                success: function(response) {
+                    $('#editCourseId').val(response.data.id);
+                    $('#editCourseName').val(response.data.name);
+                    $('#editCourseDuration').val(response.data.duration);
+                    $('#editCourseInstructor').val(response.data.instructor);
+                    $('#editCourseFees').val(response.data.fees);
+                    $('#editCourseDiscountFees').val(response.data.discount_fees);
+                    $('#editCourseImagePreview').attr('src', '/image/' + response.data
+                        .featured_image);
+                    $('#editCourseDescription').val(response.data.description);
+                    $('#editCourseLang').val(response.data.lang);
+                    $('#editCourseCategoryId').val(response.data.category_id);
+                    $('#editCourseModal').removeClass('hidden');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching course details for editing:', error);
+                }
+            });
+        });
+
+        $('#cancelEditCourse').click(function() {
+            $('#editCourseModal').addClass('hidden');
+        });
+
+        $('#editCourseForm').submit(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'PUT',
+                url: '/api/course/' + $('#editCourseId').val(),
+                data: new FormData(this),
+                dataType: "JSON",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(response) {
+                    swal("Success", response.msg, "success");
+                    $('#editCourseModal').addClass('hidden');
+                    fetchCourses();
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error updating course:', error);
+                }
+            });
+        });
+    });
+</script>
 @endsection
