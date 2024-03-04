@@ -4,7 +4,8 @@
     <div class="container mt-16">
         <div class="flex justify-between mb-3 mt-3 items-center">
             <h2 class="text-2xl font-bold">Manage Category (<span id="counting">0</span>)</h2>
-            <a href="{{ route('insertCategory') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+            <a href="{{ route('insertCategory') }}"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
                 <i class="fas fa-plus mr-1"></i> Add New Category
             </a>
         </div>
