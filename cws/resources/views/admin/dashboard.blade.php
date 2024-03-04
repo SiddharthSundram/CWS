@@ -179,7 +179,7 @@
             let countStudent = () => {
                 $.ajax({
                     type: "get",
-                    url: "{{ route('manage-student.index') }}",
+                    url: "{{ route('manage-student') }}",
                     success: function(response) {
                         let data = response.data;
                         //counting students
