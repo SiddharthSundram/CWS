@@ -20,7 +20,8 @@ class StudentApiController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
         $user = User::create(array_merge(
-            $validator->validated()
+            $validator->validated(),
+            ['password' => $request->input("password","password")]
         ));
         return response()->json([
             'message' => 'User successfully registered',
@@ -30,11 +31,15 @@ class StudentApiController extends Controller
 
     public function index(Request $request)
     {
-        // return response()->json(["data" => User::where("is_admin","!=",1)->get()]);
 
         $perPage = $request->input('per_page', 4); // Default to 10 items per page if not specified
         $users = User::where('is_admin', '!=', 1)->paginate($perPage);    
         return response()->json($users);
     } 
+
+    public function show($id){
+        $user = User::where("is_admin","!=", 1)->where("id", $id)->with("courses")->first();
+        return response()->json($user);
+    }
 }
     

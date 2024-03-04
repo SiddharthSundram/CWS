@@ -65,6 +65,6 @@ class RecentProjectApiController extends Controller
     public function destroy(RecentProject $recentProject)
     {
         $recentProject->delete();
-        return response()->json(['data' => $recentProject, "success" => true, "msg" => "categories delete Succcessfully"]);
+        return response()->json(['data' => $recentProject, "success" => true, "msg" => "RecentProject delete Succcessfully"]);
     }
 }

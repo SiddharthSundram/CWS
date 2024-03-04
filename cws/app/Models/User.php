@@ -6,6 +6,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Support\Facades\Hash;
+
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -58,4 +60,14 @@ class User extends Authenticatable implements JWTSubject
             'is_admin' =>$this->is_admin,
         ];
     }    
+
+    public function setPasswordAttribute($value){
+        $this->attributes['password'] = Hash::make($value);
+    }
+    
+   
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, "student_courses",'user_id', 'course_id');
+    }
 }

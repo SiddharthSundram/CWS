@@ -70,7 +70,7 @@
             $('#register').submit(function(e) {
                 e.preventDefault();
                 $.ajax({
-                    url: 'api/register',
+                    url: '{{route('addStudent')}}',
                     type: 'POST',
                     data: $(this).serialize(),
                     success: function(response) {
