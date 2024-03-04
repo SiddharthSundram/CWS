@@ -61,6 +61,7 @@
             </div>
         </div>
     </div>
+    
     <script>
         //for calling category 
         document.addEventListener('DOMContentLoaded', function() {

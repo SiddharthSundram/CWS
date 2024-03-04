@@ -1,13 +1,16 @@
 @extends('admin.base')
 
 @section('content')
-<div class="container mt-5">
-    <div class="flex justify-between items-center mt-16">
-        <h2 class="text-xl font-semibold">Manage Courses (<span id="counting">0</span>)</h2>
-        <a href="{{ route('insertCourse') }}" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"><i class="fas fa-plus"></i> Add New Course</a>
+<div class="container mt-20">
+    <div class="flex justify-between items-center mt-3">
+        <h2 class="text-xl">Manage Courses (<span id="counting">0</span>)</h2>
+        <a href="{{ route('insertCourse') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center">
+            <i class="fas fa-plus mr-1"></i> Add New Course
+        </a>
+        
     </div>
     <div class="overflow-x-auto mt-4">
-        <table class="w-full table-auto border-collapse border border-gray-300">
+        <table class="table-auto w-full border-collapse">
             <thead>
                 <tr class=" hover:bg-gray-100 text-gray-700">
                     <th class="border border-gray-300">Id</th>
