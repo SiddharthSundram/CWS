@@ -1,29 +1,31 @@
 @extends('admin.base')
 
 @section('content')
-    <div class="container mt-5">
-        <div class="d-flex justify-content-between mb-3 mt-3 items-center">
-            <h2>Manage Category (<span id="counting">0</span>)</h2>
-            <a href="{{ route('insertCategory') }}" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Add New Category
-            </a>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Category Title</th>
-                        <th>Category Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="categoryCalling">
-                    <!-- Dynamic data will be inserted here via AJAX -->
-                </tbody>
-            </table>
-        </div>
+<div class="container mt-20">
+    <div class="flex justify-between mb-3 mt-3 items-center">
+        <h2 class="text-2xl">Manage Category (<span id="counting">0</span>)</h2>
+        <a href="{{ route('insertCategory') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+            <i class="fas fa-plus mr-1"></i> Add New Category
+        </a>
+        
     </div>
+    <div class="overflow-x-auto ">
+        <table class="table-auto w-full">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2 border">ID</th>
+                    <th class="px-4 py-2 border">Category Title</th>
+                    <th class="px-4 py-2 border">Category Description</th>
+                    <th class="px-4 py-2 border">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="categoryCalling">
+                <!-- Dynamic data will be inserted here via AJAX -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
     <script>
         $(document).ready(function() {
             //calling category recoard
@@ -44,15 +46,20 @@
                         data.forEach((item) => {
                             table.append(`
                             <tr>
-                                <td>${item.id}</td>
-                                <td>${item.cat_title}</td>
-                                <td>${item.cat_description}</td>
-                                <td>
-                                    <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</button>
-                                    <button class="btn btn-danger btn-sm" id="${"btn"+item.id}"><i class="fas fa-trash"></i> Delete</button>
+                                <td class="border px-4 py-2">${item.id}</td>
+                                <td class="border px-4 py-2">${item.cat_title}</td>
+                                <td class="border px-4 py-2">${item.cat_description}</td>
+                                <td class="border px-4 py-2">
+                                    <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-2 rounded">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded" id="${'btn' + item.id}">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
                                 </td>
                             </tr>
                             `)
+
 
                             //delete category recoard
                             $("#btn" + item.id).click(function() {

@@ -2,53 +2,47 @@
 
 @section('content')
     <!-- Page content goes here -->
-    <div class="container">
-        <div class="col-lg-9 col-md-8 col-sm-11 mx-auto">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Insert HallFrame</h3>
+    <div class="container mx-auto mt-20">
+        <div class="lg:col-span-9 md:col-span-8 sm:col-span-11 mx-auto">
+            <div class="bg-white shadow-md rounded-lg">
+                <div class="p-5 bg-gray-100 border-b">
+                    <h3 class="text-xl font-semibold">Insert HallFrame</h3>
                 </div>
-                <div class="card-body">
-
+                <div class="p-5">
                     <form id="hallFrame">
-                        <div class="mb-3">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="name" required>
+                        <div class="mb-4">
+                            <label for="name" class="block mb-1">Name</label>
+                            <input type="text" id="name" name="name" class="form-input w-full" placeholder="Enter name" required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Position</label>
-                            <input type="text" class="form-control" id="position" name="position" required>
+                        <div class="mb-4">
+                            <label for="position" class="block mb-1">Position</label>
+                            <input type="text" id="position" name="position" class="form-input w-full" placeholder="Enter position" required>
                         </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Industry</label>
-                            <input type="text" class="form-control" id="industry" name="industry" required>
+                        <div class="mb-4">
+                            <label for="industry" class="block mb-1">Industry</label>
+                            <input type="text" id="industry" name="industry" class="form-input w-full" placeholder="Enter industry" required>
                         </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-8">
-                                <label class="form-label">Featured Image</label>
-                                <input type="file" class="form-control" id="image_upload" name="featured_image" required>
+                        <div class="flex flex-col md:flex-row mb-4">
+                            <div class="md:w-8/12">
+                                <label for="image_upload" class="block mb-1">Featured Image</label>
+                                <input type="file" id="image_upload" name="featured_image" class="form-input w-full" required>
                             </div>
-                            <div class="col-md-4 col-sm-12 mt-3 mt-md-0">
-                                <img src="" id="image-preview" alt="" class="w-100 card-image-top-10px">
+                            <div class="md:w-4/12 mt-3 md:mt-0">
+                                <img src="" id="image-preview" alt="" class="w-full h-auto">
                             </div>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                        <div class="mb-4">
+                            <label for="description" class="block mb-1">Description</label>
+                            <textarea id="description" name="description" class="form-textarea w-full" rows="3" placeholder="Enter description" required></textarea>
                         </div>
-
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-success w-100">Insert hallFrame</button>
+                        <div class="mb-4">
+                            <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 w-full rounded">Insert HallFrame</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-
+    </div>        
     <script>
         $(document).ready(function() {
 
