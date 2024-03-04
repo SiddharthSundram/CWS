@@ -4,7 +4,8 @@
     <div class="container mt-16">
         <div class="flex justify-between mb-3 mt-3 items-center">
             <h2 class="text-2xl font-bold">Manage Category (<span id="counting">0</span>)</h2>
-            <a href="{{ route('insertCategory') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+            <a href="{{ route('insertCategory') }}"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
                 <i class="fas fa-plus mr-1"></i> Add New Category
             </a>
         </div>
@@ -24,22 +25,8 @@
             </table>
         </div>
     </div>
-    <div class="overflow-x-auto ">
-        <table class="table-auto w-full">
-            <thead>
-                <tr>
-                    <th class="px-4 py-2 border">ID</th>
-                    <th class="px-4 py-2 border">Category Title</th>
-                    <th class="px-4 py-2 border">Category Description</th>
-                    <th class="px-4 py-2 border">Actions</th>
-                </tr>
-            </thead>
-            <tbody id="categoryCalling">
-                <!-- Dynamic data will be inserted here via AJAX -->
-            </tbody>
-        </table>
+
     </div>
-</div>
 
     <script>
         $(document).ready(function() {
