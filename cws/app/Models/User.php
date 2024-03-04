@@ -61,8 +61,13 @@ class User extends Authenticatable implements JWTSubject
         ];
     }    
 
-    public function setPasswordAttribute($value)
-    {
+    public function setPasswordAttribute($value){
         $this->attributes['password'] = Hash::make($value);
+    }
+    
+   
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, "student_courses",'user_id', 'course_id');
     }
 }

@@ -38,7 +38,7 @@ class StudentApiController extends Controller
     } 
 
     public function show($id){
-        $user = User::where("is_admin","!=", 1)->where("id", $id)->first();
+        $user = User::where("is_admin","!=", 1)->where("id", $id)->with("courses")->first();
         return response()->json($user);
     }
 }
