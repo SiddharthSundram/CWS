@@ -72,6 +72,6 @@ Route::prefix('admin')->group(function () {
                 Route::get("/insert", 'insertCategory')->name('insertCategory');
                 Route::get("/manage", 'manageCategory')->name('manageCategory');
             });
-        });
+        });        
     });
 });

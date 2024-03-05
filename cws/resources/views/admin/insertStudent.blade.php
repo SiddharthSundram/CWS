@@ -30,33 +30,32 @@
         </div>
     </div>
 
-    <script>
+<script>
         // Registration
         $(document).ready(function() {
 
         $('#addStudent').submit(function(e) {
-    e.preventDefault();
-    $.ajax({
-        url: '/api/admin/insert-student',
-        type: 'POST',
-        data: $(this).serialize(),
-        success: function(response) {
-            // Display success message with SweetAlert
-            swal("Registration Successful!", "", "success");
-            // Reset the form
-            $('#addStudent')[0].reset();
-            // Redirect to login page
-            setTimeout(() => {
-                window.location.href = '{{route('manageStudent')}}';
-            }, 1500);
-        },
-        error: function(xhr, status, error) {
-            alert(JSON.parse(xhr.responseText).message);
-        }
+        e.preventDefault();
+        $.ajax({
+            url: '/api/admin/insert-student',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function(response) {
+                // Display success message with SweetAlert
+                swal("Registration Successful!", "", "success");
+                // Reset the form
+                $('#addStudent')[0].reset();
+                // Redirect to login page
+                setTimeout(() => {
+                    window.location.href = '{{route('manageStudent')}}';
+                }, 1500);
+            },
+            error: function(xhr, status, error) {
+                alert(JSON.parse(xhr.responseText).message);
+            }
+        });
     });
-});
 });
 </script>
 
-    </script>
 @endsection

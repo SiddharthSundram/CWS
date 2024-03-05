@@ -11,6 +11,7 @@ use App\Http\Controllers\RecentProjectController;
 use App\Http\Controllers\HallFrameApiApiController;
 use App\Http\Controllers\RecentProjectApiController;
 use App\Http\Controllers\StudentApiController;
+use App\Http\Controllers\StudentCourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +55,7 @@ Route::apiResource("hallFrame",HallFrameApiApiController::class);
 Route::get('/admin/manage-student',[StudentApiController::class,"index"])->name("manage-student");
 Route::post('/admin/insert-student', [StudentApiController::class, 'addStudent'])->name("addStudent");
 Route::get('/admin/student/view/{id}', [StudentApiController::class, 'show']);
+
+// Route for student Course Operation
+Route::post('/admin/student-course', [StudentCourseController::class, 'store']);
+

@@ -88,10 +88,10 @@
             success: function(response) {
                 let select = $("#callingCourses");
                 select.empty();
+                select.append(`<option value="">Select a course</option>`); // Add this line outside the loop
                 response.data.forEach((course) => {
-                    select.append(`
-                <option value="">Select a course</option>
-                <option value="${course.id}" data-fees="${course.discount_fees}" >${course.name}</option>
+                select.append(`
+                    <option value="${course.id}" data-fees="${course.discount_fees}" >${course.name}</option>
                 `);
                 });
             }
@@ -102,12 +102,27 @@
             const fees = selectedOption.data("fees");
             $("#fees").val(fees);
         });
-        $("#approvalForm").submit(function(event) {
-            event.preventDefault(); // Prevent the form from submitting
-            // Fetch form data
-            const formData = $(this).serializeArray();
-            console.log(formData); // Log form data (for testing)
-            // Further processing or AJAX submission here
+
+
+        // Student Course Approval Work
+
+        $('#approvalForm').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/api/admin/student-course',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function(response) {
+                // Display success message with SweetAlert
+                swal("Student Successfully Approved!", "", "success");
+                // Reset the form
+                $("#approvalForm").trigger("reset")
+                        window.open("/admin/student/manage", "_self")
+            },
+            error: function(xhr, status, error) {
+                alert(JSON.parse(xhr.responseText).message);
+            }
+            });
         });
     </script>
 @endsection
