@@ -153,7 +153,7 @@
                     $('#editProjectId').val(response.data.id);
                     $('#editProjectName').val(response.data.name);
                     $('#editProjectDescription').val(response.data.description);
-                    $('#default-modal').modal('show'); // Show the edit modal
+                    $('#default-modal').removeClass('hidden'); // Show the edit modal
                 },
                 error: function(xhr, status, error) {
                     console.error('Error fetching project details for editing:', error);
@@ -178,7 +178,7 @@
                 dataType: 'json',
                 success: function(response) {
                     swal("Success", response.msg, "success");
-                    $('#default-modal').modal('hide'); // Hide the edit modal
+                    $('#default-modal').addClass('hidden'); // Hide the edit modal
                     fetchProjects(); // Refresh the project list
                 },
                 error: function(xhr, status, error) {
