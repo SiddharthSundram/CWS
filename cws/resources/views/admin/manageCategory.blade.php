@@ -37,7 +37,7 @@
                 role="dialog" aria-modal="true" aria-labelledby="editCategoryModalLabel">
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <h5 class="text-lg font-semibold mb-4" id="editCategoryModalLabel">Edit Category</h5>
-                    <form id="editCategoryForm" method="POST" enctype="multipart/form-data">
+                    <form id="editCategoryForm">
                         <input type="hidden" id="editCategoryId" name="id">
                         <div class="mb-4">
                             <label for="editCategoryTitle" class="block text-sm font-medium text-gray-700">Category
