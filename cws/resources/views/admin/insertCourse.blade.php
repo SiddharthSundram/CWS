@@ -107,7 +107,7 @@
                     success: function(response) {
                         alert(response.msg);
                         $("#insertcourse").trigger("reset")
-                        window.open("/admin/course", "_self")
+                        window.open("{{route('manageCourse')}}", "_self")
                     }
                 })
             })

@@ -119,7 +119,7 @@
                                             <p class="text-green-500 font-semibold">20% off</p>
                                         </div>
                                         <div>
-                                            <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded transition duration-300">Explore</a>
+                                            <a href="/explore-course/${course.id}" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded transition duration-300">Explore</a>
                                             <a href="#" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded ml-2 transition duration-300">Enroll</a>
                                         </div>
                                     </div>
