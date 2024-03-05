@@ -127,9 +127,7 @@
             });
         });
 
-        document.getElementById("approveButton").addEventListener("click", function() {
-            document.getElementById("formContainer").classList.toggle("hidden");
-        });
+       
 
         // Ajax for calling available courses
 
@@ -140,13 +138,9 @@
                 let select = $("#callingCourses");
                 select.empty();
                 response.data.forEach((course) => {
-                    select.append(` <
-                                                        option value = "" > Select a course < /option> <
-                                                        option value = "${course.id}"
-                                                        data - fees = "${course.discount_fees}" > $ {
-                                                            course.name
-                                                        } < /option>
-                                                        `);
+                    select.append(`<option value=''>Select a course </option> 
+                        <option value = "${course.id}" data-fees="${course.discount_fees}"> 
+                            ${course.name} </option>`);
                 });
             }
         });
