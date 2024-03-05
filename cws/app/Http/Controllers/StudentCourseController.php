@@ -12,13 +12,9 @@ class StudentCourseController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(["data" => StudentCourse::all()]);
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $studentCourse = new StudentCourse();
@@ -29,9 +25,6 @@ class StudentCourseController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(StudentCourse $studentCourse)
     {
         //

@@ -58,4 +58,5 @@ Route::get('/admin/student/view/{id}', [StudentApiController::class, 'show']);
 
 // Route for student Course Operation
 Route::post('/admin/student-course', [StudentCourseController::class, 'store']);
+Route::get('/admin/student-course/view', [StudentCourseController::class, 'index']);
 
