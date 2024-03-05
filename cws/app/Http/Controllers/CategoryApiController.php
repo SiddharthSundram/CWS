@@ -46,13 +46,19 @@ class CategoryApiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $Category)
+    public function update(Request $request, Category $category)
     {
-        $Category->cat_title = $request->cat_title;
-        $Category->cat_description = $request->cat_description;
-        $Category->save();
-        return response()->json(['data' => $Category, "success" => true, "msg" => "Category Updated Succcessfully"]);
+        $category->cat_title = $request->title; // Adjusting to match the input name
+        $category->cat_description = $request->description; // Adjusting to match the input name
+        $category->save();
+
+        return response()->json([
+            'data' => $category,
+            'success' => true,
+            'msg' => 'Category updated successfully'
+        ]);
     }
+
 
     /**
      * Remove the specified resource from storage.
