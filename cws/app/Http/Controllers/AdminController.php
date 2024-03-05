@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-use App\Models\course;
+use App\Models\Course;
+use App\Models\hallFrame;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -11,7 +12,11 @@ use Validator;
 class AdminController extends Controller
 {
     public function dashboard(){
-        return view("admin.dashboard");
+        $totalStudents = User::count();
+        $totalHallOfFrame = hallFrame::count();
+        $totalCourses = Course::count();
+        $totalPayments = 0;
+        return view("admin.dashboard", compact('totalStudents','totalCourses','totalPayments','totalHallOfFrame'));
     }
 
     // public function adminLogin(Request $request){
