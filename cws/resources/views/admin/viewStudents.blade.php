@@ -73,8 +73,28 @@
     </div>
     </div>
 
+    
+    <div id="paymentOption" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-md shadow-md z-50 hidden">
+        <div class="flex justify-end">
+            <button id="closeModal" class="text-gray-500 hover:text-gray-800 text-xl">&times;</button>
+        </div>
+        <h1 class="text-2xl font-bold mb-4">Payment Options</h1>
+        <div class="mb-4">
+            <input type="radio" id="fullPayment" name="paymentType" value="full" class="mr-2">
+            <label for="fullPayment">Full Payment</label>
+        </div>
+        <div class="mb-4">
+            <input type="radio" id="partialPayment" name="paymentType" value="partial" class="mr-2">
+            <label for="partialPayment">Partial Payment</label>
+        </div>
+        <button id="submitPayment" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Submit Payment
+        </button>
+    </div>
 
+    
 
+    <!-- JavaScript to control the popup -->
     <script>
         $(document).ready(function() {
             $.ajax({
@@ -106,14 +126,16 @@
 
                     let courses = student.courses.map(course => {
                         return `
+                        
                     <div class="max-w-sm rounded overflow-hidden shadow-lg mx-4 my-4">
                         <div class="px-6 py-4">
                             <div class="font-bold text-xl mb-2">${course.name}</div>
                             <p class="text-gray-700 text-base">${course.description}</p>
                         </div>
                         <div class="px-6 pt-4 pb-2">
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">${course.fees}</span>
+                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">${course.discount_fees}</span>
                         </div>
+                        <button class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 mb-4 mr-4 rounded float-right' id="payNow" type="button" >Pay Now</button>
                     </div>
                 `;
                     }).join('');
@@ -175,5 +197,34 @@
             });
 
         })
+
+        // Js for opening payment selection
+
+        const openModalBtn = document.getElementById('payNow');
+        const closeModalBtn = document.getElementById('closeModal');
+        const paymentModal = document.getElementById('paymentOption');
+
+        openModalBtn.addEventListener('click', () => {
+            paymentModal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            paymentModal.classList.add('hidden');
+        });
+
+        const submitPaymentBtn = document.getElementById('submitPayment');
+        const fullPaymentRadio = document.getElementById('fullPayment');
+        const partialPaymentRadio = document.getElementById('partialPayment');
+
+        submitPaymentBtn.addEventListener('click', () => {
+            if (fullPaymentRadio.checked) {
+                alert('Processing Full Payment');
+            } else if (partialPaymentRadio.checked) {
+                alert('Processing Partial Payment');
+            } else {
+                alert('Please select a payment option');
+            }
+        });
+
     </script>
 @endsection
