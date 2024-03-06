@@ -28,6 +28,7 @@
                 data-drawer-placement="bottom" aria-controls="drawer-bottom-example">
                 Add Course
             </button>
+            {{-- <button class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 mb-4 mr-4 rounded float-right' id="payNow" type="button" >Pay Now</button> --}}
         </div>
 
         <!-- drawer component -->
@@ -64,6 +65,7 @@
                 </div>
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add
                     Course</button>
+
             </form>
         </div>
         <button type="button"
@@ -73,8 +75,9 @@
     </div>
     </div>
 
-    
-    <div id="paymentOption" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-md shadow-md z-50 hidden">
+
+    <div id="paymentOption"
+        class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-md shadow-md z-50 hidden">
         <div class="flex justify-end">
             <button id="closeModal" class="text-gray-500 hover:text-gray-800 text-xl">&times;</button>
         </div>
@@ -84,15 +87,33 @@
             <label for="fullPayment">Full Payment</label>
         </div>
         <div class="mb-4">
-            <input type="radio" id="partialPayment" name="paymentType" value="partial" class="mr-2">
+            <input type="radio" id="partialPayment" name="paymentType"onclick="toggleDropdown('dropdown1')" value="partial" class="mr-2">
             <label for="partialPayment">Partial Payment</label>
+
+            <!-- Dropdown Menu -->
+            <div>
+
+                <select name="" id="dropdown1" class="hidden relative mt-3 ml-5 ">
+                <option class=" text-black px-4 py-2 rounded shadow"
+                    onclick="selectOption('option1')">Select Payment Option</option>
+                <option class=" text-black px-4 py-2 rounded shadow"
+                    onclick="selectOption('option2')">Select Option 2</option>
+                <option class=" text-black px-4 py-2 rounded shadow"
+                    onclick="selectOption('option3')">Select Option 3</option>
+                <option class=" text-black px-4 py-2 rounded shadow"
+                    onclick="selectOption('option4')">Select Option 4</option>
+                </select>
+            </div>
+
         </div>
+
+
         <button id="submitPayment" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Submit Payment
+            Submit Payment Now
         </button>
     </div>
 
-    
+
 
     <!-- JavaScript to control the popup -->
     <script>
@@ -114,7 +135,7 @@
                 }
             });
 
-            
+
 
 
 
@@ -158,7 +179,7 @@
                         <div class="px-6 pt-4 pb-2">
                             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">${course.discount_fees}</span>
                         </div>
-                        <button class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 mb-4 mr-4 rounded float-right' id="payNow" type="button" >Pay Now</button>
+                        <button class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 mb-4 mr-4 rounded float-right' id="payNow" onclick='payNow()' type="button" >Pay Now</button>
                     </div>
                 `;
                     }).join('');
@@ -223,13 +244,13 @@
 
         // Js for opening payment selection
 
-        const openModalBtn = document.getElementById('payNow');
+        function payNow() {
+            paymentModal.classList.remove('hidden');
+
+        }
+
         const closeModalBtn = document.getElementById('closeModal');
         const paymentModal = document.getElementById('paymentOption');
-
-        openModalBtn.addEventListener('click', () => {
-            paymentModal.classList.remove('hidden');
-        });
 
         closeModalBtn.addEventListener('click', () => {
             paymentModal.classList.add('hidden');
@@ -249,5 +270,13 @@
             }
         });
 
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            dropdown.classList.toggle('hidden');
+        }
+
+        function selectOption(option) {
+            alert('Selected ' + option);
+        }
     </script>
 @endsection
