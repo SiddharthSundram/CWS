@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\StudentCourse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class StudentCourseController extends Controller
 {
@@ -15,19 +16,39 @@ class StudentCourseController extends Controller
         //
     }
 
+   
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $studentCourse = new StudentCourse();
-        $studentCourse->course_id = $request->course_id;
-        $studentCourse->user_id = $request->user_id;
-        $studentCourse->save();
-        return response()->json(['data' => $studentCourse, "success" => true, "msg" => "Student Course Added Succcessfully"]);
-        
+{
+    $validator = Validator::make($request->all(), [
+        'course_id' => 'required',
+        'user_id' => 'required',
+    ]);
+    if ($validator->fails()) {
+        return response()->json($validator->errors()->toJson(), 400);
     }
+
+    $courseId = $request->input('course_id');
+    $userId = $request->input('user_id');
+
+    // Check if the record already exists
+    if (StudentCourse::where('course_id', $courseId)->where('user_id', $userId)->exists()) {
+        return response()->json([
+            'msg' => 'Student Course already exists',
+        ], 400);
+    }
+
+    $data = StudentCourse::create($validator->validated());
+
+    return response()->json([
+        'msg' => 'Student Course added successfully',
+        'data' => $data
+    ], 201);
+}
+
 
     /**
      * Display the specified resource.
