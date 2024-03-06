@@ -71,3 +71,8 @@ Route::get('/admin/student-course/view', [StudentCourseController::class, 'index
 
 // for search 
 Route::get('/search/{id}', [SearchApiController::class, 'search'])->name('search');
+
+// for payment
+Route::post('/admin/student/payment', [PaymentController::class, 'addPayment']);
+
+
