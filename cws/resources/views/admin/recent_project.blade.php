@@ -88,7 +88,7 @@
                     <td scope="col" class="px-6 py-3">${project.description}</td>
                     <td scope="col" class="px-6 py-3 flex gap-2">
                         <button type='button' class='bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded delete-btn' data-id='${project.id}'>X</button>
-                        <button data-modal-target="default-modal" data-modal-toggle="default-modal" class="edit-btn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-id='${project.id}'>Edit</button>
+                        <button data-modal-target="#default-modal" data-modal-toggle="default-modal" class="edit-btn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-id='${project.id}'>Edit</button>
                     </td>
                 </tr>`);
                 });
@@ -154,6 +154,7 @@
                     $('#editProjectName').val(response.data.name);
                     $('#editProjectDescription').val(response.data.description);
                     $('#default-modal').removeClass('hidden'); // Show the edit modal
+                    $('#default-modal').show(); // Show the edit modal
                 },
                 error: function(xhr, status, error) {
                     console.error('Error fetching project details for editing:', error);
@@ -163,7 +164,7 @@
 
         // Handle cancel button click for the edit modal
         $('#cancelEditProject').click(function() {
-            $('#default-modal').addClass('hidden');
+            $('#default-modal').hide();
         });
 
         // Handle form submission for editing project
@@ -179,6 +180,7 @@
                 success: function(response) {
                     swal("Success", response.msg, "success");
                     $('#default-modal').addClass('hidden'); // Hide the edit modal
+                    $('#default-modal').hide(); // Show the edit modal
                     fetchProjects(); // Refresh the project list
                 },
                 error: function(xhr, status, error) {
