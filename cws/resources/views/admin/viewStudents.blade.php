@@ -28,6 +28,7 @@
                 data-drawer-placement="bottom" aria-controls="drawer-bottom-example">
                 Add Course
             </button>
+            {{-- <button class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 mb-4 mr-4 rounded float-right' id="payNow" type="button" >Pay Now</button> --}}
         </div>
 
         <!-- drawer component -->
@@ -64,6 +65,7 @@
                 </div>
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add
                     Course</button>
+
             </form>
         </div>
         <button type="button"
@@ -115,7 +117,7 @@
     </div>
 
 
-    
+
 
     <!-- JavaScript to control the popup -->
     <script>
@@ -137,7 +139,7 @@
                 }
             });
 
-            
+
 
 
 
@@ -248,13 +250,13 @@
 
         // Js for opening payment selection
 
-        const openModalBtn = document.getElementById('payNow');
+        function payNow() {
+            paymentModal.classList.remove('hidden');
+
+        }
+
         const closeModalBtn = document.getElementById('closeModal');
         const paymentModal = document.getElementById('paymentOption');
-
-        openModalBtn.addEventListener('click', () => {
-            paymentModal.classList.remove('hidden');
-        });
 
         closeModalBtn.addEventListener('click', () => {
             paymentModal.classList.add('hidden');
@@ -274,5 +276,13 @@
             }
         });
 
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            dropdown.classList.toggle('hidden');
+        }
+
+        function selectOption(option) {
+            alert('Selected ' + option);
+        }
     </script>
 @endsection
