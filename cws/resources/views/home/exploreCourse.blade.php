@@ -65,7 +65,7 @@
                     $('#courseDiscountFees').text('₹' + response.data.discount_fees);
                     $('#courseDescription').text(response.data.description);
                     $('#courseLang').text(response.data.lang);
-                    $('#courseCategory').text(response.data.category.cat_title); // sir please fix this "category name should be call here but it is not appearing"
+                    $('#courseCategory').text(response.data.category.cat_title); 
                 },
                 error: function(xhr, status, error) {
                     console.error("Error fetching courses:", error);
