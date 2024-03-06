@@ -10,6 +10,7 @@ use App\Http\Controllers\CourseApiController;
 use App\Http\Controllers\RecentProjectController;
 use App\Http\Controllers\HallFrameApiApiController;
 use App\Http\Controllers\RecentProjectApiController;
+use App\Http\Controllers\SearchApiController;
 use App\Http\Controllers\StudentApiController;
 use App\Http\Controllers\StudentCourseController;
 
@@ -68,3 +69,5 @@ Route::delete('/admin/student/{id}', [StudentApiController::class, 'destroy'])->
 Route::post('/admin/student-course', [StudentCourseController::class, 'store']);
 Route::get('/admin/student-course/view', [StudentCourseController::class, 'index']);
 
+// for search 
+Route::get('/search/{id}', [SearchApiController::class, 'search'])->name('search');
