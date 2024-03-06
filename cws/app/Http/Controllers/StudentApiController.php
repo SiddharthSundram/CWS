@@ -29,9 +29,17 @@ class StudentApiController extends Controller
     }
 
     public function index(Request $request){
-        $perPage = $request->input('per_page', 4); // Default to 10 items per page if not specified
-        $users = User::where('is_admin', '!=', 1)->paginate($perPage);    
+        $query = $request->get('query');
+        $perPage = $request->input('per_page', 4); // Default to 4 items per page if not specified
+        
+        if ($query) {
+            $users = User::where('name', 'LIKE', "%$query%")->where('is_admin', '!=', 1)->paginate($perPage);
+        } else {
+            $users = User::where('is_admin', '!=', 1)->paginate($perPage);
+        }
+        
         return response()->json($users);
+        
     } 
 
     public function show($id){

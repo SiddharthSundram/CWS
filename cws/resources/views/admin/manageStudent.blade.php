@@ -5,16 +5,17 @@
         <h2 class="text-2xl font-bold">Manage Students (<span id="counting">0</span>)</h2>
 
         <div class="p-4">
-            <form id="searchForm" class="flex items-center">
-                <input type="text" name="query"
+            <div class="flex items-center">
+                <input type="text" name="query" id="searchInput"
                     class="border rounded-l py-2 px-4 w-64 focus:outline-none focus:ring focus:border-blue-300">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-r"
-                    id="searchInput">Search</button>
-            </form>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-r">Search</button>
+            </div>
 
             <div id="userList" class="mt-4">
                 <!-- Results will be displayed here -->
             </div>
+
+            
         </div>
 
 
@@ -38,74 +39,93 @@
             <tbody id="callingStudent">
                 <!-- Table rows will be dynamically added here -->
             </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="10" class="p-3 flex items-center justify-center">
+                        <div id="pagination" class="">
+                            <!-- Pagination links will be inserted here -->
+                        </div>
+                    </th>
+                </tr>
+            </tfoot>
         </table>
     </div>
 
     <script>
         $(document).ready(function() {
 
-            $("#searchForm").submit(function(e) {
-                e.preventDefault();
-                var query = $('#searchInput').val();
-                let search_id = "{{ request()->segment(2) }}";
-                $.ajax({
-                    url: `/api/search/${search_id}`,
-                    type: "GET",
-                    data: {
-                        'query': query
-                    },
-                    success: function(response) {
-                        $('#userList').text(response.data);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                })
-            });
-
-
-            let callingStudent = () => {
-                $.ajax({
-                    type: "get",
-                    url: "{{ route('manage-student') }}",
-                    success: function(response) {
-                        let table = $("#callingStudent");
+            let callingStudent = (data) => {
+                let table = $("#callingStudent");
                         table.empty();
-                        let data = response.data;
-                        //counting students
-                        let len = data.length;
-                        $("#counting").html(len);
+                let len = data.length;
 
-                        data.forEach((student) => {
-                            table.append(`
-                            <tr>
-                                <td class="border-b border-gray-200 px-4 py-2">${student.id}</td> 
-                                <td class="border-b border-gray-200 px-4 py-2">${student.name}</td>
-                                <td class="border-b border-gray-200 px-4 py-2">${student.email}</td> 
-                                <td class="border-b border-gray-200 px-4 py-2">${student.mobile_no}</td>     
-                                <td class="border-b border-gray-200 px-4 py-2">${student.created_at}</td>     
-                                <td class="border-b border-gray-200 px-4 py-2"></td>     
-                                <td class="border-b border-gray-200 px-4 py-2">
-                                    <button type='button' class='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded delete-btn' data-id='${student.id}'>X</button>
-                                    <button type='button' class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded edit-btn' data-id='${student.id}'>Edit</button>
-                                    <a href='/admin/student/view/${student.id}' class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded edit-btn'>View</a>
-                                    <a href='/admin/student/view/${student.id}' class='bg-orange-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded edit-btn'>Status</a>
-                                </td>
-                            </tr>
-                        `);
+                $("#counting").html(len);
 
-                        });
+                data.forEach((student) => {
+                    table.append(`
+                    <tr>
+                    <td class="border-b border-gray-200 px-4 py-2">${student.id}</td> 
+                    <td class="border-b border-gray-200 px-4 py-2">${student.name}</td>
+                    <td class="border-b border-gray-200 px-4 py-2">${student.email}</td> 
+                    <td class="border-b border-gray-200 px-4 py-2">${student.mobile_no}</td>     
+                    <td class="border-b border-gray-200 px-4 py-2">${student.created_at}</td>     
+                    <td class="border-b border-gray-200 px-4 py-2"></td>     
+                    <td class="border-b border-gray-200 px-4 py-2">
+                    <button type='button' class='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded delete-btn' data-id='${student.id}'>X</button>
+                    <button type='button' class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded edit-btn' data-id='${student.id}'>Edit</button>
+                    <a href='/admin/student/view/${student.id}' class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded edit-btn'>View</a>
+                    <a href='/admin/student/view/${student.id}' class='bg-orange-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded edit-btn'>Status</a>
+                    </td>
+                    </tr>
+            `);
+        });
+}
 
+function fetchStudents(query = '', page = 1) {
+    $.ajax({
+        url: "{{ route('manage-student') }}",
+        type: "GET",
+        data: {
+            'query': query,
+            'page': page
+        },
+        success: function(response) {
+            let data = response.data;
+            callingStudent(data);
 
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            };
-            callingStudent();
+            // Update pagination links
+            let paginationLinks = '';
+            if (response.prev_page_url) {
+                paginationLinks += `<a href="#" class="pagination-link px-3 py-1 bg-blue-200 text-blue-800 mx-1 rounded" data-page="${response.current_page - 1}">${response.current_page - 1}</a>`;
+            }
+            paginationLinks += `<span class="px-3 py-1 bg-blue-500 text-white mx-1 rounded">${response.current_page}</span>`;
+            if (response.next_page_url) {
+                paginationLinks += `<a href="#" class="pagination-link px-3 py-1 bg-blue-200 text-blue-800 mx-1 rounded" data-page="${response.current_page + 1}">${response.current_page + 1}</a>`;
+            }
+            $('#pagination').html(paginationLinks);
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+}
 
+$(document).ready(function() {
+    // Initial load
+    fetchStudents();
 
+    $("#searchInput").on("input", function(e) {
+        e.preventDefault();
+        var query = $(this).val();
+        fetchStudents(query);
+    });
+
+    $(document).on('click', '.pagination-link', function(e) {
+        e.preventDefault();
+        let page = $(this).text();
+        fetchStudents('', page);
+    });
+});
 
         });
     </script>
