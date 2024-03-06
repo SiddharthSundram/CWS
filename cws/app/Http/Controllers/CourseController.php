@@ -17,4 +17,8 @@ class CourseController extends Controller
     {
         return view("admin.manageCourse");
     }
+
+    public function exploreCourse(Request $request, $id){
+        return view('home.exploreCourse');
+    }
 }

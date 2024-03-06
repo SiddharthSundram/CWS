@@ -41,6 +41,7 @@ class CourseApiController extends Controller
      */
     public function show(Course $course)
     {
+        $course = Course::find($course->id)->with('category')->first();
         return response()->json(["data" => $course, "success" => true]);
     }
 

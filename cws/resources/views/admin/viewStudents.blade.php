@@ -69,7 +69,7 @@
         <button type="button"
             class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-5 mx-3 rounded'>Edit</button>
         <button type="button"
-            class='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-5 mx-3 rounded'>Delete</button>
+            class='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-5 mx-3 rounded delete-btn'>Delete</button>
     </div>
     </div>
 
@@ -97,6 +97,29 @@
     <!-- JavaScript to control the popup -->
     <script>
         $(document).ready(function() {
+
+            $(".delete-btn").click(function() {
+                let courseId = "{{ request()->segment(4) }}";
+                if (confirm("Are you sure you want to delete this student?")) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: `/api/admin/student/${courseId} `,
+                        success: function(response) {
+                            window.location.href = "{{ route('manageStudent') }}";
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                }
+            });
+
+            
+
+
+
+
+
             $.ajax({
                 type: "get",
                 url: `/api/admin/student/view/{{ request()->segment(4) }}`,
@@ -149,7 +172,7 @@
             });
         });
 
-       
+
 
         // Ajax for calling available courses
 

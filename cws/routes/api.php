@@ -10,6 +10,7 @@ use App\Http\Controllers\CourseApiController;
 use App\Http\Controllers\RecentProjectController;
 use App\Http\Controllers\HallFrameApiApiController;
 use App\Http\Controllers\RecentProjectApiController;
+use App\Http\Controllers\SearchApiController;
 use App\Http\Controllers\StudentApiController;
 use App\Http\Controllers\StudentCourseController;
 
@@ -50,14 +51,23 @@ Route::apiResource("recent_project",RecentProjectApiController::class);
 
 //api for hallframe operations
 Route::apiResource("hallFrame",HallFrameApiApiController::class);
+
+
 // api for student course table 
 Route::apiResource("student_course", StudentCourseController::class);
+
+
 // api for student operations
 Route::get('/admin/manage-student',[StudentApiController::class,"index"])->name("manage-student");
 Route::post('/admin/insert-student', [StudentApiController::class, 'addStudent'])->name("addStudent");
 Route::get('/admin/student/view/{id}', [StudentApiController::class, 'show']);
 
+//delete for student operation
+Route::delete('/admin/student/{id}', [StudentApiController::class, 'destroy'])->name('admin.student.delete');
+
 // Route for student Course Operation
 Route::post('/admin/student-course', [StudentCourseController::class, 'store']);
 Route::get('/admin/student-course/view', [StudentCourseController::class, 'index']);
 
+// for search 
+Route::get('/search/{id}', [SearchApiController::class, 'search'])->name('search');

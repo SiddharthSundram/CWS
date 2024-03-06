@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Student;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -37,6 +37,23 @@ class StudentApiController extends Controller
     public function show($id){
         $user = User::where("is_admin","!=", 1)->where("id", $id)->with("courses")->first();
         return response()->json($user);
+    }
+
+
+    public function destroy(User $id)
+    {
+        try {
+            // Find the student by ID
+            $student = User::findOrFail($id);
+
+            // Delete the student
+            $student->delete();
+
+            return response()->json(['message' => 'Student deleted successfully'], 200);
+        } catch (\Exception $e) {
+            // Handle exceptions
+            return response()->json(['message' => 'Failed to delete student', 'error' => $e->getMessage()], 500);
+        }
     }
 }
     
