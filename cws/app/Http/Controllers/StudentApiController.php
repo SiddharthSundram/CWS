@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 
 class StudentApiController extends Controller
 {
-    public function addStudent(Request $request)
-    {
+    public function addStudent(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
             'mobile_no' => 'required|string|max:12|',
@@ -29,9 +28,7 @@ class StudentApiController extends Controller
         ], 201);
     }
 
-    public function index(Request $request)
-    {
-
+    public function index(Request $request){
         $perPage = $request->input('per_page', 4); // Default to 10 items per page if not specified
         $users = User::where('is_admin', '!=', 1)->paginate($perPage);    
         return response()->json($users);

@@ -18,7 +18,7 @@ class HallFrameApiApiController extends Controller
 
     public function store(Request $request)
     {
-        $filename = time().".".$request->featured_image->extension();        //upload on public/course_image/filename
+        $filename = time() . "." . $request->featured_image->extension();        //upload on public/course_image/filename
         $request->featured_image->move(public_path("image"), $filename);
 
         $hallFrame = new hallFrame();
@@ -26,10 +26,10 @@ class HallFrameApiApiController extends Controller
         $hallFrame->position = $request->position;
         $hallFrame->industry = $request->industry;
         $hallFrame->description = $request->description;
-        $hallFrame->featured_image =$filename;
+        $hallFrame->featured_image = $filename;
         $hallFrame->save();
 
-        return response()->json(["data"=> $hallFrame,"msg"=> "HallFrame Inserted Successfully","success"=> true]);
+        return response()->json(["data" => $hallFrame, "msg" => "HallFrame Inserted Successfully", "success" => true]);
     }
     /**
      * Display the specified resource.
@@ -50,11 +50,32 @@ class HallFrameApiApiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, hallFrame $hallFrame)
+    public function update(Request $request, $id)
     {
-        $hallFrame->update($request->all());
-        return response()->json(["data" => $hallFrame, "success" => true, "msg" => "hallFrames"]);
+        // Validate request data
+
+        // Find the hall frame by ID
+        $hallFrame = HallFrame::findOrFail($id);
+
+        // Update hall frame attributes
+        $hallFrame->name = $request->input('name');
+        $hallFrame->position = $request->input('position');
+        $hallFrame->industry = $request->input('industry');
+        $hallFrame->description = $request->input('description');
+
+        // Handle featured image upload if provided
+        if ($request->hasFile('featured_image')) {
+            // Process featured image upload
+        }
+
+        // Save the updated hall frame
+        $hallFrame->save();
+
+        // Return a success response
+        return response()->json(['message' => 'Hall Frame updated successfully', 'hallFrame' => $hallFrame]);
     }
+
+
 
     /**
      * Remove the specified resource from storage.

@@ -13,7 +13,7 @@ class StudentCourseController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(["data" => StudentCourse::all()]);
     }
 
    
