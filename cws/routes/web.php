@@ -19,6 +19,9 @@ Route::get("/register", [HomeController::class, 'signup'])->name('register');
 
 Route::get("/my-profile", [HomeController::class, 'profile'])->name('profile');
 
+// to explore Course
+Route::get("/explore-course/{id}", [CourseController::class, 'exploreCourse'])->name('exploreCourse');
+
 
 
 

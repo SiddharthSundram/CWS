@@ -153,7 +153,6 @@
                     $('#editProjectId').val(response.data.id);
                     $('#editProjectName').val(response.data.name);
                     $('#editProjectDescription').val(response.data.description);
-                    $('#default-modal').removeClass('hidden'); // Show the edit modal
                     $('#default-modal').show(); // Show the edit modal
                 },
                 error: function(xhr, status, error) {
@@ -179,7 +178,6 @@
                 dataType: 'json',
                 success: function(response) {
                     swal("Success", response.msg, "success");
-                    $('#default-modal').addClass('hidden'); // Hide the edit modal
                     $('#default-modal').hide(); // Show the edit modal
                     fetchProjects(); // Refresh the project list
                 },
