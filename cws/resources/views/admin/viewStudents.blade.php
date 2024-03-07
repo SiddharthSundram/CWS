@@ -76,58 +76,7 @@
     </div>
 
 
-    <div id="default-modal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-2xl max-h-full">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                <!-- Modal header -->
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Payment Options
-                    </h3>
-                    <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-hide="default-modal">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only" id="closeModal">Close modal</span>
-                    </button>
-                </div>
-                <!-- Modal body -->
-                <div class="p-4 md:p-5 space-y-4">
-                    <div class="flex justify-end">
-                        {{-- <button id="closeModal" class="text-gray-500 hover:text-gray-800 text-xl">&times;</button> --}}
-                    </div>
-                    {{-- <h1 class="text-2xl font-bold mb-4"></h1> --}}
-                    <div class="mb-4">
-                        <input type="radio" id="fullPayment" name="paymentType" value="full" class="mr-2">
-                        <label for="fullPayment">Full Payment</label>
-                    </div>
-                    <div class="mb-4">
-                        <input type="radio" id="partialPayment" name="paymentType" value="partial" class="mr-2" onclick="toggleDropdown('dropdown1')">
-                        <label for="partialPayment">Partial Payment</label>
 
-                        <select id="dropdown1" class="hidden relative mr-3">
-                            <option class=" px-4 py-3 rounded shadow" onclick="selectOption('option1')">Select Option 1</option>
-                            <option class=" px-4 py-3 rounded shadow" onclick="selectOption('option1')">Select Option 2</option>
-                            <option class=" px-4 py-3 rounded shadow" onclick="selectOption('option1')">Select Option 3</option>
-                        </select>
-
-                    </div>
-                    <button id="submitPayment"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Submit Payment
-                    </button>
-                </div>
-                <!-- Modal footer -->
-
-            </div>
-        </div>
-    </div>
 
 
 
@@ -135,6 +84,8 @@
     <!-- JavaScript to control the popup -->
     <script>
         $(document).ready(function() {
+
+
 
             $(".delete-btn").click(function() {
                 let courseId = "{{ request()->segment(4) }}";
@@ -195,19 +146,78 @@
                         </div>
                         <div class="px-6 pt-4 pb-2">
                             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">${course.discount_fees}</span>
-                        </div>
-                        <button data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 float-right" type="button">
-  Add Payment
-</button>
+                        </div><div class="mb-4">
+                        <input type="radio" id="fullPayment" name="paymentType" value="full" class="mr-2">
+                        <label for="fullPayment">Full Payment</label>
+                    </div>
+                    <div class="mb-4">
+                        <input type="radio" id="partialPayment" name="paymentType" value="partial" class="mr-2">
+                        <label for="partialPayment">Partial Payment</label>
+
+                        <select id="dropdown1" class="hidden relative mr-3">
+                            <option class=" px-4 py-3 rounded shadow" onclick="selectOption('option1')">Select Option 1
+                            </option>
+                            <option class=" px-4 py-3 rounded shadow" onclick="selectOption('option1')">Select Option 2
+                            </option>
+                            <option class=" px-4 py-3 rounded shadow" onclick="selectOption('option1')">Select Option 3
+                            </option>
+                        </select>
+
+                    </div>
+                    <button id="submitPayment"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Submit Payment
+                    </button>
                     </div>
                 `;
                     }).join('');
 
                     $("#studentDetails").html(details);
                     $("#courseDetails").html(courses);
+
+                    const submitPaymentBtn = document.getElementById('submitPayment');
+                    const fullPaymentRadio = document.getElementById('fullPayment');
+                    const partialPaymentRadio = document.getElementById('partialPayment');
+
+                    submitPaymentBtn.addEventListener('click', () => {
+                        let paymentType = '';
+                        let paymentAmount = 0;
+
+                        if (fullPaymentRadio.checked) {
+                            paymentType = 'full';
+                            paymentAmount = 100;
+                        } else if (partialPaymentRadio.checked) {
+                            paymentType = 'partial';
+                            paymentAmount = 1000;
+                        } else {
+                            alert('Please select a payment option');
+                            return;
+                        }
+
+                        $.ajax({
+                            url: '/api/admin/student/payment',
+                            type: 'POST',
+                            data: {
+                                'course_id': 7,
+                                'user_id': 11,
+                                'fees': paymentAmount,
+                                'payment_type': paymentType
+                            },
+                            success: function(response) {
+                                // Handle success response here
+                                alert('Payment processed successfully');
+                            },
+                            error: function(xhr, status, error) {
+
+                                if (xhr.status == 400) {
+                                    swal("error", "Already Pay Payment Exists");
+                                }
+                            }
+                        });
+                    });
                 },
                 error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
+                    console.error("error: " + xhr.responseText);
                 }
             });
         });
@@ -224,7 +234,9 @@
                 select.empty();
                 select.append(`<option value="">Select a course</option>`); // Add this line outside the loop
                 response.data.forEach((course) => {
-                    select.append(`<option value = "${course.id}" data-fees="${course.discount_fees}">${course.name} </option>`);
+                    select.append(
+                        `<option value = "${course.id}" data-fees="${course.discount_fees}">${course.name} </option>`
+                    );
                 });
             }
         });
@@ -260,40 +272,5 @@
         })
 
         // Js for opening payment selection
-
-        function payNow() {
-            paymentModal.classList.remove('hidden');
-
-        }
-
-        const closeModalBtn = document.getElementById('closeModal');
-        const paymentModal = document.getElementById('paymentOption');
-
-        closeModalBtn.addEventListener('click', () => {
-            paymentModal.classList.add('hidden');
-        });
-
-        const submitPaymentBtn = document.getElementById('submitPayment');
-        const fullPaymentRadio = document.getElementById('fullPayment');
-        const partialPaymentRadio = document.getElementById('partialPayment');
-
-        submitPaymentBtn.addEventListener('click', () => {
-            if (fullPaymentRadio.checked) {
-                alert('Processing Full Payment');
-            } else if (partialPaymentRadio.checked) {
-                alert('Processing Partial Payment');
-            } else {
-                alert('Please select a payment option');
-            }
-        });
-
-        function toggleDropdown(dropdownId) {
-            const dropdown = document.getElementById(dropdownId);
-            dropdown.classList.toggle('hidden');
-        }
-
-        function selectOption(option) {
-            alert('Selected ' + option);
-        }
     </script>
 @endsection
