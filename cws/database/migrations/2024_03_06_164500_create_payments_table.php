@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete("cascade");
             $table->string('fees');
             $table->boolean('status')->default(false);
-            $table->date('date_of_payment');
+            $table->date('date_of_payment')->nullable();
             $table->timestamps();
         });
     }
