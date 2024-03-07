@@ -40,46 +40,54 @@
                 role="dialog" aria-modal="true" aria-labelledby="editHallFrameModalLabel">
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <h5 class="text-lg font-semibold mb-4" id="editHallFrameModalLabel">Edit HallFrame</h5>
-                    <form id="editHallFrameForm">
+                    <form id="editHallFrameForm" class="space-y-4">
                         @method('PUT')
                         <input type="hidden" id="editHallFrameId" name="id">
-                        <div class="mb-3">
-                            <label for="hallFrameName" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="hallFrameName" name="name" required>
+                        
+                        <div class="mb-4">
+                            <label for="hallFrameName" class="block text-sm font-medium text-gray-700">Name</label>
+                            <input type="text" id="hallFrameName" name="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="hallFramePosition" class="form-label">Position</label>
-                            <input type="text" class="form-control" id="hallFramePosition" name="position" required>
+                        
+                        <div class="mb-4">
+                            <label for="hallFramePosition" class="block text-sm font-medium text-gray-700">Position</label>
+                            <input type="text" id="hallFramePosition" name="position" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="hallFrameIndustry" class="form-label">Industry</label>
-                            <input type="text" class="form-control" id="hallFrameIndustry" name="industry" required>
+                    
+                        <div class="mb-4">
+                            <label for="hallFrameIndustry" class="block text-sm font-medium text-gray-700">Industry</label>
+                            <input type="text" id="hallFrameIndustry" name="industry" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
                         </div>
-
-                        <div class="flex mb-4">
-                            <div class="flex-1 mr-2">
-                                <label for="editCourseImageUpload" class="block text-sm font-medium text-gray-700">Featured
-                                    Image</label>
-                                <input type="file"
-                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                    id="editCourseImageUpload" name="featured_image">
+                    
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-1">
+                                <label for="editCourseImageUpload" class="block text-sm font-medium text-gray-700">Featured Image</label>
+                                <input type="file" id="editCourseImageUpload" name="featured_image" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
                             {{-- <div class="flex-1 ml-2">
-                                <img src="" id="editCourseImagePreview" alt=""
-                                    class="mt-1 block w-full h-auto rounded-md">
+                                <img src="" id="editCourseImagePreview" alt="" class="mt-1 block w-full h-auto rounded-md">
                             </div> --}}
                         </div>
-
-                        <div class="mb-3">
-                            <label for="hallFrameDescription" class="form-label">Description</label>
-                            <textarea class="form-control" id="hallFrameDescription" name="description" rows="3" required></textarea>
+                    
+                        <div class="mb-4">
+                            <label for="hallFrameDescription" class="block text-sm font-medium text-gray-700">Description</label>
+                            <textarea id="hallFrameDescription" name="description" rows="3" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required></textarea>
                         </div>
-
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-success w-100">Update HallFrame</button>
+                    
+                        <div class="mb-4">
+                            <div class="flex justify-between">
+                                <button type="submit" class="inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                                    Update HallFrame
+                                </button>
+                                <button type="button" id="cancelEditHallFrame" class="inline-block px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">
+                                    Cancel
+                                </button>
+                            </div>
                         </div>
+                        
+                        
                     </form>
+                    
                 </div>
             </div>
         </div>
