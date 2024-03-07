@@ -52,8 +52,6 @@ class HallFrameApiApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validate request data
-
         // Find the hall frame by ID
         $hallFrame = HallFrame::findOrFail($id);
 
@@ -65,7 +63,9 @@ class HallFrameApiApiController extends Controller
 
         // Handle featured image upload if provided
         if ($request->hasFile('featured_image')) {
-            // Process featured image upload
+            $filename = time() . '.' . $request->featured_image->extension();
+            $request->featured_image->move(public_path('image'), $filename);
+            $hallFrame->featured_image = $filename;
         }
 
         // Save the updated hall frame
@@ -74,6 +74,7 @@ class HallFrameApiApiController extends Controller
         // Return a success response
         return response()->json(['message' => 'Hall Frame updated successfully', 'hallFrame' => $hallFrame]);
     }
+
 
 
 
