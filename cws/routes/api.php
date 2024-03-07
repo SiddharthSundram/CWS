@@ -76,3 +76,5 @@ Route::get('/admin/student-course/view', [StudentCourseController::class, 'index
 Route::post('/admin/student/payment', [PaymentController::class, 'addPayment']);
 
 
+//for payment status
+Route::get("admin/student/payment/status", [PaymentController::class,'checkPaymentStatus']);

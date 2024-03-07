@@ -19,6 +19,13 @@
     <div class="overflow-x-auto mt-4" id="courseDetails">
         <!-- Course cards will be dynamically added here -->
     </div>
+
+
+    <div id="paymentDoneMessage" style="display: none;">
+       <h2 class="text-green-600">Payment Done!</h2>         {{--  when payment status id done --}}
+    </div>
+
+    
     <div class="flex mt-4 justify-center">
 
 
@@ -83,7 +90,32 @@
 
     <!-- JavaScript to control the popup -->
     <script>
+
         $(document).ready(function() {
+            function checkPaymentStatus() {
+                $.ajax({
+                    type: "GET",
+                    url: `admin/student/payment/status`, 
+                    data: {
+                        user_id: "{{ request()->segment(4) }}" 
+                    },
+                    success: function(response) {   
+                        if (response.status === 1) {
+                            $("#courseDetails").hide();
+                            $("#paymentDoneMessage").show();
+                        } else {
+                            $("#courseDetails").show();
+                            $("#paymentDoneMessage").hide();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+            checkPaymentStatus();
+
+
 
 
 
@@ -193,6 +225,7 @@
                             alert('Please select a payment option');
                             return;
                         }
+
 
                         $.ajax({
                             url: '/api/admin/student/payment',
