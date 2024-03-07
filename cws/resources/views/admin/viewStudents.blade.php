@@ -95,7 +95,7 @@
             function checkPaymentStatus() {
                 $.ajax({
                     type: "GET",
-                    url: `admin/student/payment/status`, 
+                    url: `/api/admin/student/payment/status`, 
                     data: {
                         user_id: "{{ request()->segment(4) }}" 
                     },
