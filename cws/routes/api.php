@@ -75,6 +75,4 @@ Route::get('/admin/student-course/view', [StudentCourseController::class, 'index
 // for payment
 Route::post('/admin/student/payment', [PaymentController::class, 'addPayment']);
 
-
-//for payment status
-Route::get("admin/student/payment/status", [PaymentController::class,'checkPaymentStatus']);
+Route::patch('/admin/student/payment/{paymentId}/mark-as-paid', [PaymentController::class, 'markAsPaid']);

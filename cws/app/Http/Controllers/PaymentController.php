@@ -59,19 +59,14 @@ class PaymentController extends Controller
         ], 201);
     }
 
-    public function checkPaymentStatus(Request $request)
-    {
-        try {
-            $userId = $request->input('user_id');
-            $payment = Payment::where('user_id', $userId)->first();
+    public function markAsPaid(Request $request, $paymentId)
+{
+    $payment = Payment::findOrFail($paymentId);
+    $payment->status = 1;
+    $payment->date_of_payment = now(); // Use now() to get the current date and time
+    $payment->save();
 
-            if ($payment) {
-                return response()->json(['status' => $payment->status]);
-            } else {
-                return response()->json(['status' => 0]);
-            }
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'An error occurred while checking payment status'], 500);
-        }
-    }
+
+    return response()->json(['message' => 'Payment marked as paid']);
+}
 }

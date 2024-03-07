@@ -21,22 +21,14 @@
     </div>
 
 
-    <div id="paymentDoneMessage" style="display: none;">
-       <h2 class="text-green-600">Payment Done!</h2>         {{--  when payment status id done --}}
-    </div>
-
-    
     <div class="flex mt-4 justify-center">
-
-
         <div class="text-center">
-            <button class='bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-5 mx-3 rounded' type="button"
+            <button class='bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-5 mx-3 rounded' type="button" data-drawer-backdrop="false"
                 data-drawer-target="drawer-bottom-example" data-drawer-show="drawer-bottom-example"
                 data-drawer-placement="bottom" aria-controls="drawer-bottom-example">
                 Add Course
             </button>
-            {{-- <button class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 mb-4 mr-4 rounded float-right' id="payNow" type="button" >Pay Now</button> --}}
-        </div>
+          </div>
 
         <!-- drawer component -->
         <div id="drawer-bottom-example"
@@ -49,7 +41,7 @@
                     <path
                         d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                 </svg>Add Course Here</h5>
-            <button type="button" data-drawer-hide="drawer-bottom-example" aria-controls="drawer-bottom-example"
+            <button type="button"  data-drawer-hide="drawer-bottom-example" aria-controls="drawer-bottom-example"
                 class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 14 14">
@@ -90,31 +82,7 @@
 
     <!-- JavaScript to control the popup -->
     <script>
-
         $(document).ready(function() {
-            function checkPaymentStatus() {
-                $.ajax({
-                    type: "GET",
-                    url: `/api/admin/student/payment/status`, 
-                    data: {
-                        user_id: "{{ request()->segment(4) }}" 
-                    },
-                    success: function(response) {   
-                        if (response.status === 1) {
-                            $("#courseDetails").hide();
-                            $("#paymentDoneMessage").show();
-                        } else {
-                            $("#courseDetails").show();
-                            $("#paymentDoneMessage").hide();
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            }
-            checkPaymentStatus();
-
 
 
 
@@ -135,174 +103,225 @@
                 }
             });
 
+            function getStudent() {
 
+                $.ajax({
+                    type: "get",
+                    url: `/api/admin/student/view/{{ request()->segment(4) }}`,
+                    success: function(student) {
+                        let details = `
+                        <tr>
+                            <th class="border-b border-gray-200 px-4 py-2">Id</th>
+                            <td class="border-b border-gray-200 px-4 py-2">${student.id}</td>
+                        </tr>
+                        <tr>
+                            <th class="border-b border-gray-200 px-4 py-2">Name</th>
+                            <td class="border-b border-gray-200 px-4 py-2">${student.name}</td>
+                        </tr>
+                        <tr>
+                            <th class="border-b border-gray-200 px-4 py-2">Contact No.</th>
+                            <td class="border-b border-gray-200 px-4 py-2">${student.mobile_no}</td>
+                        </tr>
+                        <tr>
+                            <th class="border-b border-gray-200 px-4 py-2">Email</th>
+                            <td class="border-b border-gray-200 px-4 py-2">${student.email}</td>
+                        </tr>
+                        <tr>
+                            <th class="border-b border-gray-200 px-4 py-2">Admission Date</th>
+                            <td class="border-b border-gray-200 px-4 py-2">${student.created_at}</td>
+                        </tr>`;
 
-
-
-
-
-            $.ajax({
-                type: "get",
-                url: `/api/admin/student/view/{{ request()->segment(4) }}`,
-                success: function(student) {
-                    let details = `
-                <tr>
-                    <th class="border-b border-gray-200 px-4 py-2">Id</th>
-                    <td class="border-b border-gray-200 px-4 py-2">${student.id}</td>
-                </tr>
-                <tr>
-                    <th class="border-b border-gray-200 px-4 py-2">Name</th>
-                    <td class="border-b border-gray-200 px-4 py-2">${student.name}</td>
-                </tr>
-                <tr>
-                    <th class="border-b border-gray-200 px-4 py-2">Contact No.</th>
-                    <td class="border-b border-gray-200 px-4 py-2">${student.mobile_no}</td>
-                </tr>
-                <tr>
-                    <th class="border-b border-gray-200 px-4 py-2">Email</th>
-                    <td class="border-b border-gray-200 px-4 py-2">${student.email}</td>
-                </tr>
-                <tr>
-                    <th class="border-b border-gray-200 px-4 py-2">Admission Date</th>
-                    <td class="border-b border-gray-200 px-4 py-2">${student.created_at}</td>
-                </tr>
-            `;
-
-                    let courses = student.courses.map(course => {
-                        return `
-                        
-                    <div class="max-w-sm rounded overflow-hidden shadow-lg mx-4 my-4">
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2">${course.name}</div>
-                            <p class="text-gray-700 text-base">${course.description}</p>
-                        </div>
-                        <div class="px-6 pt-4 pb-2">
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">${course.discount_fees}</span>
-                        </div><div class="mb-4">
-                        <input type="radio" id="fullPayment" name="paymentType" value="full" class="mr-2">
-                        <label for="fullPayment">Full Payment</label>
+                        let courses = student.courses.map(course => {
+                            let paymentSection = '';
+                            if (course.payments.length < 1) {
+                                paymentSection = `
+            <div class="px-6 pt-4 pb-2">
+                <div class="flex items-center justify-between">
+                    <span class="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">${course.discount_fees}</span>
+                    <div class="flex items-center">
+                        <input type="hidden" id="course_id_${course.id}" value="${course.id}" class="mr-2">
+                        <input type="hidden" id="course_amount_${course.id}" value="${course.discount_fees}">
+                        <input type="radio" id="fullPayment_${course.id}" name="paymentType_${course.id}" value="full" class="mr-2">
+                        <label for="fullPayment_${course.id}">Full Payment</label>
+                        <input type="radio" id="partialPayment_${course.id}" name="paymentType_${course.id}" value="partial" class="ml-4 mr-2">
+                        <label for="partialPayment_${course.id}">Partial Payment</label>
                     </div>
-                    <div class="mb-4">
-                        <input type="radio" id="partialPayment" name="paymentType" value="partial" class="mr-2">
-                        <label for="partialPayment">Partial Payment</label>
+                </div>
+            </div>
+            <div class="px-6 pt-4 pb-2">
+                <button id="submitPayment_${course.id}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Submit Payment
+                </button>
+            </div>`;
+                            } else {
 
-                        <select id="dropdown1" class="hidden relative mr-3">
-                            <option class=" px-4 py-3 rounded shadow" onclick="selectOption('option1')">Select Option 1
-                            </option>
-                            <option class=" px-4 py-3 rounded shadow" onclick="selectOption('option1')">Select Option 2
-                            </option>
-                            <option class=" px-4 py-3 rounded shadow" onclick="selectOption('option1')">Select Option 3
-                            </option>
-                        </select>
-
-                    </div>
-                    <button id="submitPayment"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Submit Payment
-                    </button>
-                    </div>
-                `;
-                    }).join('');
-
-                    $("#studentDetails").html(details);
-                    $("#courseDetails").html(courses);
-
-                    const submitPaymentBtn = document.getElementById('submitPayment');
-                    const fullPaymentRadio = document.getElementById('fullPayment');
-                    const partialPaymentRadio = document.getElementById('partialPayment');
-
-                    submitPaymentBtn.addEventListener('click', () => {
-                        let paymentType = '';
-                        let paymentAmount = 0;
-
-                        if (fullPaymentRadio.checked) {
-                            paymentType = 'full';
-                            paymentAmount = 100;
-                        } else if (partialPaymentRadio.checked) {
-                            paymentType = 'partial';
-                            paymentAmount = 1000;
-                        } else {
-                            alert('Please select a payment option');
-                            return;
-                        }
-
-
-                        $.ajax({
-                            url: '/api/admin/student/payment',
-                            type: 'POST',
-                            data: {
-                                'course_id': 7,
-                                'user_id': 11,
-                                'fees': paymentAmount,
-                                'payment_type': paymentType
-                            },
-                            success: function(response) {
-                                // Handle success response here
-                                alert('Payment processed successfully');
-                            },
-                            error: function(xhr, status, error) {
-
-                                if (xhr.status == 400) {
-                                    swal("error", "Already Pay Payment Exists");
-                                }
+                                paymentSection = `
+            <div class="px-6 pt-4 pb-2">
+                <h2 class="text-lg font-semibold mb-2">Payment Records:</h2>
+                <table class="min-w-full border-collapse border border-gray-300">
+                    <thead>
+                        <tr>
+                            <th class="border border-gray-300 px-4 py-2">Payment ID</th>
+                            <th class="border border-gray-300 px-4 py-2">Amount</th>
+                            <th class="border border-gray-300 px-4 py-2">Date of Payment</th>
+                            <th class="border border-gray-300 px-4 py-2">Status</th>
+                            <th class="border border-gray-300 px-4 py-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${course.payments.map(payment => `
+                                    <tr>
+                                        <td class="border border-gray-300 px-4 py-2">${payment.id}</td>
+                                        <td class="border border-gray-300 px-4 py-2">${payment.fees}</td>
+                                        <td class="border border-gray-300 px-4 py-2">${payment.date_of_payment}</td>
+                                        <td class="border border-gray-300 px-4 py-2">${payment.status}</td>
+                                        <td class="border border-gray-300 px-4 py-2">${payment.status === 1 ? 'Paid' :
+                                    `<button id="markPaid_${payment.id}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Mark as Paid</button>`}</td>
+                                    </tr>
+                                `).join('')}
+                    </tbody>
+                </table>
+            </div>`;
                             }
+
+                            return `
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden mx-4 my-4">
+            <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">${course.name}</div>
+                <p class="text-gray-700 text-base">${course.description}</p>
+            </div>
+            ${paymentSection}
+        </div>`;
+                        }).join('');
+
+
+                        $("#studentDetails").html(details);
+                        $("#courseDetails").html(courses);
+
+                        student.courses.forEach(course => {
+                            const courseId = course.id;
+                            const courseIdElement = $('#course_id_' + courseId);
+                            const courseAmountElement = $('#course_amount_' + courseId);
+                            const submitPaymentBtn = $('#submitPayment_' + courseId);
+                            const fullPaymentRadio = $('#fullPayment_' + courseId);
+                            const partialPaymentRadio = $('#partialPayment_' + courseId);
+
+                            submitPaymentBtn.on('click', () => {
+                                let paymentType = '';
+                                let paymentAmount = 0;
+
+                                if (fullPaymentRadio.is(':checked')) {
+                                    paymentType = 'full';
+                                    paymentAmount = courseAmountElement.val();
+                                } else if (partialPaymentRadio.is(':checked')) {
+                                    paymentType = 'partial';
+                                    paymentAmount = courseAmountElement.val();
+                                } else {
+                                    swal("Alert",'Please select a payment option',"warning");
+                                    return;
+                                }
+
+                                $.ajax({
+                                    url: '/api/admin/student/payment',
+                                    type: 'POST',
+                                    data: {
+                                        'course_id': courseIdElement.val(),
+                                        'user_id': "{{ request()->segment(4) }}",
+                                        'fees': paymentAmount,
+                                        'payment_type': paymentType
+                                    },
+                                    success: function(response) {
+                                        swal("Success",'Payment processed successfully',"success");
+                                        getStudent();
+                                    },
+                                    error: function(xhr, status, error) {
+                                        if (xhr.status == 400) {
+                                            swal("error",
+                                                "Already Pay Payment Exists"
+                                                );
+                                        }
+                                    }
+                                });
+                            });
                         });
-                    });
-                },
-                error: function(xhr, status, error) {
-                    console.error("error: " + xhr.responseText);
-                }
-            });
-        });
-
-
-
-        // Ajax for calling available courses
-
-        $.ajax({
-            type: "GET",
-            url: "/api/course",
-            success: function(response) {
-                let select = $("#callingCourses");
-                select.empty();
-                select.append(`<option value="">Select a course</option>`); // Add this line outside the loop
-                response.data.forEach((course) => {
-                    select.append(
-                        `<option value = "${course.id}" data-fees="${course.discount_fees}">${course.name} </option>`
-                    );
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("error: " + xhr.responseText);
+                    }
                 });
             }
-        });
+            getStudent();
 
-        $("#callingCourses").change(function() {
-            const selectedOption = $(this).find("option:selected");
-            const fees = selectedOption.data("fees");
-            $("#fees").val(fees);
-        });
-        $("#approvalForm").submit(function(event) {
-            event.preventDefault(); // Prevent the form from submitting
-            // Fetch form data
-            const formData = $(this).serialize();
+
+            $('body').on('click', '[id^=markPaid_]', function() {
+                const paymentId = $(this).attr('id').split('_')[1];
+
+                $.ajax({
+                    url: `/api/admin/student/payment/${paymentId}/mark-as-paid`,
+                    type: 'PATCH',
+
+                    success: function(response) {
+                        swal("Done",'Payment marked as paid successfully',"success");
+                        getStudent();
+                        // Optionally, update the UI to reflect the payment status change
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        swal("Oops",'Failed to mark payment as paid',"error");
+                    }
+                });
+            });
+
+            // Ajax for calling available courses
 
             $.ajax({
-                type: "POST",
-                url: "{{ route('student_course.store') }}",
-                data: formData,
-                dataType: "json",
+                type: "GET",
+                url: "/api/course",
                 success: function(response) {
-                    swal("Success", response.msg, "success");
-                },
-                error: function(xhr, status, error) {
-                    if (xhr.status === 400) {
-                        // Course already exists
-                        swal("Error", "Student Course already exists", "error");
-                    } else {
-                        swal("Error", "An error occurred", "error");
-                    }
+                    let select = $("#callingCourses");
+                    select.empty();
+                    select.append(
+                    `<option value="">Select a course</option>`); // Add this line outside the loop
+                    response.data.forEach((course) => {
+                        select.append(
+                            `<option value = "${course.id}" data-fees="${course.discount_fees}">${course.name} </option>`
+                        );
+                    });
                 }
             });
 
-        })
+            $("#callingCourses").change(function() {
+                const selectedOption = $(this).find("option:selected");
+                const fees = selectedOption.data("fees");
+                $("#fees").val(fees);
+            });
+            $("#approvalForm").submit(function(event) {
+                event.preventDefault(); // Prevent the form from submitting
+                // Fetch form data
+                const formData = $(this).serialize();
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('student_course.store') }}",
+                    data: formData,
+                    dataType: "json",
+                    success: function(response) {
+                        swal("Success", response.msg, "success");
+                        $("#drawer-bottom-example").hide();
+                        getStudent();
+                    },
+                    error: function(xhr, status, error) {
+                        if (xhr.status === 400) {
+                            // Course already exists
+                            swal("Error", "Student Course already exists", "error");
+                        } else {
+                            swal("Error", "An error occurred", "error");
+                        }
+                    }
+                });
+
+            })
+        });
 
         // Js for opening payment selection
     </script>
