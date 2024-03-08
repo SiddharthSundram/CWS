@@ -133,29 +133,34 @@
                         </tr>
                         <tr>
                             <th class="border-b border-gray-200 px-4 py-2">Admission Date</th>
-                            <td class="border-b border-gray-200 px-4 py-2">${student.created_at}</td>
+                            <td class="border-b border-gray-200 px-4 py-2">${new Date(student.created_at).toLocaleDateString()}</td>
                         </tr>`;
 
                         let courses = student.courses.map(course => {
                             let paymentSection = '';
                             if (course.payments.length < 1) {
                                 paymentSection = `
-            <div class="px-6 pt-4 pb-2">
+            <div class="px-6 pt-2 pb-2">
                 <div class="flex items-center justify-between">
-                    <span class="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">${course.discount_fees}</span>
-                    <div class="flex items-center">
+         
+                    <div class="flex flex-col gap-3">
+                        <p class="text-sm text-slate-600">Please select Payment type</p>
                         <input type="hidden" id="course_id_${course.id}" value="${course.id}" class="mr-2">
                         <input type="hidden" id="course_amount_${course.id}" value="${course.discount_fees}">
-                        <input type="radio" id="fullPayment_${course.id}" name="paymentType_${course.id}" value="full" class="mr-2">
-                        <label for="fullPayment_${course.id}">Full Payment</label>
-                        <input type="radio" id="partialPayment_${course.id}" name="paymentType_${course.id}" value="partial" class="ml-4 mr-2">
-                        <label for="partialPayment_${course.id}">Partial Payment</label>
+                        <div class='flex items-center gap-2'>
+                            <input type="radio" id="fullPayment_${course.id}" name="paymentType_${course.id}" value="full">
+                            <label for="fullPayment_${course.id}" class="text-md font-semibold">Full Payment</label>
+                        </div>
+                        <div class='flex items-center gap-2'>
+                            <input type="radio" id="partialPayment_${course.id}" name="paymentType_${course.id}" value="partial">
+                            <label for="partialPayment_${course.id}" class="text-md font-semibold">Partial Payment</label>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="px-6 pt-4 pb-2">
-                <button id="submitPayment_${course.id}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Submit Payment
+            <div class="px-6 pt-1 pb-2">
+                <button id="submitPayment_${course.id}" class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full text-sm">
+                    Add Payments
                 </button>
             </div>`;
                             } else {
@@ -181,7 +186,8 @@
         <div class="bg-white shadow-lg rounded-lg overflow-hidden ">
             <div class="border bg-slate-50 px-4 py-2">
                 <div class="font-bold text-xl capitalize mb-1">${course.name} Course </div>
-                <div class="font-normal text-xs capitalize mb-2">Duration: ${course.duration} Weeks </div>
+                <div class="font-normal text-xs capitalize mb-1">Duration: ${course.duration} Weeks </div>
+                <div class="font-semibold text-teal-900 text-sm capitalize mb-2">Course Fees: ₹${course.discount_fees}/- <del class='text-slate-400'>₹${course.fees}/-</del></div>
             </div>
             <div class='px-4 py-2'>
                 ${paymentSection}

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->boolean("is_admin")->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->default('password');
+            $table->boolean("status")->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -60,6 +60,7 @@ Route::prefix('admin')->group(function () {
             Route::controller(StudentController::class)->group(function () {
                 Route::get("/insert", 'insertStudent')->name('insertStudent');
                 Route::get("/manage", 'manageStudent')->name('manageStudent');
+                Route::get("/manage/admission", 'manageAdmission')->name('manageAdmission');
                 Route::get("view/{id}", 'viewStudent')->name('viewStudent');
             });
         });

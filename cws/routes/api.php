@@ -60,10 +60,10 @@ Route::apiResource("student_course", StudentCourseController::class);
 
 // api for student operations
 Route::get('/admin/manage-student',[StudentApiController::class,"index"])->name("manage-student");
+Route::get('/admin/manage-admission',[StudentApiController::class,"manageAdmission"])->name("manage-admission");
 Route::post('/admin/insert-student', [StudentApiController::class, 'addStudent'])->name("addStudent");
 Route::get('/admin/student/view/{id}', [StudentApiController::class, 'show']);
-
-//delete for student operation
+Route::get('/admin/student/count', [StudentApiController::class, 'count'])->name("student_count");
 Route::delete('/admin/student/{id}', [StudentApiController::class, 'destroy'])->name('admin.student.delete');
 
 // Route for student Course Operation
