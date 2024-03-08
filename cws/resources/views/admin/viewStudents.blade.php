@@ -159,39 +159,33 @@
                 </button>
             </div>`;
                             } else {
-
-                                paymentSection = `
-            <div class="px-6 pt-4 pb-2">
-                <h2 class="text-lg font-semibold mb-2">Payment Records:</h2>
-                <table class="min-w-full border-collapse border border-gray-300">
-                    <thead>
-                        <tr>
-                            <th class="border border-gray-300 px-4 py-2">Amount</th>
-                            <th class="border border-gray-300 px-4 py-2">Date of Payment</th>
-                            <th class="border border-gray-300 px-4 py-2">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${course.payments.map(payment => `
-                                    <tr>
-                                        <td class="border border-gray-300 px-4 py-2">${payment.fees}</td>
-                                        <td class="border border-gray-300 px-4 py-2">${payment.date_of_payment}</td>
-                                        <td class="border border-gray-300 px-4 py-2">${payment.status === 1 ? 'Paid' :
-                                    `<button id="markPaid_${payment.id}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Mark as Paid</button>`}</td>
-                                    </tr>
-                                `).join('')}
-                    </tbody>
-                </table>
-            </div>`;
+                    
+                    paymentSection = `
+                        <ol class="relative border-s border-gray-200 dark:border-gray-700">                  
+                        ${course.payments.map((payment, i) => `
+                            <li class="mb-2 ms-4">
+                                <div class="absolute w-3 h-3 ${payment.status === 1? 'bg-green-600' : 'bg-gray-200'} rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                                <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">${payment.date_of_payment}</time>
+                                <h3 class="text-lg flex gap-2 items-center font-semibold text-gray-900 dark:text-white">
+                                    <span>₹${payment.fees}</span>
+                                    ${payment.status === 1 ? `<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+</svg>`: ''}
+                                    </h3>
+                                ${payment.status === 0 ? `<button id="markPaid_${payment.id}" class="bg-green-500 hover:bg-green-700 text-white font-semibold py-1 px-2 rounded">Mark as Paid</button>` : ``}
+                            </li>`).join('')}
+                        </ol>`;
                             }
 
                             return `
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-            <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2">${course.name}</div>
-                <p class="text-gray-700 text-base">${course.description}</p>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden ">
+            <div class="border bg-slate-50 px-4 py-2">
+                <div class="font-bold text-xl capitalize mb-1">${course.name} Course </div>
+                <div class="font-normal text-xs capitalize mb-2">Duration: ${course.duration} Weeks </div>
             </div>
-            ${paymentSection}
+            <div class='px-4 py-2'>
+                ${paymentSection}
+            </div>
         </div>`;
                         }).join('');
 
