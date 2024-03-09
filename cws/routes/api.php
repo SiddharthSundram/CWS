@@ -65,6 +65,7 @@ Route::get('/admin/manage-student',[StudentApiController::class,"index"])->name(
 Route::get('/admin/manage-admission',[StudentApiController::class,"manageAdmission"])->name("manage-admission");
 Route::post('/admin/insert-student', [StudentApiController::class, 'addStudent'])->name("addStudent");
 Route::get('/admin/student/view/{id}', [StudentApiController::class, 'show']);
+Route::post('/admin/student/edit/{id}', [StudentApiController::class, 'update']);
 Route::get('/admin/student/count', [StudentApiController::class, 'count'])->name("student_count");
 Route::delete('/admin/student/{id}', [StudentApiController::class, 'destroy'])->name('admin.student.delete');
 

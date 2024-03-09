@@ -50,6 +50,61 @@
         </div>
     </div>
 
+    {{-- Edit Student Work --}}
+
+    <div class="fixed inset-0 z-50 overflow-y-auto hidden" id="editStudentModal">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                role="dialog" aria-modal="true" aria-labelledby="editStudentModalLabel">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <h5 class="text-lg font-semibold mb-4" id="editStudentModalLabel">Edit Student</h5>
+                    <form id="editStudentForm">
+
+                        <input type="hidden" id="editStudentId" name="id">
+                        <div class="mb-4">
+                            <label for="editStudentName" class="block text-sm font-medium text-gray-700">Name</label>
+                            <input type="text"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                id="editStudentName" name="name" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="editStudentMobile" class="block text-sm font-medium text-gray-700">Mobile No</label>
+                            <input type="tel"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                id="editStudentMobile" name="mobile_no" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="editStudentEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                id="editStudentEmail" name="email" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="editStudentStatus" class="block text-sm font-medium text-gray-700">Status</label>
+                            <select
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                id="editStudentStatus" name="status" required>
+                                <option value="1">Approve Now</option>
+                                <option value="0">Not Now</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <button type="submit"
+                                class="inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Update Now</button>
+                            <button type="button" id="cancelEditStudent"
+                                class="inline-block px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         $(document).ready(function() {
 
@@ -70,7 +125,8 @@
                     <td class="border-b border-gray-200 px-3 py-2 text-sm">${new Date(student.created_at).toLocaleDateString()}</td>     
                     <td class="border-b border-gray-200 px-3 py-2 text-sm">
                         <button type='button' class='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded edit-btn' data-id='${student.id}'>X</button>
-                        <a href='/admin/student/view/${student.id}' class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded edit-btn'>Approve</a>
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-sm edit-btn" data-id="${student.id}">
+                                <i class="fas fa-edit"></i> Edit</button>
                     </td>
                     </tr>
             `);
@@ -123,6 +179,52 @@
                     e.preventDefault();
                     let page = $(this).text();
                     fetchStudents('', page);
+                });
+            });
+
+             // Edit student button click handler
+             $(document).on('click', '.edit-btn', function() {
+                var userId = $(this).data('id');
+                $.ajax({
+                    type: 'GET',
+                    url: `/api/admin/student/view/${userId}`,
+                    dataType: 'json',
+                    success: function(response) {
+                        $('#editStudentName').val(response.name);
+                        $('#editStudentStatus').val(response.status);
+                        $('#editStudentEmail').val(response.email);
+                        $('#editStudentMobile').val(response.mobile_no);
+                        $('#editStudentModal').removeClass('hidden');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching course details for editing:', error);
+                    }
+                });
+            });
+
+            // Cancel edit course button click handler
+            $('#cancelEditStudent').click(function() {
+                $('#editStudentModal').addClass('hidden');
+            });
+
+            // Submit edit course form
+            $('#editStudentForm').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/admin/student/edit/'+ $('#editStudentId').val(),
+                    data: new FormData(this),
+                    dataType: "JSON",
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(response) {
+                        $('#editStudentModal').addClass('hidden');
+                        fetchStudents();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error updating course:', error);
+                    }
                 });
             });
 
