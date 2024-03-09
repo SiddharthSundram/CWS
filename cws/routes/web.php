@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\hallFrameController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RecentProjectController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -13,11 +14,20 @@ use Illuminate\Support\Facades\Route;
 
 
 // Home related routes 
-Route::get("/", [HomeController::class, 'index'])->name('index');
 Route::get("/login", [HomeController::class, 'signin'])->name('login');
 Route::get("/register", [HomeController::class, 'signup'])->name('register');
+
+//home 
+Route::get("/", [HomeController::class, 'index'])->name('index');
+
+//user profile
 Route::get("/my-profile", [HomeController::class, 'profile'])->name('profile');
+
+//explore course
 Route::get("/explore-course/{id}", [CourseController::class, 'exploreCourse'])->name('exploreCourse');
+
+// for user's course
+Route::get("/my-course", [HomeController::class, 'myCourse'])->name('myCourse');
 
 
 
@@ -70,6 +80,11 @@ Route::prefix('admin')->group(function () {
             Route::controller(CategoryController::class)->group(function () {
                 Route::get("/insert", 'insertCategory')->name('insertCategory');
                 Route::get("/manage", 'manageCategory')->name('manageCategory');
+            });
+        });        
+        Route::prefix('payments')->group(function () {
+            Route::controller(PaymentController::class)->group(function () {
+                Route::get("/manage", 'managePayments')->name('managePayments');
             });
         });        
     });

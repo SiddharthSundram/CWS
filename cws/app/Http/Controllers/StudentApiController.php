@@ -62,14 +62,31 @@ class StudentApiController extends Controller
     } 
 
     public function show($id){
-        $user = User::where("is_admin", "!=", 1)
-    ->where("id", $id)
+        $user = User::where("id", $id)
     ->with(["courses", "courses.payments" => function ($query) use ($id) {
         $query->where("user_id", $id);
     }])
     ->first();
 
     return response()->json($user);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->id = $request->id; // Adjusting to match the input name
+        $user->name = $request->name; // Adjusting to match the input name
+        $user->email = $request->email; 
+        $user->mobile_no = $request->mobile_no; 
+        $user->status = $request->status; 
+        $user->save();
+
+        return response()->json([
+            'user' => $user,
+            'success' => true,
+            'msg' => 'Student updated successfully'
+        ]);
     }
 
 

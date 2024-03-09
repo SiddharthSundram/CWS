@@ -35,9 +35,11 @@ Route::post('/login', [AuthController::class, 'login']);
 // Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('jwt.auth');
 Route::post('/refresh', [AuthController::class, 'refresh']);
-Route::get('/user-profile', function () {
-    return auth()->user();
-})->middleware('jwt.auth');
+    Route::get('/user-profile', function () {
+        $id = auth()->id();
+        $controller = app()->make('App\Http\Controllers\StudentApiController');
+        return $controller->show($id);
+    })->middleware('jwt.auth')->name("my-profile");
 
 
 
@@ -61,9 +63,11 @@ Route::apiResource("student_course", StudentCourseController::class);
 // api for student operations
 Route::get('/admin/callingStudents',[StudentApiController::class,"callingStudents"])->name("callingStudents");
 Route::get('/admin/manage-student',[StudentApiController::class,"index"])->name("manage-student");
+Route::get('/admin/manage-payments',[PaymentController::class,"managePaymentsApi"])->name("manage-payments");
 Route::get('/admin/manage-admission',[StudentApiController::class,"manageAdmission"])->name("manage-admission");
 Route::post('/admin/insert-student', [StudentApiController::class, 'addStudent'])->name("addStudent");
 Route::get('/admin/student/view/{id}', [StudentApiController::class, 'show']);
+Route::post('/admin/student/edit/{id}', [StudentApiController::class, 'update']);
 Route::get('/admin/student/count', [StudentApiController::class, 'count'])->name("student_count");
 Route::delete('/admin/student/{id}', [StudentApiController::class, 'destroy'])->name('admin.student.delete');
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
+use App\Models\course;
 use Illuminate\Http\Request;
 
 class CourseApiController extends Controller
@@ -36,14 +36,13 @@ class CourseApiController extends Controller
         return response()->json(["data" => $course, "msg" => "course Inserted Successfully", "success" => true]);
     }
 
-    /**
-     * Display the specified resource.
-     */
+   
     public function show(Course $course)
-    {
-        $course = Course::find($course->id)->with('category')->first();
-        return response()->json(["data" => $course, "success" => true]);
-    }
+{
+    $course = Course::with('category')->find($course->id);
+    return response()->json(["data" => $course, "success" => true]);
+}
+
 
     /**
      * Show the form for editing the specified resource.
