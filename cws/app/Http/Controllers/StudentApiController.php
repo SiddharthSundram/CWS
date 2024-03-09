@@ -88,5 +88,10 @@ class StudentApiController extends Controller
             return response()->json(['message' => 'Failed to delete student', 'error' => $e->getMessage()], 500);
         }
     }
+    public function callingStudents(){
+        $students = User::all();
+        return response()->json(['students' => $students]);
+    }
+    
 }
     

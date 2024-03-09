@@ -75,7 +75,7 @@
                         <a href='/admin/student/view/${student.id}' class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded edit-btn'>View</a>
                     </td>
                     </tr>
-            `);
+                     `);
                 });
             }
 
