@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\hallFrameController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RecentProjectController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -73,6 +74,11 @@ Route::prefix('admin')->group(function () {
             Route::controller(CategoryController::class)->group(function () {
                 Route::get("/insert", 'insertCategory')->name('insertCategory');
                 Route::get("/manage", 'manageCategory')->name('manageCategory');
+            });
+        });        
+        Route::prefix('payments')->group(function () {
+            Route::controller(PaymentController::class)->group(function () {
+                Route::get("/manage", 'managePayments')->name('managePayments');
             });
         });        
     });

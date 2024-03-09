@@ -3,7 +3,13 @@
 @section('content')
     <div class="flex-1 flex mt-12 items-center justify-between ">
         <h1 class="text-lg font-semibold  py-2">Manage Payments (<span id="counting">0</span>)</h1>
+        <div>
+            <button id="filterPaid"
+                class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded">Paid</button>
+            <button id="filterDue" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded">Due</button>
+        </div>
     </div>
+
     <div class="overflow-x-auto">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div class="pb-4">
@@ -28,13 +34,14 @@
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Name</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Email</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Contact No.</th>
+                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Date of Payment</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Admission Date</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Actions</th>
                     </tr>
                 </thead>
                 <tbody id="callingStudent">
                     <!-- Table rows will be dynamically added here -->
-           
+
                 </tbody>
                 <tfoot>
                     <tr>
@@ -52,6 +59,16 @@
     <script>
         $(document).ready(function() {
 
+            $('#filterPaid').on('click', function(e) {
+                e.preventDefault();
+                fetchStudents('', 1, 1); // Passing status = 1 for paid payments
+            });
+
+            $('#filterDue').on('click', function(e) {
+                e.preventDefault();
+                fetchStudents('', 1, 0); // Passing status = 0 for due payments
+            });
+
             let callingStudent = (data) => {
                 let table = $("#callingStudent");
                 table.empty();
@@ -59,33 +76,34 @@
 
                 $("#counting").html(len);
 
-                data.forEach((student) => {
+                data.forEach((payment) => {
                     table.append(`
-                    <tr>
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.id}</td> 
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.name}</td>
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.email}</td> 
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.mobile_no}</td>     
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${new Date(student.created_at).toLocaleDateString()}</td>     
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">
-                        <button type='button' class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded edit-btn' data-id='${student.id}'>Edit</button>
-                        <a href='/admin/student/view/${student.id}' class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded edit-btn'>View</a>
-                    </td>
-                    </tr>
-            `);
+                <tr>
+                <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.id}</td> 
+                <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.user.name}</td>
+                <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.course.name}</td> 
+                <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.fees}</td>     
+                <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.date_of_payment == "NULL" && new Date(payment.date_of_payment).toLocaleDateString()}</td>     
+                <td class="border-b border-gray-200 px-3 py-2 text-sm">${new Date(payment.created_at).toLocaleDateString()}</td>     
+                <td class="border-b border-gray-200 px-3 py-2 text-sm">
+                    ${payment.status === 1 ? '<span class="bg-green-500 px-2 py-1 text-white">Paid</span>' : '<span class=" px-2 py-1 text-white bg-red-500">Due</span>'}
+                </td>
+                </tr>
+        `);
                 });
             }
 
-            function fetchStudents(query = '', page = 1) {
+            function fetchStudents(query = '', page = 1, status = null) {
                 $.ajax({
-                    url: "{{ route('manage-student') }}",
+                    url: "{{ route('manage-payments') }}",
                     type: "GET",
                     data: {
                         'query': query,
-                        'page': page
+                        'page': page,
+                        'status': status
                     },
                     success: function(response) {
-                        let data = response.data;
+                        let data = response.data.filter(payment => payment.status == status);
                         callingStudent(data);
 
                         // Update pagination links
@@ -108,23 +126,20 @@
                 });
             }
 
-            $(document).ready(function() {
-                // Initial load
-                fetchStudents();
+            // Initial load with paid payments
+            fetchStudents('', 1, 1);
 
-                $("#searchInput").on("input", function(e) {
-                    e.preventDefault();
-                    var query = $(this).val();
-                    fetchStudents(query);
-                });
-
-                $(document).on('click', '.pagination-link', function(e) {
-                    e.preventDefault();
-                    let page = $(this).text();
-                    fetchStudents('', page);
-                });
+            $("#searchInput").on("input", function(e) {
+                e.preventDefault();
+                var query = $(this).val();
+                fetchStudents(query);
             });
 
+            $(document).on('click', '.pagination-link', function(e) {
+                e.preventDefault();
+                let page = $(this).text();
+                fetchStudents('', page);
+            });
         });
     </script>
 @endsection

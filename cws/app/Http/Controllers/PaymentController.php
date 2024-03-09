@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Payment;
 use App\Models\StudentCourse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
 
 class PaymentController extends Controller
@@ -57,6 +58,21 @@ class PaymentController extends Controller
             'msg' => 'Payment(s) added successfully',
             'data' => $data
         ], 201);
+    }
+
+    public function managePaymentsApi(Request $request){
+        $query = $request->get('query');
+        $perPage = $request->input('per_page', 10); // Default to 4 items per page if not specified
+        
+        if ($query) {
+            $payments = Payment::where('name', 'LIKE', "%$query%")->with("course","user")->paginate($perPage);
+        } else {
+            $payments = Payment::with("course","user")->paginate($perPage);
+        }
+        return response()->json($payments);
+    }
+    public function managePayments(Request $request){
+        return view("admin.managePayments");
     }
 
     public function markAsPaid(Request $request, $paymentId)

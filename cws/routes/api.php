@@ -62,6 +62,7 @@ Route::apiResource("student_course", StudentCourseController::class);
 
 // api for student operations
 Route::get('/admin/manage-student',[StudentApiController::class,"index"])->name("manage-student");
+Route::get('/admin/manage-payments',[PaymentController::class,"managePaymentsApi"])->name("manage-payments");
 Route::get('/admin/manage-admission',[StudentApiController::class,"manageAdmission"])->name("manage-admission");
 Route::post('/admin/insert-student', [StudentApiController::class, 'addStudent'])->name("addStudent");
 Route::get('/admin/student/view/{id}', [StudentApiController::class, 'show']);
