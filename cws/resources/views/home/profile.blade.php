@@ -15,15 +15,15 @@
             </div>
             
             <div class="flex flex-col space-y-4" id="callingUserProfile">
-                <div>
-                    <label for="name" class="text-gray-700 dark:text-gray-300 font-semibold">Name:</label>
+                <div class="flex gap-2">
+                    <label for="name" class="text-gray-700 dark:text-gray-300 font-semibold">Name: </label>
                     <p class="text-gray-800 dark:text-gray-200" id="calling_name"></p>
                 </div>
-                <div>
+                <div class="flex gap-2">
                     <label for="email" class="text-gray-700 dark:text-gray-300 font-semibold">Email:</label>
                     <p class="text-gray-800 dark:text-gray-200" id="calling_user_email"></p>
                 </div>
-                <div>
+                <div class="flex gap-2">
                     <label for="phone" class="text-gray-700 dark:text-gray-300 font-semibold">Phone:</label>
                     <p class="text-gray-800 dark:text-gray-200" id="calling_user_phone"></p>
                 </div>
