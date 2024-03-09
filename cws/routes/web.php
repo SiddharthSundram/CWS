@@ -19,6 +19,9 @@ Route::get("/register", [HomeController::class, 'signup'])->name('register');
 Route::get("/my-profile", [HomeController::class, 'profile'])->name('profile');
 Route::get("/explore-course/{id}", [CourseController::class, 'exploreCourse'])->name('exploreCourse');
 
+// for user's course
+Route::get("/my-course", [HomeController::class, 'myCourse'])->name('myCourse');
+
 
 
 // Admin related routes 

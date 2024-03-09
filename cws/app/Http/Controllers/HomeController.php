@@ -22,5 +22,10 @@ class HomeController extends Controller
         return view("home.profile");
     }
 
+    public function myCourse(){
+        return view("home.myCourse");
+    }
+
+
     
 }
