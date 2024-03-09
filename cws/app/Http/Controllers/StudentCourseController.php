@@ -4,16 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\StudentCourse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class StudentCourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(["data" => StudentCourse::all()]);
+        // Assuming you have authentication middleware set up
+        $user = $request->user();
+
+        // Retrieve courses for the authenticated user
+        $courses = StudentCourse::where('user_id', $user->id)->get();
+
+        // You may want to return this data in a JSON response
+        return response()->json(['courses' => $courses]);
     }
 
    

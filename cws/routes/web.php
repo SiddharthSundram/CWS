@@ -22,6 +22,9 @@ Route::get("/my-profile", [HomeController::class, 'profile'])->name('profile');
 // to explore Course
 Route::get("/explore-course/{id}", [CourseController::class, 'exploreCourse'])->name('exploreCourse');
 
+// for user's course
+Route::get("/my-course", [HomeController::class, 'myCourse'])->name('myCourse');
+
 
 
 

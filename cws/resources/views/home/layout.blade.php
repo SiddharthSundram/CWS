@@ -33,7 +33,7 @@
                 <a id="login-link" class="hover:text-gray-300" href="{{ route('login') }}">Login</a>
                 <a id="register-link"class="hover:text-gray-300" href="{{ route('register') }}">Register</a>
                 <a id="profile-link"class="hover:text-gray-300" href="{{ route('profile') }}">Profile</a>
-                <a id="course-link"class="hover:text-gray-300" href="">My Courses</a>
+                <a id="course-link"class="hover:text-gray-300" href="{{route('myCourse')}}">My Courses</a>
                 <a id="logout-link"class="hover:text-gray-300" href="#">
                     <div id="logout">Logout</div>
                 </a>
