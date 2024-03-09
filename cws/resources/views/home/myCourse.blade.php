@@ -36,7 +36,7 @@
                     success: function(response) {
                         let table = $("#callingCourses");
                         table.empty();
-    
+                            
                         let data = response.courses;
     
                         data.forEach((item) => {
