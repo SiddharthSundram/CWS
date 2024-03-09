@@ -62,8 +62,7 @@ class StudentApiController extends Controller
     } 
 
     public function show($id){
-        $user = User::where("is_admin", "!=", 1)
-    ->where("id", $id)
+        $user = User::where("id", $id)
     ->with(["courses", "courses.payments" => function ($query) use ($id) {
         $query->where("user_id", $id);
     }])

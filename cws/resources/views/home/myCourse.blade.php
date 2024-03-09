@@ -29,17 +29,16 @@
         $(document).ready(function() {
             let callingCourses = () => {
                 var token = localStorage.getItem('token');
-                var userId = token;
 
                 
                 $.ajax({
                     type: 'GET',
-                    url: '/api/admin/student/view/' + userId,
+                    url: "{{route("my-profile")}}",
                     headers: {
                         'Authorization': 'Bearer ' + token
                     },
                     success: function(response){
-                       console.log(userId);
+                       console.log(response);
                     },
                     error: function(xhr, status, error) {
                         console.error(error);
