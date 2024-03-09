@@ -44,8 +44,7 @@
                                 <div class="max-w-lg bg-white rounded-lg shadow-md overflow-hidden">
                                     <img src="https://via.placeholder.com/600x400" alt="Course Image" class="w-full h-48 object-cover object-center">
                                     <div class="p-6">
-                                        <h2 class="text-2xl font-semibold text-gray-800 mb-2">${item.course.name}</h2>
-                                        <p class="text-sm text-gray-600 mb-2">Course ID: ${item.course.id}</p>
+                                        <p class="text-sm text-gray-600 mb-2">Course ID: ${item.course_id}</p>
                                         <p class="text-sm text-gray-600 mb-2">User ID: ${item.user_id}</p>
     
                                         <a href="#" class="block bg-blue-500 hover:bg-blue-600 text-white font-semibold text-center py-2 px-4 rounded">Start Learning</a>

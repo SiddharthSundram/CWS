@@ -15,13 +15,10 @@ class StudentCourseController extends Controller
      */
     public function index(Request $request)
     {
-        // Assuming you have authentication middleware set up
         $user = $request->user();
 
-        // Retrieve courses for the authenticated user
         $courses = StudentCourse::where('user_id', $user->id)->get();
-
-        // You may want to return this data in a JSON response
+        
         return response()->json(['courses' => $courses]);
     }
 
