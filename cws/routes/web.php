@@ -14,10 +14,16 @@ use Illuminate\Support\Facades\Route;
 
 
 // Home related routes 
-Route::get("/", [HomeController::class, 'index'])->name('index');
 Route::get("/login", [HomeController::class, 'signin'])->name('login');
 Route::get("/register", [HomeController::class, 'signup'])->name('register');
+
+//home 
+Route::get("/", [HomeController::class, 'index'])->name('index');
+
+//user profile
 Route::get("/my-profile", [HomeController::class, 'profile'])->name('profile');
+
+//explore course
 Route::get("/explore-course/{id}", [CourseController::class, 'exploreCourse'])->name('exploreCourse');
 
 // for user's course
