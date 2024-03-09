@@ -19,20 +19,26 @@
                             </ul>
                         </div>
                         <!-- Contact Form -->
+                        {{-- have to create a contact table for this and submit this query . Then this query will called in admin panel --}}
                         <div class="mt-6 bg-white border border-gray-200 p-4 rounded-lg">
                             <form action="#" method="POST">
                                 <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
                                 <input type="text" id="name" name="name"
-                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200">
+                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200" placeholder="Ex: Siddharth">
 
                                 <label for="email" class="block mt-2 text-sm font-medium text-gray-700">Your
                                     Email</label>
                                 <input type="email" id="email" name="email"
-                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200">
+                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200" placeholder="Ex: siddharth@gmail.com">
+
+                                <label for="mobile_no" class="block mt-2 text-sm font-medium text-gray-700">Your
+                                    Mobile Number</label>
+                                <input type="tel" id="mobile_no" name="mobile_no"
+                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200" placeholder="Ex: 6202067088">
 
                                 <label for="message" class="block mt-2 text-sm font-medium text-gray-700">Message</label>
                                 <textarea id="message" name="message" rows="4"
-                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200"></textarea>
+                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200" placeholder="Your Query"></textarea>
 
                                 <button type="submit"
                                     class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:border-blue-700 focus:ring-blue active:bg-blue-700 transition ease-in-out duration-150">

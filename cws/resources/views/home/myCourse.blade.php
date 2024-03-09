@@ -16,24 +16,25 @@
         $(document).ready(function() {
             let callingCourses = () => {
                 var token = localStorage.getItem('token');
-                $.ajax({
-                    type: 'GET',
-                    url: "{{ route('my-profile') }}",
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    },
-                    success: function(response) {
-                        // console.log(response);
-                        let table = $("#courses-list");
-                        table.empty();
+                if (token) {
+                    $.ajax({
+                        type: 'GET',
+                        url: "{{ route('my-profile') }}",
+                        headers: {
+                            'Authorization': 'Bearer ' + token
+                        },
+                        success: function(response) {
+                            // console.log(response);
+                            let table = $("#courses-list");
+                            table.empty();
 
 
-                        console.log(response);
-                        let courses = response.courses;
+                            console.log(response);
+                            let courses = response.courses;
 
-                        courses.forEach((item) => {
+                            courses.forEach((item) => {
 
-                            table.append(`
+                                table.append(`
                                 <div class="max-w-sm md:max-w-lg lg:max-w-xl xl:max-w-2xl bg-white rounded-lg shadow-md overflow-hidden">
                                     <img src="/image/${item.featured_image}" id="courseImage" alt="Course Image" class="w-full h-48 object-cover object-center">
                                     <div class="p-6">
@@ -49,13 +50,17 @@
                             `);
 
 
-                        })
+                            })
 
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                }
+                else {
+                    window.open('/', '_self');
+                }
             };
 
             callingCourses();
