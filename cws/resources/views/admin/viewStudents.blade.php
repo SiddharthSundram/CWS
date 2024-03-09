@@ -1,80 +1,85 @@
 @extends('admin.base')
 
 @section('content')
-    <div class="flex justify-between items-center mt-12">
-        <h2 class="text-2xl font-bold">View Student</h2>
-    </div>
-
-    <div class="overflow-x-auto mt-4">
-        <table class="min-w-full bg-white border border-gray-200">
-            <tbody class="bg-gray-100" id="studentDetails">
-                <!-- Student details will be dynamically added here -->
-            </tbody>
-        </table>
-    </div>
-
-    <div class="flex justify-between items-center mt-12">
-        <h2 class="text-2xl font-bold">Courses</h2>
-    </div>
-    <div class="overflow-x-auto mt-4" id="courseDetails">
-        <!-- Course cards will be dynamically added here -->
-    </div>
-
-
-    <div class="flex mt-4 justify-center">
+<div class="flex-1 flex mt-12 items-center justify-between">
+    <h1 class="text-lg font-semibold py-2">View Student</h1>
+    <div class="flex mt-4 justify-center gap-2">
         <div class="text-center">
-            <button class='bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-5 mx-3 rounded' type="button" data-drawer-backdrop="false"
+            <button class='bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-5 rounded' type="button" data-drawer-backdrop="false"
                 data-drawer-target="drawer-bottom-example" data-drawer-show="drawer-bottom-example"
                 data-drawer-placement="bottom" aria-controls="drawer-bottom-example">
                 Add Course
             </button>
           </div>
-
         <!-- drawer component -->
-        <div id="drawer-bottom-example"
-            class="fixed bottom-0 left-0 right-0 z-40 w-full p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800 translate-y-full"
-            tabindex="-1" aria-labelledby="drawer-bottom-label">
-            <h5 id="drawer-bottom-label"
-                class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"><svg
-                    class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                    viewBox="0 0 20 20">
-                    <path
-                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-                </svg>Add Course Here</h5>
-            <button type="button"  data-drawer-hide="drawer-bottom-example" aria-controls="drawer-bottom-example"
-                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
-                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 14 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                </svg>
-                <span class="sr-only">Close menu</span>
-            </button>
-            <form id="approvalForm" class="space-y-4">
-                <div>
-                    <label for="course" class="block font-medium">Select Course</label>
-                    <input type="hidden" value="{{ request()->segment(4) }}" name="user_id">
-                    <select id="callingCourses" name="course_id" class="border px-3 py-2 block w-full" required>
+        <button type="button"
+            class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-5 rounded'>Edit</button>
+        <button type="button"
+            class='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-5 rounded delete-btn'>Delete</button>
+    </div>
 
-                    </select>
-                </div>
-                <div>
-                    <label for="fees" class="block font-medium">Fees</label>
-                    <input type="number" id="fees" name="fees" class="border px-3 py-2  block w-full" required>
-                </div>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add
-                    Course</button>
+</div>
 
-            </form>
+    <div class="container mx-auto py-2">
+        <!-- Student Information -->
+        <div class="bg-white p-4 shadow-md rounded-md mb-4">
+            <h2 class="text-lg font-semibold">Student Information</h2>
+            <!-- Display student information here -->
+            <table class="min-w-full">
+                <tbody id="studentDetails">
+                    <!-- Student details will be dynamically added here -->
+                </tbody>
+            </table>
         </div>
-        <button type="button"
-            class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-5 mx-3 rounded'>Edit</button>
-        <button type="button"
-            class='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-5 mx-3 rounded delete-btn'>Delete</button>
+    
+        <!-- Enrolled Courses -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4" id="courseDetails">
+        </div>
     </div>
+    <div class="overflow-x-auto container mt-4" >
+        <!-- Course cards will be dynamically added here -->
     </div>
 
 
+    
+    </div>
+
+    <div id="drawer-bottom-example"
+    class="fixed bottom-0 left-0 right-0 z-40 w-full p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800 translate-y-full"
+    tabindex="-1" aria-labelledby="drawer-bottom-label">
+    <h5 id="drawer-bottom-label"
+        class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"><svg
+            class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+            viewBox="0 0 20 20">
+            <path
+                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+        </svg>Add Course Here</h5>
+    <button type="button"  data-drawer-hide="drawer-bottom-example" aria-controls="drawer-bottom-example"
+        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+        </svg>
+        <span class="sr-only">Close menu</span>
+    </button>
+    <form id="approvalForm" class="space-y-4">
+        <div>
+            <label for="course" class="block font-medium">Select Course</label>
+            <input type="hidden" value="{{ request()->segment(4) }}" name="user_id">
+            <select id="callingCourses" name="course_id" class="border px-3 py-2 block w-full" required>
+
+            </select>
+        </div>
+        <div>
+            <label for="fees" class="block font-medium">Fees</label>
+            <input type="number" id="fees" name="fees" class="border px-3 py-2  block w-full" required>
+        </div>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add
+            Course</button>
+
+    </form>
+</div>
 
 
 
@@ -128,69 +133,65 @@
                         </tr>
                         <tr>
                             <th class="border-b border-gray-200 px-4 py-2">Admission Date</th>
-                            <td class="border-b border-gray-200 px-4 py-2">${student.created_at}</td>
+                            <td class="border-b border-gray-200 px-4 py-2">${new Date(student.created_at).toLocaleDateString()}</td>
                         </tr>`;
 
                         let courses = student.courses.map(course => {
                             let paymentSection = '';
                             if (course.payments.length < 1) {
                                 paymentSection = `
-            <div class="px-6 pt-4 pb-2">
+            <div class="px-6 pt-2 pb-2">
                 <div class="flex items-center justify-between">
-                    <span class="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">${course.discount_fees}</span>
-                    <div class="flex items-center">
+         
+                    <div class="flex flex-col gap-3">
+                        <p class="text-sm text-slate-600">Please select Payment type</p>
                         <input type="hidden" id="course_id_${course.id}" value="${course.id}" class="mr-2">
                         <input type="hidden" id="course_amount_${course.id}" value="${course.discount_fees}">
-                        <input type="radio" id="fullPayment_${course.id}" name="paymentType_${course.id}" value="full" class="mr-2">
-                        <label for="fullPayment_${course.id}">Full Payment</label>
-                        <input type="radio" id="partialPayment_${course.id}" name="paymentType_${course.id}" value="partial" class="ml-4 mr-2">
-                        <label for="partialPayment_${course.id}">Partial Payment</label>
+                        <div class='flex items-center gap-2'>
+                            <input type="radio" id="fullPayment_${course.id}" name="paymentType_${course.id}" value="full">
+                            <label for="fullPayment_${course.id}" class="text-md font-semibold">Full Payment</label>
+                        </div>
+                        <div class='flex items-center gap-2'>
+                            <input type="radio" id="partialPayment_${course.id}" name="paymentType_${course.id}" value="partial">
+                            <label for="partialPayment_${course.id}" class="text-md font-semibold">Partial Payment</label>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="px-6 pt-4 pb-2">
-                <button id="submitPayment_${course.id}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Submit Payment
+            <div class="px-6 pt-1 pb-2">
+                <button id="submitPayment_${course.id}" class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full text-sm">
+                    Add Payments
                 </button>
             </div>`;
                             } else {
-
-                                paymentSection = `
-            <div class="px-6 pt-4 pb-2">
-                <h2 class="text-lg font-semibold mb-2">Payment Records:</h2>
-                <table class="min-w-full border-collapse border border-gray-300">
-                    <thead>
-                        <tr>
-                            <th class="border border-gray-300 px-4 py-2">Payment ID</th>
-                            <th class="border border-gray-300 px-4 py-2">Amount</th>
-                            <th class="border border-gray-300 px-4 py-2">Date of Payment</th>
-                            <th class="border border-gray-300 px-4 py-2">Status</th>
-                            <th class="border border-gray-300 px-4 py-2">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${course.payments.map(payment => `
-                                    <tr>
-                                        <td class="border border-gray-300 px-4 py-2">${payment.id}</td>
-                                        <td class="border border-gray-300 px-4 py-2">${payment.fees}</td>
-                                        <td class="border border-gray-300 px-4 py-2">${payment.date_of_payment}</td>
-                                        <td class="border border-gray-300 px-4 py-2">${payment.status}</td>
-                                        <td class="border border-gray-300 px-4 py-2">${payment.status === 1 ? 'Paid' :
-                                    `<button id="markPaid_${payment.id}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Mark as Paid</button>`}</td>
-                                    </tr>
-                                `).join('')}
-                    </tbody>
-                </table>
-            </div>`;
+                    
+                    paymentSection = `
+                        <ol class="relative border-s border-gray-200 dark:border-gray-700">                  
+                        ${course.payments.map((payment, i) => `
+                            <li class="mb-2 ms-4">
+                                <div class="absolute w-3 h-3 ${payment.status === 1? 'bg-green-600' : 'bg-gray-200'} rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                                <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">${payment.date_of_payment}</time>
+                                <h3 class="text-lg flex gap-2 items-center font-semibold text-gray-900 dark:text-white">
+                                    <span>₹${payment.fees}</span>
+                                    ${payment.status === 1 ? `<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+</svg>`: ''}
+                                    </h3>
+                                ${payment.status === 0 ? `<button id="markPaid_${payment.id}" class="bg-green-500 hover:bg-green-700 text-white font-semibold py-1 px-2 rounded">Mark as Paid</button>` : ``}
+                            </li>`).join('')}
+                        </ol>`;
                             }
 
                             return `
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden mx-4 my-4">
-            <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2">${course.name}</div>
-                <p class="text-gray-700 text-base">${course.description}</p>
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden ">
+            <div class="border bg-slate-50 px-4 py-2">
+                <div class="font-bold text-xl capitalize mb-1">${course.name} Course </div>
+                <div class="font-normal text-xs capitalize mb-1">Duration: ${course.duration} Weeks </div>
+                <div class="font-semibold text-teal-900 text-sm capitalize mb-2">Course Fees: ₹${course.discount_fees}/- <del class='text-slate-400'>₹${course.fees}/-</del></div>
             </div>
-            ${paymentSection}
+            <div class='px-4 py-2'>
+                ${paymentSection}
+            </div>
         </div>`;
                         }).join('');
 

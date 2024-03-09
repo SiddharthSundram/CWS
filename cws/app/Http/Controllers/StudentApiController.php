@@ -20,7 +20,7 @@ class StudentApiController extends Controller
         }
         $user = User::create(array_merge(
             $validator->validated(),
-            ['password' => $request->input("password","password")]
+            ['password' => $request->input("password","password"), "state" => 1]
         ));
         return response()->json([
             'message' => 'User successfully registered',
@@ -30,12 +30,31 @@ class StudentApiController extends Controller
 
     public function index(Request $request){
         $query = $request->get('query');
-        $perPage = $request->input('per_page', 4); // Default to 4 items per page if not specified
+        $perPage = $request->input('per_page', 10); // Default to 4 items per page if not specified
         
         if ($query) {
-            $users = User::where('name', 'LIKE', "%$query%")->where('is_admin', '!=', 1)->paginate($perPage);
+            $users = User::where('name', 'LIKE', "%$query%")->where([['is_admin', '!=', 1],['status', 1]])->paginate($perPage);
         } else {
-            $users = User::where('is_admin', '!=', 1)->paginate($perPage);
+            $users = User::where([['is_admin', '!=', 1],['status', 1]])->paginate($perPage);
+        }
+        
+        return response()->json($users);
+        
+    } 
+    public function count(Request $request){
+        $query = $request->get('status');
+        $users = User::where([['is_admin', '!=', 1],['status', $query]])->get();
+        return response()->json($users);
+        
+    } 
+    public function manageAdmission(Request $request){
+        $query = $request->get('query');
+        $perPage = $request->input('per_page', 5); // Default to 4 items per page if not specified
+        
+        if ($query) {
+            $users = User::where('name', 'LIKE', "%$query%")->where([['is_admin', '!=', 1],['status', 0]])->paginate($perPage);
+        } else {
+            $users = User::where([['is_admin', '!=', 1],['status', 0]])->paginate($perPage);
         }
         
         return response()->json($users);

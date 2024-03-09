@@ -2,9 +2,7 @@
 
 @section('content')
     <div class="flex-1 flex mt-12 items-center justify-between ">
-        <h1 class="text-lg font-semibold  py-2">Manage Students (<span id="counting">0</span>)</h1>
-        <a href="{{ route('insertStudent') }}" class="bg-indigo-500 text-white px-3 py-2 rounded"> 
-            <i class="fas fa-plus"></i> Add New Student</a>
+        <h1 class="text-lg font-semibold  py-2">Manage Admission (<span id="counting">0</span>)</h1>
 
     </div>
     <div class="overflow-x-auto">
@@ -71,8 +69,8 @@
                     <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.mobile_no}</td>     
                     <td class="border-b border-gray-200 px-3 py-2 text-sm">${new Date(student.created_at).toLocaleDateString()}</td>     
                     <td class="border-b border-gray-200 px-3 py-2 text-sm">
-                        <button type='button' class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded edit-btn' data-id='${student.id}'>Edit</button>
-                        <a href='/admin/student/view/${student.id}' class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded edit-btn'>View</a>
+                        <button type='button' class='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded edit-btn' data-id='${student.id}'>X</button>
+                        <a href='/admin/student/view/${student.id}' class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded edit-btn'>Approve</a>
                     </td>
                     </tr>
             `);
@@ -81,7 +79,7 @@
 
             function fetchStudents(query = '', page = 1) {
                 $.ajax({
-                    url: "{{ route('manage-student') }}",
+                    url: "{{ route('manage-admission') }}",
                     type: "GET",
                     data: {
                         'query': query,

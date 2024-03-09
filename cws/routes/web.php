@@ -16,16 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", [HomeController::class, 'index'])->name('index');
 Route::get("/login", [HomeController::class, 'signin'])->name('login');
 Route::get("/register", [HomeController::class, 'signup'])->name('register');
-
 Route::get("/my-profile", [HomeController::class, 'profile'])->name('profile');
-
-// to explore Course
 Route::get("/explore-course/{id}", [CourseController::class, 'exploreCourse'])->name('exploreCourse');
 
 // for user's course
 Route::get("/my-course", [HomeController::class, 'myCourse'])->name('myCourse');
-
-
 
 
 
@@ -68,6 +63,7 @@ Route::prefix('admin')->group(function () {
             Route::controller(StudentController::class)->group(function () {
                 Route::get("/insert", 'insertStudent')->name('insertStudent');
                 Route::get("/manage", 'manageStudent')->name('manageStudent');
+                Route::get("/manage/admission", 'manageAdmission')->name('manageAdmission');
                 Route::get("view/{id}", 'viewStudent')->name('viewStudent');
             });
         });
