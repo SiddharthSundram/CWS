@@ -2,15 +2,32 @@
 
 
 @section('content')
-    <div class="md:mb-52">
-        <div class="container mx-auto px-4 py-8">
+    <div>
+        <div class="container md:h-screen mx-auto px-4 py-8">
             <h1 class="text-3xl font-bold mb-4">My Courses</h1>
 
             <div class="container mx-auto px-4 py-8 flex flex-wrap gap-5 justify-center" id="courses-list">
                 {{-- my courses will call here --}}
 
             </div>
+            
+
+            {{-- when user dont have any course --}}
+            <div class="container mx-auto px-4 py-8 flex flex-wrap flex-col items-center gap-5 justify-center border border-gray-800 "
+                id="not-courses-list">
+                <div class="text-center">
+                    <h2 class="text-3xl text-red-600 font-bold">You haven't enrolled in any courses yet.</h2>
+                    <p class="mt-2 text-gray-600">Expand your knowledge and skills by enrolling in our courses.</p>
+                </div>
+                <div class="mt-4">
+                    <a href="{{ route('index') }}"
+                        class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 rounded-md shadow-md transition-colors duration-300">Enroll
+                        Now</a>
+                </div>
+            </div>
+
         </div>
+
     </div>
     <script>
         $(document).ready(function() {
@@ -24,17 +41,19 @@
                             'Authorization': 'Bearer ' + token
                         },
                         success: function(response) {
-                            // console.log(response);
                             let table = $("#courses-list");
+                            let notCoursesList = $("#not-courses-list");
                             table.empty();
 
+                            if (response.courses.length === 0) {
+                                table.hide();
+                                notCoursesList.show();
+                            } else {
+                                notCoursesList.hide();
+                                table.show();
 
-                            console.log(response);
-                            let courses = response.courses;
-
-                            courses.forEach((item) => {
-
-                                table.append(`
+                                response.courses.forEach((item) => {
+                                    table.append(`
                                 <div class="max-w-sm md:max-w-lg lg:max-w-xl xl:max-w-2xl bg-white rounded-lg shadow-md overflow-hidden">
                                     <img src="/image/${item.featured_image}" id="courseImage" alt="Course Image" class="w-full h-48 object-cover object-center">
                                     <div class="p-6">
@@ -46,18 +65,15 @@
                                         <a href="https://www.youtube.com/@CodewithsadiQ" target="_blank" class="block bg-blue-500 hover:bg-blue-600 text-white font-semibold text-center py-2 px-4 rounded">Start Learning</a>
                                     </div>
                                 </div>
-                                                        
                             `);
-
-
-                            })
-
+                                });
+                            }
                         },
                         error: function(xhr, status, error) {
                             console.error(error);
                         }
                     });
-                }
+                } 
                 else {
                     window.open('/', '_self');
                 }

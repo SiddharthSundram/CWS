@@ -2,19 +2,24 @@
 
 @section('content')
     <!-- Your existing content here -->
-    <div class="bg-gradient-to-br from-cyan-400 to-purple-400 py-16 px-4 text-center text-white">
+    <div class="bg- py-16 px-4 text-center text-gray-800">
         <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
-            <div class="md:w-1/2 md:pr-8 mb-4 md:mb-0 ">
+            <div class="md:w-1/2 md:pr-8 text-left mb-4 md:mb-0 ">
                 <h1 class="text-4xl font-bold mb-4">Code with Sadiq</h1>
                 <p class="text-lg mb-8">Where coding brilliance meets expert guidance. From novice to expert, our platform
                     offers personalized coaching and comprehensive courses to elevate your coding skills. Join a vibrant
                     community and unlock your coding potential today.</p>
                 <a href="#"
-                    class="bg-white text-gray-900 hover:bg-gray-800 hover:text-white px-6 py-3 rounded-full font-semibold transition duration-300">Join
+                    class="bg-gray-400 text-gray-900 hover:bg-gray-600 hover:text-gray-200 px-6 py-3 rounded-full font-semibold transition duration-300">Join
                     now</a>
             </div>
-            <div class="md:w-1/2 md:flex md:justify-center  md:order-1 ">
-                <img src="/images/banner.png" alt="Sadiq" class="w-96 md:mx-0 rounded-lg ">
+            <div class="md:w-1/2 md:flex md:justify-center  md:order-1 " id="imageContainer">
+                <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
+                <dotlottie-player src="https://lottie.host/b1cdc270-cb11-43d1-98bb-70908a25bee3/8yR9uwNh8b.json"
+                    background="transparent" speed="1" class="w-full h-100"  loop
+                    autoplay></dotlottie-player>
+                {{-- <img src="/hero section.json" alt="Sadiq" class="w-96 md:mx-0 rounded-lg "> --}}
             </div>
         </div>
 
@@ -77,6 +82,8 @@
         </div>
     </div>
     <script>
+       
+
         $(document).ready(function() {
             let callingcourse = () => {
                 $.ajax({

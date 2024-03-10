@@ -1,8 +1,8 @@
 @extends('home.layout')
 
 @section('content')
-    <div class="md:mb-40">
-        <div class="container mx-auto p-8">
+    <div class="">
+        <div class="container md:h-screen mx-auto p-8">
             <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center justify-center">
 
                 <div class="md:w-1/2 md:mr-4 md:mb-5 md:flex md:flex-col items-center">
