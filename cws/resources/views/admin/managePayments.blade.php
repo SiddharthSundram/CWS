@@ -31,11 +31,11 @@
                 <thead class="bg-gray-100">
                     <tr>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Id</th>
-                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Name</th>
-                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Email</th>
-                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Contact No.</th>
+                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Student Name</th>
+                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Course Name</th>
+                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Fees</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Date of Payment</th>
-                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Admission Date</th>
+                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Created at</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Actions</th>
                     </tr>
                 </thead>
@@ -83,7 +83,7 @@
                 <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.user.name}</td>
                 <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.course.name}</td> 
                 <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.fees}</td>     
-                <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.date_of_payment == "NULL" && new Date(payment.date_of_payment).toLocaleDateString()}</td>     
+                <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.date_of_payment ? new Date(payment.date_of_payment).toLocaleDateString() : "NULL"}</td>     
                 <td class="border-b border-gray-200 px-3 py-2 text-sm">${new Date(payment.created_at).toLocaleDateString()}</td>     
                 <td class="border-b border-gray-200 px-3 py-2 text-sm">
                     ${payment.status === 1 ? '<span class="bg-green-500 px-2 py-1 text-white">Paid</span>' : '<span class=" px-2 py-1 text-white bg-red-500">Due</span>'}
