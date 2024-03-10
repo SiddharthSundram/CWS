@@ -27,7 +27,7 @@
                 class="w-full p-3 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex items-center justify-between mb-4">
                     <h5 class="text-sm font-normal leading-none text-gray-900 dark:text-white">Help Query</h5>
-                    <a href="" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                    <a href="{{route('manageQuery')}}" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
                         View all
                     </a>
                 </div>
