@@ -14,6 +14,7 @@ use App\Http\Controllers\RecentProjectApiController;
 use App\Http\Controllers\SearchApiController;
 use App\Http\Controllers\StudentApiController;
 use App\Http\Controllers\StudentCourseController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,10 @@ Route::apiResource('category',CategoryApiController::class);
 
 //api for  Courses operations
 Route::apiResource("course",CourseApiController::class);
+
+Route::apiResource("contact",ContactController::class);
+Route::get('/admin/manage-message',[ContactController::class,"manageMessage"])->name("manage-message");
+
 
 //api for recent project operations
 Route::apiResource("recent_project",RecentProjectApiController::class);
