@@ -1,7 +1,7 @@
 @extends('home.layout')
 
 @section('content')
-    <div class="md:mt-20 mt-16 md:mb-32 ">
+    <div class="md:mt-20 p-3 md:mb-32 ">
         <div class="container mx-auto my-8 px-4">
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">Need Assistance?</h2>
@@ -54,7 +54,7 @@
 
                     <!-- FAQs -->
                     <div class="w-full md:w-2/3">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Frequently Asked Questions</h3>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Frequently Asked Questions</h3>
                         <!-- FAQ List -->
                         <div class="space-y-4">
                             <!-- FAQ Item 1 -->

@@ -1,7 +1,7 @@
 @extends('home.layout')
 
 @section('content')
-    <div class="bg-gray-200">
+    <div class="bg-gray-200 p-3">
         <div class="container mx-auto py-8">
             <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
 

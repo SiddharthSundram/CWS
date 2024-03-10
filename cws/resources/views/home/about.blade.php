@@ -1,7 +1,7 @@
 @extends('home.layout')
 
 @section('content')
-    <div class="bg-gray-200">
+    <div class="bg-gray-200 p-3">
         <div class="container mx-auto py-8">
             <h1 class="text-3xl font-bold text-center mb-8">Purnea's Premier Programming Institute!</h1>
 
