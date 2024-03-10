@@ -121,7 +121,7 @@
                 <li>
                     <button type="button"
                         class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                        aria-controls="category-dropdown" data-collapse-toggle="category-dropdown">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
                             class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
@@ -137,26 +137,10 @@
                                 d="m1 1 4 4 4-4" />
                         </svg>
                     </button>
-                    <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                    <ul id="category-dropdown" class="hidden py-2 space-y-2">
 
                         {{-- courese category will dynamicaly will call here --}}
 
-
-                        <li>
-                            <a href="#"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Web
-                                Devlopment</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Machine
-                                Learning</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Android
-                                Devlopment</a>
-                        </li>
                     </ul>
                 </li>
 
@@ -451,8 +435,28 @@
                     }
                 });
             });
+        let callingCategory = () => {
+            $.ajax({
+                type: "GET",
+                url: "{{ route('category.index') }}",
+                success: function(response) {
+                    let table = $("#category-dropdown");
+                    table.empty();
 
-        });
+                    let data = response.data;
+                    data.forEach((item) => {
+                        console.log(item)
+                        table.append(`
+                            <li>
+                                <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">${item.cat_title}</a>
+                            </li>
+                        `);
+                    });
+                }
+            });
+        }
+        callingCategory();
+    });
     </script>
 
 
