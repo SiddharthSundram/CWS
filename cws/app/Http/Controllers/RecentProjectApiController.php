@@ -15,8 +15,8 @@ class RecentProjectApiController extends Controller
      */
     public function index()
     {
-        $recent_projects = RecentProject::all();
-        return response()->json(["data" => $recent_projects]);
+        $recentProjects = RecentProject::with('user')->get();
+        return response()->json(['data' => $recentProjects]);
     }
 
 
@@ -28,6 +28,8 @@ class RecentProjectApiController extends Controller
         $recent = new RecentProject();
         $recent->name = $request->name;
         $recent->description = $request->description;
+        $recent->user_id = $request->user_id;
+        $recent->url = $request->url;
         $recent->save();
         return response()->json(['data' => $recent, "success" => true, "msg" => "RecentProject Inserted Succcessfully"]);
     }
@@ -55,6 +57,8 @@ class RecentProjectApiController extends Controller
     {
         $recentProject->name = $request->name;
         $recentProject->description = $request->description;
+        $recentProject->user_id = $request->user_id;
+        $recentProject->url = $request->url;
         $recentProject->save();
         return response()->json(['data' => $recentProject, "success" => true, "msg" => "RecentProject Updated Succcessfully"]);
     }

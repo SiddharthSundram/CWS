@@ -10,6 +10,8 @@
                         <th scope="col" class="px-6 py-3">Id</th>
                         <th scope="col" class="px-6 py-3">Name</th>
                         <th scope="col" class="px-6 py-3">Description</th>
+                        <th scope="col" class="px-6 py-3">User</th>
+                        <th scope="col" class="px-6 py-3">URL</th>
                         <th scope="col" class="px-6 py-3">Action</th>
                     </tr>
                 </thead>
@@ -31,6 +33,22 @@
                             <label for="projectDescription" class="block text-sm font-medium text-gray-700">Description</label>
                             <textarea id="projectDescription" name="description" cols="30" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
                         </div>
+                        <div class="mb-4">
+                            <label for="editProjectUser"
+                            class="block text-sm font-medium text-gray-700">Project User</label>
+
+                        <select id="editProjectUser" name="user_id"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            >
+                            
+                        </select>
+                    </div>
+                 
+                        <div class="mb-4">
+                            <label for="projectUrl" class="block text-sm font-medium text-gray-700">Name Of URL</label>
+                            <input type="text" id="projectUrl" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" name="url" placeholder="https://-">
+                        </div>
+                       
                         <div class="mb-4">
                             <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Insert Project</button>
                         </div>
@@ -61,6 +79,17 @@
                             <label for="editProjectDescription" class="block text-sm font-medium text-gray-700">Description</label>
                             <textarea class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editProjectDescription" name="description" rows="3" required></textarea>
                         </div>
+                        <div class="mb-4">
+                            <label for="editProjectUser"
+                                class="block text-sm font-medium text-gray-700">Project User</label>
+                                <select id="editProjectUser" name="user_id"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="editProjectName" class="block text-sm font-medium text-gray-700">Project Url</label>
+                            <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editProjectUrl" name="url" required>
+                        </div>
+                        
                         <div class="flex justify-between">
                             <button type="submit" class="inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Save changes</button>
                             <button type="button" id="cancelEditProject" class="inline-block px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancel</button>
@@ -82,15 +111,21 @@
             success: function(response) {
                 $("#callproject").empty();
                 $.each(response.data, function(index, project) {
-                    $("#callproject").append(`<tr>
-                    <td scope="col" class="px-6 py-3">${project.id}</td>
-                    <td scope="col" class="px-6 py-3">${project.name}</td>
-                    <td scope="col" class="px-6 py-3">${project.description}</td>
-                    <td scope="col" class="px-6 py-3 flex gap-2">
-                        <button type='button' class='bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded delete-btn' data-id='${project.id}'>X</button>
-                        <button data-modal-target="#default-modal" data-modal-toggle="default-modal" class="edit-btn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-id='${project.id}'>Edit</button>
-                    </td>
-                </tr>`);
+                    $("#callproject").append(`<tr class="hover:bg-gray-100">
+                        <td class="border p-2">${project.id}</td>
+                        <td class="border p-2">${project.name}</td>                                        
+                        <td class="border p-2">${project.description}</td>                                            
+                        <td class="border p-2">${project.user.name}</td>    
+                        <td class="border p-2">${project.url}</td>                                            
+                        <td class="py-2 px-4 border">
+                            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded-sm delete-btn" data-id="${project.id}">
+                                <i class="fas fa-trash"></i>X
+                            </button>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-sm edit-btn" data-id="${project.id}">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </td>
+                    </tr>`);
                 });
             },
             error: function(xhr, status, error) {
@@ -99,9 +134,33 @@
         });
     }
 
+    function populateUsers() {
+    $.ajax({
+        type: "GET",
+        url: "/api/admin/callingStudents",
+        success: function(response) {
+            let select = $("#editProjectUser");
+            select.empty();
+            let users = response.students;
+
+            // Loop through each user and add them to the select element
+            users.forEach(function(user) {
+                let option = $("<option>");
+                option.val(user.id); 
+                option.text(user.name); 
+                select.append(option);
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error("Error fetching users:", error);
+        }
+    });
+}
+
     // Call fetchProjects initially
     $(document).ready(function() {
-        fetchProjects();
+        populateUsers(); // Call populateUsers first
+    fetchProjects();
 
         // Handle form submission for inserting a new project
         $("#insertProject").submit(function(e) {
@@ -144,48 +203,51 @@
 
         // Handle edit button click
         $(document).on('click', '.edit-btn', function() {
-            var projectId = $(this).data('id');
-            $.ajax({
-                type: 'GET',
-                url: `/api/recent_project/${projectId}`,
-                dataType: 'json',
-                success: function(response) {
-                    $('#editProjectId').val(response.data.id);
-                    $('#editProjectName').val(response.data.name);
-                    $('#editProjectDescription').val(response.data.description);
-                    $('#default-modal').show(); // Show the edit modal
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error fetching project details for editing:', error);
-                }
+                var projectId = $(this).data('id');
+                $.ajax({
+                    type: 'GET',
+                    url: `/api/recent_project/${projectId}`,
+                    dataType: 'json',
+                    success: function(response) {
+                        $('#editProjectId').val(response.data.id);
+                        $('#editProjectName').val(response.data.name);
+                        $('#editProjectDescription').val(response.data.description);
+                        $('#editProjectUser').val(response.data.user_id);
+                        $('#editProjectUrl').val(response.data.url);
+                        $('#default-modal').removeClass('hidden');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching project details for editing:', error);
+                    }
+                });
             });
-        });
 
-        // Handle cancel button click for the edit modal
-        $('#cancelEditProject').click(function() {
-            $('#default-modal').hide();
-        });
-
-        // Handle form submission for editing project
-        $('#editProjectForm').submit(function(e) {
-            e.preventDefault();
-            var formData = $(this).serialize();
-            var projectId = $('#editProjectId').val();
-            $.ajax({
-                type: 'PUT',
-                url: `/api/recent_project/${projectId}`,
-                data: formData,
-                dataType: 'json',
-                success: function(response) {
-                    swal("Success", response.msg, "success");
-                    $('#default-modal').hide(); // Show the edit modal
-                    fetchProjects(); // Refresh the project list
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error updating project:', error);
-                }
+            // Handle cancel button click for the edit modal
+            $('#cancelEditProject').click(function() {
+                $('#default-modal').addClass('hidden'); // Add the 'hidden' class to hide the modal
             });
-        });
+
+            // Handle form submission for editing project
+            $('#editProjectForm').submit(function(e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                var projectId = $('#editProjectId').val();
+                $.ajax({
+                    type: 'PUT',
+                    url: `/api/recent_project/${projectId}`,
+                    data: formData,
+                    dataType: 'json',
+                    success: function(response) {
+                        swal("Success", response.msg, "success");
+                        $('#default-modal').addClass('hidden'); // Add the 'hidden' class to hide the modal
+                        fetchProjects(); // Refresh the project list
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error updating project:', error);
+                    }
+                });
+            });
+
 
     });
 

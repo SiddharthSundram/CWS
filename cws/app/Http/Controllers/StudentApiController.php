@@ -71,6 +71,24 @@ class StudentApiController extends Controller
     return response()->json($user);
     }
 
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->id = $request->id; // Adjusting to match the input name
+        $user->name = $request->name; // Adjusting to match the input name
+        $user->email = $request->email; 
+        $user->mobile_no = $request->mobile_no; 
+        $user->status = $request->status; 
+        $user->save();
+
+        return response()->json([
+            'user' => $user,
+            'success' => true,
+            'msg' => 'Student updated successfully'
+        ]);
+    }
+
 
     public function destroy(User $id)
     {
@@ -87,5 +105,10 @@ class StudentApiController extends Controller
             return response()->json(['message' => 'Failed to delete student', 'error' => $e->getMessage()], 500);
         }
     }
+    public function callingStudents(){
+        $students = User::all();
+        return response()->json(['students' => $students]);
+    }
+    
 }
     
