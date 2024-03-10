@@ -30,6 +30,22 @@ Route::get("/explore-course/{id}", [CourseController::class, 'exploreCourse'])->
 Route::get("/my-course", [HomeController::class, 'myCourse'])->name('myCourse');
 
 
+// about page
+Route::get('/about',[HomeController::class,'about'])->name('about');
+
+
+// terms and condition page
+Route::get('/terms-&-condition',[HomeController::class,'tandc'])->name('tandc');
+
+// privacy and policy page
+Route::get('/privacy-policy',[HomeController::class,'privacy'])->name('privacy');
+
+
+// privacy and policy page
+Route::get('/help',[HomeController::class,'help'])->name('help');
+
+
+
 
 // Admin related routes 
 Route::prefix('admin')->group(function () {

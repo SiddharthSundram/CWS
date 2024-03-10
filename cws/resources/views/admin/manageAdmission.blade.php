@@ -62,9 +62,9 @@
                 role="dialog" aria-modal="true" aria-labelledby="editStudentModalLabel">
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <h5 class="text-lg font-semibold mb-4" id="editStudentModalLabel">Edit Student</h5>
-                    <form id="editStudentForm">
+                    <form id="editStudentForm" method="post">
 
-                        <input type="hidden" id="editStudentId" name="id">
+                        <input type="text" id="editStudentId" name="id">
                         <div class="mb-4">
                             <label for="editStudentName" class="block text-sm font-medium text-gray-700">Name</label>
                             <input type="text"
@@ -190,6 +190,7 @@
                     url: `/api/admin/student/view/${userId}`,
                     dataType: 'json',
                     success: function(response) {
+                        $('#editStudentId').val(response.id);
                         $('#editStudentName').val(response.name);
                         $('#editStudentStatus').val(response.status);
                         $('#editStudentEmail').val(response.email);
@@ -211,7 +212,7 @@
             $('#editStudentForm').submit(function(e) {
                 e.preventDefault();
                 $.ajax({
-                    type: 'POST',
+                    type: 'PUT',
                     url: '/api/admin/student/edit/'+ $('#editStudentId').val(),
                     data: new FormData(this),
                     dataType: "JSON",

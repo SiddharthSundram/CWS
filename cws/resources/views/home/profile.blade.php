@@ -9,11 +9,15 @@
                     <img id="profile-image" class="h-32 w-32 rounded-full object-cover" src="https://via.placeholder.com/150"
                         alt="Profile Picture">
                 </div>
-            </div><div class="flex justify-center space-x-4">
-                <a href="#" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 inline-block text-center">Change Image</a>
-                <a href="" id="logouting" class="px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 focus:outline-none focus:bg-red-600 inline-block text-center">Logout</a>
             </div>
-            
+            <div class="flex justify-center space-x-4">
+                <a href="#"
+                    class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 inline-block text-center">Change
+                    Image</a>
+                <a href="" id="logouting"
+                    class="px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 focus:outline-none focus:bg-red-600 inline-block text-center">Logout</a>
+            </div>
+
             <div class="flex flex-col space-y-4" id="callingUserProfile">
                 <div class="flex gap-2">
                     <label for="name" class="text-gray-700 dark:text-gray-300 font-semibold">Name: </label>
@@ -57,6 +61,8 @@
                     });
                 }
                 callingProfile();
+            } else {
+                window.open('/', '_self');
             }
 
             $('#logouting').click(function(e) {

@@ -26,6 +26,23 @@ class HomeController extends Controller
         return view("home.myCourse");
     }
 
+    public function about(){
+        return view("home.about");
+    }
+
+    public function tandc(){
+        return view("home.tAndC");
+    }
+
+    public function privacy(){
+        return view("home.privacy");
+    }
+
+
+    public function help(){
+        return view("home.help");
+    }
+
 
     
 }
