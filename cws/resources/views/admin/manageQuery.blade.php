@@ -1,8 +1,9 @@
+
 @extends('admin.base')
 
 @section('content')
     <div class="flex-1 flex mt-12 items-center justify-between ">
-        <h1 class="text-lg font-semibold  py-2">Manage Admission (<span id="counting">0</span>)</h1>
+        <h1 class="text-lg font-semibold  py-2">Manage Query (<span id="counting">0</span>)</h1>
 
     </div>
     <div class="overflow-x-auto">
@@ -29,11 +30,12 @@
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Name</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Email</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Contact No.</th>
+                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Message</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Admission Date</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Actions</th>
                     </tr>
                 </thead>
-                <tbody id="callingStudent">
+                <tbody id="callingMessage">
                     <!-- Table rows will be dynamically added here -->
            
                 </tbody>
@@ -106,129 +108,80 @@
     </div>
 
     <script>
-        $(document).ready(function() {
+       $(document).ready(function() {
+    // Function to fetch messages
+    let fetchMessages = (query = '', page = 1) => {
+        $.ajax({
+            url: "{{ route('manage-message') }}",
+            type: "GET",
+            data: {
+                'query': query,
+                'page': page
+            },
+            success: function(response) {
+                let data = response.data;
 
-            let callingStudent = (data) => {
-                let table = $("#callingStudent");
+                
+                let table = $("#callingMessage");
                 table.empty();
-                let len = data.length;
 
+                let len = data.length;
                 $("#counting").html(len);
 
-                data.forEach((student) => {
+                data.forEach((message) => {
                     table.append(`
-                    <tr>
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.id}</td> 
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.name}</td>
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.email}</td> 
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.mobile_no}</td>     
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${new Date(student.created_at).toLocaleDateString()}</td>     
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">
-                        <button type='button' class='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded edit-btn' data-id='${student.id}'>X</button>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-sm edit-btn" data-id="${student.id}">
-                                <i class="fas fa-edit"></i> Edit</button>
-                    </td>
-                    </tr>
-            `);
+                       
+                        <tr>
+                            <td class="border-b border-gray-200 px-3 py-2 text-sm">${message.id}</td> 
+                            <td class="border-b border-gray-200 px-3 py-2 text-sm">${message.name}</td>
+                            <td class="border-b border-gray-200 px-3 py-2 text-sm">${message.email}</td> 
+                            <td class="border-b border-gray-200 px-3 py-2 text-sm">${message.mobile_no}</td>     
+                            <td class="border-b border-gray-200 px-3 py-2 text-sm">${message.message}</td>     
+                            <td class="border-b border-gray-200 px-3 py-2 text-sm">${new Date(message.created_at).toLocaleDateString()}</td>     
+                            <td class="border-b border-gray-200 px-3 py-2 text-sm">
+                                <a href='/admin/student/view/${message.id}' class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded edit-btn'>View</a>
+                            </td>
+                        </tr>
+                    `);
                 });
+
+                // Update pagination links
+                let paginationLinks = '';
+                if (response.prev_page_url) {
+                    paginationLinks +=
+                        `<a href="#" class="pagination-link px-3 py-1 bg-blue-200 text-blue-800 mx-1 rounded" data-page="${response.current_page - 1}">${response.current_page - 1}</a>`;
+                }
+                paginationLinks +=
+                    `<span class="px-3 py-1 bg-blue-500 text-white mx-1 rounded">${response.current_page}</span>`;
+                if (response.next_page_url) {
+                    paginationLinks +=
+                        `<a href="#" class="pagination-link px-3 py-1 bg-blue-200 text-blue-800 mx-1 rounded" data-page="${response.current_page + 1}">${response.current_page + 1}</a>`;
+                }
+                $('#pagination').html(paginationLinks);
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
             }
-
-            function fetchStudents(query = '', page = 1) {
-                $.ajax({
-                    url: "{{ route('manage-admission') }}",
-                    type: "GET",
-                    data: {
-                        'query': query,
-                        'page': page
-                    },
-                    success: function(response) {
-                        let data = response.data;
-                        callingStudent(data);
-
-                        // Update pagination links
-                        let paginationLinks = '';
-                        if (response.prev_page_url) {
-                            paginationLinks +=
-                                `<a href="#" class="pagination-link px-3 py-1 bg-blue-200 text-blue-800 mx-1 rounded" data-page="${response.current_page - 1}">${response.current_page - 1}</a>`;
-                        }
-                        paginationLinks +=
-                            `<span class="px-3 py-1 bg-blue-500 text-white mx-1 rounded">${response.current_page}</span>`;
-                        if (response.next_page_url) {
-                            paginationLinks +=
-                                `<a href="#" class="pagination-link px-3 py-1 bg-blue-200 text-blue-800 mx-1 rounded" data-page="${response.current_page + 1}">${response.current_page + 1}</a>`;
-                        }
-                        $('#pagination').html(paginationLinks);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            }
-
-            $(document).ready(function() {
-                // Initial load
-                fetchStudents();
-
-                $("#searchInput").on("input", function(e) {
-                    e.preventDefault();
-                    var query = $(this).val();
-                    fetchStudents(query);
-                });
-
-                $(document).on('click', '.pagination-link', function(e) {
-                    e.preventDefault();
-                    let page = $(this).text();
-                    fetchStudents('', page);
-                });
-            });
-
-             // Edit student button click handler
-             $(document).on('click', '.edit-btn', function() {
-                var userId = $(this).data('id');
-                $.ajax({
-                    type: 'GET',
-                    url: `/api/admin/student/view/${userId}`,
-                    dataType: 'json',
-                    success: function(response) {
-                        $('#editStudentId').val(response.id);
-                        $('#editStudentName').val(response.name);
-                        $('#editStudentStatus').val(response.status);
-                        $('#editStudentEmail').val(response.email);
-                        $('#editStudentMobile').val(response.mobile_no);
-                        $('#editStudentModal').removeClass('hidden');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching course details for editing:', error);
-                    }
-                });
-            });
-
-            // Cancel edit course button click handler
-            $('#cancelEditStudent').click(function() {
-                $('#editStudentModal').addClass('hidden');
-            });
-
-            // Submit edit course form
-            $('#editStudentForm').submit(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: 'PUT',
-                    url: '/api/admin/student/edit/'+ $('#editStudentId').val(),
-                    data: new FormData(this),
-                    dataType: "JSON",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(response) {
-                        $('#editStudentModal').addClass('hidden');
-                        fetchStudents();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error updating course:', error);
-                    }
-                });
-            });
-
         });
+    };
+
+    // Initial load of messages
+    fetchMessages();
+
+    // Search input event handler
+    $("#searchInput").on("input", function(e) {
+        e.preventDefault();
+        var query = $(this).val();
+        fetchMessages(query);
+    });
+
+    // Pagination link click event handler
+    $(document).on('click', '.pagination-link', function(e) {
+        e.preventDefault();
+        let page = $(this).data('page');
+        fetchMessages('', page);
+    });
+});
+
     </script>
 @endsection

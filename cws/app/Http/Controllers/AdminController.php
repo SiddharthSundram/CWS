@@ -70,4 +70,9 @@ class AdminController extends Controller
         Auth::guard("admin")->logout();
         return redirect()->route("adminLogin")->with("error","Logout Successfully");
     }
+
+
+    public function manageQuery(){
+        return view('admin.manageQuery');
+    }
 }

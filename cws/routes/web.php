@@ -81,6 +81,13 @@ Route::prefix('admin')->group(function () {
             });
         });
 
+          // Route for query operations
+          Route::prefix('query-message')->group(function () {
+            Route::controller(AdminController::class)->group(function () {
+                Route::get("/manage", 'manageQuery')->name('manageQuery');
+            });
+        });
+
         // Route for student operations
         Route::prefix('student')->group(function () {
             Route::controller(StudentController::class)->group(function () {

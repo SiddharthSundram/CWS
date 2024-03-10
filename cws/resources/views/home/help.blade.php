@@ -21,26 +21,30 @@
                         <!-- Contact Form -->
                         {{-- have to create a contact table for this and submit this query . Then this query will called in admin panel --}}
                         <div class="mt-6 bg-white border border-gray-200 p-4 rounded-lg">
-                            <form action="#" method="POST">
+                            <form id="contactForm" method="POST">
                                 <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
                                 <input type="text" id="name" name="name"
-                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200" placeholder="Ex: Siddharth">
+                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200"
+                                    placeholder="Ex: Rishav">
 
                                 <label for="email" class="block mt-2 text-sm font-medium text-gray-700">Your
                                     Email</label>
                                 <input type="email" id="email" name="email"
-                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200" placeholder="Ex: siddharth@gmail.com">
+                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200"
+                                    placeholder="Ex: Rishav@gmail.com">
 
-                                <label for="mobile_no" class="block mt-2 text-sm font-medium text-gray-700">Your
-                                    Mobile Number</label>
+                                <label for="mobile_no" class="block mt-2 text-sm font-medium text-gray-700">Your Mobile
+                                    Number</label>
                                 <input type="tel" id="mobile_no" name="mobile_no"
-                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200" placeholder="Ex: 6202067088">
+                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200"
+                                    placeholder="Ex: 6202067088">
 
                                 <label for="message" class="block mt-2 text-sm font-medium text-gray-700">Message</label>
                                 <textarea id="message" name="message" rows="4"
-                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200" placeholder="Your Query"></textarea>
+                                    class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200"
+                                    placeholder="Your Query"></textarea>
 
-                                <button type="submit"
+                                <button type="submit" id="submitBtn"
                                     class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:border-blue-700 focus:ring-blue active:bg-blue-700 transition ease-in-out duration-150">
                                     Submit
                                 </button>
@@ -96,4 +100,54 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            //insert teacher
+            $("#contactForm").submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('contact.store') }}",
+                    data: new FormData(this),
+                    dataType: "JSON",
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(response) {
+                        swal("Success", response.msg, "success");
+                        $("#insertQuery").trigger("reset");
+
+                        window.open("/index", "_self");
+                    }
+                })
+            })
+        })
+        $(document).ready(function() {
+            $('#contactForm').submit(function(event) {
+                // Prevent the default form submission
+                event.preventDefault();
+
+                // Serialize the form data
+                var formData = $(this).serialize();
+
+                // Send the AJAX request
+                $.ajax({
+                    url: '{{ route('contact.store') }}', // Assuming you have named route for the store method
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        // Reset the form after successful submission
+                        $('#contactForm')[0].reset();
+                        // Optionally, display a success message to the user
+                        alert('Query stored successfully');
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error here
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
