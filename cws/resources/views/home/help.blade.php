@@ -25,13 +25,13 @@
                                 <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
                                 <input type="text" id="name" name="name"
                                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200"
-                                    placeholder="Ex: Rishav">
+                                    placeholder="Ex: Siddharth">
 
                                 <label for="email" class="block mt-2 text-sm font-medium text-gray-700">Your
                                     Email</label>
                                 <input type="email" id="email" name="email"
                                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200"
-                                    placeholder="Ex: Rishav@gmail.com">
+                                    placeholder="Ex: Siddharth@gmail.com">
 
                                 <label for="mobile_no" class="block mt-2 text-sm font-medium text-gray-700">Your Mobile
                                     Number</label>
