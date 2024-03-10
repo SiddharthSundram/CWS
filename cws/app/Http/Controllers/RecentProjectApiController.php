@@ -13,7 +13,7 @@ class RecentProjectApiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $recentProjects = RecentProject::with('user')->get();
         return response()->json(['data' => $recentProjects]);
@@ -49,6 +49,20 @@ class RecentProjectApiController extends Controller
     {
         //
     }
+
+        public function manageProject(Request $request)
+        {
+            $query = $request->get('query');
+            $perPage = $request->input('per_page', 1); // Default to 1 item per page if not specified
+
+            if ($query) {
+                $recent_project = RecentProject::where('name', 'LIKE', "%$query%")->paginate($perPage);
+            } else {
+                $recent_project = RecentProject::paginate($perPage);
+            }
+
+            return response()->json($recent_project);
+        }
 
     /**
      * Update the specified resource in storage.

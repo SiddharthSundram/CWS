@@ -49,8 +49,12 @@ Route::apiResource('category',CategoryApiController::class);
 //api for  Courses operations
 Route::apiResource("course",CourseApiController::class);
 
+
+
 //api for recent project operations
-Route::apiResource("recent_project",RecentProjectApiController::class);
+Route::apiResource("recent_project", RecentProjectApiController::class);
+Route::get('/manage-Recent_project', [RecentProjectApiController::class, 'manageProject'])->name('manage_Recent_project');
+
 
 //api for hallframe operations
 Route::apiResource("hallFrame",HallFrameApiApiController::class);
