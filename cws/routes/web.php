@@ -44,6 +44,9 @@ Route::get('/privacy-policy',[HomeController::class,'privacy'])->name('privacy')
 // privacy and policy page
 Route::get('/help',[HomeController::class,'help'])->name('help');
 
+// for achievements  page
+Route::get('/achievements',[HomeController::class,'achievements'])->name('achievements');
+
 
 
 

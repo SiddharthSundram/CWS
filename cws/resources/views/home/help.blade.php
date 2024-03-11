@@ -1,7 +1,7 @@
 @extends('home.layout')
 
 @section('content')
-    <div class="md:mt-20 mt-16 md:mb-32 ">
+    <div class="md:mt-20 p-3 md:mb-32 ">
         <div class="container mx-auto my-8 px-4">
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">Need Assistance?</h2>
@@ -25,13 +25,13 @@
                                 <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
                                 <input type="text" id="name" name="name"
                                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200"
-                                    placeholder="Ex: Rishav">
+                                    placeholder="Ex: Siddharth">
 
                                 <label for="email" class="block mt-2 text-sm font-medium text-gray-700">Your
                                     Email</label>
                                 <input type="email" id="email" name="email"
                                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200"
-                                    placeholder="Ex: Rishav@gmail.com">
+                                    placeholder="Ex: Siddharth@gmail.com">
 
                                 <label for="mobile_no" class="block mt-2 text-sm font-medium text-gray-700">Your Mobile
                                     Number</label>
@@ -54,7 +54,7 @@
 
                     <!-- FAQs -->
                     <div class="w-full md:w-2/3">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Frequently Asked Questions</h3>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Frequently Asked Questions</h3>
                         <!-- FAQ List -->
                         <div class="space-y-4">
                             <!-- FAQ Item 1 -->

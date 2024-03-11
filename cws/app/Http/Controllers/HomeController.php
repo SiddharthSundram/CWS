@@ -43,6 +43,10 @@ class HomeController extends Controller
         return view("home.help");
     }
 
+    public function achievements(){
+        return view("home.achievements");
+    }
+
 
     
 }
