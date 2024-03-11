@@ -46,6 +46,7 @@ Route::post('/refresh', [AuthController::class, 'refresh']);
 
 // api for category operations
 Route::apiResource('category',CategoryApiController::class);
+Route::get('/view-category/{id}',[CategoryApiController::class,"viewCategory"])->name("viewCategory");
 
 //api for  Courses operations
 Route::apiResource("course",CourseApiController::class);

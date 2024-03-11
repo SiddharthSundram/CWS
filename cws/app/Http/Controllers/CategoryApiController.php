@@ -68,4 +68,12 @@ class CategoryApiController extends Controller
         $Category->delete();
         return response()->json(['data' => $Category, "success" => true, "msg" => "Category delete Succcessfully"]);
     }
+
+    public function viewCategory($id)
+    {       
+        $category = Category::findOrFail($id); 
+        $courses = $category->courses()->get();
+
+        return response()->json(["data" => $courses]);
+    }
 }
