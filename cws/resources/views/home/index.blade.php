@@ -5,14 +5,15 @@
     <div class=" py-16 px-4 text-center text-gray-800">
         <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
             <div class="md:w-1/2 md:pr-8 text-left mb-4 md:mb-0 ">
-                <h1 class="text-4xl font-bold mb-4">Upskilling Made <span id="autoText" class="text-orange-500"></span> </h1>
+                <h1 class="text-3xl font-bold mb-4">Upskilling Made <span id="autoText" class="text-orange-500"></span> </h1>
                 <p class="text-lg mb-8">Where coding brilliance meets expert guidance. From novice to expert, our platform
                     offers personalized coaching and comprehensive courses to elevate your coding skills. Join a vibrant
                     community and unlock your coding potential today.</p>
-                <a href="#"
-                    class="bg-gray-400 text-gray-900 hover:bg-gray-600 hover:text-gray-200 px-6 py-3 rounded-full font-semibold transition duration-300">Join
-                    now</a>
+              
+                    <a href="" class="inline-block border border-black text-white bg-black px-4 py-2 rounded-full  hover:bg-gray-800 hover:text-white transition duration-300 ease-in-out login-link">Join Now</a>
             </div>
+
+
             <div class="md:w-1/2 md:flex md:justify-center  md:order-1 " id="imageContainer">
                 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 
@@ -110,9 +111,9 @@
                     clearInterval(interval);
                     setTimeout(function() {
                         deleteWord(word);
-                    }, 2000); 
+                    }, 2000);
                 }
-            }, 200); 
+            }, 200);
         }
 
         function deleteWord(word) {
@@ -122,18 +123,18 @@
                 i--;
                 if (i < 0) {
                     clearInterval(interval);
-                    setTimeout(clearOutput, 100); 
+                    setTimeout(clearOutput, 100);
                 }
-            }, 100); 
+            }, 100);
         }
 
         function clearOutput() {
-            output.textContent = "<>"; 
+            output.textContent = "<>";
             currentIndex = (currentIndex + 1) % words
-            .length; 
+                .length;
             setTimeout(function() {
-                writeWord(words[currentIndex]); 
-            }, 50); 
+                writeWord(words[currentIndex]);
+            }, 50);
         }
 
         writeWord(words[currentIndex]);

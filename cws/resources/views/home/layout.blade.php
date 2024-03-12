@@ -16,11 +16,11 @@
     @yield('css')
 </head>
 
-<body class="font-sans bg-gray-100">
+<body class="font-sans">
 
 
 
-    <nav class="fixed top-0 z-50 w-full bg-white  p-0 dark:bg-gray-800 shadow-lg dark:border-gray-700">
+    <nav class="fixed top-0 z-50 w-full bg-white  p-0 dark:bg-gray-800 shadow-md dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center  justify-between me-3">
 
@@ -94,7 +94,7 @@
                 <div class="flex items-center shrink-0  gap-2">
                     <div class="flex items-center shrink-0 gap-2">
                         <a href="{{route('login')}}" class="inline-block border border-black text-black px-4 py-2  hover:bg-black hover:text-white transition duration-300 ease-in-out register-link">Login</a>
-                        <a href="{{route('register')}}" class="inline-block border border-black text-white bg-black px-4 py-2  hover:bg-white hover:text-black transition duration-300 ease-in-out login-link">Sign Up</a>
+                        <a href="{{route('register')}}" class="inline-block border border-black text-white bg-black px-4 py-2  hover:bg-gray-800 hover:text-white transition duration-300 ease-in-out login-link">Sign Up</a>
 
 
                     </div>
