@@ -39,6 +39,22 @@ class HallFrameApiApiController extends Controller
         return response()->json(["data" => $hallFrame, "success" => true]);
     }
 
+
+    public function manageHallframe(Request $request){
+        $query = $request->get('query');
+        $perPage = $request->input('per_page', 2); // Default to 4 items per page if not specified
+        
+        if ($query) {
+            $hallFrame = hallFrame::where('name', 'LIKE', "%$query%")->paginate($perPage);
+        } else {
+            $hallFrame = hallFrame::paginate($perPage);
+        }
+        
+        return response()->json($hallFrame);
+        
+    } 
+
+
     /**
      * Show the form for editing the specified resource.
      */

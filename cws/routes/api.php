@@ -62,6 +62,7 @@ Route::get('/manage-Recent_project', [RecentProjectApiController::class, 'manage
 
 //api for hallframe operations
 Route::apiResource("hallFrame",HallFrameApiApiController::class);
+Route::get('/manage-hallFrame', [HallFrameApiApiController::class, 'manageHallframe'])->name('manage_HallFrame');
 
 
 // api for student course table 
