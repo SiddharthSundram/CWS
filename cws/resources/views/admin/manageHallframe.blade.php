@@ -4,6 +4,21 @@
     <div class="container mt-16">
         <div class="flex justify-between mb-3 mt-3 items-center">
             <h2 class="text-2xl font-bold">Manage hallFrame (<span id="counting">0</span>)</h2>
+            <div class="pb-4">
+                <label for="table-search" class="sr-only">Search</label>
+                <div class="relative mt-1">
+                    <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                    </div>
+                    <input type="text" name="query" id="searchInput"
+                        class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Search student by name">
+                </div>
+            </div>
             <a href="{{ route('hallFrame') }}"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center">
                 <i class="fas fa-plus mr-1"></i> Add New Students
@@ -25,6 +40,16 @@
                 <tbody id="callingHallframe">
                     <!-- Dynamic data will be inserted here via AJAX -->
                 </tbody>
+
+                <tfoot>
+                    <tr>
+                        <th colspan="10" class="p-3 flex items-center justify-center">
+                            <div id="pagination" class="">
+                                <!-- Pagination links will be inserted here -->
+                            </div>
+                        </th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
@@ -95,111 +120,148 @@
 
 
     <script>
-        $(document).ready(function() {
-            // Function to fetch and render hallFrame data
-            function callingHallframe() {
-                $.ajax({
-                    type: "GET",
-                    url: "{{ route('hallFrame.index') }}",
-                    success: function(response) {
-                        let table = $("#callingHallframe");
-                        table.empty(); // Clear existing table data
+       $(document).ready(function() {
+    let callingHallframe = (data) => {
+        let table = $("#callingHallframe");
+        table.empty();
+        let len = data.length;
 
-                        let data = response.data;
-                        let len = data.length;
-                        $("#counting").html(len); // Update count of hallFrame students
+        $("#counting").html(len);
 
-                        data.forEach((hallFrame) => {
-                            // Append each hallFrame data to the table
-                            table.append(`
-                            <tr class="hover:bg-gray-100">
-                                <td class="py-2 px-4 border">${hallFrame.id}</td> 
-                                <td class="py-2 px-4 border">${hallFrame.name}</td>
-                                <td class="py-2 px-4 border">${hallFrame.position}</td>  
-                                <td class="py-2 px-4 border">${hallFrame.industry}</td>  
-                                <td class="py-2 px-4 border">${hallFrame.description}</td> 
-                                <td class="py-2 px-4 border"><img src="/image/${hallFrame.featured_image}" class="w-32 h-12" alt=""></td> 
-                                <td class="py-2 px-4 border">
-                                    <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded-sm" id="btn${hallFrame.id}"><i class="fas fa-trash"></i> Delete</button>
-                                    <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-2 rounded-sm edit-hallframe-btn" data-id="${hallFrame.id}"><i class="fas fa-edit"></i> Edit</button>
-                                </td>
-                            </tr>
-                        `);
-
-                            // Add event listener for delete operation
-                            $(`#btn${hallFrame.id}`).click(function() {
-                                $.ajax({
-                                    type: "DELETE",
-                                    url: `/api/hallFrame/${hallFrame.id}`,
-                                    success: function(response) {
-                                        alert(response.msg);
-                                        callingHallframe
-                                            (); // Refresh table after deletion
-                                    },
-                                    error: function(error) {
-                                        console.error('Error:', error);
-                                    }
-                                });
-                            });
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error:', error);
-                    }
-                });
-            }
-
-            // Call the function to initially populate the table
-            callingHallframe();
-
-            // Edit hallFrame button click handler
-            $(document).on('click', '.edit-hallframe-btn', function() {
-                var hallFrameId = $(this).data('id');
-                $.ajax({
-                    type: 'GET',
-                    url: `/api/hallFrame/${hallFrameId}`,
-                    dataType: 'json',
-                    success: function(response) {
-                        $('#editHallFrameId').val(response.data.id);
-                        $('#hallFrameName').val(response.data.name);
-                        $('#hallFramePosition').val(response.data.position);
-                        $('#hallFrameIndustry').val(response.data.industry);
-                        $('#hallFrameImagePreview').attr('src', '/image/' + response.data
-                            .featured_image);
-                        $('#hallFrameDescription').val(response.data.description);
-                        $('#editHallFrameModal').removeClass('hidden');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching hallFrame details for editing:', error);
-                    }
-                });
-            });
-
-            // Cancel edit hallFrame button click handler
-            $('#cancelEditHallFrame').click(function() {
-                $('#editHallFrameModal').addClass('hidden');
-            });
-
-            // Submit edit hallFrame form
-            $('#editHallFrameForm').submit(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/hallFrame/' + $('#editHallFrameId').val(),
-                    data: new FormData(this),
-                    dataType: "JSON",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(response) {
-                        $('#editHallFrameModal').addClass('hidden');
-                        callingHallframe(); // Refresh table after editing
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error updating hallFrame:', error);
-                    }
-                });
-            });
+        data.forEach((hallFrame) => {
+            table.append(`
+                <tr class="hover:bg-gray-100">
+                    <td class="py-2 px-4 border">${hallFrame.id}</td> 
+                    <td class="py-2 px-4 border">${hallFrame.name}</td>
+                    <td class="py-2 px-4 border">${hallFrame.position}</td>  
+                    <td class="py-2 px-4 border">${hallFrame.industry}</td>  
+                    <td class="py-2 px-4 border">${hallFrame.description}</td> 
+                    <td class="py-2 px-4 border"><img src="/image/${hallFrame.featured_image}" class="w-32 h-12" alt=""></td> 
+                    <td class="py-2 px-4 border">
+                        <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded-sm delete-hallframe-btn" data-id="${hallFrame.id}"><i class="fas fa-trash"></i> Delete</button>
+                        <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-2 rounded-sm edit-hallframe-btn" data-id="${hallFrame.id}"><i class="fas fa-edit"></i> Edit</button>
+                    </td>
+                </tr>
+            `);
         });
+    };
+
+    function fetchFrame(query = '', page = 1) {
+        $.ajax({
+            url: "{{ route('manage_HallFrame') }}",
+            type: "GET",
+            data: {
+                'query': query,
+                'page': page
+            },
+            success: function(response) {
+                let data = response.data;
+                callingHallframe(data);
+
+                // Update pagination links
+                let paginationLinks = '';
+                if (response.prev_page_url) {
+                    paginationLinks +=
+                        `<a href="#" class="pagination-link px-3 py-1 bg-blue-200 text-blue-800 mx-1 rounded" data-page="${response.current_page - 1}">${response.current_page - 1}</a>`;
+                }
+                paginationLinks +=
+                    `<span class="px-3 py-1 bg-blue-500 text-white mx-1 rounded">${response.current_page}</span>`;
+                if (response.next_page_url) {
+                    paginationLinks +=
+                        `<a href="#" class="pagination-link px-3 py-1 bg-blue-200 text-blue-800 mx-1 rounded" data-page="${response.current_page + 1}">${response.current_page + 1}</a>`;
+                }
+                $('#pagination').html(paginationLinks);
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    // Initial load
+    fetchFrame();
+
+    // Search input event handler
+    $("#searchInput").on("input", function(e) {
+        e.preventDefault();
+        var query = $(this).val();
+        fetchFrame(query);
+    });
+
+    // Pagination link click handler
+    $(document).on('click', '.pagination-link', function(e) {
+        e.preventDefault();
+        let page = $(this).text();
+        fetchFrame('', page);
+    });
+
+    // Delete hallFrame button click handler
+    $(document).on('click', '.delete-hallframe-btn', function(e) {
+        e.preventDefault();
+        var hallFrameId = $(this).data('id');
+        $.ajax({
+            type: "DELETE",
+            url: `/api/hallFrame/${hallFrameId}`,
+            success: function(response) {
+                alert(response.msg);
+                fetchFrame(); // Refresh table after deletion
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+
+    // Edit hallFrame button click handler
+    $(document).on('click', '.edit-hallframe-btn', function(e) {
+        e.preventDefault();
+        var hallFrameId = $(this).data('id');
+        $.ajax({
+            type: 'GET',
+            url: `/api/hallFrame/${hallFrameId}`,
+            dataType: 'json',
+            success: function(response) {
+                $('#editHallFrameId').val(response.data.id);
+                $('#hallFrameName').val(response.data.name);
+                $('#hallFramePosition').val(response.data.position);
+                $('#hallFrameIndustry').val(response.data.industry);
+                $('#hallFrameImagePreview').attr('src', '/image/' + response.data.featured_image);
+                $('#hallFrameDescription').val(response.data.description);
+                $('#editHallFrameModal').removeClass('hidden');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching hallFrame details for editing:', error);
+            }
+        });
+    });
+
+    // Cancel edit hallFrame button click handler
+    $('#cancelEditHallFrame').click(function(e) {
+        e.preventDefault();
+        $('#editHallFrameModal').addClass('hidden');
+    });
+
+    // Submit edit hallFrame form
+    $('#editHallFrameForm').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/api/hallFrame/' + $('#editHallFrameId').val(),
+            data: new FormData(this),
+            dataType: "JSON",
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(response) {
+                $('#editHallFrameModal').addClass('hidden');
+                fetchFrame(); // Refresh table after editing
+            },
+            error: function(xhr, status, error) {
+                console.error('Error updating hallFrame:', error);
+            }
+        });
+    });
+});
+
     </script>
 @endsection
