@@ -93,8 +93,8 @@
 
                 <div class="flex items-center shrink-0  gap-2">
                     <div class="flex items-center shrink-0 gap-2">
-                        <a href="{{route('login')}}" class="inline-block border border-black text-black px-4 py-2  hover:bg-black hover:text-white transition duration-300 ease-in-out register-link">Login</a>
-                        <a href="{{route('register')}}" class="inline-block border border-black text-white bg-black px-4 py-2  hover:bg-gray-800 hover:text-white transition duration-300 ease-in-out login-link">Sign Up</a>
+                        <a href="{{route('login')}}" class=" border hidden md:block  lg:block  border-black text-black px-4 py-2  hover:bg-black hover:text-white transition duration-300 ease-in-out register-link">Login</a>
+                        <a href="{{route('register')}}" class=" border hidden md:block border-black text-white bg-black px-4 py-2  hover:bg-gray-800 hover:text-white transition duration-300 ease-in-out login-link">Sign Up</a>
 
 
                     </div>
@@ -280,15 +280,16 @@
 
                 <li>
                     <a href="{{ route('view_project') }}"
-                        class="flex items-center p-2 text-gray-200 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-200 group">
+                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-200 group">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="flex-shrink-0 w-5 h-5 text-gray-200 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900"
-                            viewBox="0 0 576 512">
-                            <path fill="currentColor"
-                                d="M309.5 13.5C305.5 5.2 297.1 0 287.9 0s-17.6 5.2-21.6 13.5L197.7 154.8 44.5 177.5c-9 1.3-16.5 7.6-19.3 16.3s-.5 18.1 5.9 24.5L142.2 328.4 116 483.9c-1.5 9 2.2 18.1 9.7 23.5s17.3 6 25.3 1.7l137-73.2 137 73.2c8.1 4.3 17.9 3.7 25.3-1.7s11.2-14.5 9.7-23.5L433.6 328.4 544.8 218.2c6.5-6.4 8.7-15.9 5.9-24.5s-10.3-14.9-19.3-16.3L378.1 154.8 309.5 13.5zM288 384.7V79.1l52.5 108.1c3.5 7.1 10.2 12.1 18.1 13.3l118.3 17.5L391 303c-5.5 5.5-8.1 13.3-6.8 21l20.2 119.6L299.2 387.5c-3.5-1.9-7.4-2.8-11.2-2.8z" />
-                        </svg>
-
+                        viewBox="0 0 512 512"
+                        class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900">
+                       <path fill="currentColor"
+                             d="M160 96a96 96 0 1 1 192 0A96 96 0 1 1 160 96zm80 152V512l-48.4-24.2c-20.9-10.4-43.5-17-66.8-19.3l-96-9.6C12.5 457.2 0 443.5 0 427V224c0-17.7 14.3-32 32-32H62.3c63.6 0 125.6 19.6 177.7 56zm32 264V248c52.1-36.4 114.1-56 177.7-56H480c17.7 0 32 14.3 32 32V427c0 16.4-12.5 30.2-28.8 31.8l-96 9.6c-23.2 2.3-45.9 8.9-66.8 19.3L272 512z"/>
+                   </svg>
+                                      
+                                      
                         <span class="flex-1 ms-3 whitespace-nowrap">Projects</span>
                     </a>
                 </li>

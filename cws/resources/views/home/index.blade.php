@@ -41,21 +41,7 @@
                 <div class="md:col-span-1 bg-white rounded-lg p-6 hover:shadow-md hover:bg-gray-50">
                     <h2 class="text-2xl font-bold mb-4">Recent Projects</h2>
 
-                    {{-- <div class="pb-4">
-                        <label for="table-search" class="sr-only">Search</label>
-                        <div class="relative mt-1">
-                            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg>
-                            </div>
-                            <input type="text" name="query" id="searchInput"
-                                class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search Project by name">
-                        </div>
-                    </div> --}}
+                   
                     <div class="grid grid-cols-1 gap-4" id="recentProjects">
                         <!-- Recent projects will be dynamically loaded here -->
 
@@ -209,14 +195,14 @@
                         data.forEach((hallFrame) => {
                             // Append each hallFrame data to the table
                             table.append(`
-                        <div class="carousel-item flex-none w-full p-3 md:w-1/2 lg:w-1/4 px-4"> <!-- Adjusted lg:w-1/4 -->
-                            <div class="bg-white rounded-lg shadow-md p-6 transition duration-300 transform hover:scale-105"> <!-- Increased padding -->
-                                <img src="/image/${hallFrame.featured_image}" alt="John Doe" class="w-full h-48 object-cover mb-4"> <!-- Increased height -->
-                                <h2 class="text-xl text-gray-700 font-semibold mb-2">${hallFrame.name}</h2>
-                                <p class="text-gray-600">Industry: ${hallFrame.industry}</p>
-                                <p class="text-gray-600">Position: ${hallFrame.position}</p>                                    
-                            </div>
-                        </div>
+                                <div class="carousel-item flex-none w-full p-3  md:w-1/2 lg:w-1/4"> 
+                                    <div class="bg-white rounded-lg hover:shadow-md  transition duration-300 transform hover:scale-105  border border-b"> 
+                                        <img src="/image/${hallFrame.featured_image}" alt="John Doe" class="w-full h-48 object-cover mb-2 "> 
+                                        <h2 class="text-xl text-gray-700 font-semibold mb-2">${hallFrame.name}</h2>
+                                        <p class="text-gray-600">Industry: ${hallFrame.industry}</p>
+                                        <p class="text-gray-600">Position: ${hallFrame.position}</p>                                    
+                                    </div>
+                                </div>
                     `);
                         });
 
