@@ -203,16 +203,15 @@
                         name: $('#editStudentName').val(),
                         status : $('#editStudentStatus').val(),
                         email : $('#editStudentEmail').val(),
-                        mobile_no : $('#editStudentMobile').val()
+                        mobile_no : $('#editStudentMobile').val(),
+                        status : $('#editStudentStatus').val()
                 }
+                console.log(data);
                 $.ajax({
                     type: 'PUT',
-                    url: '/api/admin/student/edit/'+ $('#editStudentId').val(),
-                    data: data,
-                    dataType: "JSON",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
+                    url: `/api/admin/student/edit/${userId}`,
+                    data: JSON.stringify(data),
+                    contentType: 'application/json', //                    
                     success: function(response) {
                         $('#editStudentModal').addClass('hidden');
                         fetchStudents();
