@@ -167,7 +167,7 @@
                 data.forEach((hallFrame) => {
                     // Append each hallFrame data to the table
                     table.append(`
-                        <div class="carousel-item flex-none w-full md:w-1/2 lg:w-1/4 px-4"> <!-- Adjusted lg:w-1/4 -->
+                        <div class="carousel-item flex-none w-full p-3 md:w-1/2 lg:w-1/4 px-4"> <!-- Adjusted lg:w-1/4 -->
                             <div class="bg-white rounded-lg shadow-md p-6 transition duration-300 transform hover:scale-105"> <!-- Increased padding -->
                                 <img src="/image/${hallFrame.featured_image}" alt="John Doe" class="w-full h-48 object-cover mb-4"> <!-- Increased height -->
                                 <h2 class="text-xl text-gray-700 font-semibold mb-2">${hallFrame.name}</h2>

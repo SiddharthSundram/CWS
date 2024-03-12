@@ -22,27 +22,48 @@
 
     <nav class="fixed top-0 z-50 w-full bg-[#0b7d99] border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center justify-start rtl:justify-end">
-                    <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
-                        aria-controls="logo-sidebar" type="button"
-                        class="inline-flex items-center p-2 text-sm text-gray-200 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-200 dark:focus:ring-gray-600">
-                        <span class="sr-only">Open sidebar</span>
-                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path clip-rule="evenodd" fill-rule="evenodd"
-                                d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
-                            </path>
-                        </svg>
-                    </button>
+            <div class="flex items-center  justify-between me-3">
+
+                <div class="flex items-center ">
+                    <div class="text-center">
+
+                    </div>
                     <a href="{{ route('index') }}" class="flex ms-2 md:me-24">
                         <span
                             class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-gray-200 dark:text-white">Code
                             With Sadiq</span>
                     </a>
                 </div>
-                <div class="flex items-center">
-                    <div class="flex items-center ms-3">
+
+                
+                <div class="flex item-center">
+                    {{-- <div class="relative hidden md:block lg:block ">
+                        <input type="text" placeholder="Search"
+                            class="px-3 py-1 w-full md:w-[100%] border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:text-white dark:border-gray-600">
+                        <button type="button"
+                            class="absolute inset-y-0 right-0 px-3 py-1 bg-gray-800 text-gray-300 rounded-r-md focus:outline-none dark:bg-gray-600">
+                            Search
+                        </button>
+                    </div> --}}
+                    <div class=" hidden md:block lg:block ">
+                        <label for="table-search" class="sr-only">Search</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                </svg>
+                            </div>
+                            <input type="text" name="query" id="searchInput"
+                                class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Search Project by name">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <div class="flex items-center">
                         <div>
                             <button type="button"
                                 class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
@@ -54,7 +75,7 @@
                         <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
                             id="dropdown-user">
                             <div class="px-4 py-3" role="none">
-                                <p class="text-sm text-gray-900 dark:text-white" id="calling_username">
+                                <p class="text-sm text-gray-900 dark:text-white calling_username">
                                     Hi , Guest
                                 </p>
 
@@ -91,15 +112,47 @@
                             </ul>
                         </div>
                     </div>
+
+                    <div class="flex items-center">
+                        <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation"
+                            aria-controls="drawer-navigation" type="button"
+                            class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg  hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" fill-rule="evenodd"
+                                    d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
+
+
             </div>
         </div>
     </nav>
 
-    <aside id="logo-sidebar"
-        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-[#0b7d99]  border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
-        aria-label="Sidebar">
-        <div class="h-full px-3 pb-4 overflow-y-auto text-white bg-[#0b7d99] dark:bg-gray-800">
+
+
+    <div id="drawer-navigation"
+        class="fixed top-0 mt-16 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800"
+        tabindex="-1" aria-labelledby="drawer-navigation-label">
+        <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
+            <p class="text-sm text-gray-900 dark:text-white calling_username">
+                Hi , Guest
+            </p>
+        </h5>
+        <button type="button" data-drawer-hide="drawer-navigation" aria-controls="drawer-navigation"
+            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">Close menu</span>
+        </button>
+        <div class="py-4 overflow-y-auto">
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="{{ route('index') }}"
@@ -107,8 +160,8 @@
 
 
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="w-5 h-5 text-gray-200 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900"       {{-- // --}}
-                            viewBox="0 0 576 512">
+                            class="w-5 h-5 text-gray-200 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900"
+                            {{-- // --}} viewBox="0 0 576 512">
                             <path fill="currentColor"
                                 d="M543.8 287.6c17 0 32-14 32-32.1c1-9-3-17-11-24L512 185V64c0-17.7-14.3-32-32-32H448c-17.7 0-32 14.3-32 32v36.7L309.5 7c-6-5-14-7-21-7s-15 1-22 8L10 231.5c-7 7-10 15-10 24c0 18 14 32.1 32 32.1h32v69.7c-.1 .9-.1 1.8-.1 2.8V472c0 22.1 17.9 40 40 40h16c1.2 0 2.4-.1 3.6-.2c1.5 .1 3 .2 4.5 .2H160h24c22.1 0 40-17.9 40-40V448 384c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v64 24c0 22.1 17.9 40 40 40h24 32.5c1.4 0 2.8 0 4.2-.1c1.1 .1 2.2 .1 3.3 .1h16c22.1 0 40-17.9 40-40V455.8c.3-2.6 .5-5.3 .5-8.1l-.7-160.2h32z" />
                         </svg>
@@ -133,8 +186,8 @@
                         <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Course Category</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 4 4 4-4" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m1 1 4 4 4-4" />
                         </svg>
                     </button>
                     <ul id="category-dropdown" class="hidden py-2 space-y-2">
@@ -176,7 +229,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('achievements')}}"
+                    <a href="{{ route('achievements') }}"
                         class="flex items-center p-2 text-gray-200 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-200 group">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -295,39 +348,33 @@
                 </li>
             </ul>
         </div>
-
-    </aside>
-
-    <div class="flex flex-col h-screen">
-
-        {{-- main contianer, this will connect to all other pages  --}}
-        <div class="sm:ml-64">
-
-            <main class=" flex-grow">
-                <div class="mt-10 mb-5">{{-- for space from top --}}</div>
-                @section('content')
-
-
-                @show
-            </main>
-
-            <footer class="bg-[#0b7d99] text-gray-200 dark:bg-gray-800 dark:text-white py-4 sm:py-6">
-                <div class="container mx-auto text-center flex justify-center">
-                    <a href="{{ route('tandc') }}" class="text-gray-300 hover:text-white mr-4 ">
-                        Terms & Conditions
-                    </a>
-    
-                    <a href="{{ route('privacy') }}" class="text-gray-300 hover:text-white  ">
-                        Privacy Policy
-                    </a>
-                </div>
-                <div class="container mx-auto text-center mt-4">
-                    <p class="cursor-pointer">&copy; 2024 Code With Sadiq Website. All rights reserved.</p>
-                </div>
-            </footer>
-        </div>
-
     </div>
+
+
+
+
+    <main class=" flex-grow">
+        <div class="mt-10 mb-5">{{-- for space from top --}}</div>
+        @section('content')
+
+
+        @show
+    </main>
+
+    <footer class="bg-[#0b7d99] text-gray-200 dark:bg-gray-800 dark:text-white py-4 sm:py-6">
+        <div class="container mx-auto text-center flex justify-center">
+            <a href="{{ route('tandc') }}" class="text-gray-300 hover:text-white mr-4 ">
+                Terms & Conditions
+            </a>
+
+            <a href="{{ route('privacy') }}" class="text-gray-300 hover:text-white  ">
+                Privacy Policy
+            </a>
+        </div>
+        <div class="container mx-auto text-center mt-4">
+            <p class="cursor-pointer">&copy; 2024 Code With Sadiq Website. All rights reserved.</p>
+        </div>
+    </footer>
 
 
 
@@ -348,14 +395,14 @@
                     },
                     success: function(response) {
                         if (response.hasOwnProperty('name')) {
-                            $("#calling_username").text('Hi, ' + response.name);
+                            $(".calling_username").text('Hi, ' + response.name);
                             $('.login-link').hide();
                             $('.register-link').hide();
                             $('.profile-link').show();
                             $('.course-link').show();
                             $('.logout-link').show();
                         } else {
-                            $("#calling_username").text('Hi, Guest');
+                            $(".calling_username").text('Hi, Guest');
                             $('.login-link').show();
                             $('.register-link').show();
                             $('.profile-link').hide();
@@ -368,7 +415,7 @@
                             // Token expired, remove from local storage
                             localStorage.removeItem('token');
                         }
-                        $("#calling_username").text('Hi, Guest');
+                        $(".calling_username").text('Hi, Guest');
                         $('.login-link').show();
                         $('.register-link').show();
                         $('.profile-link').hide();
@@ -379,7 +426,7 @@
                 });
             } else {
                 // Token does not exist, handle the case accordingly
-                $("#calling_username").text('Hi, Guest');
+                $(".calling_username").text('Hi, Guest');
                 $('.login-link').show();
                 $('.register-link').show();
                 $('.profile-link').hide();
@@ -428,28 +475,28 @@
                     }
                 });
             });
-        let callingCategory = () => {
-            $.ajax({
-                type: "GET",
-                url: "{{ route('category.index') }}",
-                success: function(response) {
-                    let table = $("#category-dropdown");
-                    table.empty();
+            let callingCategory = () => {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('category.index') }}",
+                    success: function(response) {
+                        let table = $("#category-dropdown");
+                        table.empty();
 
-                    let data = response.data;
-                    data.forEach((item) => {
-                        console.log(item)
-                        table.append(`
+                        let data = response.data;
+                        data.forEach((item) => {
+                            console.log(item)
+                            table.append(`
                             <li>
                                 <a href="/api/view-category/${item.id}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">${item.cat_title}</a>
                             </li>
                         `);
-                    });
-                }
-            });
-        }
-        callingCategory();
-    });
+                        });
+                    }
+                });
+            }
+            callingCategory();
+        });
     </script>
 
 
