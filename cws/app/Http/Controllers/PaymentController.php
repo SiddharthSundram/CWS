@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Payment;
 use App\Models\StudentCourse;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
@@ -21,44 +23,52 @@ class PaymentController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
         }
-
+    
         $courseId = $request->input('course_id');
         $userId = $request->input('user_id');
         $fees = $request->input('fees');
         $paymentType = $request->input('payment_type');
-
+    
         if (Payment::where('course_id', $courseId)->where('user_id', $userId)->exists()) {
             return response()->json([
                 'msg' => 'Payment already exists',
             ], 400);
         }
-
+    
+        // Get course start date and duration
+        $course = Course::findOrFail($courseId);
+        $courseStartDate = $course->start_date;
+        $courseDuration = $course->duration; // Assuming duration is in days
+    
         if ($paymentType == 'full') {
             // Create a record for full payment
             $data = Payment::create([
                 'course_id' => $courseId,
                 'user_id' => $userId,
                 'fees' => $fees,
+                'due_date' => Carbon::parse($courseStartDate)->addDays($courseDuration), // Calculate due date
             ]);
         } else {
             // Calculate the partial payments
             $paymentAmounts = [0.4, 0.3, 0.3];
             $totalPaymentAmount = $fees;
-
+    
             foreach ($paymentAmounts as $paymentAmount) {
                 $data = Payment::create([
                     'course_id' => $courseId,
                     'user_id' => $userId,
                     'fees' => $paymentAmount * $totalPaymentAmount,
+                    'due_date' => Carbon::parse($courseStartDate)->addDays($courseDuration), // Calculate due date
                 ]);
             }
         }
-
+    
         return response()->json([
             'msg' => 'Payment(s) added successfully',
             'data' => $data
         ], 201);
     }
+    
 
     public function managePaymentsApi(Request $request){
         $query = $request->get('query');

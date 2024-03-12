@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('fees');
             $table->boolean('status')->default(false);
             $table->date('date_of_payment')->nullable();
+            $table->date('due_date')->nullable();
+
             $table->timestamps();
         });
     }
