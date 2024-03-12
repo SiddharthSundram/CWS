@@ -1,9 +1,9 @@
 @extends('home.layout')
 
 @section('content')
-    <div class="bg-gray-200 p-3">
+    <div class=" p-3">
         <div class="container mx-auto py-8">
-            <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg ">
 
                 <h1 class="text-3xl font-bold mb-8">Terms & Conditions</h1>
                 <h2 class="text-xl font-bold mb-4">1. Introduction</h2>
