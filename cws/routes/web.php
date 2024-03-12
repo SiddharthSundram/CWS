@@ -29,7 +29,7 @@ Route::get("/explore-course/{id}", [CourseController::class, 'exploreCourse'])->
 // for user's course
 Route::get("/my-course", [HomeController::class, 'myCourse'])->name('myCourse');
 
-
+Route::get("/view-project", [RecentProjectController::class, 'viewProject'])->name('view_project');
 // about page
 Route::get('/about',[HomeController::class,'about'])->name('about');
 
