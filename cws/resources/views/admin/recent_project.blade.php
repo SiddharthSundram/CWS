@@ -37,8 +37,8 @@
                             <label for="editProjectUser"
                             class="block text-sm font-medium text-gray-700">Project User</label>
 
-                        <select id="editProjectUser" name="user_id"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        <select name="user_id"
+                            class=" editProjectUser mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             >
                             
                         </select>
@@ -82,8 +82,8 @@
                         <div class="mb-4">
                             <label for="editProjectUser"
                                 class="block text-sm font-medium text-gray-700">Project User</label>
-                                <select id="editProjectUser" name="user_id"
-                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></select>
+                                <select name="user_id"
+                                class="editProjectUser mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></select>
                         </div>
                         <div class="mb-4">
                             <label for="editProjectName" class="block text-sm font-medium text-gray-700">Project Url</label>
@@ -134,33 +134,35 @@
         });
     }
 
+    // Function to populate users in the edit form
     function populateUsers() {
-    $.ajax({
-        type: "GET",
-        url: "/api/admin/callingStudents",
-        success: function(response) {
-            let select = $("#editProjectUser");
-            select.empty();
-            let users = response.students;
+        $.ajax({
+            type: "GET",
+            url: "/api/admin/callingStudents",
+            success: function(response) {
+                let select = $(".editProjectUser");
+                select.empty();
+                let users = response.students;
 
-            // Loop through each user and add them to the select element
-            users.forEach(function(user) {
-                let option = $("<option>");
-                option.val(user.id); 
-                option.text(user.name); 
-                select.append(option);
+                // Loop through each user and add them to the select element
+                // Loop through each user and add them to the select element
+            $.each(users, function(index, user) {
+                select.append($('<option>', {
+                    value: user.id,
+                    text: user.name
+                }));
             });
-        },
-        error: function(xhr, status, error) {
-            console.error("Error fetching users:", error);
-        }
-    });
-}
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching users:", error);
+            }
+        });
+    }
 
     // Call fetchProjects initially
     $(document).ready(function() {
-        populateUsers(); // Call populateUsers first
-    fetchProjects();
+        fetchProjects();
+        populateUsers();
 
         // Handle form submission for inserting a new project
         $("#insertProject").submit(function(e) {
@@ -203,53 +205,51 @@
 
         // Handle edit button click
         $(document).on('click', '.edit-btn', function() {
-                var projectId = $(this).data('id');
-                $.ajax({
-                    type: 'GET',
-                    url: `/api/recent_project/${projectId}`,
-                    dataType: 'json',
-                    success: function(response) {
-                        $('#editProjectId').val(response.data.id);
-                        $('#editProjectName').val(response.data.name);
-                        $('#editProjectDescription').val(response.data.description);
-                        $('#editProjectUser').val(response.data.user_id);
-                        $('#editProjectUrl').val(response.data.url);
-                        $('#default-modal').removeClass('hidden');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching project details for editing:', error);
-                    }
-                });
+            var projectId = $(this).data('id');
+            $.ajax({
+                type: 'GET',
+                url: `/api/recent_project/${projectId}`,
+                dataType: 'json',
+                success: function(response) {
+                    populateUsers(); // Call populateUsers to populate the select element
+                    $('#editProjectId').val(response.data.id);
+                    $('#editProjectName').val(response.data.name);
+                    $('#editProjectDescription').val(response.data.description);
+                    $('#editProjectUser').val(response.data.user_id);
+                    $('#editProjectUrl').val(response.data.url);
+                    $('#default-modal').removeClass('hidden');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching project details for editing:', error);
+                }
             });
+        });
 
-            // Handle cancel button click for the edit modal
-            $('#cancelEditProject').click(function() {
-                $('#default-modal').addClass('hidden'); // Add the 'hidden' class to hide the modal
+        // Handle cancel button click for the edit modal
+        $('#cancelEditProject').click(function() {
+            $('#default-modal').addClass('hidden'); // Add the 'hidden' class to hide the modal
+        });
+
+        // Handle form submission for editing project
+        $('#editProjectForm').submit(function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+            var projectId = $('#editProjectId').val();
+            $.ajax({
+                type: 'PUT',
+                url: `/api/recent_project/${projectId}`,
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    swal("Success", response.msg, "success");
+                    $('#default-modal').addClass('hidden'); // Add the 'hidden' class to hide the modal
+                    fetchProjects(); // Refresh the project list
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error updating project:', error);
+                }
             });
-
-            // Handle form submission for editing project
-            $('#editProjectForm').submit(function(e) {
-                e.preventDefault();
-                var formData = $(this).serialize();
-                var projectId = $('#editProjectId').val();
-                $.ajax({
-                    type: 'PUT',
-                    url: `/api/recent_project/${projectId}`,
-                    data: formData,
-                    dataType: 'json',
-                    success: function(response) {
-                        swal("Success", response.msg, "success");
-                        $('#default-modal').addClass('hidden'); // Add the 'hidden' class to hide the modal
-                        fetchProjects(); // Refresh the project list
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error updating project:', error);
-                    }
-                });
-            });
-
-
+        });
     });
-
     </script>
 @endsection

@@ -90,3 +90,4 @@ Route::get('/admin/student-course/view', [StudentCourseController::class, 'index
 Route::post('/admin/student/payment', [PaymentController::class, 'addPayment']);
 
 Route::patch('/admin/student/payment/{paymentId}/mark-as-paid', [PaymentController::class, 'markAsPaid']);
+Route::get("/admin/count", [AdminController::class, 'countData'])->name("countData");
