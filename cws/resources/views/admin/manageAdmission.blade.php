@@ -63,7 +63,6 @@
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <h5 class="text-lg font-semibold mb-4" id="editStudentModalLabel">Edit Student</h5>
                     <form id="editStudentForm" method="post">
-
                         <input type="text" id="editStudentId" name="id">
                         <div class="mb-4">
                             <label for="editStudentName" class="block text-sm font-medium text-gray-700">Name</label>
@@ -196,25 +195,20 @@
                         $('#editStudentEmail').val(response.email);
                         $('#editStudentMobile').val(response.mobile_no);
                         $('#editStudentModal').removeClass('hidden');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching course details for editing:', error);
-                    }
-                });
-            });
 
-            // Cancel edit course button click handler
-            $('#cancelEditStudent').click(function() {
-                $('#editStudentModal').addClass('hidden');
-            });
-
-            // Submit edit course form
+                         // Submit edit course form
             $('#editStudentForm').submit(function(e) {
                 e.preventDefault();
+                let data = {
+                        name: $('#editStudentName').val(),
+                        status : $('#editStudentStatus').val(),
+                        email : $('#editStudentEmail').val(),
+                        mobile_no : $('#editStudentMobile').val()
+                }
                 $.ajax({
                     type: 'PUT',
                     url: '/api/admin/student/edit/'+ $('#editStudentId').val(),
-                    data: new FormData(this),
+                    data: data,
                     dataType: "JSON",
                     contentType: false,
                     cache: false,
@@ -229,6 +223,19 @@
                 });
             });
 
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching course details for editing:', error);
+                    }
+                });
+            });
+
+            // Cancel edit course button click handler
+            $('#cancelEditStudent').click(function() {
+                $('#editStudentModal').addClass('hidden');
+            });
+
+           
         });
     </script>
 @endsection
