@@ -209,6 +209,7 @@
                     url: `/api/recent_project/${projectId}`,
                     dataType: 'json',
                     success: function(response) {
+                        populateUsers();
                         $('#editProjectId').val(response.data.id);
                         $('#editProjectName').val(response.data.name);
                         $('#editProjectDescription').val(response.data.description);

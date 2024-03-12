@@ -62,35 +62,35 @@
         <div class="grid grid-cols-4 gap-4 mb-4">
             <div class="flex flex-col p-4 justify-center rounded bg-pink-600 dark:bg-pink-800">
                 <p class="text-sm font-semibold text-white dark:text-pink-300">Total Admission</p>
-                <p class="text-2xl text-white dark:text-pink-300">{{ $totalCourses }}</p>
+                <p class="text-2xl text-white dark:text-pink-300 countAdmission"></p>
             </div>
             <div class="flex flex-col p-4 justify-center rounded bg-blue-600 dark:bg-blue-800">
                 <p class="text-sm text-left font-semibold text-slate-100 dark:text-blue-300">Total Students</p>
-                <p class="text-2xl text-white dark:text-blue-300">{{ $totalStudents }}</p>
+                <p class="text-2xl text-white dark:text-blue-300 countStudent">Loading</p>
             </div>
             <div class="flex flex-col p-4 justify-center rounded bg-green-600 dark:bg-green-800">
                 <p class="text-sm font-semibold text-white dark:text-green-300">Total Hall of Fame</p>
-                <p class="text-2xl text-white dark:text-green-300">{{ $totalHallOfFrame }}</p>
+                <p class="text-2xl text-white dark:text-green-300 counthallFrame">Loading</p>
             </div>
             <div class="flex flex-col p-4 justify-center rounded bg-yellow-600 dark:bg-yellow-800">
                 <p class="text-sm font-semibold text-white dark:text-yellow-300">Total Payments</p>
-                <p class="text-2xl text-white dark:text-yellow-300">{{ $totalPayments }}</p>
+                <p class="text-2xl text-white dark:text-yellow-300 countPayments">0</p>
             </div>
             <div class="flex flex-col p-4 justify-center rounded bg-purple-600 dark:bg-purple-800">
                 <p class="text-sm font-semibold text-white dark:text-purple-300">Total Courses</p>
-                <p class="text-2xl text-white dark:text-purple-300">{{ $totalCourses }}</p>
+                <p class="text-2xl text-white dark:text-purple-300 countCourse"></p>
             </div>
             <div class="flex flex-col p-4 justify-center rounded bg-amber-600 dark:bg-amber-800">
                 <p class="text-sm font-semibold text-white dark:text-amber-300">Total Due</p>
-                <p class="text-2xl text-white dark:text-amber-300">{{ $totalCourses }}</p>
+                <p class="text-2xl text-white dark:text-amber-300">0</p>
             </div>
             <div class="flex flex-col p-4 justify-center rounded bg-emerald-600 dark:bg-emerald-800">
                 <p class="text-sm font-semibold text-white dark:text-emerald-300">Total Projects</p>
-                <p class="text-2xl text-white dark:text-emerald-300">{{ $totalCourses }}</p>
+                <p class="text-2xl text-white dark:text-emerald-300 countProjects">0</p>
             </div>
             <div class="flex flex-col p-4 justify-center rounded bg-purple-600 dark:bg-purple-800">
                 <p class="text-sm font-semibold text-white dark:text-purple-300">Total Categories</p>
-                <p class="text-2xl text-white dark:text-purple-300">{{ $totalCourses }}</p>
+                <p class="text-2xl text-white dark:text-purple-300 countCategory"></p>
             </div>
 
 

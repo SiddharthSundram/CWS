@@ -136,7 +136,7 @@
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Manage Admission</span>
                             <span
-                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300" id="countAdmission">0</span>
+                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countAdmission">0</span>
                         </a>
                     </li>
                     <li>
@@ -150,7 +150,7 @@
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Manage Students</span>
                             <span
-                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300" id="countStudent">0</span>
+                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countStudent">0</span>
                         </a>
                     </li>
                     <li>
@@ -164,7 +164,7 @@
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Projects</span>
                             <span
-                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300" id="countProject">0</span>
+                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countProject">0</span>
                         </a>
                     </li>
                     <li>
@@ -178,7 +178,7 @@
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Hall of Frames</span>
                             <span
-                                class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300" id="counthallFrame">0</span>
+                                class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 counthallFrame">0</span>
                         </a>
                     </li>
                     <li>
@@ -192,7 +192,7 @@
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Manage Categories</span>
                             <span
-                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300" id="countCategory">0</span>
+                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countCategory">0</span>
                         </a>
                     </li>
                     <li>
@@ -205,7 +205,7 @@
                                     d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Manage Courses</span>
-                            <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300" id="countCourse">0</span>
+                            <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countCourse">0</span>
                         </a>
                     </li>
                    
@@ -220,7 +220,7 @@
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Manage Payments</span>
                             <span
-                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300" id="countCategory">0</span>
+                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countPayments">0</span>
                         </a>
                     </li>
                     </li>
@@ -236,7 +236,7 @@
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Manage Query</span>
                             <span
-                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300" id="countQuery">0</span>
+                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countQuery">0</span>
                         </a>
                     </li>
 
@@ -274,94 +274,23 @@
 
     <script>
       $(document).ready(function() {
-         $.ajax({
-              url: "{{ route('student_count') }}", // Replace with the correct route to fetch project count
-              type: "GET",
-              data:{
-               status: "0",
-              },
-              success: function(response) {
-                  let data = response;
-                  // Counting projects
-                  let len = data.length;
-                  $("#countAdmission").html(len);
-              },
-              error: function(xhr, status, error) {
-                  console.error("Error fetching project count:", error);
-              }
-          });
-         $.ajax({
-              url: "{{ route('student_count') }}", // Replace with the correct route to fetch project count
-              type: "GET",
-              data:{
-                  status:"1"
-              },
-              success: function(response) {
-                  let data = response;
-                  // Counting projects
-                  let len = data.length;
-                  $("#countStudent").html(len);
-              },
-              error: function(xhr, status, error) {
-                  console.error("Error fetching project count:", error);
-              }
-          });
 
-
-          $.ajax({
-              url: "{{ route('recent_project.index') }}", // Replace with the correct route to fetch project count
-              type: "GET",
-              success: function(response) {
-                  let data = response.data;
-                  // Counting projects
-                  let len = data.length;
-                  $("#countProject").html(len);
+        $.ajax({
+            url:"{{route('countData')}}",
+            type:"GET",
+            success: function(response) {
+                  $(".countAdmission").html(response.admission);
+                  $(".countStudent").html(response.students);
+                  $(".countProject").html(response.projects);
+                  $(".counthallFrame").html(response.halloffames);
+                  $(".countCourse").html(response.courses);
+                  $(".countCategory").html(response.category);
+                  $(".countPayments").html(response.payments);
               },
               error: function(xhr, status, error) {
                   console.error("Error fetching project count:", error);
               }
-          });
-
-          $.ajax({
-              url: "{{ route('hallFrame.index') }}", // Replace with the correct route to fetch project count
-              type: "GET",
-              success: function(response) {
-                  let data = response.data;
-                  // Counting projects
-                  let len = data.length;
-                  $("#counthallFrame").html(len);
-              },
-              error: function(xhr, status, error) {
-                  console.error("Error fetching project count:", error);
-              }
-          });
-
-          $.ajax({
-              url: "{{ route('course.index') }}", // Replace with the correct route to fetch project count
-              type: "GET",
-              success: function(response) {
-                  let data = response.data;
-                  // Counting projects
-                  let len = data.length;
-                  $("#countCourse").html(len);
-              },
-              error: function(xhr, status, error) {
-                  console.error("Error fetching project count:", error);
-              }
-          });
-          $.ajax({
-              url: "{{ route('category.index') }}", // Replace with the correct route to fetch project count
-              type: "GET",
-              success: function(response) {
-                  let data = response.data;
-                  // Counting projects
-                  let len = data.length;
-                  $("#countCategory").html(len);
-              },
-              error: function(xhr, status, error) {
-                  console.error("Error fetching project count:", error);
-              }
-          });
+        })
       });
   </script>
   

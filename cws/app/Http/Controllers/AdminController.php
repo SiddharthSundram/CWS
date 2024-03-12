@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Category;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\hallFrame;
+use App\Models\Payment;
+use App\Models\RecentProject;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -12,11 +16,8 @@ use Validator;
 class AdminController extends Controller
 {
     public function dashboard(){
-        $totalStudents = User::count();
-        $totalHallOfFrame = hallFrame::count();
-        $totalCourses = Course::count();
-        $totalPayments = 0;
-        return view("admin.dashboard", compact('totalStudents','totalCourses','totalPayments','totalHallOfFrame'));
+       
+        return view("admin.dashboard");
     }
 
     // public function adminLogin(Request $request){
@@ -74,5 +75,19 @@ class AdminController extends Controller
 
     public function manageQuery(){
         return view('admin.manageQuery');
+    }
+
+    public function countData(){
+
+        $count["admission"] = User::where("status","0")->count();
+        $count["students"] = User::where("status","1")->count();
+        $count["halloffames"] = hallFrame::count();
+        $count["courses"] = Course::count();
+        $count["payments"] = Payment::count();
+        $count["projects"] = RecentProject::count();
+        $count["category"] = Category::count();
+       
+        return response()->json($count);
+
     }
 }
