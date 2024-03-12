@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Your existing content here -->
-    <div class=" py-16 px-4 text-center text-gray-800">
+    <div class=" px-4 text-center text-gray-800">
         <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
             <div class="md:w-1/2 md:pr-8 text-left mb-4 md:mb-0 ">
                 <h1 class="text-3xl font-bold mb-4">Upskilling Made <span id="autoText" class="text-orange-500"></span> </h1>
@@ -10,7 +10,7 @@
                     offers personalized coaching and comprehensive courses to elevate your coding skills. Join a vibrant
                     community and unlock your coding potential today.</p>
               
-                    <a href="" class="inline-block border border-black text-white bg-black px-4 py-2 rounded-full  hover:bg-gray-800 hover:text-white transition duration-300 ease-in-out login-link">Join Now</a>
+                    <a href="" class="inline-block  text-white bg-orange-500 px-4 py-2 rounded hover:bg-orange-600 hover:text-white transition duration-300 ease-in-out">Explore Courses</a>
             </div>
 
 
@@ -26,7 +26,7 @@
 
         <div class="container mx-auto py-">
             <section class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-8  text-gray-700 p-5">
-                <div class="md:col-span-1 bg-white rounded-lg p-6 hover:shadow-md hover:bg-gray-50 ">
+                <div class="md:col-span-1 bg-white rounded-lg p-6 ">
                     <h2 class="text-2xl font-bold mb-4 text">About Us</h2>
                     <p class="text-lg text-left">Discover the pinnacle of coding education at Code with Sadiq. Our platform
                         blends
@@ -38,7 +38,7 @@
                         transformative coding odyssey, where innovation meets mentorship, and aspirations become
                         achievements. Elevate your coding prowess with Code with Sadiq today.</p>
                 </div>
-                <div class="md:col-span-1 bg-white rounded-lg p-6 hover:shadow-md hover:bg-gray-50">
+                <div class="md:col-span-1 bg-white rounded-lg p-6 border border-b">
                     <h2 class="text-2xl font-bold mb-4">Recent Projects</h2>
 
                    

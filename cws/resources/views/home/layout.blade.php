@@ -18,72 +18,71 @@
 
 <body class="font-sans">
 
-
-
-    <nav class="fixed top-0 z-50 w-full bg-white  p-0 dark:bg-gray-800 shadow-md dark:border-gray-700">
+    <nav class="fixed top-0 z-50 w-full bg-white  p-0 shadow-md ">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center  justify-between me-3">
 
                 <div class="flex items-center ">
-                    <div class="text-center">
 
-                    </div>
+                    {{-- website logo --}}
                     <a href="{{ route('index') }}" class="flex ms-2 md:me-24">
                         <span
-                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-gray-800 dark:text-white">Code
-                            With Sadiq</span>
+                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-gray-800 ">Code With Sadiq
+                        </span>
                     </a>
                 </div>
 
 
                 <div class="shrink w-full hidden md:block item-center">
 
+                    {{-- search bar  --}}
+
                     <form class="max-w-lg mx-auto">
                         <div class="flex">
-                            <label for="search-dropdown"
-                                class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Your
-                                Email</label>
-                            <button id="dropdown-button" data-dropdown-toggle="dropdown"
-                                class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
-                                type="button">All categories <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true"
+                            {{-- <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only ">Your Email</label> --}}
+                            <button id="dropdown-button" data-dropdown-toggle="dropdownHover"
+                                data-dropdown-trigger="hover"
+                                class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900  bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 "
+                                type="button">  
+                                    
+                                    All categories 
+                                
+                                <svg class="w-2.5 h-2.5 ms-2.5 " aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" d="m1 1 4 4 4-4" />
-                                </svg></button>
-                            <div id="dropdown"
-                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 category-dropdown"
+                                </svg>
+                            
+                            </button>
+                            <div id="dropdownHover"
+                                class="z-10 hidden bg-white divide-y divide-gray-100  shadow w-44 ">
+                                <ul aria-labelledby="dropdownHoverButton"
+                                    class="py-2 text-sm text-gray-700  category-dropdown"
                                     aria-labelledby="dropdown-button">
                                     <li>
                                         <button type="button"
-                                            class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mockups</button>
+                                            class="inline-flex w-full px-4 py-2 hover:bg-gray-100 ">Dummy 1</button>
                                     </li>
                                     <li>
                                         <button type="button"
-                                            class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Templates</button>
+                                            class="inline-flex w-full px-4 py-2 hover:bg-gray-100 ">Dummy 2</button>
                                     </li>
-                                    <li>
-                                        <button type="button"
-                                            class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Design</button>
-                                    </li>
-                                    <li>
-                                        <button type="button"
-                                            class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logos</button>
-                                    </li>
+
                                 </ul>
                             </div>
                             <div class="relative w-full">
                                 <input type="search" id="searchInput"
-                                    class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                                    class="block p-2.5 sm:w-80 md:w-full lg:w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
                                     placeholder="Search Courses, Projects..." required />
-                                <button type="submit"
-                                    class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-gray-800   rounded-e-lg border hover:bg-gray-300  hover:text-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600  dark:focus:ring-blue-800">
+                                <button
+                                    class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-gray-800   rounded-e-lg border hover:bg-gray-300  hover:text-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+
                                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 20 20">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                     </svg>
-                                    <span class="sr-only">Search</span>
+                                    {{-- <span class="sr-only">Search</span> --}}
                                 </button>
                             </div>
                         </div>
@@ -92,66 +91,83 @@
                 </div>
 
                 <div class="flex items-center shrink-0  gap-2">
+
+                    {{-- login & sign up buttons  --}}
                     <div class="flex items-center shrink-0 gap-2">
-                        <a href="{{route('login')}}" class=" border hidden md:block  lg:block  border-black text-black px-4 py-2  hover:bg-black hover:text-white transition duration-300 ease-in-out register-link">Login</a>
-                        <a href="{{route('register')}}" class=" border hidden md:block border-black text-white bg-black px-4 py-2  hover:bg-gray-800 hover:text-white transition duration-300 ease-in-out login-link">Sign Up</a>
+                        <a href="{{ route('login') }}"
+                            class=" border hidden md:block  lg:block  border-black text-black px-4 py-2  hover:bg-black hover:text-white transition duration-300 ease-in-out register-link">Login</a>
+                        <a href="{{ route('register') }}"
+                            class=" border hidden md:block border-black text-white bg-black px-4 py-2  hover:bg-gray-800 hover:text-white transition duration-300 ease-in-out login-link">Sign
+                            Up</a>
 
 
                     </div>
-                    <div class="flex shrink-0 items-center profile-link">
-                        <div>
-                            <button type="button"
-                                class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                                aria-expanded="false" data-dropdown-toggle="dropdown-user">
-                                <span class="sr-only">Open user menu</span>
-                                <img class="w-8 h-8 rounded-full" src="https://picsum.photos/200/300" alt="user photo">
-                            </button>
-                        </div>
-                        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
-                            id="dropdown-user">
-                            <div class="px-4 py-3" role="none">
-                                <p class="text-sm text-gray-900 dark:text-white calling_username">
-                                    Hi , Guest
-                                </p>
 
-                            </div>
-                            <ul class="py-1 " role="none">
+                    {{-- <!--Profile Dropdown menu --> --}}
+                    <div class="flex shrink-0 items-center profile-link">
+
+                        <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownHovers"
+                            data-dropdown-trigger="hover"
+                            class="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-orange-600  md:me-0 focus:ring-4 focus:ring-gray-100 "
+                            type="button">
+
+                            <img class="w-8 h-8 me-2 rounded-full shrink-0" src="https://picsum.photos/200/300"
+                                alt="user photo">
+                            <p class="text-sm text-gray-900 hidden md:block calling_username">
+                                Hi , Guest
+                            </p>
+                            <svg class="w-2.5 h-2.5 ms-3 hidden md:block" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+
+                        <div id="dropdownHovers"
+                            class="z-10 hidden bg-white divide-y divide-gray-100  shadow w-44 ">
+
+                            <ul class="py-1 text-sm text-gray-700 "
+                                aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
                                 <li>
                                     <a href="{{ route('index') }}"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300  "
                                         role="menuitem">
                                         <span>Home</span></a>
                                 </li>
 
                                 <li class="profile-link">
                                     <a href="{{ route('profile') }}"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300  "
                                         role="menuitem">
                                         <span>My Profile</span></a>
                                 </li>
 
                                 <li class="course-link">
                                     <a href="{{ route('myCourse') }}"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300  "
                                         role="menuitem">
                                         <span>My Courses</span></a>
                                 </li>
 
-                                <li class="logout-link">
-                                    <a href=""
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        role="menuitem">
-                                        <span class="logout">Sign out</span>
-                                    </a>
-                                </li>
                             </ul>
+                            <div class="logout-link">
+                                <a href=""
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300  "
+                                    role="menuitem">
+                                    <span class="logout">Sign out</span>
+                                </a>
+                            </div>
                         </div>
+
+
                     </div>
 
+
+                    {{-- button to enable sidebar --}}
                     <div class="flex items-center">
                         <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation"
                             aria-controls="drawer-navigation" type="button"
-                            class="inline-flex items-center p-2 text-sm text-gray-800  rounded-lg bg-gray-100  hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-300 dark:focus:ring-gray-600">
+                            class="inline-flex items-center p-2 text-sm text-gray-800  rounded-lg bg-gray-100  hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-200 ">
                             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path clip-rule="evenodd" fill-rule="evenodd"
@@ -170,15 +186,15 @@
 
 
     <div id="drawer-navigation"
-        class="fixed top-0 mt-16 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white  dark:bg-gray-800 dark:border-gray-700"
+        class="fixed top-0 mt-16 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white  "
         tabindex="-1" aria-labelledby="drawer-navigation-label">
-        <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
-            <p class="text-sm text-gray-800  rounded-lg dark:text-white calling_username">
+        <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase ">
+            <p class="text-sm text-gray-800  rounded-lg  calling_username">
                 Hi , Guest
             </p>
         </h5>
         <button type="button" data-drawer-hide="drawer-navigation" aria-controls="drawer-navigation"
-            class="text-gray-800 dark:text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white ">
+            class="text-gray-800  bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center  ">
             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -191,11 +207,11 @@
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="{{ route('index') }}"
-                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-200 group">
+                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg  hover:bg-gray-300  group">
 
 
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900"
+                            class="w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900 "
                             viewBox="0 0 576 512">
                             <path fill="currentColor"
                                 d="M543.8 287.6c17 0 32-14 32-32.1c1-9-3-17-11-24L512 185V64c0-17.7-14.3-32-32-32H448c-17.7 0-32 14.3-32 32v36.7L309.5 7c-6-5-14-7-21-7s-15 1-22 8L10 231.5c-7 7-10 15-10 24c0 18 14 32.1 32 32.1h32v69.7c-.1 .9-.1 1.8-.1 2.8V472c0 22.1 17.9 40 40 40h16c1.2 0 2.4-.1 3.6-.2c1.5 .1 3 .2 4.5 .2H160h24c22.1 0 40-17.9 40-40V448 384c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v64 24c0 22.1 17.9 40 40 40h24 32.5c1.4 0 2.8 0 4.2-.1c1.1 .1 2.2 .1 3.3 .1h16c22.1 0 40-17.9 40-40V455.8c.3-2.6 .5-5.3 .5-8.1l-.7-160.2h32z" />
@@ -208,11 +224,11 @@
 
                 <li>
                     <button type="button"
-                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-300 dark:text-white dark:hover:bg-gray-700"
+                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-300  "
                         aria-controls="category-dropdown" data-collapse-toggle="category-dropdown">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-gray-900"
+                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75 group-hover:text-gray-900  "
                             viewBox="0 0 576 512">
                             <path fill="currentColor"
                                 d="M264.5 5.2c14.9-6.9 32.1-6.9 47 0l218.6 101c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 149.8C37.4 145.8 32 137.3 32 128s5.4-17.9 13.9-21.8L264.5 5.2zM476.9 209.6l53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 277.8C37.4 273.8 32 265.3 32 256s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0l152-70.2zm-152 198.2l152-70.2 53.2 24.6c8.5 3.9 13.9 12.4 13.9 21.8s-5.4 17.9-13.9 21.8l-218.6 101c-14.9 6.9-32.1 6.9-47 0L45.9 405.8C37.4 401.8 32 393.3 32 384s5.4-17.9 13.9-21.8l53.2-24.6 152 70.2c23.4 10.8 50.4 10.8 73.8 0z" />
@@ -234,10 +250,10 @@
 
                 <li>
                     <a href="{{ route('myCourse') }}"
-                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-200 group course-link">
+                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg  hover:bg-gray-300  group course-link">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900"
+                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900 "
                             viewBox="0 0 448 512">
                             <path fill="currentColor"
                                 d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
@@ -250,10 +266,10 @@
 
                 <li>
                     <a href="{{ route('profile') }}"
-                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-200 group profile-link">
+                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg  hover:bg-gray-300  group profile-link">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900"
+                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900 "
                             viewBox="0 0 448 512">
                             <path fill="currentColor"
                                 d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
@@ -265,10 +281,10 @@
                 </li>
                 <li>
                     <a href="{{ route('achievements') }}"
-                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-200 group">
+                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg  hover:bg-gray-300  group">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900"
+                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900 "
                             viewBox="0 0 576 512">
                             <path fill="currentColor"
                                 d="M309.5 13.5C305.5 5.2 297.1 0 287.9 0s-17.6 5.2-21.6 13.5L197.7 154.8 44.5 177.5c-9 1.3-16.5 7.6-19.3 16.3s-.5 18.1 5.9 24.5L142.2 328.4 116 483.9c-1.5 9 2.2 18.1 9.7 23.5s17.3 6 25.3 1.7l137-73.2 137 73.2c8.1 4.3 17.9 3.7 25.3-1.7s11.2-14.5 9.7-23.5L433.6 328.4 544.8 218.2c6.5-6.4 8.7-15.9 5.9-24.5s-10.3-14.9-19.3-16.3L378.1 154.8 309.5 13.5zM288 384.7V79.1l52.5 108.1c3.5 7.1 10.2 12.1 18.1 13.3l118.3 17.5L391 303c-5.5 5.5-8.1 13.3-6.8 21l20.2 119.6L299.2 387.5c-3.5-1.9-7.4-2.8-11.2-2.8z" />
@@ -280,26 +296,25 @@
 
                 <li>
                     <a href="{{ route('view_project') }}"
-                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-200 group">
+                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg  hover:bg-gray-300  group">
 
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"
-                        class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900">
-                       <path fill="currentColor"
-                             d="M160 96a96 96 0 1 1 192 0A96 96 0 1 1 160 96zm80 152V512l-48.4-24.2c-20.9-10.4-43.5-17-66.8-19.3l-96-9.6C12.5 457.2 0 443.5 0 427V224c0-17.7 14.3-32 32-32H62.3c63.6 0 125.6 19.6 177.7 56zm32 264V248c52.1-36.4 114.1-56 177.7-56H480c17.7 0 32 14.3 32 32V427c0 16.4-12.5 30.2-28.8 31.8l-96 9.6c-23.2 2.3-45.9 8.9-66.8 19.3L272 512z"/>
-                   </svg>
-                                      
-                                      
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900 ">
+                            <path fill="currentColor"
+                                d="M160 96a96 96 0 1 1 192 0A96 96 0 1 1 160 96zm80 152V512l-48.4-24.2c-20.9-10.4-43.5-17-66.8-19.3l-96-9.6C12.5 457.2 0 443.5 0 427V224c0-17.7 14.3-32 32-32H62.3c63.6 0 125.6 19.6 177.7 56zm32 264V248c52.1-36.4 114.1-56 177.7-56H480c17.7 0 32 14.3 32 32V427c0 16.4-12.5 30.2-28.8 31.8l-96 9.6c-23.2 2.3-45.9 8.9-66.8 19.3L272 512z" />
+                        </svg>
+
+
                         <span class="flex-1 ms-3 whitespace-nowrap">Projects</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{ route('about') }}"
-                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-200 group">
+                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg  hover:bg-gray-300  group">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900"
+                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900 "
                             viewBox="0 0 576 512">
                             <path fill="currentColor"
                                 d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 256h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zm256-32H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
@@ -310,8 +325,8 @@
                 </li>
                 <li>
                     <a href="{{ route('login') }}"
-                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-200 group login-link">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900"
+                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg  hover:bg-gray-300  group login-link">
+                        <svg class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900 "
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 18 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -321,11 +336,11 @@
                         <span class="flex-1 ms-3 whitespace-nowrap">Sign In</span>
                     </a>
                 </li>
-                
+
                 <li>
                     <a href="{{ route('register') }}"
-                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-200 group register-link">
-                        <svg class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900"
+                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg  hover:bg-gray-300  group register-link">
+                        <svg class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900 "
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 20 20">
                             <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
@@ -339,9 +354,9 @@
                 </li>
                 <li>
                     <a href=""
-                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-200 group logout-link">
+                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg  hover:bg-gray-300  group logout-link">
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900"
+                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900 "
                             viewBox="0 0 512 512">
                             <path fill="currentColor"
                                 d="M9.4 233.4c-12.5-12.5-12.5-32.8 0-45.3l128-128c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3L109.3 224 320 224c17.7 0 32 14.3 32 32s-14.3 32-32 32L109.3 288l73.4 73.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0l-128-128zM352 416c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c53 0 96-43 96-96L480 128c0-53-43-96-96-96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c17.7 0 32 14.3 32 32l0 256c0 17.7-14.3 32-32 32l-64 0z" />
@@ -352,10 +367,10 @@
 
                 <li>
                     <a href="{{ route('tandc') }}"
-                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-200 group">
+                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg  hover:bg-gray-300  group">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900"
+                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900 "
                             viewBox="0 0 384 512">
                             <path fill="currentColor"
                                 d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM112 256H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H272c8.8 0 16 7.2 16 16s-7.2 16-16 16H112c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
@@ -369,10 +384,10 @@
 
                 <li>
                     <a href="{{ route('privacy') }}"
-                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-200 group">
+                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg  hover:bg-gray-300  group">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900"
+                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900 "
                             viewBox="0 0 640 512">
                             <path fill="currentColor"
                                 d="M36.8 192H449.6c20.2-19.8 47.9-32 78.4-32c30.5 0 58.1 12.2 78.3 31.9c18.9-1.6 33.7-17.4 33.7-36.7c0-7.3-2.2-14.4-6.2-20.4L558.2 21.4C549.3 8 534.4 0 518.3 0H121.7c-16 0-31 8-39.9 21.4L6.2 134.7c-4 6.1-6.2 13.2-6.2 20.4C0 175.5 16.5 192 36.8 192zM384 224H320V384H128V224H64V384v80c0 26.5 21.5 48 48 48H336c26.5 0 48-21.5 48-48V384 352 224zm144 16c17.7 0 32 14.3 32 32v48H496V272c0-17.7 14.3-32 32-32zm-80 32v48c-17.7 0-32 14.3-32 32V480c0 17.7 14.3 32 32 32H608c17.7 0 32-14.3 32-32V352c0-17.7-14.3-32-32-32V272c0-44.2-35.8-80-80-80s-80 35.8-80 80z" />
@@ -385,9 +400,9 @@
 
                 <li>
                     <a href="{{ route('help') }}"
-                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-300 dark:hover:bg-gray-200 group">
+                        class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg  hover:bg-gray-300  group">
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-900"
+                            class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900 "
                             viewBox="0 0 512 512">
                             <path fill="currentColor"
                                 d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm169.8-90.7c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V250.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H222.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
@@ -413,13 +428,13 @@
         </div>
     </main>
 
-    <footer class="bg-[#0b7d99] text-gray-800 dark:bg-gray-800 dark:text-white py-4 sm:py-6">
+    <footer class="bg-gray-300 text-gray-800 py-4 shadow sm:py-6">
         <div class="container mx-auto text-center flex justify-center">
-            <a href="{{ route('tandc') }}" class="text-gray-300 hover:text-white mr-4 ">
+            <a href="{{ route('tandc') }}" class="text-gray-00 hover:text-gray-900 mr-4 ">
                 Terms & Conditions
             </a>
 
-            <a href="{{ route('privacy') }}" class="text-gray-300 hover:text-white  ">
+            <a href="{{ route('privacy') }}" class="text-gray-00 hover:text-gray-900  ">
                 Privacy Policy
             </a>
         </div>
@@ -540,7 +555,7 @@
                             console.log(item)
                             table.append(`
                             <li>
-                                <a href="/api/view-category/${item.id}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-300 dark:text-white dark:hover:bg-gray-700">${item.cat_title}</a>
+                                <a href="/api/view-category/${item.id}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-300 pl-6 ">${item.cat_title}</a>
                             </li>
                         `);
                         });
