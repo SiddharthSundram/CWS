@@ -34,20 +34,20 @@
             let callingCourse = () => {
                     $.ajax({
                         type: 'GET',
-                        url:`/api/view-category/{{ request()->segment()}}`,
+                        url:`/api/view-category/{{ request()->segment(2)}}`,
                         success: function(response) {
                             let table = $("#courses-list");
                             let notCoursesList = $("#not-courses-list");
                             table.empty();
 
-                            if (response.courses.length === 0) {
+                            if (response.data.length === 0) {
                                 table.hide();
                                 notCoursesList.show();
                             } else {
                                 notCoursesList.hide();
                                 table.show();
 
-                                response.courses.forEach((item) => {
+                                response.data.forEach((item) => {
                                     table.append(`
                                 <div class="max-w-sm md:max-w-lg lg:max-w-xl xl:max-w-2xl bg-white rounded-lg shadow-md overflow-hidden">
                                     <img src="/image/${item.featured_image}" id="courseImage" alt="Course Image" class="w-full h-48 object-cover object-center">
