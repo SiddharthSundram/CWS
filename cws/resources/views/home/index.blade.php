@@ -153,43 +153,50 @@
                         $("#counting").html(len)
 
                         data.forEach((course) => {
+                            if (course.status === 1) {
+
                             table.append(`
-                        <div class="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 transform hover:scale-105 hover:bg-gray-50 hover:shadow-lg">
-                            <div class="relative">
-                                <img src="/image/${course.featured_image}" alt="Course" class="w-full h-56 object-cover">
-                                <span class="absolute top-0 right-0 bg-green-500 text-white px-2 py-1 m-2 rounded-full text-xs font-semibold">New</span>
-                            </div>
-                            <div class="p-6">
-                                <div class="flex items-center justify-between mb-2">
-                                    <div>
-                                        <h3 class="text-xl text-gray-700 font-semibold mb-2">Course : <span class="text-orange-600">${course.name}</span></h3>
+                            
+                                <div class="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 transform hover:scale-105 hover:bg-gray-50 hover:shadow-lg">
+                                    <div class="relative">
+                                        <img src="/image/${course.featured_image}" alt="Course" class="w-full h-56 object-cover">
+                                        <span class="absolute top-0 right-0 bg-green-500 text-white px-2 py-1 m-2 rounded-full text-xs font-semibold">New</span>
                                     </div>
-                                    <div>
-                                        <span class="inline-flex rounded-md bg-green-200 px-2 py-1 text-xs font-medium text-green-950 ring-1 ring-inset ring-green-600/20">${course.category ? course.category.cat_title : 'N/A'}</span>
+                                    <div class="p-6">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div>
+                                                <h3 class="text-xl text-gray-700 font-semibold mb-2">Course : <span class="text-orange-600">${course.name}</span></h3>
+                                            </div>
+                                            <div>
+                                                <span class="inline-flex rounded-md bg-green-200 px-2 py-1 text-xs font-medium text-green-950 ring-1 ring-inset ring-green-600/20">${course.category ? course.category.cat_title : 'N/A'}</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center text-gray-600 mb-2">
+                                            <p>Instructor: ${course.instructor}</p>
+                                        </div>
+                                        <div class="flex items-center text-gray-600 mb-2">
+                                            <p>Duration: ${course.duration}</p>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <div>
+                                                <p class="text-xl font-semibold text-gray-900">₹${course.fees} <span class="text-sm text-gray-600 line-through ml-2">₹${course.discount_fees}</span></p>
+                                                <p class="text-green-500 font-semibold">20% off</p>
+                                            </div>
+                                            <div>
+                                                <a href="/explore-course/${course.id}" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded transition duration-300">Explore</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="flex items-center text-gray-600 mb-2">
-                                    <p>Instructor: ${course.instructor}</p>
-                                </div>
-                                <div class="flex items-center text-gray-600 mb-2">
-                                    <p>Duration: ${course.duration}</p>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <div>
-                                        <p class="text-xl font-semibold text-gray-900">₹${course.fees} <span class="text-sm text-gray-600 line-through ml-2">₹${course.discount_fees}</span></p>
-                                        <p class="text-green-500 font-semibold">20% off</p>
-                                    </div>
-                                    <div>
-                                        <a href="/explore-course/${course.id}" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded transition duration-300">Explore</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `);
+                             `);
+                            }
                         });
-                    }
-                });
-            }
+                    
+                    
+                }
+                
+            });
+        }
 
             // Call the function to initially populate the course table
             callingcourse();

@@ -52,6 +52,17 @@ class CourseApiController extends Controller
         //
     }
 
+    public function toggleStatus($id)
+    {
+        $course = Course::findOrFail($id);
+        $course->status = !$course->status;
+        $course->save();
+    
+        return response()->json(['message' => 'Course status toggled successfully'], 200);
+    }
+    
+
+
     /**
      * Update the specified resource in storage.
      */
