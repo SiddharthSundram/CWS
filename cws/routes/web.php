@@ -26,6 +26,8 @@ Route::get("/my-profile", [HomeController::class, 'profile'])->name('profile');
 //explore course
 Route::get("/explore-course/{id}", [CourseController::class, 'exploreCourse'])->name('exploreCourse');
 
+Route::get("/view-category/{id}", [HomeController::class, 'viewCategory'])->name('viewCategory');
+
 // for user's course
 Route::get("/my-course", [HomeController::class, 'myCourse'])->name('myCourse');
 
