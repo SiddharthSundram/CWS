@@ -6,15 +6,17 @@
         <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
             <div class="md:w-1/2 md:pr-8 text-left mb-4 md:mb-0 ">
                 <div class="flex flex-col md:flex-row text-center md:text-left ">
-                    <h1 class="text-3xl font-bold">Upskilling Made  </h1>
-                        <span id="autoText" class="text-3xl font-bold text-orange-500 ml-3">Upskilling Made </span>
+                    <h1 class="text-3xl font-bold">Upskilling Made </h1>
+                    <span id="autoText" class="text-3xl font-bold text-orange-500 ml-3">Upskilling Made </span>
                 </div>
                 <p class="text-lg mb-8">Where coding brilliance meets expert guidance. From novice to expert, our platform
                     offers personalized coaching and comprehensive courses to elevate your coding skills. Join a vibrant
                     community and unlock your coding potential today.</p>
-              
-                    <a href="" class="inline-block w-full md:w-44 text-center text-black border border-black px-4 py-2 rounded hover:bg-gray-300 hover:text-balck 
-                        transition duration-300 ease-in-out">Explore Courses</a>
+
+                <a href="{{ route('allCourses') }}"
+                    class="inline-block w-full md:w-44 text-center text-black border border-black px-4 py-2 rounded hover:bg-gray-300 hover:text-balck 
+                        transition duration-300 ease-in-out">Explore
+                    Courses</a>
             </div>
 
             <div class="md:w-1/2 md:flex md:justify-center  md:order-1 " id="imageContainer">
@@ -43,7 +45,7 @@
                 <div class="md:col-span-1 bg-white rounded-lg ">
                     <h2 class="text-2xl font-bold mb-4">Recent Projects</h2>
 
-                   
+
                     <div class="grid grid-cols-1  gap-4" id="recentProjects">
                         <!-- Recent projects will be dynamically loaded here -->
 
@@ -55,12 +57,13 @@
                         </div>
                     </div>
                     <div class="mt-5 flex justify-end ">
-                        <a href="{{route('view_project')}}" class="p-2 text-black flex items-center gap-2 hover:bg-gray-300 border  rounded border-black transition duration-300">View all  projects
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 448 512"
+                        <a href="{{ route('view_project') }}"
+                            class="p-2 text-black flex items-center gap-2 hover:bg-gray-300 border  rounded border-black transition duration-300">View
+                            all projects
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
                                 class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900">
                                 <path fill="currentColor"
-                                    d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+                                    d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
                             </svg>
 
                         </a>
@@ -75,17 +78,19 @@
                 <div class="carousel relative overflow-hidden">
                     <div class="carousel-inner flex p-3" id="callingHallframe">
                         {{-- Students will be dynamically loaded here --}}
-                       
+
                     </div>
-                    <button class="absolute top-1/2 transform -translate-y-1/2 left-0 bg-gray-500 text-white px-4 py-2 rounded-l-md carousel-prev">
+                    <button
+                        class="absolute top-1/2 transform -translate-y-1/2 left-0 bg-gray-500 text-white px-4 py-2 rounded-l-md carousel-prev">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <button class="absolute top-1/2 transform -translate-y-1/2 right-0 bg-gray-500 text-white px-4 py-2 rounded-r-md carousel-next">
+                    <button
+                        class="absolute top-1/2 transform -translate-y-1/2 right-0 bg-gray-500 text-white px-4 py-2 rounded-r-md carousel-next">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
             </div>
-            
+
 
             <div class="container mx-auto my-8 p-5">
                 <h2 class="text-4xl font-medium mb-6">Our Courses</h2>
