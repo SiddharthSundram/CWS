@@ -71,7 +71,7 @@
 
 
             <div class="container mx-auto py-8">
-                <h2 class="text-4xl font-semibold mb-4">Our Student in Industries</h2>
+                <h2 class="text-4xl font-medium mb-4">Our Student in Industries</h2>
                 <div class="carousel relative overflow-hidden">
                     <div class="carousel-inner flex p-3" id="callingHallframe">
                         {{-- Students will be dynamically loaded here --}}
@@ -88,7 +88,7 @@
             
 
             <div class="container mx-auto my-8 p-5">
-                <h2 class="text-4xl font-bold mb-6">Our Courses</h2>
+                <h2 class="text-4xl font-medium mb-6">Our Courses</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3" id="callingcourse">
                     <!-- Courses will be dynamically loaded here -->
                 </div>
