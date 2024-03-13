@@ -73,23 +73,23 @@
             <div class="container mx-auto py-8">
                 <h2 class="text-4xl font-semibold mb-4">Our Student in Industries</h2>
                 <div class="carousel relative overflow-hidden">
-                    <div class="carousel-inner flex" id="callingHallframe">
-                        {{-- Stuudents will be dynamically loaded here --}}
+                    <div class="carousel-inner flex p-3" id="callingHallframe">
+                        {{-- Students will be dynamically loaded here --}}
+                       
                     </div>
-                    <button
-                        class="absolute top-1/2 transform -translate-y-1/2 left-0 bg-gray-500 text-white px-4 py-2 rounded-l-md carousel-prev">
+                    <button class="absolute top-1/2 transform -translate-y-1/2 left-0 bg-gray-500 text-white px-4 py-2 rounded-l-md carousel-prev">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <button
-                        class="absolute top-1/2 transform -translate-y-1/2 right-0 bg-gray-500 text-white px-4 py-2 rounded-r-md carousel-next">
+                    <button class="absolute top-1/2 transform -translate-y-1/2 right-0 bg-gray-500 text-white px-4 py-2 rounded-r-md carousel-next">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
             </div>
+            
 
             <div class="container mx-auto my-8 p-5">
                 <h2 class="text-4xl font-bold mb-6">Our Courses</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="callingcourse">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3" id="callingcourse">
                     <!-- Courses will be dynamically loaded here -->
                 </div>
             </div>
@@ -154,7 +154,7 @@
 
                         data.forEach((course) => {
                             table.append(`
-                        <div class="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 transform hover:scale-105 hover:bg-gray-50 hover:shadow-lg">
+                        <div class="bg-white rounded-lg overflow-hidden  shadow-md transition duration-300 transform hover:scale-105 hover:bg-gray-50 hover:shadow-lg">
                             <div class="relative">
                                 <img src="/image/${course.featured_image}" alt="Course" class="w-full h-56 object-cover">
                                 <span class="absolute top-0 right-0 bg-green-500 text-white px-2 py-1 m-2 rounded-full text-xs font-semibold">New</span>
@@ -208,14 +208,15 @@
                         data.forEach((hallFrame) => {
                             // Append each hallFrame data to the table
                             table.append(`
-                                <div class="carousel-item flex-none w-full p-3  md:w-1/2 lg:w-1/4"> 
-                                    <div class="bg-white rounded-lg hover:shadow-md  transition duration-300 transform hover:scale-105  border border-b"> 
-                                        <img src="/image/${hallFrame.featured_image}" alt="John Doe" class="w-full h-48 object-cover mb-2 "> 
-                                        <h2 class="text-xl text-gray-700 font-semibold mb-2">${hallFrame.name}</h2>
-                                        <p class="text-gray-600">Industry: ${hallFrame.industry}</p>
-                                        <p class="text-gray-600">Position: ${hallFrame.position}</p>                                    
-                                    </div>
+                            <div class="carousel-item flex-none w-full p-1 md:w-1/5 lg:w-1/5 "> 
+                                <div class="bg-white rounded-lg hover:shadow-md  transition duration-300 transform hover:scale-105 border border-b"> 
+                                    <img src="/image/${hallFrame.featured_image}" alt="" class="w-full h-48 object-cover mb-2"> 
+                                    <h2 class="text-xl text-gray-700 font-semibold mb-2">${hallFrame.name}</h2>
+                                    <p class="text-gray-600">Industry: ${hallFrame.industry}</p>
+                                    <p class="text-gray-600 mb-2">Position: ${hallFrame.position}</p>                                    
                                 </div>
+                            </div>
+                           
                     `);
                         });
 

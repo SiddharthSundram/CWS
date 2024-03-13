@@ -25,7 +25,7 @@
                 <div class="flex items-center ">
 
                     {{-- website logo --}}
-                    <a href="{{ route('index') }}" class="flex ms-2 md:me-24">
+                    <a href="{{ route('index') }}" title="Code With Sadiq " class="flex ms-2 md:me-24">
                         <span
                             class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-gray-800 ">Code
                             With Sadiq
@@ -119,7 +119,7 @@
                     <div class="flex shrink-0 items-center  profile-link">
                         <div class="hidden md:block">
 
-                            <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownHovers"
+                            <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownHovers" title="My Profile"
                                 data-dropdown-trigger="hover"
                                 class="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-orange-600  md:me-0 focus:ring-4 focus:ring-gray-100 "
                                 type="button">
@@ -178,7 +178,7 @@
 
                     {{-- button to enable sidebar --}}
                     <div class="flex items-center">
-                        <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation"
+                        <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation" title="Menu"
                             aria-controls="drawer-navigation" type="button"
                             class="inline-flex items-center p-2 text-sm text-gray-800  rounded-lg bg-gray-100  hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-200 ">
                             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
@@ -441,13 +441,13 @@
         </div>
     </main>
 
-    <footer class="bg-gray-300 text-gray-800 py-4 shadow sm:py-6">
+    <footer class="bg-gray-800 text-gray-100 py-4 shadow sm:py-6">
         <div class="container mx-auto text-center flex justify-center">
-            <a href="{{ route('tandc') }}" class="text-gray-00 hover:text-gray-900 mr-4 ">
+            <a href="{{ route('tandc') }}" class="text-gray-100 hover:text-gray-200 hover:underline mr-4 ">
                 Terms & Conditions
             </a>
 
-            <a href="{{ route('privacy') }}" class="text-gray-00 hover:text-gray-900  ">
+            <a href="{{ route('privacy') }}" class="text-gray-100 hover:text-gray-200 hover:underline ">
                 Privacy Policy
             </a>
         </div>
