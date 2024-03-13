@@ -53,7 +53,7 @@ class RecentProjectApiController extends Controller
         public function manageProject(Request $request)
         {
             $query = $request->get('query');
-            $perPage = $request->input('per_page', 1); // Default to 1 item per page if not specified
+            $perPage = $request->input('per_page', 2); // Default to 1 item per page if not specified
 
             if ($query) {
                 $recent_project = RecentProject::where('name', 'LIKE', "%$query%")->paginate($perPage);

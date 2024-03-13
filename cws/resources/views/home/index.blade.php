@@ -5,29 +5,31 @@
     <div class=" px-4 text-center text-gray-800">
         <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
             <div class="md:w-1/2 md:pr-8 text-left mb-4 md:mb-0 ">
-                <h1 class="text-3xl font-bold mb-4">Upskilling Made <span id="autoText" class="text-orange-500"></span> </h1>
+                <div class="flex flex-col md:flex-row text-center md:text-left ">
+                    <h1 class="text-3xl font-bold">Upskilling Made  </h1>
+                        <span id="autoText" class="text-3xl font-bold text-orange-500 ml-3">Upskilling Made </span>
+                </div>
                 <p class="text-lg mb-8">Where coding brilliance meets expert guidance. From novice to expert, our platform
                     offers personalized coaching and comprehensive courses to elevate your coding skills. Join a vibrant
                     community and unlock your coding potential today.</p>
               
-                    <a href="" class="inline-block  text-white bg-orange-500 px-4 py-2 rounded hover:bg-orange-600 hover:text-white transition duration-300 ease-in-out">Explore Courses</a>
+                    <a href="" class="inline-block w-full md:w-44 text-center text-black border border-black px-4 py-2 rounded hover:bg-gray-300 hover:text-balck 
+                        transition duration-300 ease-in-out">Explore Courses</a>
             </div>
-
 
             <div class="md:w-1/2 md:flex md:justify-center  md:order-1 " id="imageContainer">
                 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 
                 <dotlottie-player src="https://lottie.host/b1cdc270-cb11-43d1-98bb-70908a25bee3/8yR9uwNh8b.json"
                     background="transparent" speed="1" class="w-full h-100" loop autoplay></dotlottie-player>
-                {{-- <img src="/hero section.json" alt="Sadiq" class="w-96 md:mx-0 rounded-lg "> --}}
             </div>
         </div>
 
 
-        <div class="container mx-auto py-">
-            <section class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-8  text-gray-700 p-5">
-                <div class="md:col-span-1 bg-white rounded-lg p-6 ">
-                    <h2 class="text-2xl font-bold mb-4 text">About Us</h2>
+        <div class="container mx-auto mt-5 md:mt-0">
+            <section class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-8 p-0 md:p-5 text-gray-700 ">
+                <div class="md:col-span-1 bg-white rounded-lg  ">
+                    <h2 class="text-2xl font-bold mb-1 md:mb-4 text">About Us</h2>
                     <p class="text-lg text-left">Discover the pinnacle of coding education at Code with Sadiq. Our platform
                         blends
                         expert guidance with cutting-edge curriculum to propel your programming journey. From novice to
@@ -38,11 +40,11 @@
                         transformative coding odyssey, where innovation meets mentorship, and aspirations become
                         achievements. Elevate your coding prowess with Code with Sadiq today.</p>
                 </div>
-                <div class="md:col-span-1 bg-white rounded-lg p-6 border border-b">
+                <div class="md:col-span-1 bg-white rounded-lg ">
                     <h2 class="text-2xl font-bold mb-4">Recent Projects</h2>
 
                    
-                    <div class="grid grid-cols-1 gap-4" id="recentProjects">
+                    <div class="grid grid-cols-1  gap-4" id="recentProjects">
                         <!-- Recent projects will be dynamically loaded here -->
 
                     </div>
@@ -51,6 +53,17 @@
                         <div id="pagination" class="">
                             <!-- Pagination links will be inserted here -->
                         </div>
+                    </div>
+                    <div class="mt-5 flex justify-end ">
+                        <a href="{{route('view_project')}}" class="p-2 text-black flex items-center gap-2 hover:bg-gray-300 border  rounded border-black transition duration-300">View all  projects
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 448 512"
+                                class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900">
+                                <path fill="currentColor"
+                                    d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+                            </svg>
+
+                        </a>
                     </div>
 
                 </div>
@@ -271,13 +284,15 @@
                 table.empty();
                 data.forEach((project) => {
                     table.append(`
-            <div class="project-item bg-gray-200 p-4 rounded-md shadow-md hover:bg-gray-300 transition duration-300">
-                <h3 class="text-xl font-semibold mb-2">${project.name}</h3>
-                <p>${project.description}</p>
-                <div class="flex justify-end mt-4">
-                    <a href="${project.url}" target="_blank" class="view-button inline-block px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300">View</a>
-                </div>
-            </div>
+                        <div class="project-item p-2 rounded border hover:border-b hover:shadow hover:bg-gray-50 transition duration-300">
+                            <h3 class="text-xl text-start font-semibold mb-2">${project.name}</h3>
+                            <p class='truncate text-start'>${project.description}</p>
+                            
+                            <div class="flex justify-between items-center mt-4">
+                                <p class='text-start'>Developed by -${project.description}</p>
+                                <a href="${project.url}" target="_blank" class="view-button inline-block px-2 py-1  text-black rounded-md border border-black hover:bg-gray-300 transition duration-300">View</a>
+                            </div>
+                        </div>
         `);
                 });
             }
@@ -301,16 +316,16 @@
                             let paginationLinks = '';
                             if (response.prev_page_url) {
                                 paginationLinks +=
-                                    '<a href="#" class="pagination-link px-3 py-1 bg-blue-200 text-blue-800 mx-1 rounded" data-page="' +
+                                    '<a href="#" class="pagination-link px-3 py-1 bg-gray-200 text-gray-800 mx-1 rounded" data-page="' +
                                     (response.current_page - 1) + '">' + (response
                                         .current_page - 1) + '</a>';
                             }
                             paginationLinks +=
-                                '<span class="px-3 py-1 bg-blue-500 text-white mx-1 rounded">' +
+                                '<span class="px-3 py-1 bg-gray-500 text-white mx-1 rounded">' +
                                 response.current_page + '</span>';
                             if (response.next_page_url) {
                                 paginationLinks +=
-                                    '<a href="#" class="pagination-link px-3 py-1 bg-blue-200 text-blue-800 mx-1 rounded" data-page="' +
+                                    '<a href="#" class="pagination-link px-3 py-1 bg-gray-200 text-gray-800 mx-1 rounded" data-page="' +
                                     (response.current_page + 1) + '">' + (response
                                         .current_page + 1) + '</a>';
                             }

@@ -27,7 +27,8 @@
                     {{-- website logo --}}
                     <a href="{{ route('index') }}" class="flex ms-2 md:me-24">
                         <span
-                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-gray-800 ">Code With Sadiq
+                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-gray-800 ">Code
+                            With Sadiq
                         </span>
                     </a>
                 </div>
@@ -43,19 +44,18 @@
                             <button id="dropdown-button" data-dropdown-toggle="dropdownHover"
                                 data-dropdown-trigger="hover"
                                 class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900  bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 "
-                                type="button">  
-                                    
-                                    All categories 
-                                
-                                <svg class="w-2.5 h-2.5 ms-2.5 " aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                type="button">
+
+                                All categories
+
+                                <svg class="w-2.5 h-2.5 ms-2.5 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 10 6">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" d="m1 1 4 4 4-4" />
                                 </svg>
-                            
+
                             </button>
-                            <div id="dropdownHover"
-                                class="z-10 hidden bg-white divide-y divide-gray-100  shadow w-44 ">
+                            <div id="dropdownHover" class="z-10 hidden bg-white divide-y divide-gray-100  shadow w-44 ">
                                 <ul aria-labelledby="dropdownHoverButton"
                                     class="py-2 text-sm text-gray-700  category-dropdown"
                                     aria-labelledby="dropdown-button">
@@ -92,10 +92,22 @@
 
                 <div class="flex items-center shrink-0  gap-2">
 
+                    <div class="block md:hidden">
+                        <a href="#" class="inline-flex items-center justify-center">
+                            <button class="p-2.5 text-sm font-medium text-gray-800 rounded-lg border hover:bg-gray-300 hover:text-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                </svg>
+                                {{-- <span class="sr-only">Search</span> --}}
+                            </button>
+                        </a>
+                        
+                    </div>
+
                     {{-- login & sign up buttons  --}}
                     <div class="flex items-center shrink-0 gap-2">
                         <a href="{{ route('login') }}"
-                            class=" border hidden md:block  lg:block  border-black text-black px-4 py-2  hover:bg-black hover:text-white transition duration-300 ease-in-out register-link">Login</a>
+                            class=" border hidden md:block  lg:block  border-black text-black px-4 py-2  hover:bg-gray-300 hover:text-black transition duration-300 ease-in-out register-link">Login</a>
                         <a href="{{ route('register') }}"
                             class=" border hidden md:block border-black text-white bg-black px-4 py-2  hover:bg-gray-800 hover:text-white transition duration-300 ease-in-out login-link">Sign
                             Up</a>
@@ -104,62 +116,63 @@
                     </div>
 
                     {{-- <!--Profile Dropdown menu --> --}}
-                    <div class="flex shrink-0 items-center profile-link">
+                    <div class="flex shrink-0 items-center  profile-link">
+                        <div class="hidden md:block">
 
-                        <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownHovers"
-                            data-dropdown-trigger="hover"
-                            class="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-orange-600  md:me-0 focus:ring-4 focus:ring-gray-100 "
-                            type="button">
+                            <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownHovers"
+                                data-dropdown-trigger="hover"
+                                class="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-orange-600  md:me-0 focus:ring-4 focus:ring-gray-100 "
+                                type="button">
 
-                            <img class="w-8 h-8 me-2 rounded-full shrink-0" src="https://picsum.photos/200/300"
-                                alt="user photo">
-                            <p class="text-sm text-gray-900 hidden md:block calling_username">
-                                Hi , Guest
-                            </p>
-                            <svg class="w-2.5 h-2.5 ms-3 hidden md:block" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 4 4 4-4" />
-                            </svg>
-                        </button>
+                                <img class="w-8 h-8 me-2 rounded-full shrink-0" src="https://picsum.photos/200/300"
+                                    alt="user photo">
+                                <p class="text-sm text-gray-900 hidden md:block calling_username">
+                                    Hi , Guest
+                                </p>
+                                <svg class="w-2.5 h-2.5 ms-3 hidden md:block" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 4 4 4-4" />
+                                </svg>
+                            </button>
 
-                        <div id="dropdownHovers"
-                            class="z-10 hidden bg-white divide-y divide-gray-100  shadow w-44 ">
+                            <div id="dropdownHovers"
+                                class="z-10 hidden bg-white divide-y divide-gray-100  shadow w-44 ">
 
-                            <ul class="py-1 text-sm text-gray-700 "
-                                aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
-                                <li>
-                                    <a href="{{ route('index') }}"
+                                <ul class="py-1 text-sm text-gray-700 "
+                                    aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+                                    <li>
+                                        <a href="{{ route('index') }}"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300  "
+                                            role="menuitem">
+                                            <span>Home</span></a>
+                                    </li>
+
+                                    <li class="profile-link">
+                                        <a href="{{ route('profile') }}"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300  "
+                                            role="menuitem">
+                                            <span>My Profile</span></a>
+                                    </li>
+
+                                    <li class="course-link">
+                                        <a href="{{ route('myCourse') }}"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300  "
+                                            role="menuitem">
+                                            <span>My Courses</span></a>
+                                    </li>
+
+                                </ul>
+                                <div class="logout-link">
+                                    <a href=""
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300  "
                                         role="menuitem">
-                                        <span>Home</span></a>
-                                </li>
-
-                                <li class="profile-link">
-                                    <a href="{{ route('profile') }}"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300  "
-                                        role="menuitem">
-                                        <span>My Profile</span></a>
-                                </li>
-
-                                <li class="course-link">
-                                    <a href="{{ route('myCourse') }}"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300  "
-                                        role="menuitem">
-                                        <span>My Courses</span></a>
-                                </li>
-
-                            </ul>
-                            <div class="logout-link">
-                                <a href=""
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-300  "
-                                    role="menuitem">
-                                    <span class="logout">Sign out</span>
-                                </a>
+                                        <span class="logout">Sign out</span>
+                                    </a>
+                                </div>
                             </div>
+
                         </div>
-
-
                     </div>
 
 
