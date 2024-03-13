@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <div class="bg-white flex md:flex-row gap-10 md:justify-around flex-col rounded-lg shadow-lg p-6 mt-8">
+            <div class="bg-white flex md:flex-row gap-10 md:justify-evenly flex-col rounded-lg shadow-lg p-6 mt-8">
 
                 <div class=" flex flex-col items-center ">
                     <span class="ml-2 text-2xl text-orange-600" id="courseInstructor">Teacher</span>

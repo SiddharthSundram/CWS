@@ -21,4 +21,8 @@ class CourseController extends Controller
     public function exploreCourse(Request $request, $id){
         return view('home.exploreCourse');
     }
+
+    public function allCourses(){
+        return view('home.allCourses');
+    }
 }
