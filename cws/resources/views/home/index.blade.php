@@ -1,7 +1,7 @@
 @extends('home.layout')
 
 @section('content')
-    <!-- Your existing content here -->
+    <!-- main content here -->
     <div class=" px-4 text-center text-gray-800">
         <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
             <div class="md:w-1/2 md:pr-8 text-left mb-4 md:mb-0 ">
@@ -299,7 +299,7 @@
                                 <a href="${project.url}" target="_blank" class="view-button inline-block px-2 py-1  text-black rounded-md border border-black hover:bg-gray-300 transition duration-300">View</a>
                             </div>
                         </div>
-        `);
+                    `);
                 });
             }
 
