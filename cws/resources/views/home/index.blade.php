@@ -158,6 +158,8 @@
                         $("#counting").html(len)
 
                         data.forEach((course) => {
+                            if (course.status === 1) {
+
                             table.append(`
                         <div class="bg-white rounded-lg overflow-hidden  shadow-md transition duration-300 transform hover:scale-105 hover:bg-gray-50 hover:shadow-lg">
                             <div class="relative">
@@ -191,10 +193,14 @@
                             </div>
                         </div>
                     `);
+                            }
                         });
-                    }
-                });
-            }
+                    
+                    
+                }
+                
+            });
+        }
 
             // Call the function to initially populate the course table
             callingcourse();

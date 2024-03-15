@@ -53,6 +53,7 @@ Route::apiResource("course",CourseApiController::class);
 
 Route::apiResource("contact",ContactController::class);
 Route::get('/admin/manage-message',[ContactController::class,"manageMessage"])->name("manage-message");
+Route::put('/course/{id}/toggle-status', [CourseApiController::class,"toggleStatus"])->name('course.toggleStatus');
 
 
 //api for recent project operations
