@@ -1,11 +1,10 @@
 @extends('home.layout')
 
 @section('content')
-    <div class="bg-gray-200 p-3">
-        <div class="container mx-auto py-8">
+        <div class="container mx-auto py-8 mt-5 md:mt-10">
             <h1 class="text-3xl font-bold text-center mb-8">Purnea's Premier Programming Institute!</h1>
 
-            <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
+            <div class="max-w-3xl mx-auto bg-white p-2">
                 <p class="text-lg mb-6">At Code with Sadiq, we take pride in being the most popular programming language
                     class in Purnea, Bihar. Our institute is dedicated to providing high-quality education and training in
                     various programming languages to aspiring individuals who want to embark on a successful journey in the
@@ -43,5 +42,4 @@
             </div>
 
         </div>
-    </div>
 @endsection

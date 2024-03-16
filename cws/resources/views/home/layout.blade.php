@@ -38,7 +38,7 @@
 
                     {{-- search bar  --}}
 
-                    <form class="max-w-lg mx-auto">
+                    <div class="max-w-lg mx-auto">
                         <div class="flex">
                             {{-- <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only ">Your Email</label> --}}
                             <button id="dropdown-button" data-dropdown-toggle="dropdownHover"
@@ -71,37 +71,41 @@
                                 </ul>
                             </div>
                             <div class="relative w-full">
-                                <input type="search" id="searchInput"
-                                    class="block p-2.5 sm:w-80 md:w-full lg:w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
+                                <input type="search"
+                                    class="searchInput1 block p-2.5 sm:w-80 md:w-full lg:w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
                                     placeholder="Search Courses, Projects..." required />
                                 <button
-                                    class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-gray-800   rounded-e-lg border hover:bg-gray-300  hover:text-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                    class="searchButton1 absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-gray-800   rounded-e-lg border hover:bg-gray-300  hover:text-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
 
                                     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 20 20">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                     </svg>
-                                    {{-- <span class="sr-only">Search</span> --}}
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </div>
 
                 </div>
+
+
 
                 <div class="flex items-center shrink-0  gap-2">
 
                     <div class="block md:hidden">
                         <a href="#" class="inline-flex items-center justify-center">
-                            <button class="p-2.5 text-sm font-medium text-gray-800 rounded-lg border hover:bg-gray-300 hover:text-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                            <button
+                                class="p-2.5 text-sm font-medium text-gray-800 rounded-lg border hover:bg-gray-300 hover:text-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 20 20">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                 </svg>
                                 {{-- <span class="sr-only">Search</span> --}}
                             </button>
                         </a>
-                        
+
                     </div>
 
                     {{-- login & sign up buttons  --}}
@@ -119,8 +123,8 @@
                     <div class="flex shrink-0 items-center  profile-link">
                         <div class="hidden md:block">
 
-                            <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownHovers" title="My Profile"
-                                data-dropdown-trigger="hover"
+                            <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownHovers"
+                                title="My Profile" data-dropdown-trigger="hover"
                                 class="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-orange-600  md:me-0 focus:ring-4 focus:ring-gray-100 "
                                 type="button">
 
@@ -178,8 +182,8 @@
 
                     {{-- button to enable sidebar --}}
                     <div class="flex items-center">
-                        <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation" title="Menu"
-                            aria-controls="drawer-navigation" type="button"
+                        <button data-drawer-target="drawer-navigation" data-drawer-toggle="drawer-navigation"
+                            title="Menu" aria-controls="drawer-navigation" type="button"
                             class="inline-flex items-center p-2 text-sm text-gray-800  rounded-lg bg-gray-100  hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-200 ">
                             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -431,15 +435,18 @@
 
 
 
-    <main class=" flex-grow">
+    <main class="flex-grow">
         <div class="mt-10 mb-5">{{-- for space from top --}}</div>
-        <div class="container mx-auto p-0 md:px-10 lg:px-12 sm:px-8 bg-white">
+        <div class="container mx-auto p-0 md:px-10 lg:px-12 sm:px-8 bg-white outputContainer">
+            <!-- "Go Back" button -->
+            <a href="#" class="goBackButton p-2 bg-black text-center text-white mt-3 rounded">Go Back</a>
+
             @section('content')
-
-
+                <!-- Content goes here -->
             @show
         </div>
     </main>
+
 
     <footer class="bg-gray-800 text-gray-100 py-4 shadow sm:py-6">
         <div class="container mx-auto text-center flex justify-center">
@@ -576,6 +583,85 @@
                 });
             }
             callingCategory();
+
+            // Function to display recent projects or a message if no results are found
+            function displayProjectOfSearch(data) {
+                let table = $(".outputContainer").addClass("h-screen my-20");
+                table.empty();
+
+                if (data.length === 0) {
+                    table.append(`
+            <div class="no-results-message text-center py-4">
+                No results found.
+            </div>
+        `);
+                    // Show the "Go Back" button
+                    $(".goBackButton").show();
+                } else {
+                    data.forEach((project) => {
+                        table.append(`
+                <div class="project-item p-2 rounded border hover:border-b hover:shadow hover:bg-gray-50 transition duration-300">
+                    <h3 class="text-xl text-start font-semibold mb-2">${project.name}</h3>
+                    <p class='truncate text-start'>${project.description}</p>
+                    
+                    <div class="flex justify-between items-center mt-4">
+                        <p class='text-start'>Developed by -${project.description}</p>
+                        <a href="${project.url}" target="_blank" class="view-button inline-block px-2 py-1  text-black rounded-md border border-black hover:bg-gray-300 transition duration-300">View</a>
+                    </div>
+                </div>
+            `);
+                    });
+                    // Show recent projects after displaying them
+                    table.show();
+
+                    // Show the "Go Back" button
+                    $(".goBackButton").show();
+                }
+            }
+
+            // Functionality for search
+            $(document).ready(function() {
+                // Function to fetch projects
+                $(".goBackButton").hide();
+
+                let fetchSearch = (query = '') => {
+                    $.ajax({
+                        url: "{{ route('manage_Recent_project') }}",
+                        type: "GET",
+                        data: {
+                            'query': query
+                        },
+                        success: function(response) {
+                            let data = response.data;
+                            displayProjectOfSearch(data);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                };
+
+                // Search button click event handler
+                $(".searchButton1").on("click", function() {
+                    var query = $(".searchInput1").val();
+                    fetchSearch(query);
+                });
+
+                callingCategory(); 
+
+                // Handle search on pressing Enter key
+                $(".searchInput1").keypress(function(event) {
+                    // 13 is the key code for Enter
+                    if (event.which === 13) { 
+                        var query = $(this).val();
+                        fetchSearch(query);
+                    }
+                });
+            });
+
+
+
+
         });
     </script>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\hallFrame;
@@ -86,8 +87,13 @@ class AdminController extends Controller
         $count["payments"] = Payment::count();
         $count["projects"] = RecentProject::count();
         $count["category"] = Category::count();
+        $count["contact"] = Contact::count();
        
         return response()->json($count);
 
+    }
+
+    public function viewQuery(){
+        return view('admin.viewQuery');
     }
 }

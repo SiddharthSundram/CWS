@@ -3,7 +3,7 @@
 @section('content')
     <div class=" p-3">
         <div class="container mx-auto py-8">
-            <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg ">
+            <div class="max-w-3xl mx-auto bg-white p-0 md:p-8 rounded-lg ">
 
                 <h1 class="text-3xl font-bold mb-8">Terms & Conditions</h1>
                 <h2 class="text-xl font-bold mb-4">1. Introduction</h2>
