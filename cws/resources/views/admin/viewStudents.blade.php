@@ -174,8 +174,8 @@
                                 <h3 class="text-lg flex gap-2 items-center font-semibold text-gray-900 dark:text-white">
                                     <span>₹${payment.fees}</span>
                                     ${payment.status === 1 ? `<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-</svg>`: ''}
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                                        </svg>`: ''}
                                     </h3>
                                 ${payment.status === 0 ? `<button id="markPaid_${payment.id}" class="bg-green-500 hover:bg-green-700 text-white font-semibold py-1 px-2 rounded">Mark as Paid</button>` : ``}
                             </li>`).join('')}

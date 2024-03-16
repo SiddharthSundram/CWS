@@ -23,7 +23,8 @@
                         <th class="border border-gray-300">Language</th>
                         <th class="border border-gray-300">Category</th>
                         <th class="border border-gray-300">Description</th>
-                        <th class="border border-gray-300">Image</th>
+                        <th class="border border-gray-300">Image</th>                        
+                        <th class="border border-gray-300">Status</th>                        
                         <th class="border border-gray-300">Actions</th>
                     </tr>
                 </thead>
@@ -155,6 +156,12 @@
                         <td class="border p-2">${course.category.cat_title}</td>
                         <td class="border p-2">${course.description}</td>
                         <td class="border p-2"><img src="/image/${course.featured_image}" width="80px" height="50px" alt=""></td>
+                        <td class="border p-2">
+                            <button class="status-toggle-btn ${course.status === 1 ? 'bg-green-500 hover:bg-green-700' : 'bg-red-500 hover:bg-red-700'} text-white font-semibold py-1 px-2 rounded" data-id="${course.id}" data-status="${course.status}">
+                            ${course.status === 1 ? 'Active' : 'Inactive'}
+                        </button>    
+                        </td>
+=                                        
                         <td class="py-2 px-4 border">
                             <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded-sm delete-btn" data-id="${course.id}">
                                 <i class="fas fa-trash"></i> Delete
@@ -162,6 +169,8 @@
                             <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-sm edit-btn" data-id="${course.id}">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
+                          
+                           
                         </td>
                     </tr>`);
                     });
@@ -171,6 +180,9 @@
                 }
             });
         }
+
+
+          
 
         // Populate category dropdown in edit form
         function populateCategories() {
@@ -259,6 +271,25 @@
                     },
                     error: function(xhr, status, error) {
                         console.error('Error updating course:', error);
+                    }
+                });
+            });
+
+            $(document).on('click', '.status-toggle-btn', function() {
+                var courseId = $(this).data('id');
+                var currentStatus = $(this).data('status');
+                var newStatus = currentStatus === 0 ? 1 : 0;
+                
+                $.ajax({
+                    type: 'PUT',
+                    url: `/api/course/${courseId}/toggle-status`,
+                    data: { status: newStatus },
+                    dataType: 'json',
+                    success: function(response) {
+                        fetchCourses();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error toggling course status:', error);
                     }
                 });
             });

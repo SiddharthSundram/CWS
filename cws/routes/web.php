@@ -25,6 +25,9 @@ Route::get("/my-profile", [HomeController::class, 'profile'])->name('profile');
 
 //explore course
 Route::get("/explore-course/{id}", [CourseController::class, 'exploreCourse'])->name('exploreCourse');
+Route::get("/all-courses", [CourseController::class, 'allCourses'])->name('allCourses');
+
+Route::get("/view-category/{id}", [HomeController::class, 'viewCategory'])->name('viewCategory');
 
 // for user's course
 Route::get("/my-course", [HomeController::class, 'myCourse'])->name('myCourse');
@@ -88,6 +91,7 @@ Route::prefix('admin')->group(function () {
           Route::prefix('query-message')->group(function () {
             Route::controller(AdminController::class)->group(function () {
                 Route::get("/manage", 'manageQuery')->name('manageQuery');
+                Route::get("/view/{id}", 'viewQuery')->name('viewQuery');
             });
         });
 

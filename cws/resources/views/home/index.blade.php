@@ -1,11 +1,14 @@
 @extends('home.layout')
 
 @section('content')
-    <!-- Your existing content here -->
-    <div class=" py-16 px-4 text-center text-gray-800">
+    <!-- main content here -->
+    <div class=" px-4 text-center text-gray-800">
         <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
             <div class="md:w-1/2 md:pr-8 text-left mb-4 md:mb-0 ">
-                <h1 class="text-3xl font-bold mb-4">Upskilling Made <span id="autoText" class="text-orange-500"></span> </h1>
+                <div class="flex flex-col md:flex-row text-center md:text-left ">
+                    <h1 class="text-3xl font-bold">Upskilling Made </h1>
+                    <span id="autoText" class="text-3xl font-bold text-orange-500 ml-3">Upskilling Made </span>
+                </div>
                 <p class="text-lg mb-8">Where coding brilliance meets expert guidance. From novice to expert, our platform
                     offers personalized coaching and comprehensive courses to elevate your coding skills. Join a vibrant
                     community and unlock your coding potential today.</p>
@@ -15,21 +18,19 @@
                     Now</a>
             </div>
 
-
             <div class="md:w-1/2 md:flex md:justify-center  md:order-1 " id="imageContainer">
                 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 
                 <dotlottie-player src="https://lottie.host/b1cdc270-cb11-43d1-98bb-70908a25bee3/8yR9uwNh8b.json"
                     background="transparent" speed="1" class="w-full h-100" loop autoplay></dotlottie-player>
-                {{-- <img src="/hero section.json" alt="Sadiq" class="w-96 md:mx-0 rounded-lg "> --}}
             </div>
         </div>
 
 
-        <div class="container mx-auto py-">
-            <section class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-8  text-gray-700 p-5">
-                <div class="md:col-span-1 bg-white rounded-lg p-6 hover:shadow-md hover:bg-gray-50 ">
-                    <h2 class="text-2xl font-bold mb-4 text">About Us</h2>
+        <div class="container mx-auto mt-5 md:mt-0">
+            <section class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-8 p-0 md:p-5 text-gray-700 ">
+                <div class="md:col-span-1 bg-white rounded-lg  ">
+                    <h2 class="text-2xl font-bold mb-1 md:mb-4 text">About Us</h2>
                     <p class="text-lg text-left">Discover the pinnacle of coding education at Code with Sadiq. Our platform
                         blends
                         expert guidance with cutting-edge curriculum to propel your programming journey. From novice to
@@ -40,25 +41,11 @@
                         transformative coding odyssey, where innovation meets mentorship, and aspirations become
                         achievements. Elevate your coding prowess with Code with Sadiq today.</p>
                 </div>
-                <div class="md:col-span-1 bg-white rounded-lg p-6 hover:shadow-md hover:bg-gray-50">
+                <div class="md:col-span-1 bg-white rounded-lg ">
                     <h2 class="text-2xl font-bold mb-4">Recent Projects</h2>
 
-                    {{-- <div class="pb-4">
-                        <label for="table-search" class="sr-only">Search</label>
-                        <div class="relative mt-1">
-                            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg>
-                            </div>
-                            <input type="text" name="query" id="searchInput"
-                                class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search Project by name">
-                        </div>
-                    </div> --}}
-                    <div class="grid grid-cols-1 gap-4" id="recentProjects">
+
+                    <div class="grid grid-cols-1  gap-4" id="recentProjects">
                         <!-- Recent projects will be dynamically loaded here -->
 
                     </div>
@@ -68,16 +55,29 @@
                             <!-- Pagination links will be inserted here -->
                         </div>
                     </div>
+                    <div class="mt-5 flex justify-end ">
+                        <a href="{{ route('view_project') }}"
+                            class="p-2 text-black flex items-center gap-2 hover:bg-gray-300 border  rounded border-black transition duration-300">View
+                            all projects
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                class="flex-shrink-0 w-5 h-5 text-gray-800 transition duration-75  group-hover:text-gray-900">
+                                <path fill="currentColor"
+                                    d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+                            </svg>
+
+                        </a>
+                    </div>
 
                 </div>
             </section>
 
 
             <div class="container mx-auto py-8">
-                <h2 class="text-4xl font-semibold mb-4">Our Student in Industries</h2>
+                <h2 class="text-4xl font-medium mb-4">Our Student in Industries</h2>
                 <div class="carousel relative overflow-hidden">
-                    <div class="carousel-inner flex" id="callingHallframe">
-                        {{-- Stuudents will be dynamically loaded here --}}
+                    <div class="carousel-inner flex p-3" id="callingHallframe">
+                        {{-- Students will be dynamically loaded here --}}
+
                     </div>
                     <button
                         class="absolute top-1/2 transform -translate-y-1/2 left-0 bg-gray-500 text-white px-4 py-2 rounded-l-md carousel-prev">
@@ -90,9 +90,10 @@
                 </div>
             </div>
 
+
             <div class="container mx-auto my-8 p-5">
-                <h2 class="text-4xl font-bold mb-6">Our Courses</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="callingcourse">
+                <h2 class="text-4xl font-medium mb-6">Our Courses</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3" id="callingcourse">
                     <!-- Courses will be dynamically loaded here -->
                 </div>
             </div>
@@ -156,6 +157,8 @@
                         $("#counting").html(len)
 
                         data.forEach((course) => {
+                            if (course.status === 1) {
+
                             table.append(`
                             <a href="" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
         <div class="relative pb-48 overflow-hidden">
@@ -180,11 +183,46 @@
         <div class="p-4 flex items-center text-sm text-gray-600"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-gray-400"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><span class="ml-2"></span></div>
       </a>
                         
+                        <div class="bg-white rounded-lg overflow-hidden  shadow-md transition duration-300 transform hover:scale-105 hover:bg-gray-50 hover:shadow-lg">
+                            <div class="relative">
+                                <img src="/image/${course.featured_image}" alt="Course" class="w-full h-56 object-cover">
+                                <span class="absolute top-0 right-0 bg-green-500 text-white px-2 py-1 m-2 rounded-full text-xs font-semibold">New</span>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div>
+                                        <h3 class="text-xl text-gray-700 font-semibold mb-2">Course : <span class="text-orange-600">${course.name}</span></h3>
+                                    </div>
+                                    <div>
+                                        <span class="inline-flex rounded-md bg-green-200 px-2 py-1 text-xs font-medium text-green-950 ring-1 ring-inset ring-green-600/20">${course.category ? course.category.cat_title : 'N/A'}</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center text-gray-600 mb-2">
+                                    <p>Instructor: ${course.instructor}</p>
+                                </div>
+                                <div class="flex items-center text-gray-600 mb-2">
+                                    <p>Duration: ${course.duration}</p>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-xl font-semibold text-gray-900">₹${course.fees} <span class="text-sm text-gray-600 line-through ml-2">₹${course.discount_fees}</span></p>
+                                        <p class="text-green-500 font-semibold">20% off</p>
+                                    </div>
+                                    <div>
+                                        <a href="/explore-course/${course.id}" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded transition duration-300">Explore</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     `);
+                            }
                         });
-                    }
-                });
-            }
+                    
+                    
+                }
+                
+            });
+        }
 
             // Call the function to initially populate the course table
             callingcourse();
@@ -321,16 +359,16 @@
                             let paginationLinks = '';
                             if (response.prev_page_url) {
                                 paginationLinks +=
-                                    '<a href="#" class="pagination-link px-3 py-1 bg-blue-200 text-blue-800 mx-1 rounded" data-page="' +
+                                    '<a href="#" class="pagination-link px-3 py-1 bg-gray-200 text-gray-800 mx-1 rounded" data-page="' +
                                     (response.current_page - 1) + '">' + (response
                                         .current_page - 1) + '</a>';
                             }
                             paginationLinks +=
-                                '<span class="px-3 py-1 bg-blue-500 text-white mx-1 rounded">' +
+                                '<span class="px-3 py-1 bg-gray-500 text-white mx-1 rounded">' +
                                 response.current_page + '</span>';
                             if (response.next_page_url) {
                                 paginationLinks +=
-                                    '<a href="#" class="pagination-link px-3 py-1 bg-blue-200 text-blue-800 mx-1 rounded" data-page="' +
+                                    '<a href="#" class="pagination-link px-3 py-1 bg-gray-200 text-gray-800 mx-1 rounded" data-page="' +
                                     (response.current_page + 1) + '">' + (response
                                         .current_page + 1) + '</a>';
                             }
