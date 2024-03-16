@@ -15,7 +15,7 @@
         <button type="button"
             class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-5 rounded'>Edit</button>
         <button type="button"
-            class='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-5 rounded delete-btn'>Delete</button>
+            class='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-5 rounded delete-student-btn'>Delete</button>
     </div>
 
 </div>
@@ -91,22 +91,8 @@
 
 
 
+             
 
-            $(".delete-btn").click(function() {
-                let courseId = "{{ request()->segment(4) }}";
-                if (confirm("Are you sure you want to delete this student?")) {
-                    $.ajax({
-                        type: "DELETE",
-                        url: `/api/admin/student/${courseId} `,
-                        success: function(response) {
-                            window.location.href = "{{ route('manageStudent') }}";
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(xhr.responseText);
-                        }
-                    });
-                }
-            });
 
             function getStudent() {
 
@@ -134,6 +120,7 @@
                         <tr>
                             <th class="border-b border-gray-200 px-4 py-2">Admission Date</th>
                             <td class="border-b border-gray-200 px-4 py-2">${new Date(student.created_at).toLocaleDateString()}</td>
+
                         </tr>`;
 
                         let courses = student.courses.map(course => {
@@ -321,8 +308,39 @@
                     }
                 });
             })
+
+            
+
+                $(document).ready(function() {
+    
+                    $('.delete-student-btn').click(function() {
+                        
+                        if (confirm('Are you sure you want to delete this student?')) {                        
+                            var studentId = "{{ request()->segment(4) }}";
+                            var csrfToken = $('meta[name="csrf-token"]').attr('content'); 
+                            $.ajax({
+                                type: 'DELETE',
+                                url: `/api/admin/student/delete/${studentId}`, 
+                                headers: {
+                                    'X-CSRF-TOKEN': csrfToken 
+                                },
+                                success: function(response) {
+                                    
+                                    swal("Success", response.msg, "success");
+                                    location.reload();
+                                    
+                                },
+                                error: function(xhr, status, error) {
+                                    
+                                    console.error("Error deleting student:", error);
+                                }
+                            });
+                        }
+                    });
+                });
+
         });
 
-        // Js for opening payment selection
+        
     </script>
 @endsection
