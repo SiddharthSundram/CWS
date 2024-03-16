@@ -14,6 +14,9 @@ class StudentApiController extends Controller
             'name' => 'required|string|between:2,100',
             'mobile_no' => 'required|string|max:12|',
             'email' => 'required|string|email|max:100|unique:users',
+            'f_name' => 'required|string|between:2,100|',
+            'address' => 'required|string|between:2,100|',
+            'gender' => 'required|in:m,f,o',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
