@@ -1,9 +1,9 @@
 @extends('home.layout')
 
 @section('content')
-    <div class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
-            <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100 text-left mb-6">My Profile</h1>
+    <div class="min-h-screen flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8 bg-gray-200 p-8 rounded-lg shadow-md">
+            <h1 class="text-3xl font-bold text-gray-800 text-left mb-6">My Profile</h1>
             <div class="flex items-center justify-center mb-6">
                 <div class="relative">
                     <img id="profile-image" class="h-32 w-32 rounded-full object-cover" src="https://via.placeholder.com/150"
@@ -20,20 +20,21 @@
 
             <div class="flex flex-col space-y-4" id="callingUserProfile">
                 <div class="flex gap-2">
-                    <label for="name" class="text-gray-700 dark:text-gray-300 font-semibold">Name: </label>
-                    <p class="text-gray-800 dark:text-gray-200" id="calling_name"></p>
+                    <label for="name" class="text-gray-700 font-semibold">Name: </label>
+                    <p class="text-gray-800" id="calling_name"></p>
                 </div>
                 <div class="flex gap-2">
-                    <label for="email" class="text-gray-700 dark:text-gray-300 font-semibold">Email:</label>
-                    <p class="text-gray-800 dark:text-gray-200" id="calling_user_email"></p>
+                    <label for="email" class="text-gray-700 font-semibold">Email:</label>
+                    <p class="text-gray-800" id="calling_user_email"></p>
                 </div>
                 <div class="flex gap-2">
-                    <label for="phone" class="text-gray-700 dark:text-gray-300 font-semibold">Phone:</label>
-                    <p class="text-gray-800 dark:text-gray-200" id="calling_user_phone"></p>
+                    <label for="phone" class="text-gray-700 font-semibold">Phone:</label>
+                    <p class="text-gray-800" id="calling_user_phone"></p>
                 </div>
             </div>
         </div>
     </div>
+
 
 
     <script>
