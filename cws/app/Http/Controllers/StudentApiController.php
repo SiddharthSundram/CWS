@@ -90,7 +90,7 @@ class StudentApiController extends Controller
     }
 
 
-    public function destroy(User $id)
+        public function destroy($id)
     {
         try {
             // Find the student by ID
@@ -99,12 +99,12 @@ class StudentApiController extends Controller
             // Delete the student
             $student->delete();
 
-            return response()->json(['message' => 'Student deleted successfully'], 200);
+            return response()->json(['msg' => 'Student deleted successfully'], 200);
         } catch (\Exception $e) {
             // Handle exceptions
-            return response()->json(['message' => 'Failed to delete student', 'error' => $e->getMessage()], 500);
+            return response()->json(['msg' => 'Failed to delete student', 'error' => $e->getMessage()], 500);
         }
-    }
+}
     public function callingStudents(){
         $students = User::all();
         return response()->json(['students' => $students]);

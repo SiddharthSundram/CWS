@@ -52,6 +52,42 @@
         </div>
     </div>
 
+    {{-- edit modal --}}
+
+    <div id="default-modal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-hidden="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="editStudentModalLabel">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <h5 class="text-lg font-semibold mb-4" id="editStudent">Edit Student</h5>
+                    <form id="editStudentForm" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" id="editStudentId" name="id">
+                        <div class="mb-4">
+                            <label for="editStudentName" class="block text-sm font-medium text-gray-700">Student Name</label>
+                            <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editProjectName" name="name" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="editStudentEmail" class="block text-sm font-medium text-gray-700">Student Email</label>
+                            <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editStudentName" name="email" required>
+                        </div>                        
+                        
+                        <div class="mb-4">
+                            <label for="editStudentMobile_no" class="block text-sm font-medium text-gray-700">Student Contact</label>
+                            <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editStudentMobile_no" name="Mobile_no" required>
+                        </div>                        
+                        <div class="flex justify-between">
+                            <button type="submit" class="inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Save changes</button>
+                            <button type="button" id="cancelEditStudent" class="inline-block px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         $(document).ready(function() {
 
@@ -71,6 +107,7 @@
                     <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.mobile_no}</td>     
                     <td class="border-b border-gray-200 px-3 py-2 text-sm">${new Date(student.created_at).toLocaleDateString()}</td>     
                     <td class="border-b border-gray-200 px-3 py-2 text-sm">
+                        <button type='button' class='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded delete-btn' data-id='${student.id}'>X</button>
                         <button type='button' class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded edit-btn' data-id='${student.id}'>Edit</button>
                         <a href='/admin/student/view/${student.id}' class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded edit-btn'>View</a>
                     </td>
@@ -127,6 +164,27 @@
                     fetchStudents('', page);
                 });
             });
+
+            $(document).on('click', '.delete-btn', function() {
+            var studentId = $(this).data('id');
+            var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Retrieve CSRF token
+            $.ajax({
+                type: 'DELETE',
+                url: `/api/admin/student/delete/${studentId}`, // Corrected URL construction
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken // Include CSRF token in headers
+                },
+                success: function(response) {
+                    // console.log("delete data successfully")
+                    swal("msg", response.msg, "msg");
+                    fetchStudents(); // Fetch students again after successful deletion
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error deleting student:", error);
+                }
+            });
+        });
+
 
         });
     </script>
