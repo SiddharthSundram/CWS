@@ -25,8 +25,9 @@
                         <span class="bg-green-500 text-white px-2 py-1 ml-4"> 25% Discount</span>
                     </div>
                     <div class="flex space-x-4 justify-end">
-                        <a href="#" class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded ">
-                            Share
+                        <a href="#" class="bg-green-500 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded"
+                            id="whatsappShareBtn">
+                            Share on WhatsApp
                         </a>
                         <a href="#"
                             class="bg-rose-500 hover:bg-rose-600 text-white font-semibold py-3 px-6 rounded transition duration-300">
@@ -80,6 +81,31 @@
                         $('#courseDescription').text(response.data.description);
                         $('#courseLang').text(response.data.lang);
                         $('#courseCategory').text(response.data.category.cat_title);
+                        // Adding functionality to share button
+                        $('#whatsappShareBtn').click(function() {
+                            var message = 'Check out this amazing course:\n' +
+                                'Name: ' + response.data.name + '\n' +
+                                'Duration: ' + response.data.duration + '\n' +
+                                'Instructor: ' + response.data.instructor + '\n' +
+                                'Fees: ₹' + response.data.fees + '\n' +
+                                'Discounted Fees: ₹' + response.data.discount_fees + '\n' +
+                                'Description: ' + response.data.description + '\n' +
+                                'Language: ' + response.data.lang + '\n' +
+                                'Category: ' + response.data.category.cat_title + '\n' +
+                                'Visit: codewithsadiq.com';
+
+                            var encodedMessage = encodeURIComponent(message);
+
+                            // For sharing image,
+                            var image = '/image/' + response.data.featured_image;
+                            var encodedImage = encodeURIComponent(image);
+
+                            var whatsappURL = 'whatsapp://send?text=' + encodedMessage + '&image=' +
+                                encodedImage;
+
+                            window.location.href = whatsappURL;
+                        });
+
                     },
                     error: function(xhr, status, error) {
                         console.error("Error fetching courses:", error);
