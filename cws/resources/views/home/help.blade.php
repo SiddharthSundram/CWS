@@ -21,17 +21,17 @@
                         <!-- Contact Form -->
                         {{-- have to create a contact table for this and submit this query . Then this query will called in admin panel --}}
                         <div class="mt-6 bg-white border border-gray-200 p-4 rounded-lg">
-                            <form id="contactForm" method="POST">
+                            <form id="contactForm">
                                 <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
                                 <input type="text" id="name" name="name"
                                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200"
-                                    placeholder="Ex: Siddharth">
+                                    placeholder="Ex: Rishav">
 
                                 <label for="email" class="block mt-2 text-sm font-medium text-gray-700">Your
                                     Email</label>
                                 <input type="email" id="email" name="email"
                                     class="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200"
-                                    placeholder="Ex: Siddharth@gmail.com">
+                                    placeholder="Ex: Rishav@gmail.com">
 
                                 <label for="mobile_no" class="block mt-2 text-sm font-medium text-gray-700">Your Mobile
                                     Number</label>
@@ -103,51 +103,36 @@
 
     <script>
         $(document).ready(function() {
-            //insert teacher
-            $("#contactForm").submit(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('contact.store') }}",
-                    data: new FormData(this),
-                    dataType: "JSON",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(response) {
-                        swal("Success", response.msg, "success");
-                        $("#insertQuery").trigger("reset");
+        // Handle form submission
+        $("#contactForm").submit(function(e) {
+            e.preventDefault();
 
-                        window.open("/index", "_self");
-                    }
-                })
-            })
-        })
-        $(document).ready(function() {
-            $('#contactForm').submit(function(event) {
-                // Prevent the default form submission
-                event.preventDefault();
+            // Serialize the form data
+            var formData = new FormData(this);
 
-                // Serialize the form data
-                var formData = $(this).serialize();
-
-                // Send the AJAX request
-                $.ajax({
-                    url: '{{ route('contact.store') }}', // Assuming you have named route for the store method
-                    type: 'POST',
-                    data: formData,
-                    success: function(response) {
-                        // Reset the form after successful submission
-                        $('#contactForm')[0].reset();
-                        // Optionally, display a success message to the user
-                        alert('Query stored successfully');
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle error here
-                        console.error(xhr.responseText);
-                    }
-                });
+            // Send the AJAX request
+            $.ajax({
+                type: "POST",
+                url: "{{ route('contact.store') }}",
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(response) {
+                    // Display success message
+                     alert('Query Send Successfully 😊');
+                    // Reset the form
+                    $('#contactForm')[0].reset();
+                },
+                error: function(xhr, status, error) {
+                    // Handle error
+                    console.error(xhr.responseText);
+                    // Optionally, display an error message
+                    alert('Failed to submit query. Please try again later.');
+                    
+                }
             });
         });
-    </script>
+    });    </script>
 @endsection

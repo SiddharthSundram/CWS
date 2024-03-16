@@ -90,6 +90,15 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        try {
+            // Delete the contact record
+            $contact->delete();
+            
+            return response()->json(['message' => 'Contact deleted successfully'], 200);
+        } catch (\Exception $e) {
+            // Handle any errors that occur during deletion
+            return response()->json(['message' => 'Error deleting contact'], 500);
+        }
     }
+    
 }

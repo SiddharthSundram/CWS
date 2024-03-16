@@ -91,6 +91,7 @@ Route::prefix('admin')->group(function () {
           Route::prefix('query-message')->group(function () {
             Route::controller(AdminController::class)->group(function () {
                 Route::get("/manage", 'manageQuery')->name('manageQuery');
+                Route::get("/view/{id}", 'viewQuery')->name('viewQuery');
             });
         });
 

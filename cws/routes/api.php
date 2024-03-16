@@ -56,6 +56,7 @@ Route::get('/admin/manage-message',[ContactController::class,"manageMessage"])->
 Route::put('/course/{id}/toggle-status', [CourseApiController::class,"toggleStatus"])->name('course.toggleStatus');
 
 
+
 //api for recent project operations
 Route::apiResource("recent_project", RecentProjectApiController::class);
 Route::get('/manage-Recent_project', [RecentProjectApiController::class, 'manageProject'])->name('manage_Recent_project');
