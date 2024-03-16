@@ -13,10 +13,9 @@
                     offers personalized coaching and comprehensive courses to elevate your coding skills. Join a vibrant
                     community and unlock your coding potential today.</p>
 
-                <a href="{{ route('allCourses') }}"
-                    class="inline-block w-full md:w-44 text-center text-black border border-black px-4 py-2 rounded hover:bg-gray-300 hover:text-balck 
-                        transition duration-300 ease-in-out">Explore
-                    Courses</a>
+                <a href=""
+                    class="inline-block border border-black text-white bg-black px-4 py-2 rounded-full  hover:bg-gray-800 hover:text-white transition duration-300 ease-in-out login-link">Join
+                    Now</a>
             </div>
 
             <div class="md:w-1/2 md:flex md:justify-center  md:order-1 " id="imageContainer">
@@ -161,6 +160,29 @@
                             if (course.status === 1) {
 
                             table.append(`
+                            <a href="" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+        <div class="relative pb-48 overflow-hidden">
+          <img class="absolute inset-0 h-full w-full object-cover" src="/image/${course.featured_image}" alt="">
+        </div>
+        <div class="p-4">
+          <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">Highlight</span>
+          <h2 class="mt-2 mb-2  font-bold">${course.name}</h2>
+          <div class="mt-3 flex items-center gap-1">
+            <span class="font-bold text-xl">₹${course.discount_fees}</span> 
+            <span class='font-semibold text-md text-slate-600'> ₹${course.fees}</span>
+          </div>
+        </div>
+        <div class="p-4 border-t border-b text-xs text-gray-700">
+          <span class="flex items-center mb-1">
+            <i class="far fa-clock fa-fw mr-2 text-gray-900"></i> ${course.duration}
+          </span>
+          <span class="flex items-center">
+            <i class="far fa-address-card fa-fw text-gray-900 mr-2"></i> ${course.category ? course.category.cat_title : 'N/A'}
+          </span>        
+        </div>
+        <div class="p-4 flex items-center text-sm text-gray-600"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-gray-400"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><span class="ml-2"></span></div>
+      </a>
+                        
                         <div class="bg-white rounded-lg overflow-hidden  shadow-md transition duration-300 transform hover:scale-105 hover:bg-gray-50 hover:shadow-lg">
                             <div class="relative">
                                 <img src="/image/${course.featured_image}" alt="Course" class="w-full h-56 object-cover">
@@ -219,15 +241,25 @@
                         data.forEach((hallFrame) => {
                             // Append each hallFrame data to the table
                             table.append(`
-                            <div class="carousel-item flex-none w-full p-1 md:w-1/5 lg:w-1/5 "> 
-                                <div class="bg-white rounded-lg hover:shadow-md  transition duration-300 transform hover:scale-105 border border-b"> 
-                                    <img src="/image/${hallFrame.featured_image}" alt="" class="w-full h-48 object-cover mb-2"> 
-                                    <h2 class="text-xl text-gray-700 font-semibold mb-2">${hallFrame.name}</h2>
-                                    <p class="text-gray-600">Industry: ${hallFrame.industry}</p>
-                                    <p class="text-gray-600 mb-2">Position: ${hallFrame.position}</p>                                    
-                                </div>
+                        <div class="carousel-item flex-none w-full p-3 md:w-1/2 lg:w-1/4 px-4">
+                            <div class="flex flex-col h-full">
+                <div class="flex-grow p-5">
+                   
+                    <div class="mt-2">
+                        <a class=" inline-flex items-start mr-5" href="#0">
+                                   <img class="rounded-full object-cover" src="/image/${hallFrame.featured_image}" width="64" height="64" alt="User 01">
+                                </a>
+                        <div class="text-sm">  
+                            <h2 class="text-xl text-gray-700 font-semibold mb-2">${hallFrame.name}</h2>
+                            <p class="text-gray-600">Industry: ${hallFrame.industry}</p>
+                            <p class="text-gray-600">Position: ${hallFrame.position}</p>                                    
                             </div>
+                    </div>
+                </div>
+               
+            </div>
                            
+                        </div>
                     `);
                         });
 
@@ -296,16 +328,15 @@
                 table.empty();
                 data.forEach((project) => {
                     table.append(`
-                        <div class="project-item p-2 rounded border hover:border-b hover:shadow hover:bg-gray-50 transition duration-300">
-                            <h3 class="text-xl text-start font-semibold mb-2">${project.name}</h3>
-                            <p class='truncate text-start'>${project.description}</p>
-                            
-                            <div class="flex justify-between items-center mt-4">
-                                <p class='text-start'>Developed by -${project.description}</p>
-                                <a href="${project.url}" target="_blank" class="view-button inline-block px-2 py-1  text-black rounded-md border border-black hover:bg-gray-300 transition duration-300">View</a>
-                            </div>
-                        </div>
-                    `);
+                    
+            <div class="project-item bg-gray-200 p-4 rounded-md shadow-md hover:bg-gray-300 transition duration-300">
+                <h3 class="text-xl font-semibold mb-2">${project.name}</h3>
+                <p>${project.description}</p>
+                <div class="flex justify-end mt-4">
+                    <a href="${project.url}" target="_blank" class="view-button inline-block px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300">View</a>
+                </div>
+            </div>
+        `);
                 });
             }
 
