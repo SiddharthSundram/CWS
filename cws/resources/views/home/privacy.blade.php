@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container mx-auto py-8">
-        <div class="max-w-3xl mx-auto mt-5">
+        <div class="max-w-3xl mx-auto p-2 ">
 
-            <h1 class="text-3xl font-bold mb-8">Privacy Policy</h1>
+            <h1 class="text-3xl font-bold  mb-8">Privacy Policy</h1>
             <p class="mb-6">Welcome to Code With SadiQ! At Code With Sadiq, we are dedicated to protecting your privacy
                 and ensuring the security of your personal information.</p>
 
