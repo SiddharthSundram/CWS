@@ -3,7 +3,7 @@
 @section('content')
     <!-- main content here -->
     <div class=" px-4 text-center text-gray-800">
-        <div class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
+        <div class=" mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
             <div class="md:w-1/2 md:pr-8 text-left mb-4 md:mb-0 ">
                 <div class="flex flex-col md:flex-row text-center md:text-left ">
                     <h1 class="text-3xl font-bold">Upskilling Made </h1>
@@ -27,11 +27,11 @@
         </div>
 
 
-        <div class="container mx-auto mt-5 md:mt-0">
+        <div class="container mx-auto mt-2 md:mt-0">
             <section class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-8 p-0 md:p-5 text-gray-700 ">
                 <div class="md:col-span-1 bg-white rounded-lg  ">
-                    <h2 class="text-2xl font-bold mb-1 md:mb-4 text">About Us</h2>
-                    <p class="text-lg text-left">Discover the pinnacle of coding education at Code with Sadiq. Our platform
+                    <h2 class="text-xl font-semibold mb-1 md:mb-2 pb-2 text-left border-b">About Us</h2>
+                    <p class="text-lg text-justify">Discover the pinnacle of coding education at Code with Sadiq. Our platform
                         blends
                         expert guidance with cutting-edge curriculum to propel your programming journey. From novice to
                         virtuoso, our meticulously crafted courses cater to every skill level. Engage with a dynamic
@@ -42,7 +42,7 @@
                         achievements. Elevate your coding prowess with Code with Sadiq today.</p>
                 </div>
                 <div class="md:col-span-1 bg-white rounded-lg ">
-                    <h2 class="text-2xl font-bold mb-4">Recent Projects</h2>
+                    <h2 class="text-lg border-b pb-2 font-semibold mb-4 text-left">Recent Projects</h2>
 
 
                     <div class="grid grid-cols-1  gap-4" id="recentProjects">
@@ -73,7 +73,7 @@
 
 
             <div class="container mx-auto py-8">
-                <h2 class="text-4xl font-medium mb-4">Our Student in Industries</h2>
+                <h2 class="text-lg  font-semibold border-b pb-2 text-left ">Our Student</h2>
                 <div class="carousel relative overflow-hidden">
                     <div class="carousel-inner flex p-3" id="callingHallframe">
                         {{-- Students will be dynamically loaded here --}}
@@ -92,7 +92,7 @@
 
 
             <div class="container mx-auto my-8 p-5">
-                <h2 class="text-4xl font-medium mb-6">Our Courses</h2>
+                <h2 class="text-lg text-left pb-2 border-b font-medium mb-6">Our Courses</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3" id="callingcourse">
                     <!-- Courses will be dynamically loaded here -->
                 </div>
@@ -208,26 +208,22 @@
                         data.forEach((hallFrame) => {
                             // Append each hallFrame data to the table
                             table.append(`
-                        <div class="carousel-item flex-none w-full p-3 md:w-1/2 lg:w-1/4 px-4">
-                            <div class="flex flex-col h-full">
-                <div class="flex-grow p-5">
-                   
-                    <div class="mt-2">
-                        <a class=" inline-flex items-start mr-5" href="#0">
-                                   <img class="rounded-full object-cover" src="/image/${hallFrame.featured_image}" width="64" height="64" alt="User 01">
-                                </a>
-                        <div class="text-sm">  
-                            <h2 class="text-xl text-gray-700 font-semibold mb-2">${hallFrame.name}</h2>
-                            <p class="text-gray-600">Industry: ${hallFrame.industry}</p>
-                            <p class="text-gray-600">Position: ${hallFrame.position}</p>                                    
+                            <div class="carousel-item flex-none w-full p-3 md:w-1/2 lg:w-1/3 text-left px-1">
+                            <div class="rounded-lg shadow-xl bg-gray-900 text-white" >
+                                <div class="border-b border-gray-800 px-8 py-3">
+                                    <div class="inline-block w-3 h-3 mr-2 rounded-full bg-red-500"></div><div class="inline-block w-3 h-3 mr-2 rounded-full bg-yellow-300"></div><div class="inline-block w-3 h-3 mr-2 rounded-full bg-green-400"></div>
+                                </div>
+                                <div class="px-8 py-6">
+                                    <p><em class="text-blue-400">const</em> <span class="text-green-400">aboutMe</span> <span class="text-pink-500">=</span> <em class="text-blue-400">function</em>() {</p>
+                                    <p>&nbsp;&nbsp;<span class="text-pink-500">return</span> {</p>
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;name: <span class="text-yellow-300">'${hallFrame.name}'</span>,</p>
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;position: <span class="text-yellow-300">'${hallFrame.position}'</span>,</p>
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;Company: <span class="text-yellow-300">'${hallFrame.industry}'</span>,</p>
+                                    <p>&nbsp;&nbsp;}</p>
+                                    <p>}</p>
+                                </div>
                             </div>
-                    </div>
-                </div>
-               
-            </div>
-                           
-                        </div>
-                    `);
+                            </div>`);
                         });
 
                         // Initialize the carousel after loading student data

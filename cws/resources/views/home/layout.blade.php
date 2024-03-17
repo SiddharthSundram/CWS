@@ -18,7 +18,7 @@
 
 <body class="font-sans">
 
-    <nav class="fixed top-0 z-50 w-full bg-white  p-0 shadow-md ">
+    <nav class="fixed top-0 z-50 w-full px-[5%] bg-white  py-0 shadow-md ">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center  justify-between me-3">
 
@@ -26,10 +26,14 @@
 
                     {{-- website logo --}}
                     <a href="{{ route('index') }}" title="Code With Sadiq " class="flex ms-2 md:me-24">
-                        <span
-                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-gray-800 ">Code
-                            With Sadiq
-                        </span>
+                        <div class="flex border border-black ">
+                            <div class="bg-black text-white px-4 py-2 flex items-center">
+                                <span class="font-bold text-lg text-nowrap">Code with</span>
+                            </div>
+                            <div class="bg-white text-black px-4 py-2">
+                                <span class="font-bold text-lg">SadiQ</span>
+                            </div>
+                        </div>
                     </a>
                 </div>
 
