@@ -37,7 +37,6 @@
                 </thead>
                 <tbody id="callingStudent">
                     <!-- Table rows will be dynamically added here -->
-           
                 </tbody>
                 <tfoot>
                     <tr>
@@ -53,7 +52,6 @@
     </div>
 
     {{-- edit modal --}}
-
     <div id="default-modal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-hidden="true">
         <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
             <div class="fixed inset-0 transition-opacity" aria-hidden="true">
@@ -67,17 +65,17 @@
                         <input type="hidden" id="editStudentId" name="id">
                         <div class="mb-4">
                             <label for="editStudentName" class="block text-sm font-medium text-gray-700">Student Name</label>
-                            <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editProjectName" name="name" required>
+                            <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " id="editStudentName" name="name" required>
                         </div>
 
                         <div class="mb-4">
                             <label for="editStudentEmail" class="block text-sm font-medium text-gray-700">Student Email</label>
-                            <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editStudentName" name="email" required>
+                            <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editStudentEmail" name="email" required>
                         </div>                        
                         
                         <div class="mb-4">
                             <label for="editStudentMobile_no" class="block text-sm font-medium text-gray-700">Student Contact</label>
-                            <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="editStudentMobile_no" name="Mobile_no" required>
+                            <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " id="editStudentMobile_no" name="Mobile_no" required>
                         </div>                        
                         <div class="flex justify-between">
                             <button type="submit" class="inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Save changes</button>
@@ -88,6 +86,7 @@
             </div>
         </div>
     </div>
+
     <script>
         $(document).ready(function() {
 
@@ -166,26 +165,76 @@
             });
 
             $(document).on('click', '.delete-btn', function() {
-            var studentId = $(this).data('id');
-            var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Retrieve CSRF token
-            $.ajax({
-                type: 'DELETE',
-                url: `/api/admin/student/delete/${studentId}`, // Corrected URL construction
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken // Include CSRF token in headers
-                },
-                success: function(response) {
-                    // console.log("delete data successfully")
-                    swal("msg", response.msg, "msg");
-                    fetchStudents(); // Fetch students again after successful deletion
-                },
-                error: function(xhr, status, error) {
-                    console.error("Error deleting student:", error);
-                }
+                var studentId = $(this).data('id');
+                var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Retrieve CSRF token
+                $.ajax({
+                    type: 'DELETE',
+                    url: `/api/admin/student/delete/${studentId}`, // Corrected URL construction
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken // Include CSRF token in headers
+                    },
+                    success: function(response) {
+                        // console.log("delete data successfully")
+                        swal("msg", response.msg, "msg");
+                        fetchStudents(); // Fetch students again after successful deletion
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error deleting student:", error);
+                    }
+                });
             });
-        });
 
 
+            $(document).on('click', '.edit-btn', function() {
+                var studentId = $(this).data('id');
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    type: 'GET',
+                    url: `/api/admin/student/view/${studentId}`,
+                    success: function(response) {
+                        $('#editStudentId').val(response.id);
+                        $('#editStudentName').val(response.name);
+                        $('#editStudentEmail').val(response.email);
+                        $('#editStudentMobile_no').val(response.mobile_no);
+                        $('#default-modal').removeClass('hidden');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching student details for editing:', error);
+                    }
+                });
+            });
+
+            $('#editStudentForm').submit(function(e) {
+                e.preventDefault();
+                var userId = $('#editStudentId').val();
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                var formData = {
+                    name: $('#editStudentName').val(),
+                    email: $('#editStudentEmail').val(),
+                    mobile_no: $('#editStudentMobile_no').val(),
+                };
+                $.ajax({
+                    type: 'PUT',
+                    url: `/api/admin/student/edit/${userId}`,
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    data: formData,
+                    success: function(response) {
+                        swal("Sucess", response.msg, "msg");
+                        $('#default-modal').addClass('hidden');
+                        fetchStudents(); // Assuming you have a function to fetch students
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error updating student:', error);
+                    }
+                });
+            });
+
+            // Cancel edit student button click handler
+            $('#cancelEditStudent').click(function() {
+                $('#default-modal').addClass('hidden');
+            });
         });
     </script>
 @endsection
