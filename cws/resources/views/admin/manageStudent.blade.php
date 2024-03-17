@@ -215,7 +215,7 @@
                 };
                 $.ajax({
                     type: 'PUT',
-                    url: `/api/admin/student/edit/${userId}`,
+                    url: `/api/admin/manage-student/edit/${userId}`,
                     headers: {
                         'X-CSRF-TOKEN': csrfToken
                     },

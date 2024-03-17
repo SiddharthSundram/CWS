@@ -82,7 +82,7 @@ Route::put('/admin/student/edit/{id}', [StudentApiController::class, 'update']);
 Route::get('/admin/student/count', [StudentApiController::class, 'count'])->name("student_count");
 Route::delete('/admin/student/delete/{id}', [StudentApiController::class, 'destroy'])->name('admin.student.delete');
 Route::get('/admin/student/edit/{id}', [StudentApiController::class, 'edit'])->name('editStudent');
-Route::put('/admin/student/edit/{id}', [StudentApiController::class, 'upgrade'])->name('updateStudent');
+Route::put('/admin/manage-student/edit/{id}', [StudentApiController::class, 'upgrade'])->name('updateStudent');
 
 // Route for student Course Operation
 Route::post('/admin/student-course', [StudentCourseController::class, 'store']);
