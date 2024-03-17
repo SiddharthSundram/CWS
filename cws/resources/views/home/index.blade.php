@@ -7,14 +7,14 @@
             <div class="md:w-1/2 md:pr-8 text-left mb-4 md:mb-0 ">
                 <div class="flex flex-col md:flex-row text-center md:text-left ">
                     <h1 class="text-3xl font-bold">Upskilling Made </h1>
-                    <span id="autoText" class="text-3xl font-bold text-orange-500 ml-3">Upskilling Made </span>
+                    <span id="autoText" class="text-3xl font-bold ml-3 mb-2 text-white">Upskilling Made </span>
                 </div>
-                <p class="text-lg mb-8">Where coding brilliance meets expert guidance. From novice to expert, our platform
+                <p class="text-lg mb-8 text-white">Where coding brilliance meets expert guidance. From novice to expert, our platform
                     offers personalized coaching and comprehensive courses to elevate your coding skills. Join a vibrant
                     community and unlock your coding potential today.</p>
 
                 <a href=""
-                    class="inline-block border border-black text-white bg-black px-4 py-2 rounded-full  hover:bg-gray-800 hover:text-white transition duration-300 ease-in-out login-link">Join
+                    class="inline-block text-black  px-4 py-2 rounded-full bg-white transition duration-300 ease-in-out login-link text-2xl">Join
                     Now</a>
             </div>
 
@@ -29,9 +29,9 @@
 
         <div class="container mx-auto mt-2 md:mt-0">
             <section class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-8 p-0 md:p-5 text-gray-700 ">
-                <div class="md:col-span-1 bg-white rounded-lg  ">
+                <div class="md:col-span-1 bg-white rounded-lg  p-3">
                     <h2 class="text-xl font-semibold mb-1 md:mb-2 pb-2 text-left border-b">About Us</h2>
-                    <p class="text-lg text-justify">Discover the pinnacle of coding education at Code with Sadiq. Our platform
+                    <p class="text-md leading-7 text-justify">Discover the pinnacle of coding education at Code with Sadiq. Our platform
                         blends
                         expert guidance with cutting-edge curriculum to propel your programming journey. From novice to
                         virtuoso, our meticulously crafted courses cater to every skill level. Engage with a dynamic
@@ -41,8 +41,8 @@
                         transformative coding odyssey, where innovation meets mentorship, and aspirations become
                         achievements. Elevate your coding prowess with Code with Sadiq today.</p>
                 </div>
-                <div class="md:col-span-1 bg-white rounded-lg ">
-                    <h2 class="text-lg border-b pb-2 font-semibold mb-4 text-left">Recent Projects</h2>
+                <div class="md:col-span-1 bg-white rounded-lg p-3">
+                    <h2 class="text-lg border-b  pb-2 font-semibold mb-4 text-left">Recent Projects</h2>
 
 
                     <div class="grid grid-cols-1  gap-4" id="recentProjects">
@@ -73,7 +73,7 @@
 
 
             <div class="container mx-auto py-8">
-                <h2 class="text-lg  font-semibold border-b pb-2 text-left ">Our Student</h2>
+                <h2 class="text-lg  font-semibold border-b border-teal-800 text-white pb-2 text-left ">Our Student</h2>
                 <div class="carousel relative overflow-hidden">
                     <div class="carousel-inner flex p-3" id="callingHallframe">
                         {{-- Students will be dynamically loaded here --}}
@@ -92,7 +92,7 @@
 
 
             <div class="container mx-auto my-8 p-5">
-                <h2 class="text-lg text-left pb-2 border-b font-medium mb-6">Our Courses</h2>
+                <h2 class="text-lg text-left pb-2 border-b border-teal-800 text-white font-medium mb-6">Our Courses</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3" id="callingcourse">
                     <!-- Courses will be dynamically loaded here -->
                 </div>
@@ -163,18 +163,18 @@
                             <a href="" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
                             <div class="relative pb-48 overflow-hidden">
                             <img class="absolute inset-0 h-full w-full object-cover" src="/image/${course.featured_image}" alt="">
+                                <span class="inline-block px-2 py-1 leading-none bg-green-500 text-white rounded-full font-semibold uppercase tracking-wide text-xs absolute bottom-0 -right-2">New</span>
                             </div>
-                            <div class="p-4">
-                            <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">Highlight</span>
-                            <h2 class="mt-2 mb-2  font-bold">${course.name}</h2>
-                            <div class="mt-3 flex items-center gap-1">
+                            <div class="py-2 px-4">
+                            <h2 class="my-1  text-left capitalize font-bold">${course.name}</h2>
+                            <div class=" flex items-center gap-1">
                                 <span class="font-bold text-xl">₹${course.discount_fees}</span> 
                                 <span class='font-semibold text-md text-slate-600'> ₹${course.fees}</span>
                             </div>
                             </div>
                             <div class="p-4 border-t border-b text-xs text-gray-700">
                             <span class="flex items-center mb-1">
-                                <i class="far fa-clock fa-fw mr-2 text-gray-900"></i> ${course.duration}
+                                <i class="far fa-clock fa-fw mr-2 text-gray-900"></i> ${course.duration} Weeks
                             </span>
                             <span class="flex items-center">
                                 <i class="far fa-address-card fa-fw text-gray-900 mr-2"></i> ${course.category ? course.category.cat_title : 'N/A'}

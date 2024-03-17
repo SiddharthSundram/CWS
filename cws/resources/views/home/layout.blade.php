@@ -16,9 +16,9 @@
     @yield('css')
 </head>
 
-<body class="font-sans">
+<body class="font-sans bg-gradient-to-r from-green-500 to-teal-500">
 
-    <nav class="fixed top-0 z-50 w-full px-[5%] bg-white  py-0 shadow-md ">
+    <nav class="fixed top-0 z-50 w-full md:px-[5%] bg-transparent  md:py-0 p-0 bg-white">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center  justify-between me-3">
 
@@ -441,7 +441,7 @@
 
     <main class="flex-grow">
         <div class="mt-10 mb-5">{{-- for space from top --}}</div>
-        <div class="container mx-auto p-0 md:px-10 lg:px-12 sm:px-8 bg-white outputContainer">
+        <div class="container mx-auto p-0 md:px-10 lg:px-12 sm:px-8  outputContainer">
             <!-- "Go Back" button -->
             <a href="#" class="goBackButton p-2 bg-black text-center text-white mt-3 rounded">Go Back</a>
 
