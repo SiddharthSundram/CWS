@@ -230,7 +230,14 @@
                         }, 1500);
                     },
                     error: function(xhr, status, error) {
-                        alert(JSON.parse(xhr.responseText).message);
+                        if(xhr.status === 400) {
+                            // If the email already exists, display an alert
+                            swal("Register Failed!", "Email already exists in the database.", "error");
+
+                            // alert("Email already exists in the database. Please try another account.");
+                        } else {
+                            alert(JSON.parse(xhr.responseText).message);
+                        }
                     }
                 });
             });
