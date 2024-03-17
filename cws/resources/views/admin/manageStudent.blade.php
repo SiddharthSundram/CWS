@@ -107,7 +107,7 @@
                     <td class="border-b border-gray-200 px-3 py-2 text-sm">${new Date(student.created_at).toLocaleDateString()}</td>     
                     <td class="border-b border-gray-200 px-3 py-2 text-sm">
                         <button type='button' class='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded delete-btn' data-id='${student.id}'>X</button>
-                        <button type='button' class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded edit-btn' data-id='${student.id}'>Edit</button>
+                        <button type='button' class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded editBtn' data-id='${student.id}'>Edit</button>
                         <a href='/admin/student/view/${student.id}' class='bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded edit-btn'>View</a>
                     </td>
                     </tr>
@@ -185,12 +185,12 @@
             });
 
 
-            $(document).on('click', '.edit-btn', function() {
+            $(document).on('click', '.editBtn', function() {
                 var studentId = $(this).data('id');
                 var csrfToken = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     type: 'GET',
-                    url: `/api/admin/student/edit/${studentId}`,
+                    url: `/api/admin/student/view/${studentId}`,
                     success: function(response) {
                         $('#editStudentId').val(response.id);
                         $('#editStudentName').val(response.name);
@@ -221,8 +221,8 @@
                     },
                     data: formData,
                     success: function(response) {
-                        swal("Sucess", response.msg, "msg");
                         $('#default-modal').addClass('hidden');
+                        swal("Sucess", response.msg, "msg");
                         fetchStudents(); // Assuming you have a function to fetch students
                     },
                     error: function(xhr, status, error) {
