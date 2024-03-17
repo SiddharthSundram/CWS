@@ -63,7 +63,7 @@
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <h5 class="text-lg font-semibold mb-4" id="editStudentModalLabel">Edit Student</h5>
                     <form id="editStudentForm" method="post">
-                        <input type="text" id="editStudentId" name="id">
+                        <input type="hidden" id="editStudentId" name="id">
                         <div class="mb-4">
                             <label for="editStudentName" class="block text-sm font-medium text-gray-700">Name</label>
                             <input type="text"

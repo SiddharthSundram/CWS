@@ -1,9 +1,9 @@
 @extends('home.layout')
 
 @section('content')
-    <div class="md:mt-20 p-3 ">
-        <div class="container mx-auto my-2 px-4">
-            <div class="bg-white rounded-lg-2  p-6">
+    <div class="md:mt-20 p-3 md:mb-32 ">
+        <div class="container mx-auto my-8 px-4">
+            <div class="bg-white rounded-lg  p-6">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">Need Assistance?</h2>
 
                 <!-- Support Information -->
@@ -18,8 +18,8 @@
                                 <li><span class="font-semibold">Phone:</span> +91 9546805580</li>
                             </ul>
                         </div>
-
                         <!-- Contact Form -->
+                        {{-- have to create a contact table for this and submit this query . Then this query will called in admin panel --}}
                         <div class="mt-6 bg-white border border-gray-200 p-4 rounded-lg">
                             <form id="contactForm">
                                 <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
@@ -57,7 +57,7 @@
                         <h3 class="text-lg font-bold text-gray-800 mb-2">Frequently Asked Questions</h3>
                         <!-- FAQ List -->
                         <div class="space-y-4">
-                            <!-- FAQ 1 -->
+                            <!-- FAQ Item 1 -->
                             <div>
                                 <h4 class="font-semibold text-gray-800">Q: How do I enroll in a course?</h4>
                                 <p class="text-gray-700">Ans: To enroll in a course, follow these steps:</p>
@@ -69,7 +69,7 @@
                                 </ol>
                             </div>
 
-                            <!-- FAQ 2 -->
+                            <!-- FAQ Item 2 -->
                             <div>
                                 <h4 class="font-semibold text-gray-800">Q: How can I access my purchased courses?</h4>
                                 <p class="text-gray-700">Ans: To access your purchased courses, follow these steps:</p>
@@ -81,7 +81,7 @@
                                 </ol>
                             </div>
 
-                            <!-- FAQ 3 -->
+                            <!-- FAQ Item 3 -->
                             <div>
                                 <h4 class="font-semibold text-gray-800">Q: What should I do if I encounter technical issues?
                                 </h4>
@@ -103,50 +103,35 @@
 
     <script>
         $(document).ready(function() {
-            //insert teacher
-            $("#contactForm").submit(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('contact.store') }}",
-                    data: new FormData(this),
-                    dataType: "JSON",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(response) {
-                        swal("Success", response.msg, "success");
-                        $("#insertQuery").trigger("reset");
+        // Handle form submission
+        $("#contactForm").submit(function(e) {
+            e.preventDefault();
 
-                        window.open("/index", "_self");
-                    }
-                })
-            })
-        })
-        $(document).ready(function() {
-            $('#contactForm').submit(function(event) {
-                // Prevent the default form submission
-                event.preventDefault();
+            // Serialize the form data
+            var formData = new FormData(this);
 
-                // Serialize the form data
-                var formData = $(this).serialize();
-
-                // Send the AJAX request
-                $.ajax({
-                    url: '{{ route('contact.store') }}', // Assuming you have named route for the store method
-                    type: 'POST',
-                    data: formData,
-                    success: function(response) {
-                        // Reset the form after successful submission
-                        $('#contactForm')[0].reset();
-                        // Optionally, display a success message to the user
-                        alert('Query stored successfully');
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle error here
-                        console.error(xhr.responseText);
-                    }
-                });
+            // Send the AJAX request
+            $.ajax({
+                type: "POST",
+                url: "{{ route('contact.store') }}",
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(response) {
+                    // Display success message
+                     alert('Query Send Successfully 😊');
+                    // Reset the form
+                    $('#contactForm')[0].reset();
+                },
+                error: function(xhr, status, error) {
+                    // Handle error
+                    console.error(xhr.responseText);
+                    // Optionally, display an error message
+                    alert('Failed to submit query. Please try again later.');
+                    
+                }
             });
         });
     });    </script>

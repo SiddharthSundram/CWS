@@ -1,7 +1,7 @@
 @extends('home.layout')
 
 @section('content')
-    <div class="container mx-auto py-8 mt-5">
+    <div class="container mx-auto py-8 mt-3">
         <h2 class="text-3xl font-medium mb-3 ">Our Achievements</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-200  py-4 px-6" id="callingHallframe">
 

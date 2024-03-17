@@ -14,6 +14,9 @@ class StudentApiController extends Controller
             'name' => 'required|string|between:2,100',
             'mobile_no' => 'required|string|max:12|',
             'email' => 'required|string|email|max:100|unique:users',
+            'f_name' => 'required|string|between:2,100|',
+            'address' => 'required|string|between:2,100|',
+            'gender' => 'required|in:m,f,o',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
@@ -90,7 +93,7 @@ class StudentApiController extends Controller
     }
 
 
-    public function destroy(User $id)
+        public function destroy($id)
     {
         try {
             // Find the student by ID
@@ -99,12 +102,12 @@ class StudentApiController extends Controller
             // Delete the student
             $student->delete();
 
-            return response()->json(['message' => 'Student deleted successfully'], 200);
+            return response()->json(['msg' => 'Student deleted successfully'], 200);
         } catch (\Exception $e) {
             // Handle exceptions
-            return response()->json(['message' => 'Failed to delete student', 'error' => $e->getMessage()], 500);
+            return response()->json(['msg' => 'Failed to delete student', 'error' => $e->getMessage()], 500);
         }
-    }
+}
     public function callingStudents(){
         $students = User::all();
         return response()->json(['students' => $students]);
