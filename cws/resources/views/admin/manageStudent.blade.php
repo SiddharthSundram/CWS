@@ -29,6 +29,9 @@
                     <tr>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Id</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Name</th>
+                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Father's Name</th>
+                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Address</th>
+                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Gender</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Email</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Contact No.</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Admission Date</th>
@@ -67,6 +70,26 @@
                             <label for="editStudentName" class="block text-sm font-medium text-gray-700">Student Name</label>
                             <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " id="editStudentName" name="name" required>
                         </div>
+                        <div class="mb-4">
+                            <label for="editStudentfName" class="block text-sm font-medium text-gray-700">Father's Name</label>
+                            <input type="text"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                id="editStudentfName" name="f_name" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="editStudentAddress" class="block text-sm font-medium text-gray-700">Address</label>
+                            <input type="text"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                id="editStudentAddress" name="address" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="editStudentGender" class="block text-sm font-medium text-gray-700">Gender</label>
+                            <select name="gender" id="editStudentGender" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="">Choose Gender</option>
+                                <option value="m">Male</option>
+                                <option value="f">Female</option>
+                                <option value="o">Others</option>
+                            </select>
 
                         <div class="mb-4">
                             <label for="editStudentEmail" class="block text-sm font-medium text-gray-700">Student Email</label>
@@ -100,11 +123,14 @@
                 data.forEach((student) => {
                     table.append(`
                     <tr>
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.id}</td> 
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.name}</td>
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.email}</td> 
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.mobile_no}</td>     
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${new Date(student.created_at).toLocaleDateString()}</td>     
+                    <td class="border-b text-center border-gray-200 px-3 py-2 text-sm">${student.id}</td> 
+                    <td class="border-b text-center border-gray-200 px-3 py-2 text-sm">${student.name}</td>
+                    <td class="border-b text-center border-gray-200 px-3 py-2 text-sm">${student.f_name}</td>
+                    <td class="border-b text-center border-gray-200 px-3 py-2 text-sm">${student.address}</td>
+                    <td class="border-b text-center border-gray-200 px-3 py-2 text-sm">${student.gender}</td>
+                    <td class="border-b text-center border-gray-200 px-3 py-2 text-sm">${student.email}</td> 
+                    <td class="border-b text-center border-gray-200 px-3 py-2 text-sm">${student.mobile_no}</td>     
+                    <td class="border-b text-center border-gray-200 px-3 py-2 text-sm">${new Date(student.created_at).toLocaleDateString()}</td>     
                     <td class="border-b border-gray-200 px-3 py-2 text-sm">
                         <button type='button' class='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded delete-btn' data-id='${student.id}'>X</button>
                         <button type='button' class='bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded editBtn' data-id='${student.id}'>Edit</button>
@@ -196,6 +222,9 @@
                         $('#editStudentName').val(response.name);
                         $('#editStudentEmail').val(response.email);
                         $('#editStudentMobile_no').val(response.mobile_no);
+                        $('#editStudentfName').val(response.f_name);
+                        $('#editStudentAddress').val(response.address);
+                        $('#editStudentGender').val(response.gender);
                         $('#default-modal').removeClass('hidden');
                     },
                     error: function(xhr, status, error) {
@@ -212,6 +241,9 @@
                     name: $('#editStudentName').val(),
                     email: $('#editStudentEmail').val(),
                     mobile_no: $('#editStudentMobile_no').val(),
+                    f_name: $('#editStudentfName').val(),
+                    address: $('#editStudentAddress').val(),
+                    gender: $('#editStudentGender').val(),
                 };
                 $.ajax({
                     type: 'PUT',
@@ -221,6 +253,7 @@
                     },
                     data: formData,
                     success: function(response) {
+                        swal("Success", response.msg, "msg");
                         $('#default-modal').addClass('hidden');
                         swal("Sucess", response.msg, "msg");
                         fetchStudents(); // Assuming you have a function to fetch students

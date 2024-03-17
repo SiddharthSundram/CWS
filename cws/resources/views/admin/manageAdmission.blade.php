@@ -27,6 +27,9 @@
                     <tr>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Id</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Name</th>
+                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Father</th>
+                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Gender</th>
+                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Address</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Email</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Contact No.</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Admission Date</th>
@@ -63,12 +66,33 @@
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <h5 class="text-lg font-semibold mb-4" id="editStudentModalLabel">Edit Student</h5>
                     <form id="editStudentForm" method="post">
-                        <input type="text" id="editStudentId" name="id">
+                        {{-- <input type="text" id="editStudentId" name="id"> --}}
                         <div class="mb-4">
                             <label for="editStudentName" class="block text-sm font-medium text-gray-700">Name</label>
                             <input type="text"
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                 id="editStudentName" name="name" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="editStudentfName" class="block text-sm font-medium text-gray-700">Father's Name</label>
+                            <input type="text"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                id="editStudentfName" name="editStudentfName" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="editStudentAddress" class="block text-sm font-medium text-gray-700">Address</label>
+                            <input type="text"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                id="editStudentAddress" name="editStudentAddress" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="editStudentGender" class="block text-sm font-medium text-gray-700">Gender</label>
+                            <select name="editStudentGender" id="editStudentGender" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="">Choose Gender</option>
+                                <option value="m">Male</option>
+                                <option value="f">Female</option>
+                                <option value="o">Others</option>
+                            </select>
                         </div>
                         <div class="mb-4">
                             <label for="editStudentMobile" class="block text-sm font-medium text-gray-700">Mobile No</label>
@@ -117,11 +141,14 @@
                 data.forEach((student) => {
                     table.append(`
                     <tr>
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.id}</td> 
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.name}</td>
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.email}</td> 
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${student.mobile_no}</td>     
-                    <td class="border-b border-gray-200 px-3 py-2 text-sm">${new Date(student.created_at).toLocaleDateString()}</td>     
+                    <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${student.id}</td> 
+                    <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${student.name}</td>
+                    <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${student.f_name}</td>
+                    <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${student.gender}</td>
+                    <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${student.address}</td>
+                    <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${student.email}</td> 
+                    <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${student.mobile_no}</td>     
+                    <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${new Date(student.created_at).toLocaleDateString()}</td>     
                     <td class="border-b border-gray-200 px-3 py-2 text-sm">
                         <button type='button' class='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded edit-btn' data-id='${student.id}'>X</button>
                         <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-sm edit-btn" data-id="${student.id}">
@@ -181,7 +208,8 @@
                 });
             });
 
-             // Edit student button click handler
+             // view student button click handler
+
              $(document).on('click', '.edit-btn', function() {
                 var userId = $(this).data('id');
                 $.ajax({
@@ -191,20 +219,26 @@
                     success: function(response) {
                         $('#editStudentId').val(response.id);
                         $('#editStudentName').val(response.name);
+                        $('#editStudentfName').val(response.f_name);
+                        $('#editStudentAddress').val(response.address);
+                        $('#editStudentGender').val(response.gender);
                         $('#editStudentStatus').val(response.status);
                         $('#editStudentEmail').val(response.email);
                         $('#editStudentMobile').val(response.mobile_no);
                         $('#editStudentModal').removeClass('hidden');
 
-                         // Submit edit course form
+                // Submit edit course form
+
             $('#editStudentForm').submit(function(e) {
                 e.preventDefault();
                 let data = {
                         name: $('#editStudentName').val(),
                         status : $('#editStudentStatus').val(),
+                        f_name : $('#editStudentfName').val(),
+                        address : $('#editStudentAddress').val(),
+                        gender : $('#editStudentGender').val(),
                         email : $('#editStudentEmail').val(),
                         mobile_no : $('#editStudentMobile').val(),
-                        status : $('#editStudentStatus').val()
                 }
                 console.log(data);
                 $.ajax({
