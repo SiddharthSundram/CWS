@@ -216,7 +216,7 @@
                 var csrfToken = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     type: 'GET',
-                    url: `/api/admin/student/view/${studentId}`,
+                    url: `/api/admin/student/edit/${studentId}`,
                     success: function(response) {
                         $('#editStudentId').val(response.id);
                         $('#editStudentName').val(response.name);
