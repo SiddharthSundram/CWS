@@ -74,6 +74,10 @@ class StudentApiController extends Controller
     return response()->json($user);
     }
 
+
+    
+
+
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
@@ -112,6 +116,42 @@ class StudentApiController extends Controller
         $students = User::all();
         return response()->json(['students' => $students]);
     }
+
+
+
+        public function edit($id)
+    {
+        $student = User::findOrFail($id);
+        return response()->json([
+            'user' => $student,
+            'success' => true,
+            'msg' => 'Student fetched successfully'
+        ]);
+    }
+
+    public function upgrade(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|between:2,100',
+            'mobile_no' => 'required|string|max:12|',
+            'email' => 'required|string|email|max:100|unique:users,email,'.$id,
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $user->update($validator->validated());
+
+        return response()->json([
+            'user' => $user,
+            'success' => true,
+            'msg' => 'Student updated successfully'
+        ]);
+}
+
     
 }
     
