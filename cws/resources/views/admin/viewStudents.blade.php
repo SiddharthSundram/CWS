@@ -121,94 +121,224 @@
 
     <!-- JavaScript to control the popup -->
     <script>
-        $(document).ready(function() {
-            function getStudent() {
-                $.ajax({
-                    type: "get",
-                    url: `/api/admin/student/view/{{ request()->segment(4) }}`,
-                    success: function(student) {
-                        // Update student details
-                        let details = `
-                        <tr>
-                            <th class="border-b border-gray-200 px-4 py-2">Id</th>
-                            <td class="border-b border-gray-200 px-4 py-2">${student.id}</td>
-                        </tr>
-                        <tr>
-                            <th class="border-b border-gray-200 px-4 py-2">Name</th>
-                            <td class="border-b border-gray-200 px-4 py-2">${student.name}</td>
-                        </tr>
-                        <tr>
-                            <th class="border-b border-gray-200 px-4 py-2">Contact No.</th>
-                            <td class="border-b border-gray-200 px-4 py-2">${student.mobile_no}</td>
-                        </tr>
-                        <tr>
-                            <th class="border-b border-gray-200 px-4 py-2">Email</th>
-                            <td class="border-b border-gray-200 px-4 py-2">${student.email}</td>
-                        </tr>
-                        <tr>
-                            <th class="border-b border-gray-200 px-4 py-2">Admission Date</th>
-                            <td class="border-b border-gray-200 px-4 py-2">${new Date(student.created_at).toLocaleDateString()}</td>
+        $(document).ready(function() {    
+function getStudent() {
 
-                        </tr>`;
-                        $("#studentDetails").html(details);
-                        // Update enrolled courses
-                        let courses = student.courses.map(course => {
-                            let paymentSection = '';
-                            if (course.payments.length < 1) {
-                                paymentSection = `<div class="px-6 pt-2 pb-2">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex flex-col gap-3">
-                                            <p class="text-sm text-slate-600">Please select Payment type</p>
-                                            <input type="hidden" id="course_id_${course.id}" value="${course.id}" class="mr-2">
-                                            <input type="hidden" id="course_amount_${course.id}" value="${course.discount_fees}">
-                                            <div class='flex items-center gap-2'>
-                                                <input type="radio" id="fullPayment_${course.id}" name="paymentType_${course.id}" value="full">
-                                                <label for="fullPayment_${course.id}" class="text-md font-semibold">Full Payment</label>
-                                            </div>
-                                            <div class='flex items-center gap-2'>
-                                                <input type="radio" id="partialPayment_${course.id}" name="paymentType_${course.id}" value="partial">
-                                                <label for="partialPayment_${course.id}" class="text-md font-semibold">Partial Payment</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="px-6 pt-1 pb-2">
-                                    <button id="submitPayment_${course.id}" class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full text-sm">
-                                        Add Payments
-                                    </button>
-                                </div>`;
-                            } else {
-                                paymentSection = `<ol class="relative border-s border-gray-200 dark:border-gray-700">                  
-                                    ${course.payments.map((payment, i) => `
-                                        <li class="mb-2 ms-4">
-                                            <div class="absolute w-3 h-3 ${payment.status === 1? 'bg-green-600' : 'bg-gray-200'} rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">${payment.date_of_payment}</time>
-                                            <h3 class="text-lg flex gap-2 items-center font-semibold text-gray-900 dark:text-white">
-                                                <span>₹${payment.fees}</span>
-                                                ${payment.status === 1 ? `<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                                                </svg>`: ''}
-                                            </h3>
-                                            ${payment.status === 0 ? `<button id="markPaid_${payment.id}" class="bg-green-500 hover:bg-green-700 text-white font-semibold py-1 px-2 rounded">Mark as Paid</button>` : ``}
-                                        </li>`).join('')}
-                                    </ol>`;
-                            }
+    $.ajax({
+        type: "get",
+        url: `/api/admin/student/view/{{ request()->segment(4) }}`,
+        success: function(student) {
+            let details = `
+            <tr>
+                <th class="border-b border-gray-200 px-4 py-2">Id</th>
+                <td class="border-b border-gray-200 px-4 py-2">${student.id}</td>
+            </tr>
+            <tr>
+                <th class="border-b border-gray-200 px-4 py-2">Name</th>
+                <td class="border-b border-gray-200 px-4 py-2">${student.name}</td>
+            </tr>
+            <tr>
+                <th class="border-b border-gray-200 px-4 py-2">Contact No.</th>
+                <td class="border-b border-gray-200 px-4 py-2">${student.mobile_no}</td>
+            </tr>
+            <tr>
+                <th class="border-b border-gray-200 px-4 py-2">Email</th>
+                <td class="border-b border-gray-200 px-4 py-2">${student.email}</td>
+            </tr>
+            <tr>
+                <th class="border-b border-gray-200 px-4 py-2">Admission Date</th>
+                <td class="border-b border-gray-200 px-4 py-2">${new Date(student.created_at).toLocaleDateString()}</td>
 
-                            return `<div class="bg-white shadow-lg rounded-lg overflow-hidden ">
-                                <div class="border bg-slate-50 px-4 py-2">
-                                    <div class="font-bold text-xl capitalize mb-1">${course.name} Course </div>
-                                    <div class="font-normal text-xs capitalize mb-1">Duration: ${course.duration} Weeks </div>
-                                    <div class="font-semibold text-teal-900 text-sm capitalize mb-2">Course Fees: ₹${course.discount_fees}/- <del class='text-slate-400'>₹${course.fees}/-</del></div>
-                                </div>
-                                <div class='px-4 py-2'>
-                                    ${paymentSection}
-                                </div>
-                            </div>`;
-                        }).join('');
-                        $('#courseDetails').html(courses);
+            </tr>                  
+    </tr>`;
+
+            let courses = student.courses.map(course => {
+                let paymentSection = '';
+                if (course.payments.length < 1) {
+                    paymentSection = `
+<div class="px-6 pt-2 pb-2">
+    <div class="flex items-center justify-between">
+
+        <div class="flex flex-col gap-3">
+            <p class="text-sm text-slate-600">Please select Payment type</p>
+            <input type="hidden" id="course_id_${course.id}" value="${course.id}" class="mr-2">
+            <input type="hidden" id="course_amount_${course.id}" value="${course.discount_fees}">
+            <div class='flex items-center gap-2'>
+                <input type="radio" id="fullPayment_${course.id}" name="paymentType_${course.id}" value="full">
+                <label for="fullPayment_${course.id}" class="text-md font-semibold">Full Payment</label>
+            </div>
+            <div class='flex items-center gap-2'>
+                <input type="radio" id="partialPayment_${course.id}" name="paymentType_${course.id}" value="partial">
+                <label for="partialPayment_${course.id}" class="text-md font-semibold">Partial Payment</label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="px-6 pt-1 pb-2">
+    <button id="submitPayment_${course.id}" class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full text-sm">
+        Add Payments
+    </button>
+</div>`;
+                } else {
+        
+        paymentSection = `
+            <ol class="relative border-s border-gray-200 dark:border-gray-700">                  
+            ${course.payments.map((payment, i) => `
+                <li class="mb-2 ms-4">
+                    <div class="absolute w-3 h-3 ${payment.status === 1? 'bg-green-600' : 'bg-gray-200'} rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">${payment.date_of_payment}</time>
+                    <h3 class="text-lg flex gap-2 items-center font-semibold text-gray-900 dark:text-white">
+                        <span>₹${payment.fees}</span>
+                        ${payment.status === 1 ? `<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                            </svg>`: ''}
+                        </h3>
+                    ${payment.status === 0 ? `<button id="markPaid_${payment.id}" class="bg-green-500 hover:bg-green-700 text-white font-semibold py-1 px-2 rounded">Mark as Paid</button>` : ``}
+                </li>`).join('')}
+            </ol>`;
+                }
+
+                return `
+<div class="bg-white shadow-lg rounded-lg overflow-hidden ">
+<div class="border bg-slate-50 px-4 py-2">
+    <div class="font-bold text-xl capitalize mb-1">${course.name} Course </div>
+    <div class="font-normal text-xs capitalize mb-1">Duration: ${course.duration} Weeks </div>
+    <div class="font-semibold text-teal-900 text-sm capitalize mb-2">Course Fees: ₹${course.discount_fees}/- <del class='text-slate-400'>₹${course.fees}/-</del></div>
+</div>
+<div class='px-4 py-2'>
+    ${paymentSection}
+</div>
+</div>`;
+            }).join('');
+
+
+            $("#studentDetails").html(details);
+            $("#courseDetails").html(courses);
+
+            student.courses.forEach(course => {
+                const courseId = course.id;
+                const courseIdElement = $('#course_id_' + courseId);
+                const courseAmountElement = $('#course_amount_' + courseId);
+                const submitPaymentBtn = $('#submitPayment_' + courseId);
+                const fullPaymentRadio = $('#fullPayment_' + courseId);
+                const partialPaymentRadio = $('#partialPayment_' + courseId);
+
+                submitPaymentBtn.on('click', () => {
+                    let paymentType = '';
+                    let paymentAmount = 0;
+
+                    if (fullPaymentRadio.is(':checked')) {
+                        paymentType = 'full';
+                        paymentAmount = courseAmountElement.val();
+                    } else if (partialPaymentRadio.is(':checked')) {
+                        paymentType = 'partial';
+                        paymentAmount = courseAmountElement.val();
+                    } else {
+                        swal("Alert",'Please select a payment option',"warning");
+                        return;
                     }
+
+                    $.ajax({
+                        url: '/api/admin/student/payment',
+                        type: 'POST',
+                        data: {
+                            'course_id': courseIdElement.val(),
+                            'user_id': "{{ request()->segment(4) }}",
+                            'fees': paymentAmount,
+                            'payment_type': paymentType
+                        },
+                        success: function(response) {
+                            swal("Success",'Payment processed successfully',"success");
+                            getStudent();
+                        },
+                        error: function(xhr, status, error) {
+                            if (xhr.status == 400) {
+                                swal("error",
+                                    "Already Pay Payment Exists"
+                                    );
+                            }
+                        }
+                    });
                 });
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error("error: " + xhr.responseText);
+        }
+    });
+}
+getStudent();
+
+
+$('body').on('click', '[id^=markPaid_]', function() {
+    const paymentId = $(this).attr('id').split('_')[1];
+
+    $.ajax({
+        url: `/api/admin/student/payment/${paymentId}/mark-as-paid`,
+        type: 'PATCH',
+
+        success: function(response) {
+            swal("Done",'Payment marked as paid successfully',"success");
+            getStudent();
+            // Optionally, update the UI to reflect the payment status change
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+            swal("Oops",'Failed to mark payment as paid',"error");
+        }
+    });
+});
+
+// Ajax for calling available courses
+
+$.ajax({
+    type: "GET",
+    url: "/api/course",
+    success: function(response) {
+        let select = $("#callingCourses");
+        select.empty();
+        select.append(
+        `<option value="">Select a course</option>`); // Add this line outside the loop
+        response.data.forEach((course) => {
+            select.append(
+                `<option value = "${course.id}" data-fees="${course.discount_fees}">${course.name} </option>`
+            );
+        });
+    }
+});
+
+$("#callingCourses").change(function() {
+    const selectedOption = $(this).find("option:selected");
+    const fees = selectedOption.data("fees");
+    $("#fees").val(fees);
+});
+$("#approvalForm").submit(function(event) {
+    event.preventDefault(); // Prevent the form from submitting
+    // Fetch form data
+    const formData = $(this).serialize();
+
+    $.ajax({
+        type: "POST",
+        url: "{{ route('student_course.store') }}",
+        data: formData,
+        dataType: "json",
+        success: function(response) {
+            swal("Success", response.msg, "success");
+            $("#drawer-bottom-example").hide();
+            getStudent();
+        },
+        error: function(xhr, status, error) {
+            if (xhr.status === 400) {
+                // Course already exists
+                swal("Error", "Student Course already exists", "error");
+            } else {
+                swal("Error", "An error occurred", "error");
             }
+        }
+    });
+})
+
+
             $(document).ready(function() {
                 
                 $('.delete-student-btn').click(function() {
@@ -238,10 +368,6 @@
             });
 
             getStudent();
-
-          
-
-
 
             //Edit Student
             $(document).ready(function() {
@@ -307,42 +433,8 @@
                     });
                 });
 
-                });
-
-
-     
-            // Add Payments
-            $(document).on('click', '[id^=submitPayment_]', function() {
-                var course_id = $(this).attr('id').split('_')[1];
-                var paymentType = $(`input[name=paymentType_${course_id}]:checked`).val();
-                var amount = $(`#course_amount_${course_id}`).val();
-                var user_id = {{ request()->segment(4) }};
-                $.ajax({
-                    type: 'post',
-                    url: `/api/admin/student/payment/${user_id}`,
-                    data: {
-                        'course_id': course_id,
-                        'amount': amount,
-                        'paymentType': paymentType
-                    },
-                    success: function(data) {
-                        getStudent();
-                    }
-                });
+                
             });
-
-            // Mark Payment as Paid
-            $(document).on('click', '[id^=markPaid_]', function() {
-                var payment_id = $(this).attr('id').split('_')[1];
-                $.ajax({
-                    type: 'put',
-                    url: `/api/admin/student/payment/mark/${payment_id}`,
-                    success: function(data) {
-                        getStudent();
-                    }
-                });
-            });
-
         });
     </script>
 @endsection
