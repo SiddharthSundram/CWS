@@ -99,6 +99,26 @@
                         <label for="editStudentName" class="block text-sm font-medium text-gray-700">Student Name</label>
                         <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " id="editStudentName" name="name" required>
                     </div>
+                    <div class="mb-4">
+                        <label for="editStudentfName" class="block text-sm font-medium text-gray-700">Father's Name</label>
+                        <input type="text"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            id="editStudentfName" name="f_name" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="editStudentAddress" class="block text-sm font-medium text-gray-700">Address</label>
+                        <input type="text"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            id="editStudentAddress" name="address" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="editStudentGender" class="block text-sm font-medium text-gray-700">Gender</label>
+                        <select name="gender" id="editStudentGender" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="">Choose Gender</option>
+                            <option value="m">Male</option>
+                            <option value="f">Female</option>
+                            <option value="o">Others</option>
+                        </select>
 
                     <div class="mb-4">
                         <label for="editStudentEmail" class="block text-sm font-medium text-gray-700">Student Email</label>
@@ -107,7 +127,7 @@
                     
                     <div class="mb-4">
                         <label for="editStudentMobile_no" class="block text-sm font-medium text-gray-700">Student Contact</label>
-                        <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " id="editStudentMobile_no" name="mobile_no" required>
+                        <input type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm " id="editStudentMobile_no" name="Mobile_no" required>
                     </div>                        
                     <div class="flex justify-between">
                         <button type="submit" class="inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Save changes</button>
@@ -137,6 +157,18 @@ function getStudent() {
                 <th class="border-b border-gray-200 px-4 py-2">Name</th>
                 <td class="border-b border-gray-200 px-4 py-2">${student.name}</td>
             </tr>
+            <tr>
+                <th class="border-b border-gray-200 px-4 py-2">Fathers Name</th>
+                <td class="border-b border-gray-200 px-4 py-2">${student.f_name}</td>
+            </tr>
+            <tr>
+                <th class="border-b border-gray-200 px-4 py-2">Address</th>
+                <td class="border-b border-gray-200 px-4 py-2">${student.address}</td>
+            </tr>
+            <tr>
+                <th class="border-b border-gray-200 px-4 py-2">Gender</th>
+                <td class="border-b border-gray-200 px-4 py-2">${student.gender}</td>
+            </tr>         
             <tr>
                 <th class="border-b border-gray-200 px-4 py-2">Contact No.</th>
                 <td class="border-b border-gray-200 px-4 py-2">${student.mobile_no}</td>
@@ -379,6 +411,9 @@ $("#approvalForm").submit(function(event) {
                             // Update student details
                             $('#editStudentId').val(student.id);
                             $('#editStudentName').val(student.name);
+                            $('#editStudentfName').val(student.f_name);
+                            $('#editStudentAddress').val(student.address);
+                            $('#editStudentGender').val(student.gender);
                             $('#editStudentEmail').val(student.email);
                             $('#editStudentMobile_no').val(student.mobile_no);
 
@@ -410,6 +445,9 @@ $("#approvalForm").submit(function(event) {
                     e.preventDefault();
                     var id = $('#editStudentId').val();
                     var name = $('#editStudentName').val();
+                    var f_name = $('#editStudentfName').val();
+                    var address = $('#editStudentAddress').val();
+                    var gender = $('#editStudentGender').val();
                     var email = $('#editStudentEmail').val();
                     var mobile_no = $('#editStudentMobile_no').val();
                     $.ajax({
@@ -417,6 +455,9 @@ $("#approvalForm").submit(function(event) {
                         url: `/api/admin/manage-student/edit/${id}`,
                         data: {
                             'name': name,
+                            'f_name': f_name,
+                            'address': address,
+                            'gender': gender,
                             'email': email,
                             'mobile_no': mobile_no,
                         },
