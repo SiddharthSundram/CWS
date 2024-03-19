@@ -43,6 +43,16 @@ Route::post('/refresh', [AuthController::class, 'refresh']);
     })->middleware('jwt.auth')->name("my-profile");
 
 
+    Route::put('/user-profile/edit', function (Request $req) {
+        $id = auth()->id();
+        $controller = app()->make('App\Http\Controllers\StudentApiController');
+        return $controller->upgrade($req,$id);
+    })->middleware('jwt.auth');
+
+// Route::put('/user-profile/edit/{id}', [StudentApiController::class, 'upgrade'])->name('updateStudentProfile');
+
+
+
 
 // api for category operations
 Route::apiResource('category',CategoryApiController::class);
