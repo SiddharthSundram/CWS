@@ -78,7 +78,7 @@
                                     Name</label>
                                 <input type="text" name="name" id="name"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
-                                    placeholder="Ex: Siddharth" required="">
+                                    placeholder="Ex: Saurav" required="">
                             </div>
                             <div>
                                 <label for="father" class="block mb-2 text-sm font-medium text-gray-900 ">
@@ -119,7 +119,7 @@
                                     Email</label>
                                 <input type="email" name="email" id="email"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
-                                    placeholder="Ex: r@gmail.com" required="">
+                                    placeholder="Ex: rishavRoni@gmail.com" required="">
                             </div>
                             <div>
                                 <label for="mobile_no"

@@ -80,6 +80,8 @@ Route::get('/manage-hallFrame', [HallFrameApiApiController::class, 'manageHallfr
 // api for student course table 
 Route::apiResource("student_course", StudentCourseController::class);
 
+// for search course
+Route::get('/search-course', [CourseApiController::class, 'searchCourse'])->name('search-course');
 
 // api for student operations
 Route::get('/admin/callingStudents',[StudentApiController::class,"callingStudents"])->name("callingStudents");
@@ -98,7 +100,7 @@ Route::put('/admin/manage-student/edit/{id}', [StudentApiController::class, 'upg
 Route::post('/admin/student-course', [StudentCourseController::class, 'store']);
 Route::get('/admin/student-course/view', [StudentCourseController::class, 'index']);
 
-// for search 
+
 
 // for payment
 Route::post('/admin/student/payment', [PaymentController::class, 'addPayment']);
