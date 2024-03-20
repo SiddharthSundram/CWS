@@ -78,7 +78,7 @@
                     success: function(response) {
                         swal("Success", response.msg, "success");
                         $("#hallFrame").trigger("reset")
-                        // window.open("dashboard", "_self")
+                        window.open("{{route('manageHallframe')}}", "_self")
                     }
                 })
             })

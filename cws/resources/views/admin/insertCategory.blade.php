@@ -46,7 +46,8 @@
                         swal("Success", response.msg, "success");
                         $("#insertProduct").trigger("reset");
 
-                        window.open("/admin", "_self");
+                        window.open("{{route('manageCategory')}}", "_self")
+
                     }
                 })
             })
