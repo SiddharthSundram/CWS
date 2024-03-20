@@ -1,51 +1,78 @@
 @extends('home.layout')
 
 @section('content')
-    <div class="min-h-screen flex items-center justify-center  py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-md w-full space-y-8 bg-gray-200 p-8 rounded-lg shadow-md">
-            <h1 class="text-3xl font-bold text-gray-800 text-left mb-6">My Profile</h1>
-            <div class="flex items-center justify-center mb-6">
-                <div class="relative">
-                    <img id="profile-image" class="h-32 w-32 rounded-full object-cover" src="https://via.placeholder.com/150"
-                        alt="Profile Picture">
+    
+    <section class="py-5 p-5 h-full md:h-screen">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-5 mt-10">My Profile</h2>
+            <div class="bg-white rounded-lg shadow-md p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="md:col-span-1 flex flex-col items-center justify-center">
+                    <img src="https://via.placeholder.com/150" alt="avatar" class="rounded mx-auto mb-3"
+                        style="width: 150px;">
+                    <div class="flex justify-center mb-2 gap-3">
+                        <button
+                            class="edit-btn px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 inline-block text-center"id="edit_student">Edit
+                            Profile</button>
+                        <a href="" id="logouting"
+                            class="px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 focus:outline-none focus:bg-red-600 inline-block text-center">Logout</a>
+                    </div>
                 </div>
-            </div>
-            <div class="flex justify-center space-x-4">
-                <button
-                    class="edit-btn px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 inline-block text-center"id="edit_student">Edit
-                    Profile</button>
-                <a href="" id="logouting"
-                    class="px-4 py-2 bg-red-500 text-white rounded-md shadow-md hover:bg-red-600 focus:outline-none focus:bg-red-600 inline-block text-center">Logout</a>
-            </div>
-
-            <div class="flex flex-col space-y-4" id="callingUserProfile">
-                <div class="flex gap-2">
-                    <label for="name" class="text-gray-700 font-semibold">Name: </label>
-                    <p class="text-gray-800" id="calling_name"></p>
-                </div>
-                <div class="flex gap-2">
-                    <label for="gender" class="text-gray-700 font-semibold">Gender: </label>
-                    <p class="text-gray-800" id="calling_user_gender"></p>
-                </div>
-                <div class="flex gap-2">
-                    <label for="f_name" class="text-gray-700 font-semibold">Father's Name: </label>
-                    <p class="text-gray-800" id="calling_user_fname"></p>
-                </div>
-                <div class="flex gap-2">
-                    <label for="email" class="text-gray-700 font-semibold">Email:</label>
-                    <p class="text-gray-800" id="calling_user_email"></p>
-                </div>
-                <div class="flex gap-2">
-                    <label for="phone" class="text-gray-700 font-semibold">Phone:</label>
-                    <p class="text-gray-800" id="calling_user_phone"></p>
-                </div>
-                <div class="flex gap-2">
-                    <label for="address" class="text-gray-700 font-semibold">Address:</label>
-                    <p class="text-gray-800" id="calling_user_address"></p>
+                <div class="md:col-span-2 mt-10 md:mt-0">
+                    <div class="flex items-center border-b border-gray-200 mb-4">
+                        <h3 class="text-lg font-semibold">Your Details</h3>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mb-4">
+                        <div class="col-span-1">
+                            <p class="mb-0">Name</p>
+                        </div>
+                        <div class="col-span-2">
+                            <p class="text-gray-500 mb-0" id="calling_name">Siddharth </p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mb-4">
+                        <div class="col-span-1">
+                            <p class="mb-0">Father's Name</p>
+                        </div>
+                        <div class="col-span-2">
+                            <p class="text-gray-500 mb-0" id="calling_user_fname">Amarnath</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mb-4">
+                        <div class="col-span-1">
+                            <p class="mb-0">Email</p>
+                        </div>
+                        <div class="col-span-2">
+                            <p class="text-gray-500 mb-0" id="calling_user_email">example@example.com</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mb-4">
+                        <div class="col-span-1">
+                            <p class="mb-0">Phone</p>
+                        </div>
+                        <div class="col-span-2">
+                            <p class="text-gray-500 mb-0" id="calling_user_phone">+91 6202067099</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mb-4">
+                        <div class="col-span-1">
+                            <p class="mb-0">Gender</p>
+                        </div>
+                        <div class="col-span-2">
+                            <p class="text-gray-500 mb-0" id="calling_user_gender">Male</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mb-4">
+                        <div class="col-span-1">
+                            <p class="mb-0">Address</p>
+                        </div>
+                        <div class="col-span-2">
+                            <p class="text-gray-500 mb-0" id="calling_user_address">Line Bazar, Purnea, Bihar-854301</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     {{-- edit modal --}}
 
