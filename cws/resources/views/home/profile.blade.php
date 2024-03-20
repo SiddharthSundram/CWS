@@ -7,7 +7,7 @@
             <h2 class="text-3xl font-bold mb-5 mt-10">My Profile</h2>
             <div class="bg-white rounded-lg shadow-md p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="md:col-span-1 flex flex-col items-center justify-center">
-                    <img src="https://via.placeholder.com/150" alt="avatar" class="rounded mx-auto mb-3"
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded mx-auto mb-3"
                         style="width: 150px;">
                     <div class="flex justify-center mb-2 gap-3">
                         <button
@@ -121,9 +121,9 @@
                             <div class="mb-4">
                                 <label for="editStudentEmail" class="block text-sm font-medium text-gray-700">Student
                                     Email</label>
-                                <input type="text"
+                                    <input type="text"
                                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                    id="editStudentEmail" name="email" required>
+                                    id="editStudentEmail" name="email" required disabled>
                             </div>
 
                             <div class="mb-4">
@@ -168,9 +168,9 @@
                                         $("#calling_user_email").text(response.email);
                                         if (response.hasOwnProperty('mobile_no')) {
                                             $("#calling_user_phone").text(response.mobile_no);
-                                            if (response.hasOwnProperty('mobile_no')) {
+                                            if (response.hasOwnProperty('gender')) {
                                                 $("#calling_user_gender").text(response.gender);
-                                                if (response.hasOwnProperty('mobile_no')) {
+                                                if (response.hasOwnProperty('address')) {
                                                     $("#calling_user_address").text(response
                                                         .address);
                                                 }

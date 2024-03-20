@@ -56,14 +56,14 @@
         </div>
      --}}
 
-    <section class="bg-gray-50 dark:bg-gray-900">
+    <section >
         <div class="flex flex-col items-center justify-center min-h-screen px-6 py-8 mx-auto md:h-screen lg:py-0">
             <div
-                class="w-full max-w-md bg-white rounded-lg shadow-md p-6 dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                class="w-full max-w-md bg-white rounded-lg shadow-md p-6 md:mt-0 sm:max-w-md xl:p-0 ">
                 <form class="space-y-4 md:space-y-6" id="register">
                     <div id="step1" class="step block p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1
-                            class="mb-4 text-xl underline font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                            class="mb-4 text-xl underline font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                             Create an account</h1>
                         <p class="mb-2">Step 1 of 3</p>
                         <div class="mb-4">
@@ -74,23 +74,23 @@
                         </div>
                             <div>
                                 <label for="name"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                                    class="block mb-2 text-sm font-medium text-gray-900 ">Your
                                     Name</label>
                                 <input type="text" name="name" id="name"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                                     placeholder="Ex: Siddharth" required="">
                             </div>
                             <div>
-                                <label for="father" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                <label for="father" class="block mb-2 text-sm font-medium text-gray-900 ">
                                     Father's Name</label>
                                 <input type="text" name="f_name" id="f_name"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                                     placeholder="Ex: Siddharth" required="">
                             </div>
                             <div>
                                 <label for="gender"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
-                                <select name="gender" id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                    class="block mb-2 text-sm font-medium text-gray-900 ">Gender</label>
+                                <select name="gender" id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 " required>
                                     <option value="">Choose Your Gender</option>
                                     <option value="m">Male</option>
                                     <option value="f">Female</option>
@@ -104,7 +104,7 @@
 
                     <div id="step2" class="step hidden p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1
-                            class="mb-4 text-xl underline font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                            class="mb-4 text-xl underline font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                             Contact Info</h1>
                         <p class="mb-2">Step 2 of 3</p>
                         <div class="mb-4">
@@ -115,25 +115,25 @@
                         </div>
                             <div>
                                 <label for="email"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                                    class="block mb-2 text-sm font-medium text-gray-900 ">Your
                                     Email</label>
                                 <input type="email" name="email" id="email"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                                     placeholder="Ex: r@gmail.com" required="">
                             </div>
                             <div>
                                 <label for="mobile_no"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                                    class="block mb-2 text-sm font-medium text-gray-900 ">Your
                                     Mobile No.</label>
                                 <input type="text" name="mobile_no" id="mobile_no"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                                     placeholder="Ex: 789456125" required="">
                             </div>
                             <div>
                                 <label for="address"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                                    class="block mb-2 text-sm font-medium text-gray-900 ">Address</label>
                                 <input type="text" name="address" id="address"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                                     placeholder="Khushkibagh Purnea" required="">
                             </div>
                             <div class="flex gap-1">
@@ -145,7 +145,7 @@
                     </div>
                     <div id="step3" class="step hidden p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1
-                            class="mb-4 text-xl underline font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">Create Your Password</h1>
+                            class="mb-4 text-xl underline font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">Create Your Password</h1>
                         <p class="mb-2">Step 3 of 3</p>
                         <div class="mb-4">
                             <div class="w-full bg-gray-200 rounded-full">
@@ -155,16 +155,16 @@
                         </div>
                             <div>
                                 <label for="password"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                    class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
                                 <input type="password" name="password" id="password"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                                     placeholder="••••••••" required="">
                             </div>
                             <div>
                                 <label for="password_confirmation"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
+                                    class="block mb-2 text-sm font-medium text-gray-900 ">Confirm Password</label>
                                 <input type="password" name="password_confirmation" id="password_confirmation"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                                     placeholder="••••••••" required="">
                             </div>
                             <div class="flex gap-1">
