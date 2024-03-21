@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('instructor');
             $table->string('fees');
             $table->string('discount_fees');
-            $table->enum('lang',["en","hi"])->default("hi");
+            $table->enum('lang',["English","Hindi"])->default("Hindi");
             $table->foreignId('category_id')->constrained()->onDelete("cascade");
             $table->string('featured_image')->nullable();
             $table->string('description');            

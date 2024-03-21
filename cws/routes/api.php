@@ -43,6 +43,16 @@ Route::post('/refresh', [AuthController::class, 'refresh']);
     })->middleware('jwt.auth')->name("my-profile");
 
 
+    Route::put('/user-profile/edit', function (Request $req) {
+        $id = auth()->id();
+        $controller = app()->make('App\Http\Controllers\StudentApiController');
+        return $controller->upgrade($req,$id);
+    })->middleware('jwt.auth');
+
+// Route::put('/user-profile/edit/{id}', [StudentApiController::class, 'upgrade'])->name('updateStudentProfile');
+
+
+
 
 // api for category operations
 Route::apiResource('category',CategoryApiController::class);
@@ -70,6 +80,8 @@ Route::get('/manage-hallFrame', [HallFrameApiApiController::class, 'manageHallfr
 // api for student course table 
 Route::apiResource("student_course", StudentCourseController::class);
 
+// for search course
+Route::get('/search-course', [CourseApiController::class, 'searchCourse'])->name('search-course');
 
 // api for student operations
 Route::get('/admin/callingStudents',[StudentApiController::class,"callingStudents"])->name("callingStudents");
@@ -81,14 +93,14 @@ Route::get('/admin/student/view/{id}', [StudentApiController::class, 'show']);
 Route::put('/admin/student/edit/{id}', [StudentApiController::class, 'update']);
 Route::get('/admin/student/count', [StudentApiController::class, 'count'])->name("student_count");
 Route::delete('/admin/student/delete/{id}', [StudentApiController::class, 'destroy'])->name('admin.student.delete');
-Route::get('/admin/student/edit/{id}', [StudentApiController::class, 'edit'])->name('editStudent');
-Route::put('/admin/student/edit/{id}', [StudentApiController::class, 'upgrade'])->name('updateStudent');
+Route::get('/admin/manage-student/view/{id}', [StudentApiController::class, 'edit'])->name('editStudent');
+Route::put('/admin/manage-student/edit/{id}', [StudentApiController::class, 'upgrade'])->name('updateStudent');
 
 // Route for student Course Operation
 Route::post('/admin/student-course', [StudentCourseController::class, 'store']);
 Route::get('/admin/student-course/view', [StudentCourseController::class, 'index']);
 
-// for search 
+
 
 // for payment
 Route::post('/admin/student/payment', [PaymentController::class, 'addPayment']);

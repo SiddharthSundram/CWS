@@ -97,21 +97,6 @@
 
                 <div class="flex items-center shrink-0  gap-2">
 
-                    <div class="block md:hidden">
-                        <a href="#" class="inline-flex items-center justify-center">
-                            <button
-                                class="p-2.5 text-sm font-medium text-gray-800 rounded-lg border hover:bg-gray-300 hover:text-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg>
-                                {{-- <span class="sr-only">Search</span> --}}
-                            </button>
-                        </a>
-
-                    </div>
-
                     {{-- login & sign up buttons  --}}
                     <div class="flex items-center shrink-0 gap-2">
                         <a href="{{ route('login') }}"
@@ -119,8 +104,6 @@
                         <a href="{{ route('register') }}"
                             class=" border hidden md:block border-black text-white bg-black px-4 py-2  hover:bg-gray-800 hover:text-white transition duration-300 ease-in-out login-link">Sign
                             Up</a>
-
-
                     </div>
 
                     {{-- <!--Profile Dropdown menu --> --}}
@@ -443,10 +426,11 @@
         <div class="mt-10 mb-5">{{-- for space from top --}}</div>
         <div class="container mx-auto p-0 md:px-10 lg:px-12 sm:px-8  outputContainer">
             <!-- "Go Back" button -->
-            <a href="#" class="goBackButton p-2 bg-black text-center text-white mt-3 rounded">Go Back</a>
+            <a href="" class="goBackButton p-2 bg-black text-center text-white mt-3 rounded">Go Back</a>
 
             @section('content')
                 <!-- Content goes here -->
+
             @show
         </div>
     </main>
@@ -588,44 +572,134 @@
             }
             callingCategory();
 
-            // Function to display recent projects or a message if no results are found
-            function displayProjectOfSearch(data) {
+
+            // function for courses search
+            function displayCourseSearchResults(data) {
                 let table = $(".outputContainer").addClass("h-screen my-20");
                 table.empty();
 
+                if (data.length == 0) {
+                    table.append(`
+                        <div class="no-results-message text-center py-4">
+                            No results found for courses.
+                        </div>
+                    `);
+                    // Show Go Back button
+                    $(".goBackButton").show();
+                } else {
+                    data.forEach((course) => {
+                        console.log(course.name);
+                        table.append(`
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3" id="callingcourse">
+                    
+                                <a href="/explore-course/${course.id}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+                                        <div class="relative pb-48 overflow-hidden">
+                                        <img class="absolute inset-0 h-full w-full object-cover" src="/image/${course.featured_image}" alt="">
+                                            <span class="inline-block px-2 py-1 leading-none bg-green-500 text-white rounded-full font-semibold uppercase tracking-wide text-xs absolute bottom-0 -right-2">New</span>
+                                        </div>
+                                        <div class="py-2 px-4">
+                                        <h2 class="my-1  text-left capitalize font-bold">${course.name}</h2>
+                                        <div class=" flex items-center gap-1">
+                                            <span class="font-bold text-xl">₹${course.discount_fees}</span> 
+                                            <span class='font-semibold text-md text-slate-600'> ₹${course.fees}</span>
+                                        </div>
+                                        </div>
+                                        <div class="p-4 border-t border-b text-xs text-gray-700">
+                                        <span class="flex items-center mb-1">
+                                            <i class="far fa-clock fa-fw mr-2 text-gray-900"></i> ${course.duration} Weeks
+                                        </span>
+                                        <span class="flex items-center">
+                                            <i class="far fa-address-card fa-fw text-gray-900 mr-2"></i> ${course.category ? course.category.cat_title : 'N/A'}
+                                        </span>        
+                                        </div>
+                                    <div class="p-4 flex items-center text-sm text-gray-600"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-gray-400"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><span class="ml-2"></span></div>
+                                </a>
+                            </div>
+                        `);
+                    });
+
+                    table.show();
+
+                    $(".goBackButton").show();
+                }
+            }
+
+            // Functionality for course search
+            $(document).ready(function() {
+
+                $(".goBackButton").hide();
+
+                let fetchCourseSearch = (query = '') => {
+                    $.ajax({
+                        url: "{{ route('search-course') }}",
+                        type: "GET",
+                        data: {
+                            'query': query
+                        },
+                        success: function(response) {
+                            let data =
+                                response;
+                            console.log(data);
+                            displayCourseSearchResults(data);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                };
+
+                $(".searchButton1").on("click", function() {
+                    var query = $(".searchInput1").val();
+                    fetchCourseSearch(query);
+                });
+
+                $(".searchInput1").keypress(function(event) {
+                    if (event.which === 13) {
+                        var query = $(this).val();
+                        fetchCourseSearch(query);
+                    }
+                });
+            });
+
+
+            // Function to display recent projects 
+            function displayProjectOfSearch(data) {
+                let table = $(".outputContainer").addClass("h-screen my-20");
+                // table.empty();
+
                 if (data.length === 0) {
                     table.append(`
-            <div class="no-results-message text-center py-4">
-                No results found.
-            </div>
-        `);
-                    // Show the "Go Back" button
+                        <div class="no-results-message text-center py-4">
+                            No results found for projects.
+                        </div>
+                    `);
+
                     $(".goBackButton").show();
                 } else {
                     data.forEach((project) => {
                         table.append(`
-                <div class="project-item p-2 rounded border hover:border-b hover:shadow hover:bg-gray-50 transition duration-300">
-                    <h3 class="text-xl text-start font-semibold mb-2">${project.name}</h3>
-                    <p class='truncate text-start'>${project.description}</p>
-                    
-                    <div class="flex justify-between items-center mt-4">
-                        <p class='text-start'>Developed by -${project.description}</p>
-                        <a href="${project.url}" target="_blank" class="view-button inline-block px-2 py-1  text-black rounded-md border border-black hover:bg-gray-300 transition duration-300">View</a>
-                    </div>
-                </div>
-            `);
+                            <div class="project-item p-2 rounded border hover:border-b hover:shadow hover:bg-gray-50 transition duration-300">
+                                <h3 class="text-xl text-start font-semibold mb-2">${project.name}</h3>
+                                <p class='truncate text-start'>${project.description}</p>
+                                
+                                <div class="flex justify-between items-center mt-4">
+                                    <p class='text-start'>Developed by -${project.description}</p>
+                                    <a href="${project.url}" target="_blank" class="view-button inline-block px-2 py-1  text-black rounded-md border border-black hover:bg-gray-300 transition duration-300">View</a>
+                                </div>
+                            </div>
+                        `);
                     });
-                    // Show recent projects after displaying them
+
                     table.show();
 
-                    // Show the "Go Back" button
+
                     $(".goBackButton").show();
                 }
             }
 
             // Functionality for search
             $(document).ready(function() {
-                // Function to fetch projects
+
                 $(".goBackButton").hide();
 
                 let fetchSearch = (query = '') => {
@@ -645,18 +719,18 @@
                     });
                 };
 
-                // Search button click event handler
+
                 $(".searchButton1").on("click", function() {
                     var query = $(".searchInput1").val();
                     fetchSearch(query);
                 });
 
-                callingCategory(); 
+                callingCategory();
 
-                // Handle search on pressing Enter key
+
                 $(".searchInput1").keypress(function(event) {
-                    // 13 is the key code for Enter
-                    if (event.which === 13) { 
+
+                    if (event.which === 13) {
                         var query = $(this).val();
                         fetchSearch(query);
                     }

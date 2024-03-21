@@ -79,10 +79,15 @@
                     }
                 },
                 error: function(xhr, status, error) {
+                if(xhr.status === 401) {
+                    // If email or password is incorrect, display an alert
+                    swal("Login Failed!", "Email or password is incorrect.", "error");
+                } else {
                     // Show error message
                     $('#errorMsg').show();
                     console.log(xhr.responseText);
                 }
+            }
             });
         });
     </script>

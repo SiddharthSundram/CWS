@@ -25,12 +25,13 @@
                         <span class="bg-green-500 text-white px-2 py-1 ml-4"> 25% Discount</span>
                     </div>
                     <div class="flex space-x-4 justify-end">
-                        <a href="#" class="bg-green-500 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded"
+                        <a href="" class="bg-green-500 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded"
                             id="whatsappShareBtn">
                             Share on WhatsApp
                         </a>
-                        <a href="#"
-                            class="bg-rose-500 hover:bg-rose-600 text-white font-semibold py-3 px-6 rounded transition duration-300">
+                        <a href=""
+                            class="bg-rose-500 hover:bg-rose-600 text-white font-semibold py-3 px-6 rounded transition duration-300"
+                            id="enrollBtn">
                             Enroll Now
                         </a>
                     </div>
@@ -111,6 +112,75 @@
                         console.error("Error fetching courses:", error);
                     }
                 });
+            });
+
+            //for course enroll
+            $(document).ready(function() {
+                $('#enrollBtn').click(function(event) {
+                    event.preventDefault();
+
+                    var courseId = "{{ request()->segment(2) }}";
+                    var token = localStorage.getItem('token');
+
+                    if (token) {
+                        $.ajax({
+                            type: "GET",
+                            url: "/api/user-profile",
+                            headers: {
+                                'Authorization': 'Bearer ' + token
+                            },
+                            success: function(response) {
+                                var userId = response.id;
+                                enrollUser(courseId, userId);
+                            },
+                            error: function(xhr, status, error) {
+                                console.error("Error fetching user profile:", error);
+                            }
+                        });
+                    } 
+                    else {
+                        swal({
+                            title: "Login Required",
+                            text: "Please log in to enroll in the course.",
+                            icon: "warning",
+                            buttons: {
+                                cancel: "Cancel",
+                                confirm: "Log In"
+                            },
+                        }).then((value) => {
+                            if (value) {
+                                window.open('/login', '_self');
+                            }
+                        });
+                    }
+                });
+
+                function enrollUser(courseId, userId) {
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('student_course.store') }}",
+                        data: {
+                            course_id: courseId,
+                            user_id: userId
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            swal({
+                                title: "Success!",
+                                text: "Course enrolled successfully!",
+                                icon: "success"
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            var errorMessage = xhr.responseJSON.msg || "Error enrolling user.";
+                            swal({
+                                title: "Error!",
+                                text: errorMessage,
+                                icon: "error"
+                            });
+                        }
+                    });
+                }
             });
         </script>
     @endsection

@@ -14,16 +14,16 @@ class StudentApiController extends Controller
             'name' => 'required|string|between:2,100',
             'mobile_no' => 'required|string|max:12|',
             'email' => 'required|string|email|max:100|unique:users',
-            'f_name' => 'required|string|between:2,100|',
-            'address' => 'required|string|between:2,100|',
-            'gender' => 'required|in:m,f,o',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
         }
         $user = User::create(array_merge(
             $validator->validated(),
-            ['password' => $request->input("password","password"), "state" => 1]
+            ['password' => $request->input("password","password"), "state" => 1],
+            ['f_name' => $request->input("f_name",null), "state" => 1],
+            ['address' => $request->input("address",null), "state" => 1],
+            ['gender' => $request->input("gender",null), "state" => 1]
         ));
         return response()->json([
             'message' => 'User successfully registered',
@@ -74,10 +74,6 @@ class StudentApiController extends Controller
     return response()->json($user);
     }
 
-
-    
-
-
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
@@ -87,6 +83,9 @@ class StudentApiController extends Controller
         $user->email = $request->email; 
         $user->mobile_no = $request->mobile_no; 
         $user->status = $request->status; 
+        $user->f_name = $request->f_name; 
+        $user->address = $request->address; 
+        $user->gender = $request->gender; 
         $user->save();
 
         return response()->json([
@@ -129,12 +128,18 @@ class StudentApiController extends Controller
         ]);
     }
 
+
+    // for manage student
+
     public function upgrade(Request $request, $id)
     {
         $user = User::findOrFail($id);
 
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
+            'f_name' => 'required|string|between:2,100',
+            'address' => 'required|string|between:2,100',
+            'gender' => 'required|in:m,f,o',
             'mobile_no' => 'required|string|max:12|',
             'email' => 'required|string|email|max:100|unique:users,email,'.$id,
         ]);

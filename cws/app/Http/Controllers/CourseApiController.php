@@ -36,12 +36,12 @@ class CourseApiController extends Controller
         return response()->json(["data" => $course, "msg" => "course Inserted Successfully", "success" => true]);
     }
 
-   
+
     public function show(Course $course)
-{
-    $course = Course::with('category')->find($course->id);
-    return response()->json(["data" => $course, "success" => true]);
-}
+    {
+        $course = Course::with('category')->find($course->id);
+        return response()->json(["data" => $course, "success" => true]);
+    }
 
 
     /**
@@ -57,10 +57,10 @@ class CourseApiController extends Controller
         $course = Course::findOrFail($id);
         $course->status = !$course->status;
         $course->save();
-    
+
         return response()->json(['message' => 'Course status toggled successfully'], 200);
     }
-    
+
 
 
     /**
@@ -102,5 +102,18 @@ class CourseApiController extends Controller
     {
         $course->delete();
         return response()->json(["data" => $course, "success" => true, "msg" => "course deleted successfully"]);
+    }
+
+    public function searchCourse(Request $request)
+    {
+        $query = $request->get('query');
+
+        if ($query) {
+            $courses = Course::where('name', 'LIKE', "%$query%")->get();
+        } else {
+            $courses = Course::all(); 
+        }
+
+        return response()->json($courses);
     }
 }
