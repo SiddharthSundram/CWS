@@ -588,7 +588,7 @@
                     $(".goBackButton").show();
                 } else {
                     data.forEach((course) => {
-                        console.log(course.name);
+                        // console.log(course.name);
                         table.append(`
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mt-4" >
                     
@@ -639,7 +639,7 @@
                         success: function(response) {
                             let data =
                                 response;
-                            console.log(data);
+                            // console.log(data);
                             displayCourseSearchResults(data);
                         },
                         error: function(xhr, status, error) {

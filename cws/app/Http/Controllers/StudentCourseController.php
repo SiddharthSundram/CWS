@@ -85,20 +85,16 @@ class StudentCourseController extends Controller
      */
     public function destroy($userId, $courseId)
     {
-        // Find the student_course record with matching user_id and course_id
         $studentCourse = StudentCourse::where('user_id', $userId)
             ->where('course_id', $courseId)
             ->first();
 
         if (!$studentCourse) {
-            // If no matching record found, return appropriate response
             return response()->json(['message' => 'Student course not found.'], 404);
         }
 
-        // Delete the student_course record
         $studentCourse->delete();
 
-        // Return success response
         return response()->json(['message' => 'Student course deleted successfully.']);
     }
 
