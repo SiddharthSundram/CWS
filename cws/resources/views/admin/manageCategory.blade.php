@@ -68,23 +68,23 @@
 
     <script>
         $(document).ready(function() {
-            // Function to fetch and display categories
-            let callingCategory = () => {
-                $.ajax({
-                    type: "GET",
-                    url: "{{ route('category.index') }}",
-                    success: function(response) {
-                        let table = $("#categoryCalling");
-                        table.empty();
+                    // Function to fetch and display categories
+                    let callingCategory = () => {
+                        $.ajax({
+                                type: "GET",
+                                url: "{{ route('category.index') }}",
+                                success: function(response) {
+                                    let table = $("#categoryCalling");
+                                    table.empty();
 
-                        let data = response.data;
+                                    let data = response.data;
 
-                        // Update category count
-                        let len = data.length;
-                        $("#counting").html(len);
+                                    // Update category count
+                                    let len = data.length;
+                                    $("#counting").html(len);
 
-                        data.forEach((item) => {
-                            table.append(`
+                                    data.forEach((item) => {
+                                            table.append(`
                             <tr class=" hover:bg-gray-100">
                                 <td class="py-2 px-4 border">${item.id}</td>
                                 <td class="py-2 px-4 border">${item.cat_title}</td>
@@ -96,71 +96,92 @@
                             </tr>
                         `);
 
-                            // Event listener for delete button
-                            $("#btn" + item.id).click(function() {
+                                            // Event listener for delete button
+                                            $("#btn" + item.id).click(function() {
+                                                let result = swal({
+                                                    title: "Are you sure you want to delete?",
+                                                    text: "to delete this click on yes button",
+                                                    icon: "warning",
+                                                    buttons: [
+                                                        'No, cancel it!',
+                                                        'Yes, I am sure!'
+                                                    ],
+                                                    dangerMode: true,
+                                                }).then(function(isConfirm) {
+                                                    if (isConfirm) {
+                                                        $.ajax({
+                                                            type: "DELETE",
+                                                            url: `/api/category/${item.id}`,
+                                                            success: function(
+                                                                response) {
+                                                                swal(response.msg,"","success");
+                                                                // Refresh category list
+                                                                callingCategory
+                                                                ();
+                                                            }
+                                                        });
+                                                    }
+                                                    else {
+                                                        swal("Cancelled");
+                                                    }
+                                                })
+
+                                                });
+
+                                                // Event listener for edit button
+                                                $(".edit-btn").click(function() {
+                                                    let categoryId = $(this).attr(
+                                                    "data-id");
+                                                    // Populate the edit modal with category details
+                                                    populateEditModal(categoryId);
+                                                });
+                                            });
+                                        }
+                                    });
+                            }
+
+                            // Function to populate edit modal with category details
+                            function populateEditModal(categoryId) {
                                 $.ajax({
-                                    type: "DELETE",
-                                    url: `/api/category/${item.id}`,
+                                    type: "GET",
+                                    url: `/api/category/${categoryId}`,
+                                    success: function(response) {
+                                        let category = response.data;
+                                        $("#editCategoryId").val(category.id);
+                                        $("#editCategoryTitle").val(category.cat_title);
+                                        $("#editCategoryDescription").val(category.cat_description);
+                                        // Show the edit modal
+                                        $("#editCategoryModal").removeClass("hidden");
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error('Error fetching category details:', error);
+                                    }
+                                });
+                            }
+
+                            // Handle form submission for editing category
+                            $('#editCategoryForm').submit(function(e) {
+                                e.preventDefault();
+                                var formData = $(this).serialize();
+                                var categoryId = $('#editCategoryId').val();
+                                $.ajax({
+                                    type: 'PUT',
+                                    url: `/api/category/${categoryId}`,
+                                    data: formData,
+                                    dataType: 'json',
                                     success: function(response) {
                                         alert(response.msg);
-                                        // Refresh category list
-                                        callingCategory();
+                                        $('#editCategoryModal').addClass(
+                                        'hidden'); // Hide the edit modal
+                                        callingCategory(); // Refresh the category list
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error('Error updating category:', error);
                                     }
                                 });
                             });
 
-                            // Event listener for edit button
-                            $(".edit-btn").click(function() {
-                                let categoryId = $(this).attr("data-id");
-                                // Populate the edit modal with category details
-                                populateEditModal(categoryId);
-                            });
+                            callingCategory();
                         });
-                    }
-                });
-            }
-
-            // Function to populate edit modal with category details
-            function populateEditModal(categoryId) {
-                $.ajax({
-                    type: "GET",
-                    url: `/api/category/${categoryId}`,
-                    success: function(response) {
-                        let category = response.data;
-                        $("#editCategoryId").val(category.id);
-                        $("#editCategoryTitle").val(category.cat_title);
-                        $("#editCategoryDescription").val(category.cat_description);
-                        // Show the edit modal
-                        $("#editCategoryModal").removeClass("hidden");
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching category details:', error);
-                    }
-                });
-            }
-
-            // Handle form submission for editing category
-            $('#editCategoryForm').submit(function(e) {
-                e.preventDefault();
-                var formData = $(this).serialize();
-                var categoryId = $('#editCategoryId').val();
-                $.ajax({
-                    type: 'PUT',
-                    url: `/api/category/${categoryId}`,
-                    data: formData,
-                    dataType: 'json',
-                    success: function(response) {
-                        alert(response.msg);
-                        $('#editCategoryModal').addClass('hidden'); // Hide the edit modal
-                        callingCategory(); // Refresh the category list
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error updating category:', error);
-                    }
-                });
-            });
-
-            callingCategory();
-        });
     </script>
 @endsection
