@@ -9,13 +9,13 @@
                     <h1 class="text-3xl font-bold">Upskilling Made </h1>
                     <span id="autoText" class="text-3xl font-bold ml-3 mb-2 text-white">Upskilling Made </span>
                 </div>
-                <p class="text-lg mb-8 text-white">Where coding brilliance meets expert guidance. From novice to expert, our
+                <p class="text-lg mb-8 text-slate-800">Where coding brilliance meets expert guidance. From novice to expert, our
                     platform
                     offers personalized coaching and comprehensive courses to elevate your coding skills. Join a vibrant
                     community and unlock your coding potential today.</p>
 
                 <a href=""
-                    class="inline-block text-black  px-4 py-2 rounded-full bg-white transition duration-300 ease-in-out login-link text-2xl">Join
+                    class="inline-block text-white font-semibold  px-4 py-2 rounded-full bg-gradient-to-br  to-purple-700 from-pink-600 transition duration-300 ease-in-out login-link text-2xl">Join
                     Now</a>
             </div>
 
@@ -75,7 +75,7 @@
 
 
             <div class="container mx-auto py-8">
-                <h2 class="text-lg  font-semibold border-b border-teal-800 text-white pb-2 text-left ">Our Student</h2>
+                <h2 class="text-lg  font-semibold border-b border-teal-800 text-teal-800 pb-2 text-left ">Our Student</h2>
                 <div class="carousel relative overflow-hidden">
                     <div class="carousel-inner flex p-3" id="callingHallframe">
                         {{-- Students will be dynamically loaded here --}}
@@ -94,7 +94,7 @@
 
 
             <div class="container mx-auto my-8 p-2">
-                <h2 class="text-lg text-left pb-2 border-b border-teal-800 text-white font-medium mb-6">Our Courses</h2>
+                <h2 class="text-lg text-left pb-2 border-b border-teal-800 text-teal-800 font-medium mb-6">Our Courses</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3" id="callingcourse">
                     <!-- Courses will be dynamically loaded here -->
                     
