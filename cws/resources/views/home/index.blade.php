@@ -7,7 +7,7 @@
             <div class="md:w-1/2 md:pr-8 text-left mb-4 md:mb-0 ">
                 <div class="flex flex-col md:flex-row text-center md:text-left ">
                     <h1 class="text-3xl font-bold">Upskilling Made </h1>
-                    <span id="autoText" class="text-3xl font-bold ml-3 mb-2 text-white">Upskilling Made </span>
+                    <span id="autoText" class="text-3xl font-bold ml-3 mb-2 text-orange-600"></span>
                 </div>
                 <p class="text-lg mb-8 text-slate-800">Where coding brilliance meets expert guidance. From novice to expert, our
                     platform

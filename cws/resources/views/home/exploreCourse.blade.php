@@ -172,6 +172,10 @@
                                 text: "Course enrolled successfully!",
                                 icon: "success"
                             });
+                            setTimeout(() => {
+                                window.open('/my-course', '_self');
+                            }, 2000);
+
                         },
                         error: function(xhr, status, error) {
                             var errorMessage = xhr.responseJSON.msg || "Error enrolling user.";

@@ -45,8 +45,8 @@
                     <div class="mb-4">
                         <label for="lang" class="block text-sm font-medium text-gray-700">Language</label>
                         <select class="form-select mt-1 block w-full" id="lang" name="lang" required>
-                            <option value="en">English</option>
-                            <option value="hi">Hindi</option>
+                            <option value="English">English</option>
+                            <option value="Hindi">Hindi</option>
                         </select>
                     </div>
                     <div class="mb-4">
