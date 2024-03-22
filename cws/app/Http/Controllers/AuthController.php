@@ -7,7 +7,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
-// use Validator;
+use Mail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Carbon;
+
+
 
 class AuthController extends Controller
 {
@@ -77,4 +82,53 @@ class AuthController extends Controller
             'user' => auth()->user()
         ]);
     }
+
+    public function sendVerifyMail($email){
+        if(auth()->user()){
+            $user = User::where('email', $email)->first();
+            if($user){
+    
+                $random = Str::random(40);
+                $domain = URL::to('/');
+                $url = $domain.'/verify-mail/'.$random;
+    
+                $data['url'] = $url;
+                $data['email'] = $email;
+                $data['title'] = "Email Verification";
+                $data['body'] = "Please click here to verify your mail.";
+    
+                Mail::send('home.verifyMail', ['data' => $data], function($message) use ($data){
+                    $message->to($data['email'])->subject($data['title']);
+                });
+    
+                $user->remember_token = $random;
+                $user->save();
+    
+                return response()->json(['success' => true, 'msg' => 'Mail Send Successfully, Please Check it.']);
+            }
+        } else {
+            return response()->json(['success' => false, 'msg' => 'User is Not Authenticated']);
+        }
+    }
+
+    public function verificationMail($token)
+    {
+        $user = User::where('remember_token',$token)->get();
+        if(count($user)> 0){
+            $datetime = Carbon::now()->format('d-m-Y H:i:s');
+            $user = User::find($user[0]['id']);
+            $user->remember_token = '';
+            $user->email_verified_at = $datetime;
+            $user->save();
+
+            // return response()->json(['success'=>true,'message' => 'Verified Successfully']);
+            return "<h1> Email Verified Successfully</h1>";
+        }
+        else{
+            // return response()->json(['success'=>false,'message' => 'Page Not Found',404]);
+            return "<h1> Page Expired</h1>";
+
+        }
+    }
+    
 }

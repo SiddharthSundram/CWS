@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\hallFrameController;
@@ -119,3 +120,5 @@ Route::prefix('admin')->group(function () {
         });        
     });
 });
+
+Route::get('/verify-mail/{token}',[AuthController::class,'verificationMail']);
