@@ -422,15 +422,15 @@
 
 
 
-    <main class="flex-grow">
+    <main class="flex-grow ">
         <div class="mt-10 mb-5">{{-- for space from top --}}</div>
+        <!-- "Go Back" button -->
+        <a href="" class="goBackButton p-2 bg-blue-700 text-center text-white rounded">Go Back</a>
+        
         <div class="container mx-auto p-0 md:px-10 lg:px-12 sm:px-8  outputContainer">
-            <!-- "Go Back" button -->
-            <a href="" class="goBackButton p-2 bg-black text-center text-white mt-3 rounded">Go Back</a>
-
             @section('content')
-                <!-- Content goes here -->
-
+            <!-- Content goes here -->
+            
             @show
         </div>
     </main>
@@ -575,7 +575,7 @@
 
             // function for courses search
             function displayCourseSearchResults(data) {
-                let table = $(".outputContainer").addClass("h-screen my-20");
+                let table = $(".outputContainer").addClass("h-full my-20");
                 table.empty();
 
                 if (data.length == 0) {
@@ -588,9 +588,9 @@
                     $(".goBackButton").show();
                 } else {
                     data.forEach((course) => {
-                        console.log(course.name);
+                        // console.log(course.name);
                         table.append(`
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3" id="callingcourse">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mt-4" >
                     
                                 <a href="/explore-course/${course.id}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
                                         <div class="relative pb-48 overflow-hidden">
@@ -639,7 +639,7 @@
                         success: function(response) {
                             let data =
                                 response;
-                            console.log(data);
+                            // console.log(data);
                             displayCourseSearchResults(data);
                         },
                         error: function(xhr, status, error) {
@@ -664,7 +664,7 @@
 
             // Function to display recent projects 
             function displayProjectOfSearch(data) {
-                let table = $(".outputContainer").addClass("h-screen my-20");
+                let table = $(".outputContainer").addClass("h-full my-20");
                 // table.empty();
 
                 if (data.length === 0) {
@@ -678,7 +678,7 @@
                 } else {
                     data.forEach((project) => {
                         table.append(`
-                            <div class="project-item p-2 rounded border hover:border-b hover:shadow hover:bg-gray-50 transition duration-300">
+                            <div class="project-item p-2 rounded border hover:border-b hover:shadow mt-5 hover:bg-gray-50 transition duration-300">
                                 <h3 class="text-xl text-start font-semibold mb-2">${project.name}</h3>
                                 <p class='truncate text-start'>${project.description}</p>
                                 

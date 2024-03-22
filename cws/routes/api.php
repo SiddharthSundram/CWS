@@ -80,6 +80,9 @@ Route::get('/manage-hallFrame', [HallFrameApiApiController::class, 'manageHallfr
 // api for student course table 
 Route::apiResource("student_course", StudentCourseController::class);
 
+//api for deletion of student course
+Route::delete('/student-courses/{userId}/{courseId}', [StudentCourseController::class, 'destroy']);
+
 // for search course
 Route::get('/search-course', [CourseApiController::class, 'searchCourse'])->name('search-course');
 
