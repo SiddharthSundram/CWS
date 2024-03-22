@@ -14,9 +14,12 @@
                     offers personalized coaching and comprehensive courses to elevate your coding skills. Join a vibrant
                     community and unlock your coding potential today.</p>
 
-                <a href=""
-                    class="inline-block text-white font-semibold  px-4 py-2 rounded-full bg-gradient-to-br  to-purple-700 from-pink-600 transition duration-300 ease-in-out login-link text-2xl">Join
+                <a href="{{route('login')}}"
+                    class="inline-block  font-semibold  px-4 py-2 rounded border border-black hover:bg-gray-300 text-gray-800 transition duration-300 ease-in-out login-link text-2xl">Join
                     Now</a>
+                <a href="{{route('allCourses')}}"
+                    class="inline-block  font-semibold  px-4 py-2 rounded border border-black hover:bg-gray-300 text-gray-800  transition duration-300 ease-in-out logout-link text-2xl">Explore
+                    Courses</a>
             </div>
 
             <div class="md:w-1/2 md:flex md:justify-center  md:order-1 " id="imageContainer">
