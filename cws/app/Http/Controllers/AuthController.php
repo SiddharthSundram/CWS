@@ -6,7 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Models\Password_reset;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Mail;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
+
 // use Validator;
 
 class AuthController extends Controller
@@ -77,4 +83,48 @@ class AuthController extends Controller
             'user' => auth()->user()
         ]);
     }
+
+  public function forgetPassword(Request $request){
+    try {
+        $user = User::where('email', $request->email)->get();
+        
+        if (count($user) > 0) {
+            $token = Str::random(40);
+            $domain = URL::to('/');
+            $url = $domain . '/reset-password?token=' . $token;
+            
+            $data['url'] = $url;
+            $data['email'] = $request->email;
+            $data['title'] = 'Password Reset';
+            $data['body'] = "Please click on the link below to reset your password.";
+            
+            Mail::send('forgetPasswordMail', ['data' => $data], function ($message) use ($data) {
+                $message->to($data['email'])->subject($data['title']);
+            });
+            
+            $datetime = Carbon::now()->format('y-m-d H:i:s');
+            
+            Password_reset::updateOrCreate(
+                ['email' => $request->email],
+                [
+                    'email' => $request->email,
+                    'token' => $token,
+                    'created_at' => $datetime
+                ]
+            );
+            
+            return response()->json(['message' => 'Please check your email to reset the password']);
+        } else {
+            return response()->json(['message' => 'User not found!']);                
+        }
+    } catch (\Exception $e) {
+       
+        \Log::error($e);
+        
+        return response()->json(['error' => 'An error occurred while processing your request.'], 500);
+    }
+}
+
+    
+    
 }
