@@ -16,9 +16,9 @@
     @yield('css')
 </head>
 
-<body class="font-sans bg-gradient-to-r from-green-500 to-teal-500">
+<body class="font-sans bg-gradient-to-r from-grey-100 to-slate-50">
 
-    <nav class="fixed top-0 z-50 w-full md:px-[5%] bg-transparent  md:py-0 p-0 bg-white">
+    <nav class="fixed top-0 z-50 w-full md:px-[5%] bg-transparent shadow-sm md:py-0 p-0 bg-white">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center  justify-between me-3">
 
@@ -209,6 +209,31 @@
         </button>
         <div class="py-4 overflow-y-auto">
             <ul class="space-y-2 font-medium">
+                <li>
+                    <div class="shrink w-full block md:hidden item-center">
+                        {{-- search bar for mobile --}}
+                        <div class="max-w-lg mx-auto">
+                            <div class="flex">
+                                <div class="relative w-full">
+                                    <input type="search"
+                                        class="searchInput1 block p-2.5 w-80 z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
+                                        placeholder="Search Courses, Projects..." required />
+                                    <button
+                                        class="searchButton1 absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-gray-800   rounded-e-lg border hover:bg-gray-300  hover:text-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+
+                                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2"
+                                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
                 <li>
                     <a href="{{ route('index') }}"
                         class="flex items-center p-2 text-gray-800 hover:text-gray-900 rounded-lg  hover:bg-gray-300  group">
@@ -422,12 +447,12 @@
 
 
 
-    <main class="flex-grow">
+    <main class="flex-grow ">
         <div class="mt-10 mb-5">{{-- for space from top --}}</div>
-        <div class="container mx-auto p-0 md:px-10 lg:px-12 sm:px-8  outputContainer">
-            <!-- "Go Back" button -->
-            <a href="" class="goBackButton p-2 bg-black text-center text-white mt-3 rounded">Go Back</a>
+        <!-- "Go Back" button -->
+        <a href="" class="goBackButton p-2 bg-blue-700 text-center text-white rounded">Go Back</a>
 
+        <div class="container mx-auto p-0 md:px-10 lg:px-12 sm:px-8  outputContainer">
             @section('content')
                 <!-- Content goes here -->
 
@@ -575,7 +600,7 @@
 
             // function for courses search
             function displayCourseSearchResults(data) {
-                let table = $(".outputContainer").addClass("h-screen my-20");
+                let table = $(".outputContainer").addClass("h-full my-20");
                 table.empty();
 
                 if (data.length == 0) {
@@ -588,9 +613,9 @@
                     $(".goBackButton").show();
                 } else {
                     data.forEach((course) => {
-                        console.log(course.name);
+                        // console.log(course.name);
                         table.append(`
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3" id="callingcourse">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 p-4 md:p-0 gap-3 mt-4" >
                     
                                 <a href="/explore-course/${course.id}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
                                         <div class="relative pb-48 overflow-hidden">
@@ -639,7 +664,7 @@
                         success: function(response) {
                             let data =
                                 response;
-                            console.log(data);
+                            // console.log(data);
                             displayCourseSearchResults(data);
                         },
                         error: function(xhr, status, error) {
@@ -664,7 +689,7 @@
 
             // Function to display recent projects 
             function displayProjectOfSearch(data) {
-                let table = $(".outputContainer").addClass("h-screen my-20");
+                let table = $(".outputContainer").addClass("h-full my-20");
                 // table.empty();
 
                 if (data.length === 0) {
@@ -678,7 +703,7 @@
                 } else {
                     data.forEach((project) => {
                         table.append(`
-                            <div class="project-item p-2 rounded border hover:border-b hover:shadow hover:bg-gray-50 transition duration-300">
+                            <div class="project-item p-2 rounded border hover:border-b hover:shadow mt-5 hover:bg-gray-50 transition duration-300">
                                 <h3 class="text-xl text-start font-semibold mb-2">${project.name}</h3>
                                 <p class='truncate text-start'>${project.description}</p>
                                 

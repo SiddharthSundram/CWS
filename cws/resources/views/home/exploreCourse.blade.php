@@ -6,7 +6,7 @@
             <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center justify-center">
 
                 <div class="md:w-1/2 md:mr-4 md:mb-5 md:flex md:flex-col items-center">
-                    <img src="" id="courseImage" alt="" class="rounded-lg shadow-md mb-4 md:mb-0">
+                    <img src="" id="courseImage" alt="" class="rounded-lg w-full shadow-md mb-4 md:mb-0">
                 </div>
 
                 <div class="md:w-1/2 md:ml-4">
@@ -25,12 +25,12 @@
                         <span class="bg-green-500 text-white px-2 py-1 ml-4"> 25% Discount</span>
                     </div>
                     <div class="flex space-x-4 justify-end">
-                        <a href="" class="bg-green-500 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded"
+                        <a href="" class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded"
                             id="whatsappShareBtn">
                             Share on WhatsApp
                         </a>
                         <a href=""
-                            class="bg-rose-500 hover:bg-rose-600 text-white font-semibold py-3 px-6 rounded transition duration-300"
+                            class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded transition duration-300"
                             id="enrollBtn">
                             Enroll Now
                         </a>
@@ -40,25 +40,25 @@
 
             <div class="bg-white flex md:flex-row gap-10 md:justify-evenly flex-col rounded-lg shadow-lg p-6 mt-8">
 
-                <div class=" flex flex-col items-center ">
+                <div class=" flex flex-col items-center text-center">
                     <span class="ml-2 text-2xl text-orange-600" id="courseInstructor">Teacher</span>
                     <span class="text-gray-600 text-xl font-semibold">Instructor</span>
                 </div>
 
-                <div class="flex-col flex items-center ">
+                <div class="flex-col flex items-center text-center">
                     <span class="ml-2 text-2xl text-orange-600" id="courseCategory">Web Devlopment</span>
                     <span class="text-gray-600 text-xl font-semibold">Category</span>
                 </div>
 
 
-                <div class="flex-col flex items-center ">
+                <div class="flex-col flex items-center text-center ">
                     <span class="ml-2 text-2xl text-orange-600" id="courseLang">English</span>
                     <span class="text-gray-600 text-xl font-semibold">Language</span>
                 </div>
 
 
-                <div class="flex-col flex items-center ">
-                    <span class="ml-2 text-2xl text-orange-600" id="courseDuration">25 Hours</span>
+                <div class="flex-col flex items-center text-center">
+                    <span class="ml-2 text-2xl text-orange-600" id="courseDuration">10 Week</span>
                     <span class="text-gray-600 text-xl font-semibold">Duration</span>
                 </div>
 
@@ -83,7 +83,9 @@
                         $('#courseLang').text(response.data.lang);
                         $('#courseCategory').text(response.data.category.cat_title);
                         // Adding functionality to share button
-                        $('#whatsappShareBtn').click(function() {
+                        $('#whatsappShareBtn').click(function(e) {
+                            e.preventDefault();
+
                             var message = 'Check out this amazing course:\n' +
                                 'Name: ' + response.data.name + '\n' +
                                 'Duration: ' + response.data.duration + '\n' +
@@ -170,6 +172,10 @@
                                 text: "Course enrolled successfully!",
                                 icon: "success"
                             });
+                            setTimeout(() => {
+                                window.open('/my-course', '_self');
+                            }, 2000);
+
                         },
                         error: function(xhr, status, error) {
                             var errorMessage = xhr.responseJSON.msg || "Error enrolling user.";

@@ -18,42 +18,42 @@ class StudentCourseController extends Controller
         $user = $request->user();
 
         $courses = StudentCourse::where('user_id', $user->id)->get();
-        
+
         return response()->json(['courses' => $courses]);
     }
 
-   
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $validator = Validator::make($request->all(), [
-        'course_id' => 'required',
-        'user_id' => 'required',
-    ]);
-    if ($validator->fails()) {
-        return response()->json($validator->errors()->toJson(), 400);
-    }
+    {
+        $validator = Validator::make($request->all(), [
+            'course_id' => 'required',
+            'user_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toJson(), 400);
+        }
 
-    $courseId = $request->input('course_id');
-    $userId = $request->input('user_id');
+        $courseId = $request->input('course_id');
+        $userId = $request->input('user_id');
 
-    // Check if the record already exists
-    if (StudentCourse::where('course_id', $courseId)->where('user_id', $userId)->exists()) {
+        // Check if the record already exists
+        if (StudentCourse::where('course_id', $courseId)->where('user_id', $userId)->exists()) {
+            return response()->json([
+                'msg' => 'Student Course already exists',
+            ], 400);
+        }
+
+        $data = StudentCourse::create($validator->validated());
+
         return response()->json([
-            'msg' => 'Student Course already exists',
-        ], 400);
+            'msg' => 'Student Course added successfully',
+            'data' => $data
+        ], 201);
     }
-
-    $data = StudentCourse::create($validator->validated());
-
-    return response()->json([
-        'msg' => 'Student Course added successfully',
-        'data' => $data
-    ], 201);
-}
 
 
     /**
@@ -83,8 +83,19 @@ class StudentCourseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(StudentCourse $studentCourse)
+    public function destroy($userId, $courseId)
     {
-        //
+        $studentCourse = StudentCourse::where('user_id', $userId)
+            ->where('course_id', $courseId)
+            ->first();
+
+        if (!$studentCourse) {
+            return response()->json(['message' => 'Student course not found.'], 404);
+        }
+
+        $studentCourse->delete();
+
+        return response()->json(['message' => 'Student course deleted successfully.']);
     }
+
 }

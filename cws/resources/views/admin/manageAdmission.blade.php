@@ -77,21 +77,21 @@
                             <label for="editStudentfName" class="block text-sm font-medium text-gray-700">Father's Name</label>
                             <input type="text"
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                id="editStudentfName" name="editStudentfName" required>
+                                id="editStudentfName" name="editStudentfName" >
                         </div>
                         <div class="mb-4">
                             <label for="editStudentAddress" class="block text-sm font-medium text-gray-700">Address</label>
                             <input type="text"
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                id="editStudentAddress" name="editStudentAddress" required>
+                                id="editStudentAddress" name="editStudentAddress" >
                         </div>
                         <div class="mb-4">
                             <label for="editStudentGender" class="block text-sm font-medium text-gray-700">Gender</label>
                             <select name="editStudentGender" id="editStudentGender" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value="">Choose Gender</option>
-                                <option value="m">Male</option>
-                                <option value="f">Female</option>
-                                <option value="o">Others</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Others</option>
                             </select>
                         </div>
                         <div class="mb-4">
@@ -240,7 +240,7 @@
                         email : $('#editStudentEmail').val(),
                         mobile_no : $('#editStudentMobile').val(),
                 }
-                console.log(data);
+                // console.log(data);
                 $.ajax({
                     type: 'PUT',
                     url: `/api/admin/student/edit/${userId}`,

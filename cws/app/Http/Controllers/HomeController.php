@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 use App\Models\RecentProject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
     public function index(){
         $recent_projects = RecentProject::all();
+
+        // Mail::send("home.register",[], function($msg) {
+        //     $msg->to('sadique.hussain96@gmail.com', 'sadique')->subject('testing mail by sadique');
+        // });
+
         return view('home.index', compact('recent_projects'));
     }
     public function signin(){
