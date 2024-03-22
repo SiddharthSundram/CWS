@@ -2,16 +2,15 @@
 
 @section('content')
     <div class="container mt-20">
-        <div class="flex justify-between items-center mt-3">
-            <h2 class="text-xl">Manage Courses (<span id="counting">0</span>)</h2>
+        <div class="flex flex-col md:flex-row justify-between items-center mt-3">
+            <h2 class="text-xl mb-2 md:mb-0">Manage Courses (<span id="counting">0</span>)</h2>
             <a href="{{ route('insertCourse') }}"
-                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center">
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center mt-2 md:mt-0 md:ml-2">
                 <i class="fas fa-plus mr-1"></i> Add New Course
             </a>
-
         </div>
         <div class="overflow-x-auto mt-4">
-            <table class="table-auto w-full border-collapse">
+            <table class="w-full border-collapse">
                 <thead>
                     <tr class="hover:bg-gray-100 text-gray-700">
                         <th class="border border-gray-300">Id</th>
@@ -23,8 +22,8 @@
                         <th class="border border-gray-300">Language</th>
                         <th class="border border-gray-300">Category</th>
                         <th class="border border-gray-300">Description</th>
-                        <th class="border border-gray-300">Image</th>                        
-                        <th class="border border-gray-300">Status</th>                        
+                        <th class="border border-gray-300">Image</th>
+                        <th class="border border-gray-300">Status</th>
                         <th class="border border-gray-300">Actions</th>
                     </tr>
                 </thead>
@@ -33,8 +32,8 @@
                 </tbody>
             </table>
         </div>
-
     </div>
+
 
     <!-- Edit Course Modal -->
     <div class="fixed inset-0 z-50 overflow-y-auto hidden" id="editCourseModal">
@@ -107,8 +106,8 @@
                             <select
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                 id="editCourseLang" name="lang" required>
-                                <option value="en">English</option>
-                                <option value="hi">Hindi</option>
+                                <option value="English">English</option>
+                                <option value="Hindi">Hindi</option>
                             </select>
                         </div>
                         <div class="mb-4">
@@ -182,7 +181,7 @@
         }
 
 
-          
+
 
         // Populate category dropdown in edit form
         function populateCategories() {
@@ -279,11 +278,13 @@
                 var courseId = $(this).data('id');
                 var currentStatus = $(this).data('status');
                 var newStatus = currentStatus === 0 ? 1 : 0;
-                
+
                 $.ajax({
                     type: 'PUT',
                     url: `/api/course/${courseId}/toggle-status`,
-                    data: { status: newStatus },
+                    data: {
+                        status: newStatus
+                    },
                     dataType: 'json',
                     success: function(response) {
                         fetchCourses();
