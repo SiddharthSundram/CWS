@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
-
 use App\Http\Controllers\CategoryApiController;
 use App\Http\Controllers\CourseApiController;
 use App\Http\Controllers\RecentProjectController;
@@ -26,6 +25,8 @@ use App\Http\Controllers\ContactController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -49,7 +50,7 @@ Route::post('/refresh', [AuthController::class, 'refresh']);
         return $controller->upgrade($req,$id);
     })->middleware('jwt.auth');
 
-// Route::put('/user-profile/edit/{id}', [StudentApiController::class, 'upgrade'])->name('updateStudentProfile');
+Route::get('/send-verify-mail/{email}',[AuthController::class,'sendVerifyMail']);
 
 
 

@@ -1,14 +1,13 @@
 @extends('home.layout')
 
 @section('content')
-    
     <section class="py-5 p-5 h-full md:h-screen">
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold mb-5 mt-10">My Profile</h2>
             <div class="bg-white rounded-lg shadow-md p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="md:col-span-1 flex flex-col items-center justify-center">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded mx-auto mb-3"
-                        style="width: 150px;">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                        class="rounded mx-auto mb-3" style="width: 150px;">
                     <div class="flex justify-center mb-2 gap-3">
                         <button
                             class="edit-btn px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 inline-block text-center"id="edit_student">Edit
@@ -41,8 +40,9 @@
                         <div class="col-span-1">
                             <p class="mb-0">Email</p>
                         </div>
-                        <div class="col-span-2">
-                            <p class="text-gray-500 mb-0" id="calling_user_email">example@example.com</p>
+                        <div class="col-span-2 flex gap-2">
+                            <p class="text-gray-500 mb-0" id="calling_user_email">example@example.com</p> &nbsp; <span
+                                id="verify"></span><span class="result"></span>
                         </div>
                     </div>
                     <div class="grid grid-cols-3 gap-4 mb-4">
@@ -121,7 +121,7 @@
                             <div class="mb-4">
                                 <label for="editStudentEmail" class="block text-sm font-medium text-gray-700">Student
                                     Email</label>
-                                    <input type="text"
+                                <input type="text"
                                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     id="editStudentEmail" name="email" required disabled>
                             </div>
@@ -173,6 +173,13 @@
                                                 if (response.hasOwnProperty('address')) {
                                                     $("#calling_user_address").text(response
                                                         .address);
+
+                                                    if (response.hasOwnProperty(
+                                                        'email_verified_at') && response.email_verified_at == null) {
+                                                        $("#verify").html("<button id='verify_mail' class=' text-green-500' data-id='"+response.email+"'>Verify Now</button>");
+                                                    } else {
+                                                        $("#verify").html("Verified");
+                                                    }
                                                 }
                                             }
                                         }
@@ -183,6 +190,23 @@
                     });
                 }
                 callingProfile();
+
+                //email verification
+
+                $(document).on('click',"#verify_mail",function(){
+                    var email = $(this).attr('data-id');
+                    $.ajax({
+                        url:"/api/send-verify-mail/"+email,
+                        type:"get",
+                        headers: {
+                            'Authorization': 'Bearer ' + token
+                        },
+                        success:function(data){
+                            $('.result').text(data.msg);
+                        }
+
+                    });
+                });
 
 
                 // edit profile work
