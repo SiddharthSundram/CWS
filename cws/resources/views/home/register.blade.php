@@ -59,7 +59,7 @@
     <section >
         <div class="flex flex-col items-center justify-center min-h-screen px-6 py-8 mx-auto md:h-screen lg:py-0">
             <div
-                class="w-full max-w-md bg-white rounded-lg shadow-md p-6 md:mt-0 sm:max-w-md xl:p-0 ">
+                class="w-full max-w-md bg-gray-200 rounded-lg shadow-md p-6 md:mt-0 sm:max-w-md xl:p-0 ">
                 <form class="space-y-4 md:space-y-6" id="register">
                     <div id="step1" class="step block p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1
@@ -67,7 +67,7 @@
                             Create an account</h1>
                         <p class="mb-2">Step 1 of 3</p>
                         <div class="mb-4">
-                            <div class="w-full bg-gray-200 rounded-full">
+                            <div class="w-full bg-white rounded-full">
                                 <div class="bg-blue-600 rounded-full text-xs leading-none py-1 text-center text-white"
                                     style="width: 20%;">20%</div>
                             </div>
@@ -92,9 +92,9 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 ">Gender</label>
                                 <select name="gender" id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 " required>
                                     <option value="">Choose Your Gender</option>
-                                    <option value="m">Male</option>
-                                    <option value="f">Female</option>
-                                    <option value="o">Others</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Others</option>
                                 </select>
 
                             </div>
@@ -108,7 +108,7 @@
                             Contact Info</h1>
                         <p class="mb-2">Step 2 of 3</p>
                         <div class="mb-4">
-                            <div class="w-full bg-gray-200 rounded-full">
+                            <div class="w-full bg-white rounded-full">
                                 <div class="bg-blue-600 rounded-full text-xs leading-none py-1 text-center text-white"
                                     style="width: 40%;">40%</div>
                             </div>
@@ -138,7 +138,7 @@
                             </div>
                             <div class="flex gap-1">
                                 <button type="button" onclick="prevStep()"
-                                    class="w-1/2 bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-white">Back</button>
+                                    class="w-1/2 bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-white">Back</button>
                                 <button type="button" onclick="nextStep()"
                                     class="w-1/2 float-end bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-white">Next</button>
                             </div>
@@ -148,7 +148,7 @@
                             class="mb-4 text-xl underline font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">Create Your Password</h1>
                         <p class="mb-2">Step 3 of 3</p>
                         <div class="mb-4">
-                            <div class="w-full bg-gray-200 rounded-full">
+                            <div class="w-full bg-white rounded-full">
                                 <div class="bg-blue-600 rounded-full text-xs leading-none py-1 text-center text-white"
                                     style="width: 80%;">80%</div>
                             </div>
@@ -169,11 +169,17 @@
                             </div>
                             <div class="flex gap-1">
                                 <button type="button" onclick="prevStep()"
-                                    class="w-1/2 bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-white">Back</button>
+                                    class="w-1/2 bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-white">Back</button>
                                 <button type="submit"
                                     class="w-1/2 float-end bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-white">Submit</button>
                             </div>
+                            
                     </div>
+                    <p class="text-sm text-center mb-3 text-gray-700 font-medium ">
+                        Already have an account? <a href="/login"
+                            class="font-medium text-blue-600 hover:underline mb-3">login </a>
+                    </p>
+                    
                 </form>
             </div>
         </div>

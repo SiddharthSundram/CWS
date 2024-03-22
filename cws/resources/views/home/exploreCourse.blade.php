@@ -6,7 +6,7 @@
             <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center justify-center">
 
                 <div class="md:w-1/2 md:mr-4 md:mb-5 md:flex md:flex-col items-center">
-                    <img src="" id="courseImage" alt="" class="rounded-lg shadow-md mb-4 md:mb-0">
+                    <img src="" id="courseImage" alt="" class="rounded-lg w-full shadow-md mb-4 md:mb-0">
                 </div>
 
                 <div class="md:w-1/2 md:ml-4">
@@ -172,6 +172,10 @@
                                 text: "Course enrolled successfully!",
                                 icon: "success"
                             });
+                            setTimeout(() => {
+                                window.open('/my-course', '_self');
+                            }, 2000);
+
                         },
                         error: function(xhr, status, error) {
                             var errorMessage = xhr.responseJSON.msg || "Error enrolling user.";

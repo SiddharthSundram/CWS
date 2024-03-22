@@ -7,16 +7,19 @@
             <div class="md:w-1/2 md:pr-8 text-left mb-4 md:mb-0 ">
                 <div class="flex flex-col md:flex-row text-center md:text-left ">
                     <h1 class="text-3xl font-bold">Upskilling Made </h1>
-                    <span id="autoText" class="text-3xl font-bold ml-3 mb-2 text-white">Upskilling Made </span>
+                    <span id="autoText" class="text-3xl font-bold ml-3 mb-2 text-orange-600"></span>
                 </div>
                 <p class="text-lg mb-8 text-slate-800">Where coding brilliance meets expert guidance. From novice to expert, our
                     platform
                     offers personalized coaching and comprehensive courses to elevate your coding skills. Join a vibrant
                     community and unlock your coding potential today.</p>
 
-                <a href=""
-                    class="inline-block text-white font-semibold  px-4 py-2 rounded-full bg-gradient-to-br  to-purple-700 from-pink-600 transition duration-300 ease-in-out login-link text-2xl">Join
+                <a href="{{route('login')}}"
+                    class="inline-block  font-semibold  px-4 py-2 rounded border border-black hover:bg-gray-300 text-gray-800 transition duration-300 ease-in-out login-link text-2xl">Join
                     Now</a>
+                <a href="{{route('allCourses')}}"
+                    class="inline-block  font-semibold  px-4 py-2 rounded border border-black hover:bg-gray-300 text-gray-800  transition duration-300 ease-in-out logout-link text-2xl">Explore
+                    Courses</a>
             </div>
 
             <div class="md:w-1/2 md:flex md:justify-center  md:order-1 " id="imageContainer">
