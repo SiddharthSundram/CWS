@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 // Home related routes 
 Route::get("/login", [HomeController::class, 'signin'])->name('login');
 Route::get("/register", [HomeController::class, 'signup'])->name('register');
+Route::get("/forget-password", [HomeController::class, 'forgetPassword']);
 
 //home 
 Route::get("/", [HomeController::class, 'index'])->name('index');

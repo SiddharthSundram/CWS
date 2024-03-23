@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
-use App\Models\Password_reset;
+use App\Models\PasswordReset;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Mail;
-
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
+
 
 // use Validator;
 
@@ -132,34 +133,34 @@ class AuthController extends Controller
         }
     }  
     
-    // foget password
+    // forget password
 
     public function forgetPassword(Request $request){
-        try {
-            $user = User::where('email', $request->email)->first();
+
+            $user = User::where('email', $request->email)->get();
             
-            if (count($user) > 0) {
+            if ($user !== null) {
                 $token = Str::random(40);
                 $domain = URL::to('/');
-                $url = $domain . '/reset-password?token=' . $token;
+                $url = $domain.'/reset-password?token='.$token;
                 
                 $data['url'] = $url;
                 $data['email'] = $request->email;
                 $data['title'] = 'Password Reset';
                 $data['body'] = "Please click on the link below to reset your password.";
                 
-                Mail::send('forgetPasswordMail', ['data' => $data], function ($message) use ($data) {
+                Mail::send('home.forget-Password', ['data' => $data], function ($message) use ($data) {
                     $message->to($data['email'])->subject($data['title']);
                 });
                 
-                $datetime = Carbon::now()->format('y-m-d H:i:s');
+                $datetime = Carbon::now()->format('Y-m-d H:i:s');
                 
-                Password_reset::updateOrCreate(
+                PasswordReset::updateOrCreate(
                     ['email' => $request->email],
                     [
                         'email' => $request->email,
                         'token' => $token,
-                        'created_at' => $datetime
+                        'created_at' => $datetime,
                     ]
                 );
                 
@@ -167,22 +168,48 @@ class AuthController extends Controller
             } else {
                 return response()->json(['message' => 'User not found!']);                
             }
-        } catch (\Exception $e) {
-            // Log the error for debugging purposes
-            \Log::error($e->getMessage());
-            
-            return response()->json(['error' => 'An error occurred while processing your request.'], 500);
-        }
     }
     
+    
     public function resetPasswordLoad(Request $request){
-        $resetData = Password_Reset::where('token',$request->token)->get();
+        $resetData = PasswordReset::where('token',$request->token)->get();
         if(isset($request->token) && count($resetData) > 0){
 
+            $user = User::where('email',$resetData[0]['email'])->get();
+            return view('home.resetPassword',compact('user'));
         }
         else{
-            return response()->json(['message' => 'not found!']);
+            return "<h1> Page Not Found</h1>";
         }
+    }
+
+    // public function resetPasswordLoad(Request $request){
+    //     $resetData = PasswordReset::where('token', $request->token)->first();
+    //     if(isset($request->token) && $resetData){
+    
+    //         $user = User::where('email', $resetData->email)->first(); 
+    //         if($user){
+    //             return view('home.resetPassword', compact('user'));
+    //         } else {
+    //             return "<h1> User Not Found</h1>";
+    //         }
+       
+    //     }
+    // }    
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user = User::find($request->id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        PasswordReset::where('email',$user->email)->delete();
+
+        return "<h1>Password Has been Reset Successfully.</h1>";
     }
 
 }

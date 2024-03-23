@@ -24,6 +24,10 @@ class HomeController extends Controller
         return view("home.register");
     }
 
+    public function forgetPassword(){
+        return view("home.forgetPasswordPage");
+    }
+
     public function profile(){
         return view("home.profile");
     }
