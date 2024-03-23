@@ -137,7 +137,7 @@ class AuthController extends Controller
 
     public function forgetPassword(Request $request){
 
-            $user = User::where('email', $request->email)->get();
+            $user = User::where('email', $request->email)->first();
             
             if ($user !== null) {
                 $token = Str::random(40);
@@ -169,33 +169,20 @@ class AuthController extends Controller
                 return response()->json(['message' => 'User not found!']);                
             }
     }
-    
-    
+
     public function resetPasswordLoad(Request $request){
-        $resetData = PasswordReset::where('token',$request->token)->get();
-        if(isset($request->token) && count($resetData) > 0){
-
-            $user = User::where('email',$resetData[0]['email'])->get();
-            return view('home.resetPassword',compact('user'));
-        }
-        else{
-            return "<h1> Page Not Found</h1>";
-        }
-    }
-
-    // public function resetPasswordLoad(Request $request){
-    //     $resetData = PasswordReset::where('token', $request->token)->first();
-    //     if(isset($request->token) && $resetData){
+        $resetData = PasswordReset::where('token', $request->token)->first();
+        if(isset($request->token) && $resetData){
     
-    //         $user = User::where('email', $resetData->email)->first(); 
-    //         if($user){
-    //             return view('home.resetPassword', compact('user'));
-    //         } else {
-    //             return "<h1> User Not Found</h1>";
-    //         }
+            $user = User::where('email', $resetData->email)->first(); 
+            if($user){
+                return view('home.resetPassword', compact('user'));
+            } else {
+                return "<h1> User Not Found</h1>";
+            }
        
-    //     }
-    // }    
+        }
+    }    
 
     public function resetPassword(Request $request)
     {
@@ -211,5 +198,7 @@ class AuthController extends Controller
 
         return "<h1>Password Has been Reset Successfully.</h1>";
     }
+
+    
 
 }
