@@ -130,5 +130,59 @@ class AuthController extends Controller
             return "<h1> Page Expired</h1>";
 
         }
-    }    
+    }  
+    
+    // foget password
+
+    public function forgetPassword(Request $request){
+        try {
+            $user = User::where('email', $request->email)->first();
+            
+            if (count($user) > 0) {
+                $token = Str::random(40);
+                $domain = URL::to('/');
+                $url = $domain . '/reset-password?token=' . $token;
+                
+                $data['url'] = $url;
+                $data['email'] = $request->email;
+                $data['title'] = 'Password Reset';
+                $data['body'] = "Please click on the link below to reset your password.";
+                
+                Mail::send('forgetPasswordMail', ['data' => $data], function ($message) use ($data) {
+                    $message->to($data['email'])->subject($data['title']);
+                });
+                
+                $datetime = Carbon::now()->format('y-m-d H:i:s');
+                
+                Password_reset::updateOrCreate(
+                    ['email' => $request->email],
+                    [
+                        'email' => $request->email,
+                        'token' => $token,
+                        'created_at' => $datetime
+                    ]
+                );
+                
+                return response()->json(['message' => 'Please check your email to reset the password']);
+            } else {
+                return response()->json(['message' => 'User not found!']);                
+            }
+        } catch (\Exception $e) {
+            // Log the error for debugging purposes
+            \Log::error($e->getMessage());
+            
+            return response()->json(['error' => 'An error occurred while processing your request.'], 500);
+        }
+    }
+    
+    public function resetPasswordLoad(Request $request){
+        $resetData = Password_Reset::where('token',$request->token)->get();
+        if(isset($request->token) && count($resetData) > 0){
+
+        }
+        else{
+            return response()->json(['message' => 'not found!']);
+        }
+    }
+
 }
