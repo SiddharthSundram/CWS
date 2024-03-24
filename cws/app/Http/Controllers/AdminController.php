@@ -81,8 +81,8 @@ class AdminController extends Controller
     public function countData(){
 
         $count["payment"] = Payment::where("status","0")->count();
-        $count["admission"] = User::where("status","0")->count();
-        $count["students"] = User::where("status","1")->count();
+        $count["admission"] = User::where("status","0")->where("is_admin",0)->count();
+        $count["students"] = User::where("status","1")->where("is_admin",0)->count();
         $count["halloffames"] = hallFrame::count();
         $count["courses"] = Course::count();
         $count["payments"] = Payment::count();

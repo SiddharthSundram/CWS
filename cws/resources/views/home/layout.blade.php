@@ -21,9 +21,7 @@
     <nav class="fixed top-0 z-50 w-full md:px-[5%] bg-transparent shadow-sm md:py-0 p-0 bg-white">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center  justify-between me-3">
-
                 <div class="flex items-center ">
-
                     {{-- website logo --}}
                     <a href="{{ route('index') }}" title="Code With Sadiq " class="flex ms-2 md:me-24">
                         <div class="flex border border-black ">

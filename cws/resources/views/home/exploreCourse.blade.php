@@ -5,17 +5,17 @@
         <div class="container md:h-screen mx-auto p-8">
             <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center justify-center">
 
-                <div class="md:w-1/2 md:mr-4 md:mb-5 md:flex md:flex-col items-center">
+                <div class="md:w-2/6 md:mr-4 md:mb-5 md:flex md:flex-col items-center">
                     <img src="" id="courseImage" alt="" class="rounded-lg w-full shadow-md mb-4 md:mb-0">
                 </div>
 
-                <div class="md:w-1/2 md:ml-4">
+                <div class="md:w-4/6 md:ml-4">
                     <h2 class="text-3xl font-semibold text-gray-600 mb-4">
-                        Course Name: <span class=" text-orange-600 " id="courseName"></span>
+                        <span class=" text-orange-600 " id="courseName"></span>
                     </h2>
 
                     <p class="text-gray-600 font-bold mb-4">
-                        Description : <span class="font-normal" id="courseDescription"></span>
+                        <span class="font-normal" id="courseDescription"></span>
                     </p>
 
                     <div class="flex items-center mb-4">
