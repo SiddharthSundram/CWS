@@ -448,7 +448,7 @@
     <main class="flex-grow ">
         <div class="mt-10 mb-5">{{-- for space from top --}}</div>
         <!-- "Go Back" button -->
-        <a href="" class="goBackButton p-2 bg-blue-700 text-center text-white rounded">Go Back</a>
+        {{-- <a href="" class="goBackButton p-2 bg-blue-700 text-center text-white rounded">Go Back</a> --}}
 
         <div class="container mx-auto p-0 md:px-10 lg:px-12 sm:px-8  outputContainer">
             @section('content')
@@ -603,6 +603,9 @@
 
                 if (data.length == 0) {
                     table.append(`
+                        <div class="container flex justify-end mt-10">
+                            <a href="" class="goBackButton p-2 bg-blue-700 text-center  text-white rounded">Go Back</a>
+                        </div>
                         <div class="no-results-message text-center py-4">
                             No results found for courses.
                         </div>
@@ -610,6 +613,11 @@
                     // Show Go Back button
                     $(".goBackButton").show();
                 } else {
+                    table.append(`
+                        <div class="container flex justify-end mt-10">
+                            <a href="" class="goBackButton p-2 bg-blue-700 text-center  text-white rounded">Go Back</a>
+                        </div>
+                    `);
                     data.forEach((course) => {
                         // console.log(course.name);
                         table.append(`
@@ -640,6 +648,8 @@
                             </div>
                         `);
                     });
+
+                   
 
                     table.show();
 
