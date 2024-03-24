@@ -99,6 +99,7 @@
             <div class="container mx-auto my-8 p-2">
                 <h2 class="text-lg text-left pb-2 border-b border-teal-800 text-teal-800 font-medium mb-6">Our Courses</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3" id="callingcourse">
+          
                     <!-- Courses will be dynamically loaded here -->
                     
                 </div>
