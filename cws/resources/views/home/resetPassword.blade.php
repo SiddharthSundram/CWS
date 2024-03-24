@@ -13,10 +13,13 @@
 
     @csrf
 
+    <input type="text" name="id" value="{{$user[0]['id']}}">
+    <input type="text" name="email" value="{{$user[0]['email']}}">
 
-    @if($user)
-        <input type="hidden" name="id" value="{{ $user->id }}">
-    @endif
+
+    {{-- @if($user)
+        <input type="text" name="id" value="{{ $user->id }}">
+    @endif --}}
 
     <input type="password" name="password" placeholder="New Password">
     <br> <br>
