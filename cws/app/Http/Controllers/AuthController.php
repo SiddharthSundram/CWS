@@ -6,7 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Models\PasswordReset;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Mail;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
+
+
 // use Validator;
 
 class AuthController extends Controller
@@ -77,4 +85,120 @@ class AuthController extends Controller
             'user' => auth()->user()
         ]);
     }
+    public function sendVerifyMail($email){
+        if(auth()->user()){
+            $user = User::where('email', $email)->first();
+            if($user){
+    
+                $random = Str::random(40);
+                $domain = URL::to('/');
+                $url = $domain.'/verify-mail/'.$random;
+    
+                $data['url'] = $url;
+                $data['email'] = $email;
+                $data['title'] = "Email Verification";
+                $data['body'] = "Please click here to verify your mail.";
+    
+                Mail::send('home.verifyMail', ['data' => $data], function($message) use ($data){
+                    $message->to($data['email'])->subject($data['title']);
+                });
+    
+                $user->remember_token = $random;
+                $user->save();
+    
+                return response()->json(['success' => true, 'msg' => 'Mail Send Successfully, Please Check it.']);
+            }
+        } else {
+            return response()->json(['success' => false, 'msg' => 'User is Not Authenticated']);
+        }
+    }
+
+    public function verificationMail($token)
+    {
+        $user = User::where('remember_token',$token)->get();
+        if(count($user)> 0){
+            $datetime = Carbon::now()->format('d-m-Y H:i:s');
+            $user = User::find($user[0]['id']);
+            $user->remember_token = '';
+            $user->email_verified_at = $datetime;
+            $user->save();
+
+            // return response()->json(['success'=>true,'message' => 'Verified Successfully']);
+            return "<h1> Email Verified Successfully</h1>";
+        }
+        else{
+            // return response()->json(['success'=>false,'message' => 'Page Not Found',404]);
+            return "<h1> Page Expired</h1>";
+
+        }
+    }  
+    
+    // forget password
+
+    public function forgetPassword(Request $request){
+
+            $user = User::where('email', $request->email)->first();
+            
+            if ($user !== null) {
+                $token = Str::random(40);
+                $domain = URL::to('/');
+                $url = $domain.'/reset-password?token='.$token;
+                
+                $data['url'] = $url;
+                $data['email'] = $request->email;
+                $data['title'] = 'Password Reset';
+                $data['body'] = "Please click on the link below to reset your password.";
+                
+                Mail::send('home.forget-Password', ['data' => $data], function ($message) use ($data) {
+                    $message->to($data['email'])->subject($data['title']);
+                });
+                
+                $datetime = Carbon::now()->format('Y-m-d H:i:s');
+                
+                PasswordReset::updateOrCreate(
+                    ['email' => $request->email],
+                    [
+                        'email' => $request->email,
+                        'token' => $token,
+                        'created_at' => $datetime,
+                    ]
+                );
+                
+                return response()->json(['message' => 'Please check your email to reset the password']);
+            } else {
+                return response()->json(['message' => 'User not found!']);                
+            }
+    }
+
+    public function resetPasswordLoad(Request $request){
+        $resetData = PasswordReset::where('token', $request->token)->first();
+        if(isset($request->token) && $resetData){
+    
+            $user = User::where('email', $resetData->email)->first(); 
+            if($user){
+                return view('home.resetPassword', compact('user'));
+            } else {
+                return "<h1> User Not Found</h1>";
+            }
+       
+        }
+    }    
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user = User::find($request->id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        PasswordReset::where('email',$user->email)->delete();
+
+        return "<h1>Password Has been Reset Successfully.</h1>";
+    }
+
+    
+
 }

@@ -80,6 +80,7 @@ class AdminController extends Controller
 
     public function countData(){
 
+        $count["payment"] = Payment::where("status","0")->count();
         $count["admission"] = User::where("status","0")->count();
         $count["students"] = User::where("status","1")->count();
         $count["halloffames"] = hallFrame::count();
@@ -88,6 +89,13 @@ class AdminController extends Controller
         $count["projects"] = RecentProject::count();
         $count["category"] = Category::count();
         $count["contact"] = Contact::count();
+
+        $count["paymentDueAmount"] = Payment::where("status","0")->get();
+        $count["paymentPaidAmount"] = Payment::where("status","1")->get();
+
+        $count["countGirls"] = User::where("gender","Female")->count();
+        $count["countBoys"] = User::where("status","Male")->count();
+        
        
         return response()->json($count);
 

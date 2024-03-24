@@ -279,14 +279,33 @@
             url:"{{route('countData')}}",
             type:"GET",
             success: function(response) {
-                  $(".countAdmission").html(response.admission);
-                  $(".countStudent").html(response.students);
-                  $(".countProject").html(response.projects);
-                  $(".counthallFrame").html(response.halloffames);
-                  $(".countCourse").html(response.courses);
-                  $(".countCategory").html(response.category);
-                  $(".countPayments").html(response.payments);
-                  $(".countQuery").html(response.contact);
+
+                //to calculate total due of amount sutdent
+                let totalDueAmount = 0;
+                response.paymentDueAmount.forEach((item) => {
+                    totalDueAmount += parseInt(item.fees); 
+                });
+                
+                //to calculate total paid amount of sutdent
+                let totalPaidAmount = 0;
+                response.paymentPaidAmount.forEach((item) => {
+                    totalPaidAmount += parseInt(item.fees); 
+                });
+
+                $(".paymentsDueAmount").html(`₹${totalDueAmount}`);
+                $(".paymentPaidAmount").html(`₹${totalPaidAmount}`);
+                $(".totalGirls").html(response.countGirls);
+                $(".totalBoys").html(response.countBoys);
+                $(".countAdmission").html(response.admission);
+                $(".countStudent").html(response.students);
+                $(".countProject").html(response.projects);
+                $(".counthallFrame").html(response.halloffames);
+                $(".countCourse").html(response.courses);
+                $(".countCategory").html(response.category);
+                $(".countPayments").html(response.payments);
+                $(".countPaymentsDue").html(response.payment);
+                $(".countQuery").html(response.contact);
+
               },
               error: function(xhr, status, error) {
                   console.error("Error fetching project count:", error);

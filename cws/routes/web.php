@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\hallFrameController;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 // Home related routes 
 Route::get("/login", [HomeController::class, 'signin'])->name('login');
 Route::get("/register", [HomeController::class, 'signup'])->name('register');
+Route::get("/forget-password", [HomeController::class, 'forgetPassword']);
 
 //home 
 Route::get("/", [HomeController::class, 'index'])->name('index');
@@ -119,3 +121,7 @@ Route::prefix('admin')->group(function () {
         });        
     });
 });
+
+Route::get('/verify-mail/{token}',[AuthController::class,'verificationMail']);
+Route::get("/reset-password",[AuthController::class,'resetPasswordLoad']);
+Route::post("/reset-password",[AuthController::class,'resetPassword']);

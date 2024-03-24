@@ -208,7 +208,7 @@
 
                             </tr>                  
                             </tr>`;
-                        console.log(student);
+                        // console.log(student);
                         let courses = student.courses.map(course => {
                             let paymentSection = '';
                             if (course.payments.length < 1) {

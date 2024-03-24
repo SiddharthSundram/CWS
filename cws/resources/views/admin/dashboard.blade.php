@@ -8,7 +8,7 @@
         <div class="flex-1 flex mb-5 mt-4">
             <h1 class="text-2xl font-semibold text-slate-500">Hello Admin, </h1>
         </div>
-        <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div class="w-full bg-white border border-gray-200 rounded-lg shadow p-3 dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex items-center justify-between mb-4">
                     <h5 class="text-sm font-normal leading-none text-gray-900 dark:text-white">Latest Admissions</h5>
@@ -27,11 +27,12 @@
                 class="w-full p-3 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex items-center justify-between mb-4">
                     <h5 class="text-sm font-normal leading-none text-gray-900 dark:text-white">Help Query</h5>
-                    <a href="{{route('manageQuery')}}" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+                    <a href="{{ route('manageQuery') }}"
+                        class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
                         View all
                     </a>
                 </div>
-                <div class="pb-4">
+                <div class="pb-4 hidden md:block">
                     <label for="table-search" class="sr-only">Search</label>
                     <div class="relative mt-1">
                         <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -59,39 +60,58 @@
         <div class="flex-1 flex mt-4 mb-2">
             <h1 class="text-md font-normal">Static</h1>
         </div>
-        <div class="grid grid-cols-4 gap-4 mb-4">
-            <div class="flex flex-col p-4 justify-center rounded bg-pink-600 dark:bg-pink-800">
-                <p class="text-sm font-semibold text-white dark:text-pink-300">Total Admission</p>
-                <p class="text-2xl text-white dark:text-pink-300 countAdmission"></p>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div class="flex flex-col p-4 justify-center rounded bg-red-600 ">
+                <p class="text-sm font-semibold text-white ">Total Due Amount</p>
+                <p class="text-2xl text-white  paymentsDueAmount">Loading...</p>
             </div>
-            <div class="flex flex-col p-4 justify-center rounded bg-blue-600 dark:bg-blue-800">
-                <p class="text-sm text-left font-semibold text-slate-100 dark:text-blue-300">Total Students</p>
-                <p class="text-2xl text-white dark:text-blue-300 countStudent">Loading</p>
+            <div class="flex flex-col p-4 justify-center rounded bg-green-600 ">
+                <p class="text-sm font-semibold text-white">Total Paid Amount</p>
+                <p class="text-2xl text-white  paymentPaidAmount">Loading...</p>
             </div>
-            <div class="flex flex-col p-4 justify-center rounded bg-green-600 dark:bg-green-800">
-                <p class="text-sm font-semibold text-white dark:text-green-300">Total Hall of Fame</p>
-                <p class="text-2xl text-white dark:text-green-300 counthallFrame">Loading</p>
+            <div class="flex flex-col p-4 justify-center rounded bg-yellow-600 ">
+                <p class="text-sm font-semibold text-white ">Total Payments</p>
+                <p class="text-2xl text-white  countPayments">Loading...</p>
             </div>
-            <div class="flex flex-col p-4 justify-center rounded bg-yellow-600 dark:bg-yellow-800">
-                <p class="text-sm font-semibold text-white dark:text-yellow-300">Total Payments</p>
-                <p class="text-2xl text-white dark:text-yellow-300 countPayments">0</p>
+            <div class="flex flex-col p-4 justify-center rounded bg-amber-600 ">
+                <p class="text-sm font-semibold text-white ">Total Due</p>
+                <p class="text-2xl text-white  countPaymentsDue">Loading...</p>
             </div>
-            <div class="flex flex-col p-4 justify-center rounded bg-purple-600 dark:bg-purple-800">
-                <p class="text-sm font-semibold text-white dark:text-purple-300">Total Courses</p>
-                <p class="text-2xl text-white dark:text-purple-300 countCourse"></p>
+            <div class="flex flex-col p-4 justify-center rounded bg-pink-500 ">
+                <p class="text-sm font-semibold text-white">Total Girls</p>
+                <p class="text-2xl text-white  totalGirls">Loading...</p>
             </div>
-            <div class="flex flex-col p-4 justify-center rounded bg-amber-600 dark:bg-amber-800">
-                <p class="text-sm font-semibold text-white dark:text-amber-300">Total Due</p>
-                <p class="text-2xl text-white dark:text-amber-300">0</p>
+            <div class="flex flex-col p-4 justify-center rounded bg-cyan-500 ">
+                <p class="text-sm font-semibold text-white">Total Boys</p>
+                <p class="text-2xl text-white  totalBoys">Loading...</p>
             </div>
-            <div class="flex flex-col p-4 justify-center rounded bg-emerald-600 dark:bg-emerald-800">
-                <p class="text-sm font-semibold text-white dark:text-emerald-300">Total Projects</p>
-                <p class="text-2xl text-white dark:text-emerald-300 countProjects">0</p>
+            <div class="flex flex-col p-4 justify-center rounded bg-pink-600 ">
+                <p class="text-sm font-semibold text-white ">Total Admission</p>
+                <p class="text-2xl text-white  countAdmission">Loading...</p>
             </div>
-            <div class="flex flex-col p-4 justify-center rounded bg-purple-600 dark:bg-purple-800">
-                <p class="text-sm font-semibold text-white dark:text-purple-300">Total Categories</p>
-                <p class="text-2xl text-white dark:text-purple-300 countCategory"></p>
+            <div class="flex flex-col p-4 justify-center rounded bg-blue-600 ">
+                <p class="text-sm text-left font-semibold text-slate-100 ">Total Students</p>
+                <p class="text-2xl text-white  countStudent">Loading...</p>
             </div>
+            <div class="flex flex-col p-4 justify-center rounded bg-green-600 ">
+                <p class="text-sm font-semibold text-white ">Total Hall of Fame</p>
+                <p class="text-2xl text-white  counthallFrame">Loading...</p>
+            </div>
+            <div class="flex flex-col p-4 justify-center rounded bg-purple-600">
+                <p class="text-sm font-semibold text-white ">Total Courses</p>
+                <p class="text-2xl text-white  countCourse">Loading...</p>
+            </div>
+
+            <div class="flex flex-col p-4 justify-center rounded bg-emerald-600 ">
+                <p class="text-sm font-semibold text-white ">Total Projects</p>
+                <p class="text-2xl text-white  countProject">Loading...</p>
+            </div>
+            <div class="flex flex-col p-4 justify-center rounded bg-purple-600 ">
+                <p class="text-sm font-semibold text-white ">Total Categories</p>
+                <p class="text-2xl text-white  countCategory">Loading...</p>
+            </div>
+
 
 
         </div>
