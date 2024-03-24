@@ -171,17 +171,29 @@ class AuthController extends Controller
     }
 
     public function resetPasswordLoad(Request $request){
-        $resetData = PasswordResetToken::where('token', $request->token)->first();
-        if(isset($request->token) && $resetData){
+        $resetData = PasswordResetToken::where('token', $request->token)->get();
+        if(isset($request->token) && count($resetData)> 0){
+
+            $user = User::where('email',$resetData[0]['email'])->get();
+            return view('home.resetPassword', compact('user'));
+
+
+        }
+
+        // if(isset($request->token) && $resetData){
     
-            $user = User::where('email', $resetData->email)->first(); 
-            dd($user->email);
-            if($user){
-                return view('home.resetPassword', compact('user'));
-            } else {
-                return "<h1> User Not Found</h1>";
-            }
+        //     $user = User::where('email', $resetData->email)->first(); 
+        //     // dd($user->email);
+        //     if($user){
+        //         return view('home.resetPassword', compact('user'));
+        //     } else {
+        //         return "<h1> User Not Found</h1>";
+        //     }
        
+        // }
+
+        else{
+            return "<h1> Page Not Found</h1>";
         }
     }    
 
@@ -198,7 +210,7 @@ public function resetPassword(Request $request)
         return "<h1>User not found.</h1>"; // Handle the case where user is not found
     }
 
-    dd($user->email);
+    // dd($user->email);
 
     $user->password = Hash::make($request->password);
     
@@ -209,7 +221,7 @@ public function resetPassword(Request $request)
 
     $deleted = PasswordResetToken::where('email', $user->email)->delete();
 
-    dd($deleted);
+    // dd($deleted);
 
     if (!$deleted) {
         return "<h1>Failed to delete password reset record.</h1>"; // Handle deletion failure
