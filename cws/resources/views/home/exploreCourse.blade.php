@@ -38,31 +38,22 @@
                 </div>
             </div>
 
-            <div class="bg-white flex md:flex-row gap-10 md:justify-evenly flex-col rounded-lg shadow-lg p-6 mt-8">
-
-                <div class=" flex flex-col items-center text-center">
-                    <span class="ml-2 text-2xl text-orange-600" id="courseInstructor">Teacher</span>
-                    <span class="text-gray-600 text-xl font-semibold">Instructor</span>
+            
+            <dl class="grid grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 dark:text-white sm:p-8">
+                <div class="flex flex-col items-center justify-center">
+                    <dt class="mb-2 text-2xl font-extrabold"  id="courseInstructor">73M+</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Instructor</dd>
                 </div>
-
-                <div class="flex-col flex items-center text-center">
-                    <span class="ml-2 text-2xl text-orange-600" id="courseCategory">Web Devlopment</span>
-                    <span class="text-gray-600 text-xl font-semibold">Category</span>
+                
+                <div class="flex flex-1 flex-col items-center justify-center">
+                    <dt class="mb-2 text-2xl font-extrabold" id="courseCategory">90+</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Category</dd>
                 </div>
-
-
-                <div class="flex-col flex items-center text-center ">
-                    <span class="ml-2 text-2xl text-orange-600" id="courseLang">English</span>
-                    <span class="text-gray-600 text-xl font-semibold">Language</span>
+                <div class="flex flex-1 flex-col items-center justify-center">
+                    <dt class="mb-2 text-2xl font-extrabold" id="courseDuration"></dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Duration</dd>
                 </div>
-
-
-                <div class="flex-col flex items-center text-center">
-                    <span class="ml-2 text-2xl text-orange-600" id="courseDuration">10 Week</span>
-                    <span class="text-gray-600 text-xl font-semibold">Duration</span>
-                </div>
-
-            </div>
+            </dl>
         </div>
 
         <script>
