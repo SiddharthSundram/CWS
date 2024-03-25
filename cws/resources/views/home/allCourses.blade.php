@@ -54,13 +54,13 @@
                                 <a href="/explore-course/${course.id}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
                                             <div class="relative pb-48 overflow-hidden">
                                             <img class="absolute inset-0 h-full w-full object-cover" src="/image/${course.featured_image}" alt="">
-                                                <span class="inline-block px-2 py-1 leading-none bg-green-500 text-white rounded-full font-semibold uppercase tracking-wide text-xs absolute bottom-0 -right-2">New</span>
+                                                <span class="inline-block px-2 py-1 leading-none bg-green-500 text-white rounded-full font-semibold uppercase tracking-wide text-xs absolute bottom-0 -right-0">New</span>
                                             </div>
                                             <div class="py-2 px-4">
                                             <h2 class="my-1  text-left capitalize font-bold">${course.name}</h2>
                                             <div class=" flex items-center gap-1">
                                                 <span class="font-bold text-xl">₹${course.discount_fees}</span> 
-                                                <span class='font-semibold text-md text-slate-600'> ₹${course.fees}</span>
+                                                <span class='font-semibold text-md text-slate-600'> <del>₹${course.fees}</del></span>
                                             </div>
                                             </div>
                                             <div class="p-4 border-t border-b text-xs text-gray-700">

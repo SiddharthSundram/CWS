@@ -74,7 +74,7 @@
                 <p class="text-sm font-semibold text-white ">Total Payments</p>
                 <p class="text-2xl text-white  countPayments">Loading...</p>
             </div>
-            <div class="flex flex-col p-4 justify-center rounded bg-amber-600 ">
+            <div class="flex flex-col p-4 justify-center rounded bg-[#FF204E] ">
                 <p class="text-sm font-semibold text-white ">Total Due</p>
                 <p class="text-2xl text-white  countPaymentsDue">Loading...</p>
             </div>
@@ -87,7 +87,7 @@
                 <p class="text-2xl text-white  totalBoys">Loading...</p>
             </div>
             <div class="flex flex-col p-4 justify-center rounded bg-pink-600 ">
-                <p class="text-sm font-semibold text-white ">Total Admission</p>
+                <p class="text-sm font-semibold text-white ">Total Admission Pending</p>
                 <p class="text-2xl text-white  countAdmission">Loading...</p>
             </div>
             <div class="flex flex-col p-4 justify-center rounded bg-blue-600 ">
@@ -107,7 +107,7 @@
                 <p class="text-sm font-semibold text-white ">Total Projects</p>
                 <p class="text-2xl text-white  countProject">Loading...</p>
             </div>
-            <div class="flex flex-col p-4 justify-center rounded bg-purple-600 ">
+            <div class="flex flex-col p-4 justify-center rounded bg-[#FC819E]">
                 <p class="text-sm font-semibold text-white ">Total Categories</p>
                 <p class="text-2xl text-white  countCategory">Loading...</p>
             </div>

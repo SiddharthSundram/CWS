@@ -18,19 +18,18 @@
                         <span class="font-normal" id="courseDescription"></span>
                     </p>
 
-                    <div class="flex items-center mb-4">
+                    <div class="flex items-center mb-4 ">
                         <span class="text-2xl font-bold text-gray-700 mr-2 "><span id="courseDiscountFees"></span>.00
                         </span>
-                        <span class="text-gray-400 line-through" id="courseFees"></span>
-                        <span class="bg-green-500 text-white px-2 py-1 ml-4"> 25% Discount</span>
+                        <span class="text-gray-400 line-through " id="courseFees"></span>
+                        <span class="bg-green-500 text-white px-2 rounded py-1 ml-4 " id="discountAmount"> 25% Discount</span>
                     </div>
                     <div class="flex space-x-4 justify-end">
-                        <a href="" class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded"
-                            id="whatsappShareBtn">
-                            Share on WhatsApp
+                        <a href="" class="bg-gray-500 flex hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded" id="whatsappShareBtn">
+                            <span>Share</span>&nbsp;<span class="hidden md:block">On WhatsApp</span>
                         </a>
                         <a href=""
-                            class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded transition duration-300"
+                            class="bg-orange-500 hover:bg-orange-600  text-white font-semibold py-3 px-6 rounded transition duration-300"
                             id="enrollBtn">
                             Enroll Now
                         </a>
@@ -59,17 +58,27 @@
         <script>
             $(document).ready(function() {
                 let courseId = "{{ request()->segment(2) }}";
+
+                let discountAmount = 0; 
+                let fees ; 
+                let discountFees ; 
                 $.ajax({
                     type: "GET",
                     url: `/api/course/${courseId}`,
                     dataType: "json",
                     success: function(response) {
+                        fees = response.data.fees;
+                        discountFees = response.data.discount_fees;
+
+                        discountAmount = ((fees - discountFees) / fees) * 100;          
+
                         $('#courseImage').attr('src', '/image/' + response.data.featured_image);
                         $('#courseName').text(response.data.name);
                         $('#courseDuration').text(response.data.duration);
                         $('#courseInstructor').text(response.data.instructor);
-                        $('#courseFees').text('₹' + response.data.fees);
-                        $('#courseDiscountFees').text('₹' + response.data.discount_fees);
+                        $('#courseFees').text('₹' + fees);
+                        $('#courseDiscountFees').text('₹' +discountFees);
+                        $('#discountAmount').text(`${discountAmount}% Off`);
                         $('#courseDescription').text(response.data.description);
                         $('#courseLang').text(response.data.lang);
                         $('#courseCategory').text(response.data.category.cat_title);
