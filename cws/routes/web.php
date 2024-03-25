@@ -26,10 +26,10 @@ Route::get("/", [HomeController::class, 'index'])->name('index');
 Route::get("/my-profile", [HomeController::class, 'profile'])->name('profile');
 
 //explore course
-Route::get("/explore-course/{id}", [CourseController::class, 'exploreCourse'])->name('exploreCourse');
+Route::get("/explore-course/{cat_slug}/{slug}", [CourseController::class, 'exploreCourse'])->name('exploreCourse');
 Route::get("/all-courses", [CourseController::class, 'allCourses'])->name('allCourses');
 
-Route::get("/view-category/{id}", [HomeController::class, 'viewCategory'])->name('viewCategory');
+Route::get("/view-category/{slug}", [HomeController::class, 'viewCategory'])->name('viewCategory');
 
 // for user's course
 Route::get("/my-course", [HomeController::class, 'myCourse'])->name('myCourse');

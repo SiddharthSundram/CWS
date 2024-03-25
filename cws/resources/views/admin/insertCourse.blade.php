@@ -55,6 +55,10 @@
                         </select>
                     </div>
                     <div class="mb-4">
+                        <label for="features" class="block text-sm font-medium text-gray-700">Features</label>
+                        <textarea class="form-textarea mt-1 block w-full" id="features" name="features" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-4">
                         <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 w-full rounded-md">Insert Course</button>
                     </div>
                 </form>
@@ -94,23 +98,37 @@
                 readURL(this);
             });
 
-            $("#insertCourse").submit(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "POST",
-                    url: "/api/course",
-                    data: new FormData(this),
-                    dataType: "JSON",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    success: function(response) {
-                        alert(response.msg);
-                        $("#insertcourse").trigger("reset")
-                        window.open("{{route('manageCourse')}}", "_self")
-                    }
-                })
-            })
+            // Insert course
+$("#insertCourse").submit(function(e) {
+    e.preventDefault();
+    let features = $("#features").val().split('\n'); // Split features by newline
+    $.ajax({
+        type: "POST",
+        url: "/api/course",
+        data: {
+            name: $("#name").val(),
+            duration: $("#duration").val(),
+            instructor: $("#instructor").val(),
+            fees: $("#fees").val(),
+            discount_fees: $("#discount_fees").val(),
+            lang: $("#lang").val(),
+            category_id: $("#callingCatForSelect").val(),
+            featured_image: $("#image_upload")[0].files[0],
+            description: $("#description").val(),
+            features: features // Send features as an array
+        },
+        dataType: "JSON",
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function(response) {
+            alert(response.msg);
+            $("#insertCourse").trigger("reset")
+            window.open("{{route('manageCourse')}}", "_self")
+        }
+    })
+})
+
         });
     </script>
 @endsection

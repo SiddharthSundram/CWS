@@ -42,7 +42,7 @@ class HallFrameApiApiController extends Controller
 
     public function manageHallframe(Request $request){
         $query = $request->get('query');
-        $perPage = $request->input('per_page', 2); // Default to 4 items per page if not specified
+        $perPage = $request->input('per_page', 10); // Default to 4 items per page if not specified
         
         if ($query) {
             $hallFrame = hallFrame::where('name', 'LIKE', "%$query%")->paginate($perPage);

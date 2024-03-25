@@ -23,7 +23,7 @@
             </a>
         </div>
         <div class="overflow-x-auto">
-            <table class="w-full border-collapse border">
+            <table class="w-full border-collapse border text-center">
                 <thead>
                     <tr class="bg-gray-200 text-gray-700">
                         <th class="py-2 px-4 border">Id</th>
@@ -143,13 +143,13 @@
                 data.forEach((hallFrame) => {
                     table.append(`
                 <tr class="hover:bg-gray-100">
-                    <td class="py-2 px-4 border">${hallFrame.id}</td> 
-                    <td class="py-2 px-4 border">${hallFrame.name}</td>
-                    <td class="py-2 px-4 border">${hallFrame.position}</td>  
-                    <td class="py-2 px-4 border">${hallFrame.industry}</td>  
-                    <td class="py-2 px-4 border">${hallFrame.description}</td> 
-                    <td class="py-2 px-4 border"><img src="/image/${hallFrame.featured_image}" class="w-32 h-12" alt=""></td> 
-                    <td class="py-2 px-4 border">
+                    <td class="py-1 px-1 text-xs border">${hallFrame.id}</td> 
+                    <td class="py-1 px-1 text-xs border">${hallFrame.name}</td>
+                    <td class="py-1 px-1 text-xs border">${hallFrame.position}</td>  
+                    <td class="py-1 px-1 text-xs border">${hallFrame.industry}</td>  
+                    <td class="py-1 px-1 text-xs border">${hallFrame.description.substr(0, 50)}</td> 
+                    <td class="py-1 px-1 text-xs border"><img src="/image/${hallFrame.featured_image}" class="w-8 rounded-full h-auto" alt=""></td> 
+                    <td class="py-1 px-1 text-xs border">
                         <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded-sm delete-hallframe-btn" data-id="${hallFrame.id}"><i class="fas fa-trash"></i> Delete</button>
                         <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-2 rounded-sm edit-hallframe-btn" data-id="${hallFrame.id}"><i class="fas fa-edit"></i> Edit</button>
                     </td>

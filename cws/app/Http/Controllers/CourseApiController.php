@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CourseApiController extends Controller
 {
@@ -23,6 +24,7 @@ class CourseApiController extends Controller
 
         $course = new Course();
         $course->name = $request->name;
+        $course->course_slug = Str::slug($request->name);
         $course->duration = $request->duration;
         $course->instructor = $request->instructor;
         $course->fees = $request->fees;
@@ -37,9 +39,9 @@ class CourseApiController extends Controller
     }
 
 
-    public function show(Course $course)
+    public function show($cat_slug,$slug)
     {
-        $course = Course::with('category')->find($course->id);
+        $course = Course::with('category')->where("course_slug",$slug)->first();
         return response()->json(["data" => $course, "success" => true]);
     }
 
@@ -73,6 +75,7 @@ class CourseApiController extends Controller
 
         // Update the course attributes
         $course->name = $request->name;
+        $course->course_slug = Str::slug($request->name);
         $course->duration = $request->duration;
         $course->instructor = $request->instructor;
         $course->fees = $request->fees;
@@ -88,6 +91,8 @@ class CourseApiController extends Controller
             $course->featured_image = $filename;
         }
 
+        $features = $request->features;
+        $course->features = $features;
         // Save the updated course
         $course->save();
 

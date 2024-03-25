@@ -15,6 +15,7 @@
                     <tr class="bg-gray-200 text-gray-700">
                         <th class="py-2 px-4 border">ID</th>
                         <th class="py-2 px-4 border">Category Title</th>
+                        <th class="py-2 px-4 border">Category Slug</th>
                         <th class="py-2 px-4 border">Category Description</th>
                         <th class="py-2 px-4 border">Actions</th>
                     </tr>
@@ -89,6 +90,7 @@
                             <tr class=" hover:bg-gray-100">
                                 <td class="py-2 px-4 border">${item.id}</td>
                                 <td class="py-2 px-4 border">${item.cat_title}</td>
+                                <td class="py-2 px-4 border">${item.slug}</td>
                                 <td class="py-2 px-4 border">${item.cat_description}</td>
                                 <td class="py-2 px-4 border">
                                     <button class="edit-btn bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-2 rounded-sm" data-id="${item.id}"><i class="fas fa-edit"></i> Edit</button>

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('course_slug')->unique(); // Add a unique slug column
             $table->string('duration');
             $table->string('instructor');
             $table->string('fees');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained()->onDelete("cascade");
             $table->string('featured_image')->nullable();
             $table->string('description');            
+            $table->json('features')->nullable(); // Add a JSON column for features
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

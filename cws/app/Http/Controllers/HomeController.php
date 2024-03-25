@@ -57,7 +57,7 @@ class HomeController extends Controller
         return view("home.achievements");
     }
 
-    public function viewCategory(Request $request, $id){
+    public function viewCategory(Request $request, $slug){
         return view('home.viewCategory');
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryApiController extends Controller
 {
@@ -22,6 +23,7 @@ class CategoryApiController extends Controller
     {
         $cat = new Category();
         $cat->cat_title = $request->cat_title;
+        $cat->slug = Str::slug($request->cat_title);
         $cat->cat_description = $request->cat_description;
         $cat->save();
         return response()->json(['data' => $cat, "success" => true, "msg" => "Category Inserted Succcessfully"]);
@@ -30,9 +32,10 @@ class CategoryApiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $Category)
+    public function show($slug)
     {
-        return response()->json(["data" => $Category]);
+        $category = Category::where("slug",$slug)->first();
+        return response()->json(["data" => $category]);
     }
 
     /**
@@ -49,6 +52,7 @@ class CategoryApiController extends Controller
     public function update(Request $request, Category $category)
     {
         $category->cat_title = $request->title; // Adjusting to match the input name
+        $category->slug = Str::slug($request->cat_title);
         $category->cat_description = $request->description; // Adjusting to match the input name
         $category->save();
 
@@ -69,9 +73,9 @@ class CategoryApiController extends Controller
         return response()->json(['data' => $Category, "success" => true, "msg" => "Category delete Succcessfully"]);
     }
 
-    public function viewCategory($id)
+    public function viewCategory($slug)
     {       
-        $category = Category::findOrFail($id); 
+        $category = Category::where("slug",$slug)->first(); 
         $courses = $category->courses()->get();
 
         return response()->json(["data" => $courses]);

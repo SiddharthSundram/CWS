@@ -61,7 +61,8 @@ Route::apiResource('category',CategoryApiController::class);
 Route::get('/view-category/{id}',[CategoryApiController::class,"viewCategory"])->name("viewCategory");
 
 //api for  Courses operations
-Route::apiResource("course",CourseApiController::class);
+Route::get("course/{cat_slug}/{slug}",[CourseApiController::class,"show"])->name("show");
+Route::apiResource("course",CourseApiController::class)->except("show");
 
 Route::apiResource("contact",ContactController::class);
 Route::get('/admin/manage-message',[ContactController::class,"manageMessage"])->name("manage-message");

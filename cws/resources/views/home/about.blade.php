@@ -30,7 +30,7 @@
 
                 {{-- link the courses page when created --}}
                 <p class="text-center mb-5">
-                    <a href="#" class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Join Us
+                    <a href="{{route('register')}}" class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Join Us
                         Today</a>
                 </p>
 

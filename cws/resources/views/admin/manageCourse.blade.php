@@ -18,10 +18,8 @@
                         <th class="border border-gray-300">Duration</th>
                         <th class="border border-gray-300">Instructor</th>
                         <th class="border border-gray-300">Fees</th>
-                        <th class="border border-gray-300">Discount Fees</th>
                         <th class="border border-gray-300">Language</th>
                         <th class="border border-gray-300">Category</th>
-                        <th class="border border-gray-300">Description</th>
                         <th class="border border-gray-300">Image</th>
                         <th class="border border-gray-300">Status</th>
                         <th class="border border-gray-300">Actions</th>
@@ -102,6 +100,10 @@
                                 id="editCourseDescription" name="description" rows="3" required></textarea>
                         </div>
                         <div class="mb-4">
+                            <label for="editCourseFeatures" class="block text-sm font-medium text-gray-700">Features</label>
+                            <textarea class="form-textarea mt-1 block w-full" id="editCourseFeatures" name="features" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-4">
                             <label for="editCourseLang" class="block text-sm font-medium text-gray-700">Language</label>
                             <select
                                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -145,27 +147,25 @@
                     $("#counting").html(len);
                     $.each(response.data, function(index, course) {
                         $("#callingcourse").append(`<tr class="hover:bg-gray-100">
-                        <td class="border p-2">${course.id}</td>
-                        <td class="border p-2">${course.name}</td>
-                        <td class="border p-2">${course.duration}</td>
-                        <td class="border p-2">${course.instructor}</td>
-                        <td class="border p-2">${course.fees}</td>
-                        <td class="border p-2">${course.discount_fees}</td>
-                        <td class="border p-2">${course.lang}</td>
-                        <td class="border p-2">${course.category.cat_title}</td>
-                        <td class="border p-2">${course.description}</td>
-                        <td class="border p-2"><img src="/image/${course.featured_image}" width="80px" height="50px" alt=""></td>
-                        <td class="border p-2">
+                        <td class="border p-1 text-xs text-center">${course.id}</td>
+                        <td class="border p-1 text-xs text-center">${course.name}</td>
+                        <td class="border p-1 text-xs text-center">${course.duration}</td>
+                        <td class="border p-1 text-xs text-center">${course.instructor}</td>
+                        <td class="border p-1 text-xs text-center">${course.discount_fees} <del>${course.fees}</del></td>
+                        <td class="border p-1 text-xs text-center">${course.lang}</td>
+                        <td class="border p-1 text-xs text-center">${course.category.cat_title}</td>
+                        <td class="border p-1 text-xs text-center"><img src="/image/${course.featured_image}" width="80px" height="50px" alt=""></td>
+                        <td class="border p-1 text-xs text-center">
                             <button class="status-toggle-btn ${course.status === 1 ? 'bg-green-500 hover:bg-green-700' : 'bg-red-500 hover:bg-red-700'} text-white font-semibold py-1 px-2 rounded" data-id="${course.id}" data-status="${course.status}">
                             ${course.status === 1 ? 'Active' : 'Inactive'}
                         </button>    
                         </td>
 =                                        
                         <td class="py-2 px-4 border">
-                            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded-sm delete-btn" data-id="${course.id}">
+                            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded-sm delete-btn" data-cslug="${course.course_slug}" data-slug="${course.category.slug}">
                                 <i class="fas fa-trash"></i> Delete
                             </button>
-                            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-sm edit-btn" data-id="${course.id}">
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-sm edit-btn" data-cslug="${course.course_slug}" data-slug="${course.category.slug}">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
                           
@@ -223,10 +223,11 @@
 
             // Edit course button click handler
             $(document).on('click', '.edit-btn', function() {
-                var courseId = $(this).data('id');
+                var courseSlug = $(this).data('cslug');
+                var catSlug = $(this).data('slug');
                 $.ajax({
                     type: 'GET',
-                    url: `/api/course/${courseId}`,
+                    url: `/api/course/${catSlug}/${courseSlug}`,
                     dataType: 'json',
                     success: function(response) {
                         $('#editCourseId').val(response.data.id);
@@ -240,6 +241,7 @@
                         $('#editCourseDescription').val(response.data.description);
                         $('#editCourseLang').val(response.data.lang);
                         $('#editCourseCategory').val(response.data.category_id);
+                        $('#editCourseFeatures').val(response.data.features);
                         $('#editCourseModal').removeClass('hidden');
                     },
                     error: function(xhr, status, error) {
@@ -256,10 +258,19 @@
             // Submit edit course form
             $('#editCourseForm').submit(function(e) {
                 e.preventDefault();
+
+                let formData = new FormData(this);
+
+                // Split features by newline and add them to the form data
+                let features = $("#editCourseFeatures").val().split('\n');
+                for (let i = 0; i < features.length; i++) {
+                    formData.append('features[]', features[i]);
+                }
+
                 $.ajax({
                     type: 'POST',
                     url: '/api/course/' + $('#editCourseId').val(),
-                    data: new FormData(this),
+                    data: formData,
                     dataType: "JSON",
                     contentType: false,
                     cache: false,

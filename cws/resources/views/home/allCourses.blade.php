@@ -51,7 +51,7 @@
 
                             response.data.forEach((course) => {
                                 table.append(`
-                                <a href="/explore-course/${course.id}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+                                <a href="/explore-course/${course.category.slug}/${course.course_slug}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
                                             <div class="relative pb-48 overflow-hidden">
                                             <img class="absolute inset-0 h-full w-full object-cover" src="/image/${course.featured_image}" alt="">
                                                 <span class="inline-block px-2 py-1 leading-none bg-green-500 text-white rounded-full font-semibold uppercase tracking-wide text-xs absolute bottom-0 -right-0">New</span>

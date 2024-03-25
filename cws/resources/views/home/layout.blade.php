@@ -586,7 +586,7 @@
                             // console.log(item)
                             table.append(`
                             <li>
-                                <a href="/view-category/${item.id}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-300 pl-6 ">${item.cat_title}</a>
+                                <a href="/view-category/${item.slug}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-300 pl-6 ">${item.cat_title}</a>
                             </li>
                         `);
                         });
