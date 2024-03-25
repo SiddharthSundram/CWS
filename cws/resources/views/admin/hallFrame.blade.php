@@ -1,11 +1,14 @@
 @extends('admin.base')
+@section('title')
+<title>@yield('title') Admin | Insert HallFame</title>
+@endsection
 
 @section('content')
     <!-- Page content goes here -->
     <div class="container mx-auto px-4 py-8 mt-10">
         <div class="max-w-xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
             <div class="px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600">
-                <h3 class="text-2xl font-semibold text-white">Insert HallFrame</h3>
+                <h3 class="text-2xl font-semibold text-white">Insert HallFame</h3>
             </div>
             <div class="p-6 bg-gray-50">
                 <form id="hallFrame">
@@ -38,7 +41,7 @@
                     <div class="mb-4">
                         <button type="submit"
                             class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 w-full rounded-md">Insert
-                            HallFrame</button>
+                            HallFame</button>
                     </div>
                 </form>
             </div>

@@ -1,6 +1,8 @@
 @extends('home.layout')
 
-
+@section('title')
+<title>@yield('title') CWS | Course Category</title>
+@endsection
 @section('content')
     <div>
         <div class="container mx-auto px-4 py-8">

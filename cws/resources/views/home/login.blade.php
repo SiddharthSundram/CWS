@@ -1,5 +1,9 @@
 @extends('home.layout')
 
+@section('title')
+<title>@yield('title') CWS | Login</title>
+@endsection
+
 @section('content')
     <section >
         <div class="flex flex-col items-center justify-center  px-6 py-8 mx-auto h-screen lg:py-0">

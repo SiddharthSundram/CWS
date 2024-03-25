@@ -1,5 +1,9 @@
 @extends('home.layout')
 
+@section('title')
+<title>@yield('title') CWS | Privacy & Policy</title>
+@endsection
+
 @section('content')
     <div class="container mx-auto py-8">
         <div class="max-w-3xl mx-auto p-2 ">

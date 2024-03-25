@@ -1,5 +1,7 @@
 @extends('home.layout')
-
+@section('title')
+<title>@yield('title') CWS | Term & Conditions</title>
+@endsection
 @section('content')
     <div class=" p-3">
         <div class="container mx-auto py-8">

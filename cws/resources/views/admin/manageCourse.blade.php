@@ -1,4 +1,7 @@
 @extends('admin.base')
+@section('title')
+<title>@yield('title') Admin | Manage Course </title>
+@endsection
 
 @section('content')
     <div class="container mt-20">

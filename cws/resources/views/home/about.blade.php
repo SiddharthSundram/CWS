@@ -1,7 +1,7 @@
 @extends('home.layout')
 
 @section('title')
-    About CWS | 
+    <title>CWS | About</title>
 @endsection
 
 @section('content')

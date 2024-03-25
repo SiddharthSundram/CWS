@@ -1,10 +1,9 @@
 @extends('home.layout')
 
 @section('title')
-
-    forget password | 
-    
+    <title>  CWS | Forget Password </title>
 @endsection
+
 @section('content')
 
 <div class="container mt-20">

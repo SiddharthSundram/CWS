@@ -1,4 +1,7 @@
 @extends('admin.base')
+@section('title')
+<title>@yield('title') Admin | Manage Projects</title>
+@endsection
 
 @section('content')
 <div class="flex flex-col md:flex-row px-5 md:px-10 gap-5 mt-16">

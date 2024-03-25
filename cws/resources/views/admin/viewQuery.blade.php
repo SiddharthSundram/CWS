@@ -1,4 +1,7 @@
 @extends('admin.base')
+@section('title')
+<title>@yield('title') Admin | View Query</title>
+@endsection
 
 @section('content')
     <div class="container mx-auto my-10 px-4 py-8">

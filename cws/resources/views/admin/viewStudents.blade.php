@@ -1,4 +1,7 @@
 @extends('admin.base')
+@section('title')
+<title>@yield('title') Admin | View Student</title>
+@endsection
 
 @section('content')
     <div class="flex-1 flex mt-12 items-center justify-between">

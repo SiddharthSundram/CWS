@@ -1,4 +1,8 @@
 @extends('home.layout')
+@section('title')
+    <title>  CWS | Help </title>
+@endsection
+
 
 @section('content')
     <div class="md:mt-20 p-3 md:mb-32 ">

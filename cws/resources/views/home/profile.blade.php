@@ -1,4 +1,7 @@
 @extends('home.layout')
+@section('title')
+<title>@yield('title') CWS | My-Profile</title>
+@endsection
 
 @section('content')
     <section class="py-5 p-5 h-full md:h-screen">

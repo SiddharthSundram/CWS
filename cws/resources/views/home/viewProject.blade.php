@@ -1,4 +1,7 @@
 @extends('home.layout')
+@section('title')
+    CWS | View-Project
+@endsection
 
 @section('content')
     <div class="container mx-auto py-12 h-screen">

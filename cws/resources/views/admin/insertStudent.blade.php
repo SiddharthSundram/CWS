@@ -1,4 +1,7 @@
 @extends('admin.base')
+@section('title')
+<title>@yield('title') Admin | Insert Student</title>
+@endsection
 
 @section('content')
     <div class="container mx-auto mt-16">

@@ -1,4 +1,7 @@
 @extends('home.layout')
+@section('title')
+<title>@yield('title') Admin | Login </title>
+@endsection
 
 @section('content')
     <section >

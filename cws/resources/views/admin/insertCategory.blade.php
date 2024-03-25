@@ -1,4 +1,7 @@
 @extends('admin.base')
+@section('title')
+<title>@yield('title') Admin | Insert Category</title>
+@endsection
 
 @section('content')
 <div class="max-w-lg mx-auto mt-10">

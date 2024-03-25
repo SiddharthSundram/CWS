@@ -1,9 +1,12 @@
 @extends('admin.base')
+@section('title')
+<title>@yield('title') Admin | Manage HallFame</title>
+@endsection
 
 @section('content')
     <div class="container mt-16">
         <div class="flex flex-col md:flex-row justify-between mb-3 items-center">
-            <h2 class="text-2xl font-bold mb-3 md:mb-0">Manage hallFrame (<span id="counting">0</span>)</h2>
+            <h2 class="text-2xl font-bold mb-3 md:mb-0">Manage hallFame (<span id="counting">0</span>)</h2>
             <div class="relative">
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -63,7 +66,7 @@
             <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
                 role="dialog" aria-modal="true" aria-labelledby="editHallFrameModalLabel">
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <h5 class="text-lg font-semibold mb-4" id="editHallFrameModalLabel">Edit HallFrame</h5>
+                    <h5 class="text-lg font-semibold mb-4" id="editHallFrameModalLabel">Edit HallFame</h5>
                     <form id="editHallFrameForm" class="space-y-4">
                         @method('PUT')
                         <input type="hidden" id="editHallFrameId" name="id">
@@ -113,7 +116,7 @@
                             <div class="flex justify-between">
                                 <button type="submit"
                                     class="inline-block px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
-                                    Update HallFrame
+                                    Update HallFame
                                 </button>
                                 <button type="button" id="cancelEditHallFrame"
                                     class="inline-block px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">

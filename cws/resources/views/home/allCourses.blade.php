@@ -1,7 +1,7 @@
 @extends('home.layout')
 
 @section('title')
-    All Courses | 
+    <title> CWS | All Courses</title>
 @endsection
 
 @section('content')

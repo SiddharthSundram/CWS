@@ -1,4 +1,7 @@
 @extends('admin.base')
+@section('title')
+<title>@yield('title') Admin | Insert Course</title>
+@endsection
 
 @section('content')
     <!-- Page content goes here -->
