@@ -1,5 +1,8 @@
 @extends('home.layout')
 
+@section('title')
+    All Courses | 
+@endsection
 
 @section('content')
     <div>

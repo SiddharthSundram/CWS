@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sadiq's Website</title>
+    <title>@yield('title') Code With SadiQ | Learn Programming Language in Purnea Bihar</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -25,11 +25,11 @@
                     {{-- website logo --}}
                     <a href="{{ route('index') }}" title="Code With Sadiq " class="flex ms-2 md:me-24">
                         <div class="flex border border-black ">
-                            <div class="bg-black text-white px-4 py-2 flex items-center">
-                                <span class="font-bold text-lg text-nowrap">Code with</span>
+                            <div class="bg-black text-white px-2 py-1 md:px-4 md:py-2 flex items-center">
+                                <span class="font-bold text-sm md:text-lg text-nowrap">Code with</span>
                             </div>
-                            <div class="bg-white text-black px-4 py-2">
-                                <span class="font-bold text-lg">SadiQ</span>
+                            <div class="bg-white text-black px-2 py-1 md:px-4 md:py-2">
+                                <span class="font-bold text-sm md:text-lg">SadiQ</span>
                             </div>
                         </div>
                     </a>
@@ -98,9 +98,9 @@
                     {{-- login & sign up buttons  --}}
                     <div class="flex items-center shrink-0 gap-2">
                         <a href="{{ route('login') }}"
-                            class=" border hidden md:block  lg:block  border-black text-black px-4 py-2  hover:bg-gray-300 hover:text-black transition duration-300 ease-in-out register-link">Login</a>
+                            class=" border hidden md:block  lg:block  border-black text-black px-2 py-1 md:px-4 md:py-2  hover:bg-gray-300 hover:text-black transition duration-300 ease-in-out register-link">Login</a>
                         <a href="{{ route('register') }}"
-                            class=" border hidden md:block border-black text-white bg-black px-4 py-2  hover:bg-gray-800 hover:text-white transition duration-300 ease-in-out login-link">Sign
+                            class=" border hidden md:block border-black text-white bg-black px-2 py-1 md:px-4 md:py-2  hover:bg-gray-800 hover:text-white transition duration-300 ease-in-out login-link">Sign
                             Up</a>
                     </div>
 

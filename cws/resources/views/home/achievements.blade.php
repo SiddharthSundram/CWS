@@ -1,4 +1,7 @@
 @extends('home.layout')
+@section('title')
+    CWS Achievements | 
+@endsection
 
 @section('content')
     <div class="container mx-auto py-8 mt-3">

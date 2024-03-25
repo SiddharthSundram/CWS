@@ -16,4 +16,9 @@ class PasswordResetToken extends Model
         'token',
         'created_at',
     ];
+
+    public function getKeyType()
+    {
+        return 'string';
+    }
 }

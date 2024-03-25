@@ -18,8 +18,10 @@ class CourseController extends Controller
         return view("admin.manageCourse");
     }
 
-    public function exploreCourse(Request $request, $id){
-        return view('home.exploreCourse');
+    public function exploreCourse(Request $request, $cat_slug, $slug){
+        $course = Course::where("course_slug",$slug)->first();
+        
+        return view('home.exploreCourse',compact('course'));
     }
 
     public function allCourses(){

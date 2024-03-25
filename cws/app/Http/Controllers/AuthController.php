@@ -170,65 +170,48 @@ class AuthController extends Controller
             }
     }
 
-    public function resetPasswordLoad(Request $request){
-        $resetData = PasswordResetToken::where('token', $request->token)->get();
-        if(isset($request->token) && count($resetData)> 0){
-
-            $user = User::where('email',$resetData[0]['email'])->get();
-            return view('home.resetPassword', compact('user'));
-
-
+    public function resetPasswordLoad(Request $request)
+    {
+        $resetToken = PasswordResetToken::where('token', $request->token)->first();
+        if ($resetToken) {
+            $user = User::where('email', $resetToken->email)->first();
+            
+            if ($user) {
+                return view('home.resetPassword', compact('user'));
+            }
         }
-
-        // if(isset($request->token) && $resetData){
     
-        //     $user = User::where('email', $resetData->email)->first(); 
-        //     // dd($user->email);
-        //     if($user){
-        //         return view('home.resetPassword', compact('user'));
-        //     } else {
-        //         return "<h1> User Not Found</h1>";
-        //     }
+        return "<h1>Page Not Found</h1>";
+    }
        
-        // }
 
-        else{
-            return "<h1> Page Not Found</h1>";
-        }
-    }    
-
-public function resetPassword(Request $request)
-{
-    $request->validate([
-        'id' => 'required', // Assuming id is required for user identification
-        'password' => 'required|string|min:6|confirmed',
-    ]);
-
-    $user = User::find($request->id);
-
-    if (!$user) {
-        return "<h1>User not found.</h1>"; // Handle the case where user is not found
-    }
-
-    // dd($user->email);
-
-    $user->password = Hash::make($request->password);
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email', // Assuming email is required for user identification
+            'password' => 'required|string|min:6|confirmed',
+        ]);
     
-    if (!$user->save()) {
-        return "<h1>Failed to reset password.</h1>"; // Handle save operation failure
+        $user = User::where('email', $request->email)->first();
+    
+        if (!$user) {
+            return "<h1>User not found.</h1>"; // Handle the case where user is not found
+        }
+    
+        $user->password = Hash::make($request->password);
+        
+        if (!$user->save()) {
+            return "<h1>Failed to reset password.</h1>"; // Handle save operation failure
+        }
+    
+        $deleted = PasswordResetToken::where('email', $user->email)->delete();
+    
+        if (!$deleted) {
+            return "<h1>Failed to delete password reset record for email: {$user->email}.</h1>"; // Handle deletion failure
+        }
+    
+        return "<h1>Password has been reset successfully.</h1>";
     }
-    // dd($user->email);
-
-    $deleted = PasswordResetToken::where('email', $user->email)->delete();
-
-    // dd($deleted);
-
-    if (!$deleted) {
-        return "<h1>Failed to delete password reset record.</h1>"; // Handle deletion failure
-    }
-
-    return "<h1>Password has been reset successfully.</h1>";
-}
 
 
     

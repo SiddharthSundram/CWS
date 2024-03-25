@@ -3,13 +3,13 @@
 @section('content')
     <!-- main content here -->
     <div class=" px-4 text-center text-gray-800">
-        <div class=" mx-auto flex flex-col-reverse md:flex-row items-center justify-between px-[10%]">
+        <div class=" mx-auto flex flex-col-reverse md:flex-row items-start md:items-center justify-between md:px-[10%]">
             <div class="md:w-1/2 md:pr-8 text-left mb-4 md:mb-0 ">
-                <div class="flex flex-col md:flex-row text-center md:text-left ">
-                    <h1 class="text-3xl font-bold">Upskilling Made </h1>
-                    <span id="autoText" class="text-3xl font-bold ml-3 mb-2 text-orange-600"></span>
+                <div class="flex flex-row text-left ">
+                    <h1 class="md:text-3xl text-xl font-bold">Upskilling Made </h1>
+                    <span id="autoText" class="md:text-3xl text-xl font-bold ml-3 mb-2 text-orange-600"></span>
                 </div>
-                <p class="text-lg mb-8 text-slate-800">Where coding brilliance meets expert guidance. From novice to expert, our
+                <p class="text-sm md:text-lg mb-8 text-slate-800">Where coding brilliance meets expert guidance. From novice to expert, our
                     platform
                     offers personalized coaching and comprehensive courses to elevate your coding skills. Join a vibrant
                     community and unlock your coding potential today.</p>

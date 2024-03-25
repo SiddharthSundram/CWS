@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Course;
 use App\Models\RecentProject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -58,6 +60,7 @@ class HomeController extends Controller
     }
 
     public function viewCategory(Request $request, $slug){
+        
         return view('home.viewCategory');
     }
 

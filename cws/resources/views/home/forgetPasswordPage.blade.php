@@ -1,5 +1,10 @@
 @extends('home.layout')
 
+@section('title')
+
+    forget password | 
+    
+@endsection
 @section('content')
 
 <div class="container mt-20">

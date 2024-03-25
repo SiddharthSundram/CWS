@@ -1,10 +1,14 @@
 @extends('home.layout')
 
+@section('title')
+    {{$course->name}} | 
+@endsection
+
 @section('content')
-    <div class="bg-slate-800 h-48 gap-0 flex flex-col justify-around flex-1 w-full px-[10%]">
+    <div class="bg-slate-800 md:h-48 h-24 gap-0 flex flex-col justify-around flex-1 w-full px-5 md:px-[10%]">
 
 
-        <nav class="flex flex-1 mt-3" aria-label="Breadcrumb">
+        <nav class="md:flex md:flex-1 mt-3 hidden" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                 <li class="inline-flex items-center">
                     <a href="{{route('index')}}" class="inline-flex items-center text-sm font-medium text-gray-50 hover:text-white">
@@ -40,14 +44,14 @@
             </ol>
         </nav>
         <div class="flex-1 flex flex-col ">
-            <span class="text-white font-semibold courseName text-3xl">Loading...</span>
+            <span class="text-white font-semibold courseName text-xl md:text-3xl mt-10 md:mt-0">Loading...</span>
         </div>
     </div>
 
     <div class="w-full">
         <div
-            class="text-sm px-[10%] font-medium text-center sticky top-[70px] bg-white z-40 border text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
-            <ul class="flex flex-wrap -mb-px">
+            class="text-sm md:px-[10%] font-medium text-center sticky md:top-[70px] bg-white border text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+            <ul class="flex overflow-x-scroll flex-nowrap  md:flex-wrap -mb-px">
                 <li class="me-2">
                     <a href="#feature"
                         class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Features</a>
@@ -66,17 +70,17 @@
                 </li>
                 <li>
                     <a href="#"
-                        class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Course
+                        class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-nowrap">Course
                         Content</a>
                 </li>
             </ul>
         </div>
-        <div class="px-[10%]">
+        <div class="px-5 mt-4 md:px-[10%]">
 
 
             <div class="w-full">
 
-                <div class="flex-1 top-32  right-16 z-50 md:fixed md:mr-4 md:mb-5 md:flex md:flex-col items-center">
+                <div class="flex-1 top-32 right-16 z-50 md:fixed md:mr-4 mb-5 md:flex md:flex-col items-center">
                     <img src="" id="courseImage" alt="" class="rounded-lg w-full shadow-md mb-4 md:mb-0">
                     <div class="flex flex-1 w-full items-center p-2 ">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mt-1 mr-1">

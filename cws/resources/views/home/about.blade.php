@@ -1,5 +1,9 @@
 @extends('home.layout')
 
+@section('title')
+    About CWS | 
+@endsection
+
 @section('content')
         <div class="container mx-auto py-8 mt-5 md:mt-10">
             <h1 class="text-3xl font-bold text-center mb-8">Purnea's Premier Programming Institute!</h1>
