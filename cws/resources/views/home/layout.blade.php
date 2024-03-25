@@ -450,12 +450,12 @@
         <!-- "Go Back" button -->
         {{-- <a href="" class="goBackButton p-2 bg-blue-700 text-center text-white rounded">Go Back</a> --}}
 
-        <div class="container mx-auto p-0 md:px-10 lg:px-12 sm:px-8  outputContainer">
+        {{-- <div class="container mx-auto p-0 md:px-10 lg:px-12 sm:px-8  outputContainer"> --}}
             @section('content')
                 <!-- Content goes here -->
 
             @show
-        </div>
+        {{-- </div> --}}
     </main>
 
 
