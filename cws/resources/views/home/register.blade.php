@@ -1,6 +1,6 @@
 @extends('home.layout')
 @section('title')
-<title>@yield('title') CWS | Register</title>
+Register | 
 @endsection
 
 @section('content')

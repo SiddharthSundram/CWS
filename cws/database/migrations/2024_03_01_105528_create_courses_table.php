@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('lang',["English","Hindi"])->default("Hindi");
             $table->foreignId('category_id')->constrained()->onDelete("cascade");
             $table->string('featured_image')->nullable();
-            $table->string('description');            
+            $table->text('description');            
             $table->json('features')->nullable(); // Add a JSON column for features
             $table->boolean('status')->default(false);
             $table->timestamps();

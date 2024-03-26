@@ -1,6 +1,6 @@
 @extends('home.layout')
 @section('title')
-    <title>  CWS | Help </title>
+    Help | 
 @endsection
 
 

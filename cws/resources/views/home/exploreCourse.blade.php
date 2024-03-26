@@ -51,7 +51,7 @@
     <div class="w-full">
         <div
             class="text-sm md:px-[10%] font-medium text-center sticky md:top-[70px] bg-white border text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
-            <ul class="flex overflow-x-scroll flex-nowrap  md:flex-wrap -mb-px">
+            <ul class="flex overflow-x-scroll md:overflow-hidden flex-nowrap  md:flex-wrap -mb-px">
                 <li class="me-2">
                     <a href="#feature"
                         class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Features</a>
@@ -75,11 +75,8 @@
                 </li>
             </ul>
         </div>
-        <div class="px-5 mt-4 md:px-[10%]">
-
-
+        <div class=" mt-4 md:px-[10%] px-5">
             <div class="w-full">
-
                 <div class="flex-1 top-32 right-16 z-50 md:fixed md:mr-4 mb-5 md:flex md:flex-col items-center">
                     <img src="" id="courseImage" alt="" class="rounded-lg w-full shadow-md mb-4 md:mb-0">
                     <div class="flex flex-1 w-full items-center p-2 ">

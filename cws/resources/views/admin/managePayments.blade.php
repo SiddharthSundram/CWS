@@ -37,6 +37,7 @@
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Student Name</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Course Name</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Fees</th>
+                        <th class="border-b border-gray-200 px-3 py-2 text-sm">Due Date</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Date of Payment</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Created at</th>
                         <th class="border-b border-gray-200 px-3 py-2 text-sm">Actions</th>
@@ -61,7 +62,7 @@
 
     <script>
         $(document).ready(function() {
-
+            fetchStudents('', 1, 0); // Passing status = 0 for due payments
             $('#filterPaid').on('click', function(e) {
                 e.preventDefault();
                 fetchStudents('', 1, 1); // Passing status = 1 for paid payments
@@ -73,28 +74,41 @@
             });
 
             let callingStudent = (data) => {
-                let table = $("#callingStudent");
-                table.empty();
-                let len = data.length;
+    let table = $("#callingStudent");
+    table.empty();
+    let len = data.length;
 
-                $("#counting").html(len);
+    $("#counting").html(len);
 
-                data.forEach((payment) => {
-                    table.append(`
-                <tr>
+    data.forEach((payment) => {
+        let dueDate = new Date(payment.due_date);
+        let today = new Date();
+
+        let dueDateClass = '';
+        if (dueDate.toDateString() == today.toDateString()) {
+            dueDateClass = 'bg-yellow-500 text-white';
+        } else if (dueDate < today) {
+            dueDateClass = 'bg-red-500 text-white';
+        }  else {
+            dueDateClass = 'bg-green-500 text-white';
+        }
+
+        table.append(`
+            <tr>
                 <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.id}</td> 
                 <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.user.name}</td>
                 <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.course.name}</td> 
                 <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.fees}</td>     
+                <td class="border-b border-gray-200 px-3 py-2 text-sm ${dueDateClass}">${payment.due_date}</td>     
                 <td class="border-b border-gray-200 px-3 py-2 text-sm">${payment.date_of_payment ? new Date(payment.date_of_payment).toLocaleDateString() : "NULL"}</td>     
                 <td class="border-b border-gray-200 px-3 py-2 text-sm">${new Date(payment.created_at).toLocaleDateString()}</td>     
                 <td class="border-b border-gray-200 px-3 py-2 text-sm">
                     ${payment.status === 1 ? '<span class="bg-green-500 px-2 py-1 text-white">Paid</span>' : '<span class=" px-2 py-1 text-white bg-red-500">Due</span>'}
                 </td>
-                </tr>
+            </tr>
         `);
-                });
-            }
+    });
+}
 
             function fetchStudents(query = '', page = 1, status = null) {
                 $.ajax({
@@ -130,7 +144,6 @@
             }
 
             // Initial load with paid payments
-            fetchStudents('', 1, 1);
 
             $("#searchInput").on("input", function(e) {
                 e.preventDefault();

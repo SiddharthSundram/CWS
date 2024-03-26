@@ -12,7 +12,6 @@ use Mail;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Hash;
 
 
 // use Validator;
@@ -198,8 +197,9 @@ class AuthController extends Controller
             return "<h1>User not found.</h1>"; // Handle the case where user is not found
         }
     
-        $user->password = Hash::make($request->password);
+        $user->password = $request->password;
         
+        // dd($user->password);
         if (!$user->save()) {
             return "<h1>Failed to reset password.</h1>"; // Handle save operation failure
         }
