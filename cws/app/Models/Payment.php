@@ -24,8 +24,18 @@ class Payment extends Model
                 if ($totalDurationInWeeks > 0) {
                     // Calculate the due date for each payment
                     $paymentDate = Carbon::parse($payment->date_of_payment);
-                    $percentages = [40, 70, 100]; // Payment percentages
-                    $dueDate = $paymentDate->copy()->addWeeks(floor($totalDurationInWeeks * ($percentages[$payment->payment_number] / 100)));
+
+                    if ($payment->payment_number == 0) {
+                        // First payment due today
+                        $dueDate = $paymentDate;
+                    } elseif ($payment->payment_number == 1) {
+                        // Second payment due at mid of the course duration
+                        $midDuration = ceil($totalDurationInWeeks / 2);
+                        $dueDate = $paymentDate->copy()->addWeeks($midDuration);
+                    } elseif ($payment->payment_number == 2) {
+                        // Third payment due at the end of the course duration
+                        $dueDate = $paymentDate->copy()->addWeeks($totalDurationInWeeks);
+                    }
 
                     $payment->due_date = $dueDate;
                 }

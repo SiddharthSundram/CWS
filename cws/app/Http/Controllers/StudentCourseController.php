@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use App\Models\StudentCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -92,7 +93,13 @@ class StudentCourseController extends Controller
         if (!$studentCourse) {
             return response()->json(['message' => 'Student course not found.'], 404);
         }
-
+        $payments = Payment::where([['course_id', $studentCourse->course_id], ['user_id', $studentCourse->user_id]])->get();
+       
+        if($payments){
+            foreach ($payments as $payment) {
+                $payment->delete();
+            }
+        }
         $studentCourse->delete();
 
         return response()->json(['message' => 'Student course deleted successfully.']);

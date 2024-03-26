@@ -77,7 +77,7 @@
         </div>
         <div class=" mt-4 md:px-[10%] px-5">
             <div class="w-full">
-                <div class="flex-1 top-32 right-16 z-50 md:fixed md:mr-4 mb-5 md:flex md:flex-col items-center">
+                <div class="flex-1 top-32 right-16 z-40 md:fixed md:mr-4 mb-5 md:flex md:flex-col items-center">
                     <img src="" id="courseImage" alt="" class="rounded-lg w-full shadow-md mb-4 md:mb-0">
                     <div class="flex flex-1 w-full items-center p-2 ">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mt-1 mr-1">

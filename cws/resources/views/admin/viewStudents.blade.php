@@ -243,18 +243,40 @@
 
                                 paymentSection = `
                                     <ol class="relative border-s border-gray-200 dark:border-gray-700">                  
-                                    ${course.payments.map((payment, i) => `
-                                                                <li class="mb-2 ms-4">
-                                                                    <div class="absolute w-3 h-3 ${payment.status === 1? 'bg-green-600' : 'bg-gray-200'} rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                                                                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">${payment.date_of_payment}</time>
-                                                                    <h3 class="text-lg flex gap-2 items-center font-semibold text-gray-900 dark:text-white">
-                                                                        <span>₹${payment.fees}</span>
-                                                                        ${payment.status === 1 ? `<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
-                                                    </svg>`: ''}
-                                                                        </h3>
-                                                                    ${payment.status === 0 ? `<button id="markPaid_${payment.id}" class="bg-green-500 hover:bg-green-700 text-white font-semibold py-1 px-2 rounded">Mark as Paid</button>` : ``}
-                                                                </li>`).join('')}
+                                        ${course.payments.map((payment, i) => {
+    const paymentDate = new Date(payment.due_date);
+    const currentDate = new Date();
+
+    // Calculate the difference in days
+    const diffInMs = paymentDate - currentDate;
+    const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24));
+
+    // Determine the text color based on the remaining days
+    let textColorClass = '';
+    if (diffInDays < 0) {
+        textColorClass = 'text-red-600'; // Due date has passed (red)
+    } else if (diffInDays === 0) {
+        textColorClass = 'text-yellow-600'; // Due date is today (yellow)
+    } else {
+        textColorClass = 'text-green-600'; // Due date is in the future (green)
+    }
+
+    return `
+        <li class="mb-2 ms-4">
+            <div class="absolute w-3 h-3 ${payment.status === 1 ? 'bg-green-600' : 'bg-gray-200'} rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+            <time class="mb-1 text-sm font-normal leading-none ${textColorClass}">
+                ${payment.due_date} (${diffInDays < 0 ? 'Passed' : `${diffInDays} day${diffInDays !== 1 ? 's' : ''} left`})
+            </time>
+            <h3 class="text-lg flex gap-2 items-center font-semibold text-gray-900 dark:text-white">
+                <span>₹${payment.fees}</span>
+                ${payment.status === 1 ? `<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                </svg><span class='text-xs'>(Date : ${payment.date_of_payment}) </span>`: ''}
+            </h3>
+            ${payment.status === 0 ? `<button id="markPaid_${payment.id}" class="bg-green-500 hover:bg-green-700 text-white font-semibold py-1 px-2 rounded">Mark as Paid</button>` : ``}
+        </li>`;
+}).join('')}
+
                                     </ol>`;
                             }
 
