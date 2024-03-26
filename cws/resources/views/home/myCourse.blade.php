@@ -5,8 +5,8 @@
 
 @section('content')
     <div>
-        <div class="container h-full mx-auto px-4 py-8">
-            <h1 class="text-3xl font-bold mb-4">My Courses</h1>
+        <div class="container h-full mx-auto px-4 py-8 ">
+            <h1 class="text-xl font-bold mb-4 border-l-4 mt-5 border-l-orange-600 pl-3 border-b pb-2">My Courses</h1>
 
             <div id="courses-list">
                 {{-- my courses will call here --}}
@@ -61,25 +61,30 @@
                                 'en-GB');
 
                             let courseSection = $(`
-                                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col md:flex-row items-center justify-center mb-5 border border-b">
-                                    <div class="md:w-1/6 md:mr-4 md:mb-5 md:flex md:flex-col justify-center items-center">
-                                        <img src="/image/${item.featured_image}" id="courseImage" alt="" class="rounded-lg h-5/6 w-5/6 shadow-md mb-4 md:mb-0">
+                                <div class="bg-white gap-2 flex flex-col md:flex-row border">
+                                    <div class="md:w-1/6 md:flex md:flex-col justify-center items-center">
+                                        <img src="/image/${item.featured_image}" id="courseImage" alt="" class="h-full w-full object-cover">
                                     </div>
-                                    <div class="md:w-5/6 md:ml-4 flex flex-col md:flex-row gap-4">
+                                    <div class="md:w-5/6  flex flex-col md:flex-row gap-4 p-2">
                                         <div class="md:w-1/2">
-                                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Course Details:</h3>
-                                            <div class="ml-3">
-                                                <h2 class="text-xl font-semibold text-gray-600 mb-2"> <span class="text-orange-600" id="courseName">${item.name}</span></h2>
-                                                <p class="text-gray-600 font-bold mb-2">Duration : <span class="font-normal" id="courseDescription">${item.duration}</span></p>
-                                                <p class="text-gray-600 font-bold mb-2">Instructor : <span class="font-normal" id="courseInstructor">${item.instructor}</span></p>
-                                                <p class="text-gray-600 font-bold mb-2">Enrolled Date : <span class="font-normal" id="courseLang"><time class='leading-none'>${formattedDate}</time></span></p>
-                                                <div class="flex items-center mb-4">
+                                            <h3 class="text-sm font-semibold text-gray-800">Course Details:</h3>
+                                            <div class="flex flex-col gap-1 ml-3">
+                                                <h2 class="text-xl font-semibold text-gray-600"> <span class="text-orange-600" id="courseName">${item.name}</span></h2>
+                                                <p class="text-gray-600 font-bold flex gap-2"> Durations: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+</svg> <span class="font-normal" id="courseDescription">${item.duration} Weeks</span></p>
+                                                <p class="text-gray-600 font-bold">Instructor : <span class="font-normal" id="courseInstructor">${item.instructor}</span></p>
+                                                <p class="text-gray-600 font-bold flex gap-2">
+ Enrolled Date <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
+</svg> : <span class="font-normal" id="courseLang"><time class='leading-none'>${formattedDate}</time></span></p>
+                                                <div class="flex items-center">
                                                     <span class="text-gray-600 font-bold mr-2">Discounted Fees : <span id="courseDiscountFees font-normal">  ₹${item.discount_fees}</span>.00 </span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="md:w-1/2">
-                                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Payment Details:</h3>
+                                            <h3 class="text-sm font-semibold text-gray-800">Payment Details:</h3>
                                             <div class="ml-3">
                                                 ${item.payments && item.payments.length > 0 ?
                                                     `<ol class="relative border-s border-gray-200 ">
@@ -104,8 +109,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mt-4 flex items-center justify-center">
-                                        <button class="flex gap-1 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-md shadow-md transition-colors duration-300 ml-4 download-invoice-btn" style="${item.payments && item.payments.length > 0 ? '' : 'display: none;'}">
+                                    <div class=" flex items-center justify-center">
+                                        <button class="flex gap-1 bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md shadow-md transition-colors duration-300  download-invoice-btn" style="${item.payments && item.payments.length > 0 ? '' : 'display: none;'}">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 20px; width: 30px; fill: white;">
                                                 <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
                                             </svg>
