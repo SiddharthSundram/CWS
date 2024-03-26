@@ -1,6 +1,6 @@
 @extends('home.layout')
 @section('title')
-<title>@yield('title') Admin | Login </title>
+    @yield('title') Admin | Login 
 @endsection
 
 @section('content')

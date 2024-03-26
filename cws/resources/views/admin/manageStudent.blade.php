@@ -1,6 +1,6 @@
 @extends('admin.base')
 @section('title')
-<title>@yield('title') Admin | Manage Students</title>
+    @yield('title') Admin | Manage Students
 @endsection
 
 @section('content')
