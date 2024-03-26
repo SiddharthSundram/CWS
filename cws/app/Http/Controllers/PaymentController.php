@@ -48,7 +48,7 @@ class PaymentController extends Controller
                 'fees' => $fees,
                 'is_fullPayment' => true,
                 'payment_number' => 0,
-                'due_date' => Carbon::parse($courseStartDate)->addDays($courseDuration), // Calculate due date
+                'due_date' => Carbon::parse($courseStartDate)->addDays(3), // Calculate due date
             ]);
         } else {
             // Calculate the partial payments

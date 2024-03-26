@@ -1,6 +1,6 @@
 @extends('admin.base')
 @section('title')
-<title>@yield('title') Admin | Insert Course</title>
+    @yield('title') Admin | Insert Course
 @endsection
 
 @section('content')
@@ -22,7 +22,8 @@
                     </div>
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Instructor</label>
-                        <input type="text" class="form-input mt-1 block w-full" id="instructor" name="instructor" required>
+                        <input type="text" class="form-input mt-1 block w-full" id="instructor" name="instructor"
+                            required>
                     </div>
                     <div class="mb-4">
                         <label for="fees" class="block text-sm font-medium text-gray-700">Fees</label>
@@ -30,12 +31,14 @@
                     </div>
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Discounted Fees</label>
-                        <input type="text" class="form-input mt-1 block w-full" id="discount_fees" name="discount_fees" required>
+                        <input type="text" class="form-input mt-1 block w-full" id="discount_fees" name="discount_fees"
+                            required>
                     </div>
                     <div class="flex mb-4">
                         <div class="w-8/12 mr-4">
                             <label class="block text-sm font-medium text-gray-700">Featured Image</label>
-                            <input type="file" class="form-input mt-1 block w-full" id="image_upload" name="featured_image" required>
+                            <input type="file" class="form-input mt-1 block w-full" id="image_upload"
+                                name="featured_image" required>
                         </div>
                         <div class="w-4/12">
                             <img src="" id="image-preview" alt="" class="w-full h-auto">
@@ -54,7 +57,8 @@
                     </div>
                     <div class="mb-4">
                         <label for="categoryId" class="block text-sm font-medium text-gray-700">Category</label>
-                        <select type="text" id="callingCatForSelect" name="category_id" class="form-select mt-1 block w-full">
+                        <select type="text" id="callingCatForSelect" name="category_id"
+                            class="form-select mt-1 block w-full">
                         </select>
                     </div>
                     <div class="mb-4">
@@ -62,21 +66,23 @@
                         <textarea class="form-textarea mt-1 block w-full" id="features" name="features" rows="3" required></textarea>
                     </div>
                     <div class="mb-4">
-                        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 w-full rounded-md">Insert Course</button>
+                        <button type="submit"
+                            class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 w-full rounded-md">Insert
+                            Course</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    
+
     <script>
-        //for calling category 
         $(document).ready(function() {
+            // Fetch categories
             $.ajax({
                 type: "GET",
                 url: "/api/category",
                 success: function(response) {
-                    let select = $("#callingCatForSelect"); // Corrected the selector
+                    let select = $("#callingCatForSelect");
                     select.empty();
                     response.data.forEach((cat) => {
                         select.append(`<option value="${cat.id}">${cat.cat_title}</option>`);
@@ -84,54 +90,56 @@
                 }
             });
 
-
-            // Insert course
+            // Function to handle image preview
             function readURL(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
-
                     reader.onload = function(e) {
                         $('#image-preview').attr('src', e.target.result);
-                    }
-
+                    };
                     reader.readAsDataURL(input.files[0]);
                 }
             }
+
+            // Update image preview when file input changes
             $("#image_upload").change(function() {
                 readURL(this);
             });
 
             // Insert course
-$("#insertCourse").submit(function(e) {
-    e.preventDefault();
-    let features = $("#features").val().split('\n'); // Split features by newline
-    $.ajax({
-        type: "POST",
-        url: "/api/course",
-        data: {
-            name: $("#name").val(),
-            duration: $("#duration").val(),
-            instructor: $("#instructor").val(),
-            fees: $("#fees").val(),
-            discount_fees: $("#discount_fees").val(),
-            lang: $("#lang").val(),
-            category_id: $("#callingCatForSelect").val(),
-            featured_image: $("#image_upload")[0].files[0],
-            description: $("#description").val(),
-            features: features // Send features as an array
-        },
-        dataType: "JSON",
-        contentType: false,
-        cache: false,
-        processData: false,
-        success: function(response) {
-            alert(response.msg);
-            $("#insertCourse").trigger("reset")
-            window.open("{{route('manageCourse')}}", "_self")
-        }
-    })
-})
+            $("#insertCourse").submit(function(e) {
+                e.preventDefault();
+                let features = $("#features").val().split('\n'); // Split features by newline
+                let formData = new FormData();
+                formData.append('name', $("#name").val());
+                formData.append('duration', $("#duration").val());
+                formData.append('instructor', $("#instructor").val());
+                formData.append('fees', $("#fees").val());
+                formData.append('discount_fees', $("#discount_fees").val());
+                formData.append('lang', $("#lang").val());
+                formData.append('category_id', $("#callingCatForSelect").val());
+                formData.append('featured_image', $("#image_upload")[0].files[0]);
+                formData.append('description', $("#description").val());
+                formData.append('features', features);
 
+                $.ajax({
+                    type: "POST",
+                    url: "/api/course",
+                    data: formData,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(response) {
+                        alert(response.msg);
+                        $("#insertCourse")[0].reset();
+                        window.open("{{ route('manageCourse') }}", "_self");
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        alert("Error: " + xhr.responseText);
+                    }
+                });
+            });
         });
     </script>
 @endsection

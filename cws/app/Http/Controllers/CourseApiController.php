@@ -19,6 +19,8 @@ class CourseApiController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->name);
+
         $filename = time() . "." . $request->featured_image->extension();        //upload on public/course_image/filename
         $request->featured_image->move(public_path("image"), $filename);
 

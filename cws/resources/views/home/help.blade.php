@@ -122,7 +122,7 @@
                     // Handle error
                     console.error(xhr.responseText);
                     // Optionally, display an error message
-                    alert('Failed to submit query. Please try again later.');
+                    swal("Failed to submit query!", ". Please try again later.", "error");
                     
                 }
             });
