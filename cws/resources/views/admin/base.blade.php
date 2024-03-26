@@ -7,10 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- <title>{{ env('APP_NAME') }}</title> --}}
+    <title>
+        @section('title')
 
-    @section('title')
-        
-    @show
+        @show
+    </title>
+
 
     {{-- ajax cdn --}}
 
@@ -130,7 +132,7 @@
                     <!-- Your new list items -->
 
                     <li>
-                     <a href="{{ route('manageAdmission') }}"
+                        <a href="{{ route('manageAdmission') }}"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -140,11 +142,11 @@
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Manage Admission</span>
                             <span
-                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countAdmission">0</span>
+                                class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countAdmission">0</span>
                         </a>
                     </li>
                     <li>
-                     <a href="{{ route('manageStudent') }}"
+                        <a href="{{ route('manageStudent') }}"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -154,7 +156,7 @@
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Manage Students</span>
                             <span
-                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countStudent">0</span>
+                                class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countStudent">0</span>
                         </a>
                     </li>
                     <li>
@@ -168,7 +170,7 @@
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Projects</span>
                             <span
-                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countProject">0</span>
+                                class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countProject">0</span>
                         </a>
                     </li>
                     <li>
@@ -196,7 +198,7 @@
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Manage Categories</span>
                             <span
-                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countCategory">0</span>
+                                class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countCategory">0</span>
                         </a>
                     </li>
                     <li>
@@ -209,10 +211,11 @@
                                     d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Manage Courses</span>
-                            <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countCourse">0</span>
+                            <span
+                                class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countCourse">0</span>
                         </a>
                     </li>
-                   
+
                     <li>
                         <a href="{{ route('managePayments') }}"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -224,7 +227,7 @@
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Manage Payments</span>
                             <span
-                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countPayments">0</span>
+                                class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countPayments">0</span>
                         </a>
                     </li>
                     </li>
@@ -240,7 +243,7 @@
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Manage Query</span>
                             <span
-                            class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countQuery ">0</span>
+                                class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 countQuery ">0</span>
                         </a>
                     </li>
 
@@ -277,47 +280,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
     <script>
-      $(document).ready(function() {
+        $(document).ready(function() {
 
-        $.ajax({
-            url:"{{route('countData')}}",
-            type:"GET",
-            success: function(response) {
+            $.ajax({
+                url: "{{ route('countData') }}",
+                type: "GET",
+                success: function(response) {
 
-                //to calculate total due of amount sutdent
-                let totalDueAmount = 0;
-                response.paymentDueAmount.forEach((item) => {
-                    totalDueAmount += parseInt(item.fees); 
-                });
-                
-                //to calculate total paid amount of sutdent
-                let totalPaidAmount = 0;
-                response.paymentPaidAmount.forEach((item) => {
-                    totalPaidAmount += parseInt(item.fees); 
-                });
+                    //to calculate total due of amount sutdent
+                    let totalDueAmount = 0;
+                    response.paymentDueAmount.forEach((item) => {
+                        totalDueAmount += parseInt(item.fees);
+                    });
 
-                $(".paymentsDueAmount").html(`₹${totalDueAmount}`);
-                $(".paymentPaidAmount").html(`₹${totalPaidAmount}`);
-                $(".totalGirls").html(response.countGirls);
-                $(".totalBoys").html(response.countBoys);
-                $(".countAdmission").html(response.admission);
-                $(".countStudent").html(response.students);
-                $(".countProject").html(response.projects);
-                $(".counthallFrame").html(response.halloffames);
-                $(".countCourse").html(response.courses);
-                $(".countCategory").html(response.category);
-                $(".countPayments").html(response.payments);
-                $(".countPaymentsDue").html(response.payment);
-                $(".countQuery").html(response.contact);
+                    //to calculate total paid amount of sutdent
+                    let totalPaidAmount = 0;
+                    response.paymentPaidAmount.forEach((item) => {
+                        totalPaidAmount += parseInt(item.fees);
+                    });
 
-              },
-              error: function(xhr, status, error) {
-                  console.error("Error fetching project count:", error);
-              }
-        })
-      });
-  </script>
-  
+                    $(".paymentsDueAmount").html(`₹${totalDueAmount}`);
+                    $(".paymentPaidAmount").html(`₹${totalPaidAmount}`);
+                    $(".totalGirls").html(response.countGirls);
+                    $(".totalBoys").html(response.countBoys);
+                    $(".countAdmission").html(response.admission);
+                    $(".countStudent").html(response.students);
+                    $(".countProject").html(response.projects);
+                    $(".counthallFrame").html(response.halloffames);
+                    $(".countCourse").html(response.courses);
+                    $(".countCategory").html(response.category);
+                    $(".countPayments").html(response.payments);
+                    $(".countPaymentsDue").html(response.payment);
+                    $(".countQuery").html(response.contact);
+
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching project count:", error);
+                }
+            })
+        });
+    </script>
+
 </body>
 
 </html>
