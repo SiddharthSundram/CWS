@@ -1,8 +1,6 @@
 @extends('home.layout')
 
-@section('title')
-<title>@yield('title') CWS | Course Category</title>
-@endsection
+
 @section('content')
     <div>
         <div class="container mx-auto px-4 py-8">
@@ -46,6 +44,7 @@
                         table.empty();
 
                         categoryName = response.data.cat_title;
+                        document.title = categoryName + " | Code With SadiQ | Learn Programming Language in Purnea Bihar";
                         $("#categoryName").text(categoryName);
                     }
                 });
