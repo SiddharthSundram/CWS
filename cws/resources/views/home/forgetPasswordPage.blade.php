@@ -1,7 +1,7 @@
 @extends('home.layout')
 
 @section('title')
-    <title> CWS | Forget Password </title>
+     CWS | Forget Password 
 @endsection
 
 @section('content')

@@ -183,7 +183,7 @@ class AuthController extends Controller
         return "<h1>Page Not Found</h1>";
     }
        
-
+    
     public function resetPassword(Request $request)
     {
         $request->validate([
@@ -194,25 +194,30 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
     
         if (!$user) {
-            return "<h1>User not found.</h1>"; // Handle the case where user is not found
+            return "<h1>User not found.</h1>" . $this->redirectWithDelay('/login', 3, 'Redirecting to login page...');
         }
     
         $user->password = $request->password;
-        
+    
         // dd($user->password);
         if (!$user->save()) {
-            return "<h1>Failed to reset password.</h1>"; // Handle save operation failure
+            return "<h1>Failed to reset password.</h1>" . $this->redirectWithDelay('/login', 3, 'Redirecting to login page...');
         }
     
         $deleted = PasswordResetToken::where('email', $user->email)->delete();
     
         if (!$deleted) {
-            return "<h1>Failed to delete password reset record for email: {$user->email}.</h1>"; // Handle deletion failure
+            return "<h1>Failed to delete password reset record for email: {$user->email}.</h1>" . $this->redirectWithDelay('/login', 3, 'Redirecting to login page...');
         }
     
-        return "<h1>Password has been reset successfully.</h1>";
+        return "<h1>Password has been reset successfully.</h1>" . $this->redirectWithDelay('/login', 3, 'Redirecting to login page...');
     }
-
+    
+    private function redirectWithDelay($url, $delay, $message)
+    {
+        return "<h2>{$message}</h2><meta http-equiv='refresh' content='{$delay};url={$url}'>";
+    }
+    
 
     
 
