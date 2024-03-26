@@ -17,7 +17,7 @@ class Payment extends Model
         parent::boot();
 
         static::creating(function ($payment) {
-            if ($payment->status == 0) {
+            if (!$payment->is_fullPayment) {
                 $course = $payment->course;
                 $totalDurationInWeeks = $course->duration; // Assuming duration is in weeks
 

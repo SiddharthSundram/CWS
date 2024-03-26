@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('cat_title');
             $table->string('slug')->unique(); // Add a unique slug column
-            $table->string('cat_description')->nullable();
+            $table->text('cat_description')->nullable();
             $table->timestamps();
         });
 
