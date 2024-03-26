@@ -6,7 +6,7 @@
 @section('content')
 <div class="max-w-lg mx-auto mt-10">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <h2 class="text-2xl mb-4">Insert Course</h2>
+        <h2 class="text-2xl mb-4">Insert Category</h2>
 
         <form id="insertCategory">
             <div class="mb-4">
