@@ -1,6 +1,6 @@
 @extends('home.layout')
 @section('title')
-<title>@yield('title') CWS | Term & Conditions</title>
+Terms & Conditions | 
 @endsection
 @section('content')
     <div class=" p-3">

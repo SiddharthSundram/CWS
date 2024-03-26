@@ -52,14 +52,17 @@ class PaymentController extends Controller
             // Calculate the partial payments
             $paymentAmounts = [0.4, 0.3, 0.3];
             $totalPaymentAmount = $fees;
-    
+            $payment_number = 0;
             foreach ($paymentAmounts as $paymentAmount) {
                 $data = Payment::create([
                     'course_id' => $courseId,
                     'user_id' => $userId,
                     'fees' => $paymentAmount * $totalPaymentAmount,
+                    'payment_number' => $payment_number,
                     'due_date' => Carbon::parse($courseStartDate)->addDays($courseDuration), // Calculate due date
                 ]);
+
+                $payment_number++;
             }
         }
     

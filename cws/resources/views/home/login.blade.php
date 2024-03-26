@@ -1,7 +1,7 @@
 @extends('home.layout')
 
 @section('title')
-<title>@yield('title') CWS | Login</title>
+    Login |
 @endsection
 
 @section('content')

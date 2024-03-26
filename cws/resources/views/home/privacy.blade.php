@@ -1,7 +1,7 @@
 @extends('home.layout')
 
 @section('title')
-<title>@yield('title') CWS | Privacy & Policy</title>
+Privacy & Policy | 
 @endsection
 
 @section('content')

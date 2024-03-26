@@ -1,6 +1,6 @@
 @extends('home.layout')
 @section('title')
-<title>@yield('title') CWS | My-Profile</title>
+My Profile | 
 @endsection
 
 @section('content')

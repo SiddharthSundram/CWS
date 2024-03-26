@@ -1,7 +1,6 @@
 @extends('home.layout')
 @section('title')
-    <title>    CWS | Achievements 
-    </title>
+    CWS Achievements | 
 @endsection
 
 @section('content')

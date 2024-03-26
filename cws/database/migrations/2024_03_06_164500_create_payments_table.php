@@ -19,7 +19,7 @@ return new class extends Migration
             $table->boolean('status')->default(false);
             $table->date('date_of_payment')->nullable();
             $table->date('due_date')->nullable();
-
+            $table->integer('payment_number')->default(0);
             $table->timestamps();
         });
     }

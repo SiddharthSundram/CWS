@@ -1,10 +1,5 @@
 @extends('home.layout')
 
-@section('title')
-<title>@yield('title') Code With SadiQ | Learn Programming Language in Purnea Bihar</title>
-
-@endsection
-
 @section('content')
     <!-- main content here -->
     <div class=" px-4 text-center text-gray-800">

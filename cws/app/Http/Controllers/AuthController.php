@@ -197,9 +197,10 @@ class AuthController extends Controller
         if (!$user) {
             return "<h1>User not found.</h1>"; // Handle the case where user is not found
         }
-    
-        $user->password = Hash::make($request->password);
+        // dd($request->password);
+        $user->password = $request->password;
         
+        // dd($user->password);
         if (!$user->save()) {
             return "<h1>Failed to reset password.</h1>"; // Handle save operation failure
         }

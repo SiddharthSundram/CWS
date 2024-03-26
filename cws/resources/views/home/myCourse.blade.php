@@ -1,6 +1,6 @@
 @extends('home.layout')
 @section('title')
-<title>@yield('title') CWS | My-Course</title>
+    My Courses | 
 @endsection
 
 @section('content')
