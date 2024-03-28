@@ -153,7 +153,7 @@
                     <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${student.mobile_no}</td>     
                     <td class="border-b border-gray-200 px-3 text-center py-2 text-sm">${new Date(student.created_at).toLocaleDateString()}</td>     
                     <td class="border-b border-gray-200 px-3 py-2 text-sm">
-                        <button type='button' class='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded edit-btn' data-id='${student.id}'>X</button>
+                        <button type='button' class='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded delete-btn' data-id='${student.id}'>X</button>
                         <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded-sm edit-btn" data-id="${student.id}">
                                 <i class="fas fa-edit"></i> Edit</button>
                     </td>
@@ -251,6 +251,7 @@
                     contentType: 'application/json', //                    
                     success: function(response) {
                         $('#editStudentModal').addClass('hidden');
+                        
                         fetchStudents();
                     },
                     error: function(xhr, status, error) {
@@ -270,7 +271,22 @@
             $('#cancelEditStudent').click(function() {
                 $('#editStudentModal').addClass('hidden');
             });
-
+            $(document).on('click', '.delete-btn', function() {
+            var userId = $(this).data('id');
+            if (confirm('Are you sure you want to delete this student?')) {
+                $.ajax({
+            type: 'DELETE',
+            url: `/api/admin/student/delete/${userId}`,
+            success: function(response) {
+                swal("Success", response.msg, "success");
+                fetchStudents();
+            },
+            error: function(xhr, status, error) {
+                console.error('Error deleting student:', error);
+            }
+        });
+    }
+});
            
         });
     </script>
